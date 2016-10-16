@@ -1,6 +1,10 @@
 package se.simplistics.template4fx;
 
 import javafx.application.Application;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.scene.image.Image;
 import javafx.stage.Stage;
 
 import java.util.Locale;
@@ -27,11 +31,20 @@ public class FXClient
     public void start( Stage primaryStage )
         throws Exception
     {
-        primaryStage.setTitle( locale.getString( "title" ) );
+        initHeader( primaryStage );
 
         // Init main scene
-        // Scene scene = new Scene( null, 800, 600 );
-        // primaryStage.setScene( scene );
+        FXMLLoader loader = new FXMLLoader( getClass().getResource( "/fxml/main.fxml" ) );
+        loader.setResources( locale );
+        Parent root = loader.load();
+        primaryStage.setScene( new Scene( root, 800, 600 ) );
         primaryStage.show();
+    }
+
+    private void initHeader( Stage primaryStage )
+    {
+        primaryStage.setTitle( locale.getString( "title" ) );
+        primaryStage.getIcons().add( new Image( "/icons/16/brick.png" ) );
+        primaryStage.getIcons().add( new Image( "/icons/32/brick.png" ) );
     }
 }

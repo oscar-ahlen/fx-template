@@ -1,0 +1,12 @@
+.root
+{
+    /* Nice blue color */
+    -fx-accent: #A7CDF0;
+    -fx-focus-color: #A7CDF0;
+}
+
+.menu-bar
+{
+    /* Force zero padding in menu bar */
+    -fx-padding: 0;
+}
