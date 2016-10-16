@@ -7,12 +7,15 @@ import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.stage.Stage;
 
+import java.io.InputStream;
 import java.util.Locale;
 import java.util.ResourceBundle;
 
 public class FXClient
     extends Application
 {
+    public static CustomProperties props;
+
     public static ResourceBundle locale;
 
     public static void main( String[] args )
@@ -24,6 +27,12 @@ public class FXClient
     public void init()
         throws Exception
     {
+        try (InputStream in = getClass().getClassLoader().getResourceAsStream( "config.properties" ))
+        {
+            props = new CustomProperties();
+            props.load( in );
+        }
+
         locale = ResourceBundle.getBundle( "localization.template4j", new Locale( "en", "EN" ) );
     }
 
@@ -36,8 +45,9 @@ public class FXClient
         // Init main scene
         FXMLLoader loader = new FXMLLoader( getClass().getResource( "/fxml/main.fxml" ) );
         loader.setResources( locale );
+
         Parent root = loader.load();
-        primaryStage.setScene( new Scene( root, 800, 600 ) );
+        primaryStage.setScene( new Scene( root, props.getInt( "window_width" ), props.getInt( "window_height" ) ) );
         primaryStage.show();
     }
 
