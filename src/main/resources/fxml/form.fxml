@@ -1,0 +1,23 @@
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.StackPane?>
+<BorderPane xmlns:fx="http://javafx.com/fxml"
+            xmlns="http://javafx.com/javafx/8"
+            fx:controller="se.simplistics.template4fx.controller.FormController"
+            fx:id="root">
+    <center>
+        <StackPane styleClass="theme-menu">
+            <padding>
+                <Insets left="12"/>
+            </padding>
+
+            <TabPane tabClosingPolicy="ALL_TABS">
+                <Tab text="Tab 1"/>
+                <Tab text="Tab 2"/>
+                <Tab text="Tab 3"/>
+            </TabPane>
+        </StackPane>
+    </center>
+</BorderPane>

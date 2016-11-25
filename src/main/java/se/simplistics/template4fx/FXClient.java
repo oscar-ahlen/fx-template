@@ -53,7 +53,7 @@ public class FXClient
 
     private void initHeader( Stage primaryStage )
     {
-        primaryStage.setTitle( locale.getString( "title" ) );
+        primaryStage.setTitle( locale.getString( "application.title" ) );
         primaryStage.getIcons().add( new Image( "/icons/16/brick.png" ) );
         primaryStage.getIcons().add( new Image( "/icons/32/brick.png" ) );
     }

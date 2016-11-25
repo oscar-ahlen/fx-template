@@ -1,0 +1,84 @@
+<?import javafx.collections.FXCollections?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.cell.PropertyValueFactory?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.StackPane?>
+<?import se.simplistics.template4fx.model.Person?>
+<BorderPane xmlns:fx="http://javafx.com/fxml"
+            xmlns="http://javafx.com/javafx/8"
+            fx:controller="se.simplistics.template4fx.controller.TableController"
+            fx:id="root">
+
+    <top>
+        <HBox styleClass="theme-menu" spacing="8">
+            <padding>
+                <Insets left="12" top="12" right="12" bottom="12"/>
+            </padding>
+
+            <Button text="Button 1" focusTraversable="false"/>
+            <Button text="Button 2" focusTraversable="false"/>
+            <Button text="Button 3" focusTraversable="false"/>
+            <Button text="Button 4" focusTraversable="false"/>
+        </HBox>
+    </top>
+
+    <center>
+        <StackPane styleClass="theme-menu">
+            <padding>
+                <Insets left="12"/>
+            </padding>
+
+            <TableView>
+                <columns>
+                    <TableColumn text="%table.col.firstname">
+                        <cellValueFactory>
+                            <PropertyValueFactory property="firstName"/>
+                        </cellValueFactory>
+                    </TableColumn>
+
+                    <TableColumn text="%table.col.lastname">
+                        <cellValueFactory>
+                            <PropertyValueFactory property="lastName"/>
+                        </cellValueFactory>
+                    </TableColumn>
+
+                    <TableColumn text="%table.col.email">
+                        <cellValueFactory>
+                            <PropertyValueFactory property="email"/>
+                        </cellValueFactory>
+                    </TableColumn>
+                </columns>
+
+                <items>
+                    <FXCollections fx:factory="observableArrayList">
+                        <Person firstName="Jacob" lastName="Smith"
+                                email="jacob.smith@example.com"/>
+                        <Person firstName="Isabella" lastName="Johnson"
+                                email="isabella.johnson@example.com"/>
+                        <Person firstName="Ethan" lastName="Williams"
+                                email="ethan.williams@example.com"/>
+                        <Person firstName="Emma" lastName="Jones"
+                                email="emma.jones@example.com"/>
+                        <Person firstName="Michael" lastName="Brown"
+                                email="michael.brown@example.com"/>
+                    </FXCollections>
+                </items>
+            </TableView>
+        </StackPane>
+    </center>
+
+    <bottom>
+        <HBox styleClass="theme-menu">
+            <padding>
+                <Insets left="12" top="8" right="12" bottom="12"/>
+            </padding>
+
+            <Label text="%label.rowcount.default" styleClass="status-label"/>
+        </HBox>
+    </bottom>
+</BorderPane>
