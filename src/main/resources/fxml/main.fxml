@@ -20,7 +20,7 @@
             <VBox AnchorPane.topAnchor="0"
                   AnchorPane.leftAnchor="0"
                   AnchorPane.rightAnchor="0"
-                  AnchorPane.bottomAnchor="64">
+                  AnchorPane.bottomAnchor="0">
 
                 <fx:define>
                     <ToggleGroup fx:id="startMenuGroup"/>
@@ -28,36 +28,41 @@
 
                 <!-- style="-fx-graphic: url('/icons/32/brick.png')" -->
 
-                <ToggleButton text="View 1"
+                <ToggleButton text=""
                               toggleGroup="$startMenuGroup"
                               styleClass="start-button"
+                              style="-fx-graphic: url('/icons/48/ic_home_white_48dp.png')"
                               onAction="#selectView1"/>
 
-                <ToggleButton text="View 2"
+                <ToggleButton text=""
                               toggleGroup="$startMenuGroup"
                               styleClass="start-button"
+                              style="-fx-graphic: url('/icons/48/ic_archive_white_48dp.png')"
                               onAction="#selectView2"/>
 
-                <ToggleButton text="View 3"
+                <ToggleButton text=""
                               toggleGroup="$startMenuGroup"
                               styleClass="start-button"
+                              style="-fx-graphic: url('/icons/48/ic_assignment_white_48dp.png')"
                               onAction="#selectView3"/>
 
-                <ToggleButton text="View 4"
+                <ToggleButton text=""
                               toggleGroup="$startMenuGroup"
                               styleClass="start-button"
+                              style="-fx-graphic: url('/icons/48/ic_history_white_48dp.png')"
                               onAction="#selectView1"/>
 
-                <ToggleButton text="View 5"
+                <ToggleButton text=""
                               toggleGroup="$startMenuGroup"
                               styleClass="start-button"
+                              style="-fx-graphic: url('/icons/48/ic_settings_white_48dp.png')"
                               onAction="#selectView1"/>
             </VBox>
 
-            <Label text="%application.version"
+            <!--<Label text="%application.version"
                    styleClass="version-label"
                    AnchorPane.bottomAnchor="12"
-                   AnchorPane.leftAnchor="12"/>
+                   AnchorPane.leftAnchor="12"/>-->
         </AnchorPane>
     </left>
 

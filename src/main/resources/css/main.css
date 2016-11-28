@@ -1,11 +1,11 @@
 
-/* Css theme inspired by material design*/
+// Css theme inspired by material design
 
 .root
 {
-    /* Theme color definitions */
+    // Theme color definitions
 
-    /* Material design color: Indigo */
+    // Material design color: Indigo
     /*
     -theme-50: #e8eaf6;
     -theme-100: #c5cae9;
@@ -19,7 +19,7 @@
     -theme-900: #1a237e;
     */
 
-    /* Material design color: Blue */
+    // Material design color: Blue
     -theme-50: #e3f2fd;
     -theme-100: #bbdefb;
     -theme-200: #90caf9;
@@ -31,7 +31,9 @@
     -theme-800: #1565c0;
     -theme-900: #0d47a1;
 
-    /* Material design color: Light blue */
+    -theme-accent: #ffd180;
+
+    // Material design color: Light blue
     /*
     -theme-50: #e1f5fe;
     -theme-100: #b3e5fc;
@@ -43,9 +45,9 @@
     -theme-700: #0288d1;
     -theme-800: #0277bd;
     -theme-900: #01579b;
-    /*
+    */
 
-    /* Material design color: Green */
+    // Material design color: Green 
     /*
     -theme-50: #e8f5e9;
     -theme-100: #c8e6c9;
@@ -59,7 +61,7 @@
     -theme-900: #1b5e20;
     */
 
-    /* Material design color: Light Green */
+    // Material design color: Light Green
     /*
     -theme-50: #f1f8e9;
     -theme-100: #dcedc8;
@@ -71,23 +73,23 @@
     -theme-700: #689f38;
     -theme-800: #558b2f;
     -theme-900: #33691e;
-    */
+     */
 
-    /* Utility color */
+    // Utility color
     -theme-util-accent-grey: #e0e0e0;
 
-    /* General theme colors */
+    // General theme colors 
     -fx-accent: -theme-800;
     -fx-focus-color: -theme-800;
 
     -fx-background-color: white;
 }
 
-/* Main */
+// Main
 
 .menu-bar
 {
-    /* Force zero padding in menu bar */
+    // Force zero padding in menu bar 
     -fx-padding: 0;
 }
 
@@ -96,7 +98,7 @@
     -fx-background-color: -theme-util-accent-grey;
 }
 
-/* Start menu styling */
+// Start menu styling
 
 .start-menu
 {
@@ -105,14 +107,14 @@
 
 .start-button
 {
-    -fx-pref-width: 160px;
+   // -fx-pref-width: 160px; 
     -fx-background-color: transparent;
     -fx-background-radius: 0px;
     -fx-background-insets: 0, 0, 0, 0;
-    -fx-padding: 8 12 8 16;
+    -fx-padding: 8 8 8 8;
 
     -fx-alignment: center-left;
-    -fx-font-size: 16px;
+    -fx-font-size: 18px;
     -fx-font-weight: bold;
     -fx-text-fill: white;
 }
@@ -127,7 +129,90 @@
     -fx-background-color: -theme-600;
 }
 
-/* Button styling */
+// Alert dialog styling
+
+.dialog-pane
+{
+    -fx-graphic: url("/icons/48/ic_info_outline_white_48dp.png");
+}
+
+.dialog-pane:header .header-panel
+{
+    -fx-background-color: -theme-800;
+}
+
+// Warning dialog
+
+.alert.warning.dialog-pane
+{
+    -fx-graphic: url("/icons/48/ic_warning_white_48dp.png");
+}
+
+.alert.warning.dialog-pane .header-panel
+{
+    -fx-background-color: #f9a825;
+}
+
+.alert.warning.dialog-pane .button
+{
+    -fx-background-color: #f9a825;
+}
+
+.alert.warning.dialog-pane .button:hover
+{
+    -fx-background-color: #fbc02d;
+}
+
+.alert.warning.dialog-pane .button:pressed
+{
+    -fx-background-color: #fdd835;
+}
+
+// Error dialog
+
+.alert.error.dialog-pane
+{
+    -fx-graphic: url("/icons/48/ic_error_outline_white_48dp.png");
+}
+
+.alert.error.dialog-pane .header-panel
+{
+    -fx-background-color: #f4511e;
+}
+
+.alert.error.dialog-pane .button
+{
+    -fx-background-color: #f4511e;
+}
+
+.alert.error.dialog-pane .button:hover
+{
+    -fx-background-color: #ff5722;
+}
+
+.alert.error.dialog-pane .button:pressed
+{
+    -fx-background-color: #ff7043;
+}
+
+.dialog-pane:header .header-panel .label
+{
+    -fx-font-size: 16px;
+    -fx-font-weight: bold;
+    -fx-text-fill: white;
+}
+
+.dialog-pane .content.label
+{
+    -fx-padding: 8,0,8,0;
+}
+
+.dialog-pane .button-bar
+{
+    -fx-background-color: -theme-util-accent-grey;
+}
+
+// Button styling
 
 .button
 {
@@ -136,8 +221,8 @@
     -fx-background-insets: 0, 0, 0, 0;
 
     -fx-font-size: 14px;
-    -fx-text-fill: white;
     -fx-font-weight: bold;
+    -fx-text-fill: white;
 }
 
 .button:hover
@@ -150,29 +235,37 @@
     -fx-background-color: -theme-500;
 }
 
-/* Tab pane styling */
+// Tab pane styling
 
 .tab-pane
 {
-    -fx-tab-min-width: 90px;
+
 }
 
 .tab-pane .tab-header-area .tab-header-background
 {
-    -fx-background-color: -theme-util-accent-grey;
+    -fx-background-color: -theme-900;
 }
 
 .tab-pane:top *.tab-header-area
 {
     -fx-background-insets: 0, 0 0 0 0;
-    -fx-padding: 12 0 0 0;
+    -fx-padding: 0 0 0 0;
 }
 
 .tab-pane .tab
 {
+    -fx-background-insets: 0;
     -fx-background-radius: 0px;
+    -fx-background-color: -theme-900;
+    -fx-focus-color: transparent;
+    -fx-faint-focus-color: transparent;
+    -fx-padding: 8 8 8 8;
+}
+
+.tab-pane .tab:selected
+{
     -fx-background-color: -theme-800;
-    -fx-padding: 2 4 4 0;
 }
 
 .tab-pane .tab:hover
@@ -182,10 +275,16 @@
 
 .tab .tab-label
 {
-    -fx-border-width:5px;
-    -fx-text-fill: white;
+    -fx-border-width: 5px;
     -fx-font-size: 14px;
     -fx-font-weight: bold;
+    -fx-text-fill: white;
+}
+
+// Adds space between tab text and close button
+.tab-pane .tab-header-area .headers-region .tab .tab-container .tab-label
+{
+    -fx-padding: 0 8 0 0;
 }
 
 .tab .tab-close-button
@@ -195,7 +294,54 @@
 
 .tab .tab-close-button:hover
 {
-    -fx-background-color: red;
+    -fx-background-color: white;
+    -fx-shape: "M9 1C4.58 1 1 4.58 1 9s3.58 8 8 8 8-3.58 8-8-3.58-8-8-8zm4 10.87L11.87 13 9 10.13 6.13 13 5 11.87 7.87 9 5 6.13 6.13 5 9 7.87 11.87 5 13 6.13 10.13 9 13 11.87z";
+    -fx-scale-shape: false;
+}
+
+.control-buttons-tab
+{
+    -fx-background-color: -theme-900;
+}
+
+.control-buttons-tab .context-menu
+{
+    -fx-background-color: -theme-800;
+}
+
+.control-buttons-tab .context-menu .menu-item:focused
+{
+    -fx-background-color: -theme-600;
+}
+
+.control-buttons-tab .context-menu .check-menu-item:checked .check
+{
+    -fx-background-color: white;
+}
+
+.control-buttons-tab .context-menu .label
+{
+    -fx-font-size: 14px;
+    -fx-font-weight: bold;
+    -fx-text-fill: white;
+}
+
+.tab-down-button
+{
+   -fx-background-color: transparent;
+   -fx-padding: 0 16 16 0;
+}
+
+.tab-down-button .arrow
+{
+    -fx-background-color: white;
+    -fx-shape: "M7 10l5 5 5-5z";
+    -fx-scale-shape: true;
+}
+
+.tab-down-button .arrow:hover
+{
+    -fx-background-color: -theme-accent;
 }
 
 .tab-content-area
@@ -203,7 +349,7 @@
     -fx-background-color: white;
 }
 
-/* Table view styling */
+// Table view styling
 
 .table-view
 {
@@ -214,6 +360,11 @@
 .table-view:focused
 {
     -fx-background-color: transparent;
+}
+
+.table-view .arrow
+{
+    -fx-background-color: white;
 }
 
 .table-view .column-header
@@ -246,14 +397,9 @@
 
 .table-row-cell:selected
 {
-    -fx-background-color: -theme-600;
+    -fx-background-color: -theme-accent;
     -fx-background-insets: 0, 0 0 0 0;
     -fx-background-radius: 0;
-}
-
-.table-row-cell:pressed
-{
-    -fx-background-color: -theme-500;
 }
 
 .table-row-cell:selected .text
@@ -262,7 +408,7 @@
     -fx-fill: white;
 }
 
-/* Other */
+// Other
 
 .version-label
 {

@@ -1,6 +1,45 @@
 package se.simplistics.template4fx.util;
 
+import javafx.scene.control.Alert;
+import javafx.scene.control.DialogPane;
+import se.simplistics.template4fx.FXClient;
+
 public class FXUtils
 {
+    private static final int ALERT_ICON_SIZE = 48;
 
+    public static void showInfo( String header, String content )
+    {
+        Alert alert = customAlert( Alert.AlertType.INFORMATION, FXClient.getString( "alert.title.information" ) );
+        alert.setHeaderText( header );
+        alert.setContentText( content );
+        alert.show();
+    }
+
+    public static void showWarning( String header, String content )
+    {
+        Alert alert = customAlert( Alert.AlertType.WARNING, FXClient.getString( "alert.title.warning" ) );
+        alert.setHeaderText( header );
+        alert.setContentText( content );
+        alert.show();
+    }
+
+    public static void showError( String header, String content )
+    {
+        Alert alert = customAlert( Alert.AlertType.ERROR, FXClient.getString( "alert.title.error" ) );
+        alert.setHeaderText( header );
+        alert.setContentText( content );
+        alert.show();
+    }
+
+    private static Alert customAlert( Alert.AlertType type, String title )
+    {
+        Alert alert = new Alert( type );
+        alert.setTitle( title );
+
+        DialogPane dialogPane = alert.getDialogPane();
+        dialogPane.getStylesheets().add( FXUtils.class.getResource( "/css/main.css" ).toExternalForm() );
+
+        return alert;
+    }
 }

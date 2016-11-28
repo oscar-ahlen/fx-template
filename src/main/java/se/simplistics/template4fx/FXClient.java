@@ -9,12 +9,13 @@ import javafx.stage.Stage;
 
 import java.io.InputStream;
 import java.util.Locale;
+import java.util.Properties;
 import java.util.ResourceBundle;
 
 public class FXClient
     extends Application
 {
-    public static CustomProperties props;
+    public static Properties props;
 
     public static ResourceBundle locale;
 
@@ -23,13 +24,42 @@ public class FXClient
         launch( args );
     }
 
+    /**
+     * Tries to parse a property value as a string.
+     *
+     * @param key the key of the desired property
+     * @return the string value of the desired property
+     */
+    public static String getStringProperty( String key )
+    {
+        return props.getProperty( key );
+    }
+
+    /**
+     * Tries to parse a property value as an integer.
+     *
+     * @param key the key of the desired property
+     * @return the integer value of the desired property
+     * @throws NumberFormatException if the property can not be parsed as an integer
+     */
+    public static int getIntProperty( String key )
+        throws NumberFormatException
+    {
+        return Integer.valueOf( props.getProperty( key ) );
+    }
+
+    public static String getString( String key )
+    {
+        return locale.getString( key );
+    }
+
     @Override
     public void init()
         throws Exception
     {
         try (InputStream in = getClass().getClassLoader().getResourceAsStream( "config.properties" ))
         {
-            props = new CustomProperties();
+            props = new Properties();
             props.load( in );
         }
 
@@ -47,7 +77,7 @@ public class FXClient
         loader.setResources( locale );
 
         Parent root = loader.load();
-        primaryStage.setScene( new Scene( root, props.getInt( "window_width" ), props.getInt( "window_height" ) ) );
+        primaryStage.setScene( new Scene( root, getIntProperty( "window_width" ), getIntProperty( "window_height" ) ) );
         primaryStage.show();
     }
 
