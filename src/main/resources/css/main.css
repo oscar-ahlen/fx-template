@@ -306,17 +306,12 @@
 
 .control-buttons-tab .context-menu
 {
-    -fx-background-color: -theme-800;
+    -fx-background-color: -theme-900;
 }
 
 .control-buttons-tab .context-menu .menu-item:focused
 {
-    -fx-background-color: -theme-600;
-}
-
-.control-buttons-tab .context-menu .check-menu-item:checked .check
-{
-    -fx-background-color: white;
+    -fx-background-color: -theme-800;
 }
 
 .control-buttons-tab .context-menu .label
