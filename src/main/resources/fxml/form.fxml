@@ -1,8 +1,11 @@
 <?import javafx.geometry.Insets?>
+<?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Tab?>
 <?import javafx.scene.control.TabPane?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
 <BorderPane xmlns:fx="http://javafx.com/fxml"
             xmlns="http://javafx.com/javafx/8"
             fx:controller="se.simplistics.template4fx.controller.FormController"
@@ -14,7 +17,16 @@
             </padding>
 
             <TabPane tabClosingPolicy="ALL_TABS">
-                <Tab text="Tab 1"/>
+                <Tab text="Tab 1">
+                    <VBox>
+                        <padding>
+                            <Insets left="12" top="12" right="12" bottom="12"/>
+                        </padding>
+
+                        <ComboBox/>
+                        <TextField maxWidth="120"/>
+                    </VBox>
+                </Tab>
                 <Tab text="Tab 2"/>
                 <Tab text="Tab 3"/>
             </TabPane>

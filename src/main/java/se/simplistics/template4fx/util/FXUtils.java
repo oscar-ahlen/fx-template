@@ -6,8 +6,6 @@ import se.simplistics.template4fx.FXClient;
 
 public class FXUtils
 {
-    private static final int ALERT_ICON_SIZE = 48;
-
     public static void showInfo( String header, String content )
     {
         Alert alert = customAlert( Alert.AlertType.INFORMATION, FXClient.getString( "alert.title.information" ) );

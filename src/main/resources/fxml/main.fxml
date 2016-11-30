@@ -1,6 +1,6 @@
-<?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ToggleButton?>
 <?import javafx.scene.control.ToggleGroup?>
+<?import javafx.scene.control.Tooltip?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.StackPane?>
@@ -26,37 +26,52 @@
                     <ToggleGroup fx:id="startMenuGroup"/>
                 </fx:define>
 
-                <!-- style="-fx-graphic: url('/icons/32/brick.png')" -->
+                <!-- style="-fx-graphic: url('/icons/32/logo.png')" -->
 
-                <ToggleButton text=""
-                              toggleGroup="$startMenuGroup"
+                <ToggleButton toggleGroup="$startMenuGroup"
                               styleClass="start-button"
                               style="-fx-graphic: url('/icons/48/ic_home_white_48dp.png')"
-                              onAction="#selectView1"/>
+                              onAction="#selectView1">
+                    <tooltip>
+                        <Tooltip text="%button.start1"/>
+                    </tooltip>
+                </ToggleButton>
 
-                <ToggleButton text=""
-                              toggleGroup="$startMenuGroup"
+                <ToggleButton toggleGroup="$startMenuGroup"
                               styleClass="start-button"
                               style="-fx-graphic: url('/icons/48/ic_archive_white_48dp.png')"
-                              onAction="#selectView2"/>
+                              onAction="#selectView2">
+                    <tooltip>
+                        <Tooltip text="%button.start2"/>
+                    </tooltip>
+                </ToggleButton>
 
-                <ToggleButton text=""
-                              toggleGroup="$startMenuGroup"
+                <ToggleButton toggleGroup="$startMenuGroup"
                               styleClass="start-button"
                               style="-fx-graphic: url('/icons/48/ic_assignment_white_48dp.png')"
-                              onAction="#selectView3"/>
+                              onAction="#selectView3">
+                    <tooltip>
+                        <Tooltip text="%button.start3"/>
+                    </tooltip>
+                </ToggleButton>
 
-                <ToggleButton text=""
-                              toggleGroup="$startMenuGroup"
+                <ToggleButton toggleGroup="$startMenuGroup"
                               styleClass="start-button"
                               style="-fx-graphic: url('/icons/48/ic_history_white_48dp.png')"
-                              onAction="#selectView1"/>
+                              onAction="#selectView1">
+                    <tooltip>
+                        <Tooltip text="%button.start4"/>
+                    </tooltip>
+                </ToggleButton>
 
-                <ToggleButton text=""
-                              toggleGroup="$startMenuGroup"
+                <ToggleButton toggleGroup="$startMenuGroup"
                               styleClass="start-button"
                               style="-fx-graphic: url('/icons/48/ic_settings_white_48dp.png')"
-                              onAction="#selectView1"/>
+                              onAction="#selectView1">
+                    <tooltip>
+                        <Tooltip text="%button.start5"/>
+                    </tooltip>
+                </ToggleButton>
             </VBox>
 
             <!--<Label text="%application.version"

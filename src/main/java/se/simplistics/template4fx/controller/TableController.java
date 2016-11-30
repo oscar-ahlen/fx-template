@@ -3,11 +3,14 @@ package se.simplistics.template4fx.controller;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.ScrollPane;
+import javafx.scene.control.SelectionMode;
 import javafx.scene.control.Tab;
 import javafx.scene.control.TabPane;
+import javafx.scene.control.TableView;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import se.simplistics.template4fx.FXClient;
+import se.simplistics.template4fx.model.Person;
 import se.simplistics.template4fx.util.FXUtils;
 
 import java.io.IOException;
@@ -74,6 +77,7 @@ public class TableController
         ScrollPane scrollPane = FXMLLoader.load( getClass().getResource( "/fxml/fragment/table_fragment.fxml" ),
                                                  FXClient.locale );
         tab.setContent( scrollPane );
+        ( (TableView<Person>) scrollPane.getContent() ).getSelectionModel().setSelectionMode( SelectionMode.MULTIPLE );
 
         tabPane.getTabs().add( tab );
     }
