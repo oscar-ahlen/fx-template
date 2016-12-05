@@ -1,0 +1,343 @@
+/*******************************************************************************
+ *                                                                             *
+ * Template4FX CSS theme                                                       *
+ *                                                                             *
+ ******************************************************************************/
+.root
+{
+    /* Defined outside of Modena */
+    -theme-default: #3875D6;
+    -theme-default-bright: #448FFF;
+
+    -theme-warning-header: #EFAC5E;
+    -theme-error-header: #FF6E40;
+
+    -theme-start-menu: #C0C0C0;
+
+    /* Override Modena theme colors */
+    -fx-base: #E0E0E0;
+    -fx-background: #E8E8E8;
+
+    -fx-control-inner-background: white;
+    -fx-control-inner-background-alt: white;
+
+    -fx-accent: -theme-default;
+    -fx-default-button: -theme-default;
+
+    -fx-focus-color: -theme-default;
+    -fx-faint-focus-color: #3875D622;
+
+    // -fx-selection-bar: #EFAC5E;
+    // -fx-hover-base: -theme-default;
+    // -fx-pressed-base: derive(-fx-accent,-10%);
+}
+
+/*******************************************************************************
+ *                                                                             *
+ * Tab styling                                                                 *
+ *                                                                             *
+ ******************************************************************************/
+.tab-pane .tab-header-area .tab-header-background
+{
+    -fx-background-color: transparent;
+}
+
+.tab-pane .tab
+{
+    -fx-padding: 0.333333em 0.666667em 0.333333em 0.666667em;
+}
+
+.tab-pane:focused .tab-header-area .headers-region .tab:selected .focus-indicator
+{
+    -fx-border-insets: -7 -6 -8 -7, -4 -4 -7 -5;
+}
+
+/* Adds space between tab text and close button */
+.tab-pane .tab-header-area .headers-region .tab .tab-container .tab-label
+{
+    -fx-padding: 0em 0.333333em 0em 0em;
+}
+
+.tab .tab-close-button:hover
+{
+    -fx-background-color: red;
+}
+
+/*******************************************************************************
+ *                                                                             *
+ * Table view styling                                                          *
+ *                                                                             *
+ ******************************************************************************/
+.table-row-cell
+{
+    -fx-background-insets: 0;
+    -fx-padding: 0em;
+}
+
+.table-row-cell:selected .text
+{
+    -fx-font-weight: bold;
+}
+
+/* Optional styles for accent colored column header */
+/*
+.table-view .column-header-background
+{
+    -fx-base: -theme-default;
+    -fx-mark-color: white;
+}
+
+.table-view .column-header-background .label
+{
+    -fx-text-fill: white;
+}
+*/
+
+/*******************************************************************************
+ *                                                                             *
+ * Check box and Radio button styling                                          *
+ *                                                                             *
+ ******************************************************************************/
+.check-box:selected .box,
+.radio-button:selected .radio
+{
+    -fx-base: -theme-default;
+}
+
+.check-box:selected .box .mark,
+.check-box:indeterminate .box .mark,
+.radio-button:selected .radio .dot
+{
+    -fx-mark-color: white;
+    -fx-mark-highlight-color: grey;
+}
+
+.slider .thumb
+{
+    -fx-base: -theme-default;
+    -fx-text-box-border: derive(-theme-default,-23%);
+}
+
+/*******************************************************************************
+ *                                                                             *
+ * Combo box styling                                                           *
+ *                                                                             *
+ ******************************************************************************/
+.combo-box-base .arrow-button
+{
+    -fx-base: -theme-default;
+    -fx-background-color: -fx-shadow-highlight-color, -fx-outer-border, -fx-inner-border, -fx-body-color;
+    -fx-background-insets: 0 0 -1 0, 0, 1, 2;
+    -fx-background-radius: 3px, 3px, 2px, 1px;
+    -fx-padding: 0.333333em 0.666667em 0.333333em 0.666667em;
+}
+
+.combo-box-base .arrow-button .arrow
+{
+    -fx-background-color: white;
+}
+
+/*******************************************************************************
+ *                                                                             *
+ * Dialog styling                                                              *
+ *                                                                             *
+ ******************************************************************************/
+.dialog-pane:header > .header-panel > .label
+{
+    -fx-font-size: 16px;
+    -fx-font-weight: bold;
+    -fx-text-fill: white;
+}
+
+.dialog-pane > .content.label
+{
+    -fx-background-color: white;
+    -fx-padding: 0.666667em, 0em, 0.666667em, 0em;
+}
+
+.alert.information.dialog-pane
+{
+    -fx-graphic: url("/icons/48/ic_info_outline_white_48dp.png");
+}
+
+.alert.information.dialog-pane > .header-panel
+{
+    -fx-background-color: -theme-default;
+}
+
+.alert.warning.dialog-pane
+{
+    -fx-graphic: url("/icons/48/ic_warning_white_48dp.png");
+}
+
+.alert.warning.dialog-pane > .header-panel
+{
+    -fx-background-color: -theme-warning-header;
+}
+
+.alert.error.dialog-pane
+{
+    -fx-graphic: url("/icons/48/ic_error_outline_white_48dp.png");
+}
+
+.alert.error.dialog-pane > .header-panel
+{
+    -fx-background-color: -theme-error-header;
+}
+
+/*******************************************************************************
+ *                                                                             *
+ * Start button graphics                                                       *
+ *                                                                             *
+ ******************************************************************************/
+.start-menu
+{
+    -fx-background-color: -theme-start-menu;
+    -fx-border-color: -theme-default;
+    -fx-border-width: 0 2 0 0;
+}
+
+.start-button-1,
+.start-button-2,
+.start-button-3,
+.start-button-4,
+.start-button-5
+{
+    -fx-background-color: transparent;
+    -fx-background-radius: 0px;
+    -fx-background-insets: 0;
+    -fx-padding: 0.666667em 0.666667em 0.666667em 0.666667em;
+
+    -fx-alignment: center-left;
+    -fx-font-weight: bold;
+    -fx-text-fill: white;
+}
+
+.start-button-1:selected,
+.start-button-2:selected,
+.start-button-3:selected,
+.start-button-4:selected,
+.start-button-5:selected
+{
+    -fx-background-color: -theme-default;
+}
+
+.start-button-1:hover,
+.start-button-1:selected:hover,
+.start-button-2:hover,
+.start-button-2:selected:hover,
+.start-button-3:hover,
+.start-button-3:selected:hover,
+.start-button-4:hover,
+.start-button-4:selected:hover,
+.start-button-5:hover,
+.start-button-5:selected:hover
+{
+    -fx-background-color: -theme-default-bright;
+}
+
+.start-button-1
+{
+    -fx-graphic: url("/icons/48/ic_home_black_48dp.png");
+    -fx-opacity: 0.5;
+}
+
+.start-button-1:hover,
+.start-button-1:selected
+{
+    -fx-graphic: url("/icons/48/ic_home_white_48dp.png");
+    -fx-opacity: 1;
+}
+
+.start-button-2
+{
+    -fx-graphic: url("/icons/48/ic_archive_black_48dp.png");
+    -fx-opacity: 0.5;
+}
+
+.start-button-2:hover,
+.start-button-2:selected
+{
+    -fx-graphic: url("/icons/48/ic_archive_white_48dp.png");
+    -fx-opacity: 1;
+}
+
+.start-button-3
+{
+    -fx-graphic: url("/icons/48/ic_assignment_black_48dp.png");
+    -fx-opacity: 0.5;
+}
+
+.start-button-3:hover,
+.start-button-3:selected
+{
+    -fx-graphic: url("/icons/48/ic_assignment_white_48dp.png");
+    -fx-opacity: 1;
+}
+
+.start-button-4
+{
+    -fx-graphic: url("/icons/48/ic_history_black_48dp.png");
+    -fx-opacity: 0.5;
+}
+
+.start-button-4:hover,
+.start-button-4:selected
+{
+    -fx-graphic: url("/icons/48/ic_history_white_48dp.png");
+    -fx-opacity: 1;
+}
+
+.start-button-5
+{
+    -fx-graphic: url("/icons/48/ic_settings_black_48dp.png");
+    -fx-opacity: 0.5;
+}
+
+.start-button-5:hover,
+.start-button-5:selected
+{
+    -fx-graphic: url("/icons/48/ic_settings_white_48dp.png");
+    -fx-opacity: 1;
+}
+
+/*******************************************************************************
+ *                                                                             *
+ * Special button graphics                                                     *
+ *                                                                             *
+ ******************************************************************************/
+
+.special-button
+{
+    -fx-base: -theme-default;
+    -fx-hover-base: ladder(-fx-base,
+                           derive(-fx-base,10%) 20%,
+                           derive(-fx-base,15%) 35%,
+                           derive(-fx-base,20%) 50%
+                           );
+}
+
+.special-button:hover
+{
+    -fx-text-fill: white;
+}
+
+/*******************************************************************************
+ *                                                                             *
+ * Other styles...                                                             *
+ *                                                                             *
+ ******************************************************************************/
+.tooltip
+{
+    -fx-font-size: 14px;
+}
+
+.tree-view .arrow
+{
+    -fx-background-color: grey;
+}
+
+.tree-view .arrow:hover
+{
+    -fx-background-color: -fx-focus-color;
+}

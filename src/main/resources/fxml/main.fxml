@@ -12,7 +12,7 @@
             fx:id="root">
 
     <stylesheets>
-        <URL value="@/css/main.css"/>
+        <URL value="@/css/template4fx-light.css"/>
     </stylesheets>
 
     <left>
@@ -26,11 +26,8 @@
                     <ToggleGroup fx:id="startMenuGroup"/>
                 </fx:define>
 
-                <!-- style="-fx-graphic: url('/icons/32/logo.png')" -->
-
                 <ToggleButton toggleGroup="$startMenuGroup"
-                              styleClass="start-button"
-                              style="-fx-graphic: url('/icons/48/ic_home_white_48dp.png')"
+                              styleClass="start-button-1"
                               onAction="#selectView1">
                     <tooltip>
                         <Tooltip text="%button.start1"/>
@@ -38,8 +35,7 @@
                 </ToggleButton>
 
                 <ToggleButton toggleGroup="$startMenuGroup"
-                              styleClass="start-button"
-                              style="-fx-graphic: url('/icons/48/ic_archive_white_48dp.png')"
+                              styleClass="start-button-2"
                               onAction="#selectView2">
                     <tooltip>
                         <Tooltip text="%button.start2"/>
@@ -47,8 +43,7 @@
                 </ToggleButton>
 
                 <ToggleButton toggleGroup="$startMenuGroup"
-                              styleClass="start-button"
-                              style="-fx-graphic: url('/icons/48/ic_assignment_white_48dp.png')"
+                              styleClass="start-button-3"
                               onAction="#selectView3">
                     <tooltip>
                         <Tooltip text="%button.start3"/>
@@ -56,8 +51,7 @@
                 </ToggleButton>
 
                 <ToggleButton toggleGroup="$startMenuGroup"
-                              styleClass="start-button"
-                              style="-fx-graphic: url('/icons/48/ic_history_white_48dp.png')"
+                              styleClass="start-button-4"
                               onAction="#selectView1">
                     <tooltip>
                         <Tooltip text="%button.start4"/>
@@ -65,8 +59,7 @@
                 </ToggleButton>
 
                 <ToggleButton toggleGroup="$startMenuGroup"
-                              styleClass="start-button"
-                              style="-fx-graphic: url('/icons/48/ic_settings_white_48dp.png')"
+                              styleClass="start-button-5"
                               onAction="#selectView1">
                     <tooltip>
                         <Tooltip text="%button.start5"/>
@@ -74,10 +67,6 @@
                 </ToggleButton>
             </VBox>
 
-            <!--<Label text="%application.version"
-                   styleClass="version-label"
-                   AnchorPane.bottomAnchor="12"
-                   AnchorPane.leftAnchor="12"/>-->
         </AnchorPane>
     </left>
 

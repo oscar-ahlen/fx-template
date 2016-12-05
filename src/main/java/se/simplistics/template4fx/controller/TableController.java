@@ -67,8 +67,9 @@ public class TableController
         Tab tab = new Tab();
         tab.setText( title );
 
-        Image image = new Image( "icons/24/ic_folder_open_white_24dp.png" );
+        Image image = new Image( "icons/24/ic_folder_open_black_24dp.png" );
         ImageView imageView = new ImageView();
+        imageView.setOpacity( 0.5 );
         imageView.setFitWidth( 24 );
         imageView.setFitHeight( 24 );
         imageView.setImage( image );
