@@ -6,8 +6,13 @@
 .root
 {
     /* Defined outside of Modena */
-    -theme-default: #3875D6;
-    -theme-default-bright: #448FFF;
+    //-theme-default: #3875D6;
+    //-theme-default-bright: #448FFF;
+    -theme-default: #60869F;
+    -theme-default-bright: #88A6BB;
+
+    -theme-accent: #EFAC5E;
+    -theme-accent-bright: #F4C286;
 
     -theme-warning-header: #EFAC5E;
     -theme-error-header: #FF6E40;
@@ -25,11 +30,35 @@
     -fx-default-button: -theme-default;
 
     -fx-focus-color: -theme-default;
-    -fx-faint-focus-color: #3875D622;
+    -fx-faint-focus-color: #60869F22;
 
-    // -fx-selection-bar: #EFAC5E;
+    -fx-selection-bar: -theme-accent;
     // -fx-hover-base: -theme-default;
     // -fx-pressed-base: derive(-fx-accent,-10%);
+}
+
+/*******************************************************************************
+ *                                                                             *
+ * Special button graphics                                                     *
+ *                                                                             *
+ ******************************************************************************/
+
+.button
+{
+    -fx-base: -theme-default;
+    -fx-hover-base: ladder(-fx-base,
+                           derive(-fx-base,10%) 20%,
+                           derive(-fx-base,15%) 35%,
+                           derive(-fx-base,20%) 50%
+                           );
+
+    -fx-font-weight: bold;
+    -fx-text-fill: white;
+}
+
+.button:hover
+{
+    -fx-text-fill: white;
 }
 
 /*******************************************************************************
@@ -37,19 +66,66 @@
  * Tab styling                                                                 *
  *                                                                             *
  ******************************************************************************/
+.scroll-pane
+{
+    -fx-background-color: transparent; /* Needed? */
+}
+
+/*******************************************************************************
+ *                                                                             *
+ * Tab styling                                                                 *
+ *                                                                             *
+ ******************************************************************************/
+.tab-pane
+{
+    -fx-tab-min-height: 30px;
+    -fx-tab-max-height: 60px;
+}
+
+.tab-pane .tab-header-area
+{
+    -fx-padding: 0.416667em 0.166667em 0.0em 1.0em;
+}
+
 .tab-pane .tab-header-area .tab-header-background
 {
-    -fx-background-color: transparent;
+    //-fx-background-color: transparent;
 }
 
 .tab-pane .tab
 {
-    -fx-padding: 0.333333em 0.666667em 0.333333em 0.666667em;
+    -fx-base: -theme-default;
+    -fx-font-weight: bold;
 }
 
-.tab-pane:focused .tab-header-area .headers-region .tab:selected .focus-indicator
+.tab-pane .tab:selected,
+.tab-pane .tab:selected:hover
 {
-    -fx-border-insets: -7 -6 -8 -7, -4 -4 -7 -5;
+    -fx-base: #E0E0E0;
+
+    -fx-background-color: -fx-outer-border, -fx-inner-border, #E8E8E8;
+    -fx-font-color: white;
+    -fx-font-weight: bold;
+}
+
+.tab .tab-label
+{
+    -fx-text-fill: white;
+}
+
+.tab:selected .tab-label
+{
+    -fx-text-fill: black;
+}
+
+.tab .tab-close-button
+{
+    -fx-background-color: white;
+}
+
+.tab:selected .tab-close-button
+{
+    -fx-background-color: black;
 }
 
 /* Adds space between tab text and close button */
@@ -80,10 +156,9 @@
 }
 
 /* Optional styles for accent colored column header */
-/*
 .table-view .column-header-background
 {
-    -fx-base: -theme-default;
+    -fx-color: -theme-default;
     -fx-mark-color: white;
 }
 
@@ -91,7 +166,6 @@
 {
     -fx-text-fill: white;
 }
-*/
 
 /*******************************************************************************
  *                                                                             *
@@ -142,14 +216,14 @@
  * Dialog styling                                                              *
  *                                                                             *
  ******************************************************************************/
-.dialog-pane:header > .header-panel > .label
+.dialog-pane:header .header-panel .label
 {
     -fx-font-size: 16px;
     -fx-font-weight: bold;
     -fx-text-fill: white;
 }
 
-.dialog-pane > .content.label
+.dialog-pane .content.label
 {
     -fx-background-color: white;
     -fx-padding: 0.666667em, 0em, 0.666667em, 0em;
@@ -160,7 +234,7 @@
     -fx-graphic: url("/icons/48/ic_info_outline_white_48dp.png");
 }
 
-.alert.information.dialog-pane > .header-panel
+.alert.information.dialog-pane .header-panel
 {
     -fx-background-color: -theme-default;
 }
@@ -170,7 +244,7 @@
     -fx-graphic: url("/icons/48/ic_warning_white_48dp.png");
 }
 
-.alert.warning.dialog-pane > .header-panel
+.alert.warning.dialog-pane .header-panel
 {
     -fx-background-color: -theme-warning-header;
 }
@@ -180,7 +254,7 @@
     -fx-graphic: url("/icons/48/ic_error_outline_white_48dp.png");
 }
 
-.alert.error.dialog-pane > .header-panel
+.alert.error.dialog-pane .header-panel
 {
     -fx-background-color: -theme-error-header;
 }
@@ -299,27 +373,6 @@
 {
     -fx-graphic: url("/icons/48/ic_settings_white_48dp.png");
     -fx-opacity: 1;
-}
-
-/*******************************************************************************
- *                                                                             *
- * Special button graphics                                                     *
- *                                                                             *
- ******************************************************************************/
-
-.special-button
-{
-    -fx-base: -theme-default;
-    -fx-hover-base: ladder(-fx-base,
-                           derive(-fx-base,10%) 20%,
-                           derive(-fx-base,15%) 35%,
-                           derive(-fx-base,20%) 50%
-                           );
-}
-
-.special-button:hover
-{
-    -fx-text-fill: white;
 }
 
 /*******************************************************************************

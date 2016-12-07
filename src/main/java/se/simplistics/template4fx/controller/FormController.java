@@ -1,13 +1,17 @@
 package se.simplistics.template4fx.controller;
 
+import javafx.beans.property.ReadOnlyStringWrapper;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TreeItem;
+import javafx.scene.control.TreeTableColumn;
+import javafx.scene.control.TreeTableView;
 import javafx.scene.control.TreeView;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import se.simplistics.template4fx.model.Person;
 
 public class FormController
 {
@@ -22,6 +26,9 @@ public class FormController
 
     @FXML
     private TreeView<String> treeView;
+
+    @FXML
+    private TreeTableView<Person> treeTableView;
 
     @FXML
     private ListView<String> listView;
@@ -60,6 +67,52 @@ public class FormController
         list.add( "Item 2" );
         list.add( "Item 3" );
         listView.setItems( list );
+
+        TreeTableColumn<Person, String> nameColumn =
+            new TreeTableColumn<>( "Name" );
+
+        nameColumn.setCellValueFactory(
+            ( TreeTableColumn.CellDataFeatures<Person, String> param ) ->
+                new ReadOnlyStringWrapper( param.getValue().getValue().getFirstName() )
+        );
+
+        TreeTableColumn<Person, String> empColumn =
+            new TreeTableColumn<>( "Email" );
+
+        empColumn.setCellValueFactory(
+            ( TreeTableColumn.CellDataFeatures<Person, String> param ) ->
+                new ReadOnlyStringWrapper( param.getValue().getValue().getEmail() )
+        );
+
+        treeTableView.getColumns().setAll( nameColumn, empColumn );
+
+        TreeItem<Person> root2 = new TreeItem<>( new Person() );
+        treeTableView.setRoot( root2 );
+        TreeItem<Person> root3 = new TreeItem<>( new Person() );
+        root2.getChildren().add( root3 );
+
+        Person p1 = new Person();
+        p1.setFirstName( "Oscar" );
+        p1.setEmail( "oscar.ahlen@protonmail.com" );
+        root3.getChildren().add( new TreeItem<>( p1 ) );
+
+        Person p2 = new Person();
+        p2.setFirstName( "Ludvig" );
+        p2.setEmail( "ludvig.ahlen@protonmail.com" );
+        root3.getChildren().add( new TreeItem<>( p2 ) );
+
+        TreeItem<Person> root4 = new TreeItem<>( new Person() );
+        root2.getChildren().add( root4 );
+
+        Person p3 = new Person();
+        p3.setFirstName( "Oscar" );
+        p3.setEmail( "oscar.ahlen@protonmail.com" );
+        root4.getChildren().add( new TreeItem<>( p3 ) );
+
+        Person p4 = new Person();
+        p4.setFirstName( "Ludvig" );
+        p4.setEmail( "ludvig.ahlen@protonmail.com" );
+        root4.getChildren().add( new TreeItem<>( p4 ) );
     }
 
     private TreeItem<String> addFolder( String name, TreeItem<String> parent )

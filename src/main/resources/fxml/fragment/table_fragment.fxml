@@ -1,4 +1,5 @@
 <?import javafx.collections.FXCollections?>
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.cell.PropertyValueFactory?>
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.TableColumn?>
@@ -7,6 +8,10 @@
 <ScrollPane xmlns:fx="http://javafx.com/fxml"
             xmlns="http://javafx.com/javafx/8"
             fitToWidth="true" fitToHeight="true">
+    <padding>
+        <Insets left="12" top="8"/>
+    </padding>
+
     <TableView>
         <columns>
             <TableColumn text="%table.col.firstname">

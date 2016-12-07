@@ -16,9 +16,7 @@
                 <Insets left="12" top="12" right="12" bottom="12"/>
             </padding>
 
-            <Button text="New Folder"
-                    styleClass="special-button"
-                    style="-fx-graphic: url('/icons/24/ic_create_new_folder_white_24dp.png')"
+            <Button style="-fx-graphic: url('/icons/24/ic_create_new_folder_white_24dp.png')"
                     onAction="#addTab"/>
 
             <Button text="Information"
@@ -37,12 +35,7 @@
 
     <center>
         <StackPane styleClass="theme-menu">
-            <padding>
-                <Insets left="12" right="12"/>
-            </padding>
-
             <TabPane fx:id="tabPane" tabClosingPolicy="ALL_TABS">
-
             </TabPane>
         </StackPane>
     </center>

@@ -61,4 +61,10 @@ public class Person
     {
         this.email.set( email );
     }
+
+    @Override
+    public String toString()
+    {
+        return firstName.get();
+    }
 }

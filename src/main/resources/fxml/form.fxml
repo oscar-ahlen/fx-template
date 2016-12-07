@@ -8,6 +8,7 @@
 <?import javafx.scene.control.Tab?>
 <?import javafx.scene.control.TabPane?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.TreeTableView?>
 <?import javafx.scene.control.TreeView?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
@@ -20,24 +21,34 @@
             fx:id="root">
     <center>
         <StackPane styleClass="theme-menu">
-            <padding>
-                <Insets left="12"/>
-            </padding>
-
             <TabPane tabClosingPolicy="UNAVAILABLE">
                 <Tab text="Tree View">
                     <graphic>
                         <ImageView>
-                            <image>
-                                <Image url="@/icons/24/ic_folder_open_black_24dp.png"/>
-                            </image>
+                            <Image url="@/icons/24/ic_folder_open_black_24dp.png"/>
                         </ImageView>
                     </graphic>
 
                     <VBox>
+                        <padding>
+                            <Insets left="12" top="8"/>
+                        </padding>
                         <TreeView fx:id="treeView" showRoot="false" VBox.vgrow="ALWAYS"/>
                     </VBox>
                 </Tab>
+
+                <Tab text="Tree Table View">
+                    <graphic>
+                        <ImageView>
+                            <Image url="@/icons/24/ic_folder_open_black_24dp.png"/>
+                        </ImageView>
+                    </graphic>
+
+                    <VBox>
+                        <TreeTableView fx:id="treeTableView" showRoot="false" VBox.vgrow="ALWAYS"/>
+                    </VBox>
+                </Tab>
+
                 <Tab text="List View">
                     <ScrollPane>
                         <ListView fx:id="listView"/>
@@ -46,12 +57,12 @@
 
                 <Tab text="Controls">
                     <VBox spacing="4">
-                        <TextField></TextField>
-                        <ComboBox prefWidth="120"></ComboBox>
-                        <ComboBox prefWidth="120" editable="true"></ComboBox>
-                        <CheckBox text="Option 1"></CheckBox>
-                        <RadioButton text="Option 2"></RadioButton>
-                        <Slider></Slider>
+                        <TextField/>
+                        <ComboBox prefWidth="120"/>
+                        <ComboBox prefWidth="120" editable="true"/>
+                        <CheckBox text="Option 1"/>
+                        <RadioButton text="Option 2"/>
+                        <Slider/>
                     </VBox>
                 </Tab>
             </TabPane>
