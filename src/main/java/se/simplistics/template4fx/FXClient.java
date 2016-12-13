@@ -4,7 +4,6 @@ import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.image.Image;
 import javafx.stage.Stage;
 
 import java.io.InputStream;
@@ -77,6 +76,8 @@ public class FXClient
         loader.setResources( locale );
 
         Parent root = loader.load();
+        root.getStylesheets().add( getStringProperty( "stylesheet" ) );
+
         primaryStage.setScene( new Scene( root, getIntProperty( "window_width" ), getIntProperty( "window_height" ) ) );
         primaryStage.show();
     }
@@ -84,8 +85,8 @@ public class FXClient
     private void initHeader( Stage primaryStage )
     {
         primaryStage.setTitle( locale.getString( "application.title" ) );
-        primaryStage.getIcons().add( new Image( "/icons/16/logo.png" ) );
-        primaryStage.getIcons().add( new Image( "/icons/24/logo.png" ) );
-        primaryStage.getIcons().add( new Image( "/icons/32/logo.png" ) );
+        // primaryStage.getIcons().add( new Image( "/icons/16/logo.png" ) );
+        // primaryStage.getIcons().add( new Image( "/icons/24/logo.png" ) );
+        // primaryStage.getIcons().add( new Image( "/icons/32/logo.png" ) );
     }
 }

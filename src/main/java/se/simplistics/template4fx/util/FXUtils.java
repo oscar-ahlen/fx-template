@@ -36,7 +36,7 @@ public class FXUtils
         alert.setTitle( title );
 
         DialogPane dialogPane = alert.getDialogPane();
-        dialogPane.getStylesheets().add( FXUtils.class.getResource( "/css/template4fx-light.css" ).toExternalForm() );
+        dialogPane.getStylesheets().add( FXClient.getStringProperty( "stylesheet" ) );
 
         return alert;
     }

@@ -1,5 +1,7 @@
 package se.simplistics.template4fx.controller;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.ScrollPane;
@@ -67,9 +69,18 @@ public class TableController
         Tab tab = new Tab();
         tab.setText( title );
 
-        Image image = new Image( "icons/24/ic_folder_open_black_24dp.png" );
+        Image image;
         ImageView imageView = new ImageView();
-        imageView.setOpacity( 0.5 );
+
+        if ( FXClient.getStringProperty( "stylesheet" ).equals( "/css/template4fx-light.css" ) )
+        {
+            image = new Image( "icons/24/ic_folder_open_black_24dp.png" );
+        }
+        else
+        {
+            image = new Image( "icons/24/ic_folder_open_white_24dp.png" );
+        }
+
         imageView.setFitWidth( 24 );
         imageView.setFitHeight( 24 );
         imageView.setImage( image );
@@ -77,8 +88,29 @@ public class TableController
 
         ScrollPane scrollPane = FXMLLoader.load( getClass().getResource( "/fxml/fragment/table_fragment.fxml" ),
                                                  FXClient.locale );
+
+        TableView table = (TableView) scrollPane.getContent();
+        ObservableList<Person> tableList = FXCollections.observableArrayList();
+        tableList.add( new Person( "Jacob", "Smith", "jacob.smith@example.com" ) );
+        tableList.add( new Person( "Isabella", "Johnson", "isabella.johnson@example.com" ) );
+        tableList.add( new Person( "Ethan", "Williams", "ethan.williams@example.com" ) );
+        tableList.add( new Person( "Emma", "Jones", "emma.jones@example.com" ) );
+        tableList.add( new Person( "Michael", "Brown", "michael.brown@example.com" ) );
+        tableList.add( new Person( "Jacob", "Smith", "jacob.smith@example.com" ) );
+        tableList.add( new Person( "Isabella", "Johnson", "isabella.johnson@example.com" ) );
+        tableList.add( new Person( "Ethan", "Williams", "ethan.williams@example.com" ) );
+        tableList.add( new Person( "Emma", "Jones", "emma.jones@example.com" ) );
+        tableList.add( new Person( "Michael", "Brown", "michael.brown@example.com" ) );
+        tableList.add( new Person( "Jacob", "Smith", "jacob.smith@example.com" ) );
+        tableList.add( new Person( "Isabella", "Johnson", "isabella.johnson@example.com" ) );
+        tableList.add( new Person( "Ethan", "Williams", "ethan.williams@example.com" ) );
+        tableList.add( new Person( "Emma", "Jones", "emma.jones@example.com" ) );
+        tableList.add( new Person( "Michael", "Brown", "michael.brown@example.com" ) );
+        table.setItems( tableList );
+
         tab.setContent( scrollPane );
-        ( (TableView<Person>) scrollPane.getContent() ).getSelectionModel().setSelectionMode( SelectionMode.MULTIPLE );
+        ( (TableView<Person>) scrollPane.getContent() ).getSelectionModel().setSelectionMode(
+            SelectionMode.MULTIPLE );
 
         tabPane.getTabs().add( tab );
     }

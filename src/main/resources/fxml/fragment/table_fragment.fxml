@@ -1,12 +1,9 @@
-<?import javafx.collections.FXCollections?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.cell.PropertyValueFactory?>
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
-<?import se.simplistics.template4fx.model.Person?>
-<ScrollPane xmlns:fx="http://javafx.com/fxml"
-            xmlns="http://javafx.com/javafx/8"
+<ScrollPane xmlns="http://javafx.com/javafx/8"
             fitToWidth="true" fitToHeight="true">
     <padding>
         <Insets left="12" top="8"/>
@@ -14,58 +11,23 @@
 
     <TableView>
         <columns>
-            <TableColumn text="%table.col.firstname">
+            <TableColumn text="%table.col.firstname" prefWidth="100">
                 <cellValueFactory>
                     <PropertyValueFactory property="firstName"/>
                 </cellValueFactory>
             </TableColumn>
 
-            <TableColumn text="%table.col.lastname">
+            <TableColumn text="%table.col.lastname" prefWidth="100">
                 <cellValueFactory>
                     <PropertyValueFactory property="lastName"/>
                 </cellValueFactory>
             </TableColumn>
 
-            <TableColumn text="%table.col.email">
+            <TableColumn text="%table.col.email" prefWidth="200">
                 <cellValueFactory>
                     <PropertyValueFactory property="email"/>
                 </cellValueFactory>
             </TableColumn>
         </columns>
-
-        <items>
-            <FXCollections fx:factory="observableArrayList">
-                <Person firstName="Jacob" lastName="Smith"
-                        email="jacob.smith@example.com"/>
-                <Person firstName="Isabella" lastName="Johnson"
-                        email="isabella.johnson@example.com"/>
-                <Person firstName="Ethan" lastName="Williams"
-                        email="ethan.williams@example.com"/>
-                <Person firstName="Emma" lastName="Jones"
-                        email="emma.jones@example.com"/>
-                <Person firstName="Michael" lastName="Brown"
-                        email="michael.brown@example.com"/>
-                <Person firstName="Jacob" lastName="Smith"
-                        email="jacob.smith@example.com"/>
-                <Person firstName="Isabella" lastName="Johnson"
-                        email="isabella.johnson@example.com"/>
-                <Person firstName="Ethan" lastName="Williams"
-                        email="ethan.williams@example.com"/>
-                <Person firstName="Emma" lastName="Jones"
-                        email="emma.jones@example.com"/>
-                <Person firstName="Michael" lastName="Brown"
-                        email="michael.brown@example.com"/>
-                <Person firstName="Jacob" lastName="Smith"
-                        email="jacob.smith@example.com"/>
-                <Person firstName="Isabella" lastName="Johnson"
-                        email="isabella.johnson@example.com"/>
-                <Person firstName="Ethan" lastName="Williams"
-                        email="ethan.williams@example.com"/>
-                <Person firstName="Emma" lastName="Jones"
-                        email="emma.jones@example.com"/>
-                <Person firstName="Michael" lastName="Brown"
-                        email="michael.brown@example.com"/>
-            </FXCollections>
-        </items>
     </TableView>
 </ScrollPane>

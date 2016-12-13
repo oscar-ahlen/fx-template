@@ -5,15 +5,10 @@
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
-<?import java.net.URL?>
 <BorderPane xmlns:fx="http://javafx.com/fxml"
             xmlns="http://javafx.com/javafx/8"
             fx:controller="se.simplistics.template4fx.controller.MainController"
             fx:id="root">
-
-    <stylesheets>
-        <URL value="@/css/template4fx-light.css"/>
-    </stylesheets>
 
     <left>
         <AnchorPane styleClass="start-menu">

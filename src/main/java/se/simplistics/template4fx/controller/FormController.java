@@ -4,6 +4,7 @@ import javafx.beans.property.ReadOnlyStringWrapper;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TreeItem;
 import javafx.scene.control.TreeTableColumn;
@@ -16,13 +17,13 @@ import se.simplistics.template4fx.model.Person;
 public class FormController
 {
     private final Image folderImage =
-        new Image( getClass().getResourceAsStream( "/icons/16/folder_16dp.png" ) );
+        new Image( getClass().getResourceAsStream( "/icons/16/folder.png" ) );
 
     private final Image pdfImage =
-        new Image( getClass().getResourceAsStream( "/icons/16/file_pdf_16dp.png" ) );
+        new Image( getClass().getResourceAsStream( "/icons/16/file_extension_pdf.png" ) );
 
     private final Image wordImage =
-        new Image( getClass().getResourceAsStream( "/icons/16/file_doc_16dp.png" ) );
+        new Image( getClass().getResourceAsStream( "/icons/16/file_extension_doc.png" ) );
 
     @FXML
     private TreeView<String> treeView;
@@ -34,6 +35,12 @@ public class FormController
     private ListView<String> listView;
 
     private ObservableList<String> list;
+
+    @FXML
+    private ComboBox<String> comboBox;
+
+    @FXML
+    private ComboBox<String> textBox;
 
     public void initialize()
     {
@@ -113,6 +120,13 @@ public class FormController
         p4.setFirstName( "Ludvig" );
         p4.setEmail( "ludvig.ahlen@protonmail.com" );
         root4.getChildren().add( new TreeItem<>( p4 ) );
+
+        ObservableList<String> comboBoxList = FXCollections.observableArrayList();
+        comboBoxList.add( "Test 1" );
+        comboBoxList.add( "Test 2" );
+        comboBoxList.add( "Test 3" );
+        comboBox.setItems( comboBoxList );
+        textBox.setItems( comboBoxList );
     }
 
     private TreeItem<String> addFolder( String name, TreeItem<String> parent )

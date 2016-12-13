@@ -10,8 +10,6 @@
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.control.TreeTableView?>
 <?import javafx.scene.control.TreeView?>
-<?import javafx.scene.image.Image?>
-<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
@@ -23,43 +21,50 @@
         <StackPane styleClass="theme-menu">
             <TabPane tabClosingPolicy="UNAVAILABLE">
                 <Tab text="Tree View">
-                    <graphic>
-                        <ImageView>
-                            <Image url="@/icons/24/ic_folder_open_black_24dp.png"/>
-                        </ImageView>
-                    </graphic>
-
                     <VBox>
                         <padding>
-                            <Insets left="12" top="8"/>
+                            <Insets left="12" top="8" right="12" bottom="12"/>
                         </padding>
-                        <TreeView fx:id="treeView" showRoot="false" VBox.vgrow="ALWAYS"/>
+
+                        <ScrollPane fitToWidth="true" fitToHeight="true" VBox.vgrow="ALWAYS">
+                            <TreeView fx:id="treeView" showRoot="false" VBox.vgrow="ALWAYS"/>
+                        </ScrollPane>
                     </VBox>
                 </Tab>
 
                 <Tab text="Tree Table View">
-                    <graphic>
-                        <ImageView>
-                            <Image url="@/icons/24/ic_folder_open_black_24dp.png"/>
-                        </ImageView>
-                    </graphic>
-
                     <VBox>
-                        <TreeTableView fx:id="treeTableView" showRoot="false" VBox.vgrow="ALWAYS"/>
+                        <padding>
+                            <Insets left="12" top="8" right="12" bottom="12"/>
+                        </padding>
+
+                        <ScrollPane fitToWidth="true" fitToHeight="true" VBox.vgrow="ALWAYS">
+                            <TreeTableView fx:id="treeTableView" showRoot="false" VBox.vgrow="ALWAYS"/>
+                        </ScrollPane>
                     </VBox>
                 </Tab>
 
                 <Tab text="List View">
-                    <ScrollPane>
-                        <ListView fx:id="listView"/>
-                    </ScrollPane>
+                    <VBox>
+                        <padding>
+                            <Insets left="12" top="8" right="12" bottom="12"/>
+                        </padding>
+
+                        <ScrollPane>
+                            <ListView fx:id="listView"/>
+                        </ScrollPane>
+                    </VBox>
                 </Tab>
 
                 <Tab text="Controls">
-                    <VBox spacing="4">
+                    <VBox spacing="8">
+                        <padding>
+                            <Insets left="12" top="8" right="12" bottom="12"/>
+                        </padding>
+
                         <TextField/>
-                        <ComboBox prefWidth="120"/>
-                        <ComboBox prefWidth="120" editable="true"/>
+                        <ComboBox fx:id="comboBox" prefWidth="120"/>
+                        <ComboBox fx:id="textBox" prefWidth="120" editable="true"/>
                         <CheckBox text="Option 1"/>
                         <RadioButton text="Option 2"/>
                         <Slider/>

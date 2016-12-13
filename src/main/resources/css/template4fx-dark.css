@@ -1,26 +1,26 @@
 /*******************************************************************************
  *                                                                             *
- * Template4FX CSS theme - Bright                                              *
+ * Template4FX CSS theme - Dark                                                *
  *                                                                             *
  ******************************************************************************/
 .root
 {
-    -theme-default: #1976D2;           /* Blue: 700 */
-    -theme-default-bright: #1E88E5;    /* Blue: 600 */
+    -theme-default: #FFA000;           /* Amber: 700 */
+    -theme-default-bright: #FFB300;    /* Amber: 600 */
 
-    -theme-main-menu: #C0C0C0;
+    -theme-main-menu: #505050;
 
-    -fx-base: #E0E0E0;
-    -fx-background: #E8E8E8;
+    -fx-base: #404040;
+    -fx-background: #606060;
 
-    -fx-control-inner-background: white;
+    -fx-control-inner-background: #707070;
     -fx-control-inner-background-alt: -fx-control-inner-background;
 
     -fx-accent: -theme-default-bright;
-    -fx-default-button: #D0D0D0;
+    -fx-default-button: #505050;
 
     -fx-focus-color: -theme-default-bright;
-    -fx-faint-focus-color: #1E88E522;
+    -fx-faint-focus-color: #FFB30022;
 }
 
 /*******************************************************************************
@@ -65,16 +65,16 @@
 .scroll-pane .increment-arrow,
 .scroll-pane .decrement-arrow
 {
-    -fx-background-color: #606060; /* To achieve a bit darker color */
+    -fx-background-color: white;
 }
 
-.scroll-bar .thumb
+.scroll-pane .thumb
 {
     -fx-background-radius: 0em;
     -fx-color: -fx-background;
 }
 
-.scroll-bar .thumb:hover
+.scroll-pane .thumb:hover
 {
     -fx-color: -fx-control-inner-background;
 }
@@ -101,9 +101,13 @@
     -fx-padding: 0em 0.333333em 0em 0em;
 }
 
+.tab:hover .tab-close-button
+{
+    -fx-background-color: white;
+}
+
 .tab .tab-close-button:hover
 {
-    -fx-background-color: grey;
     -fx-shape: "M9 1C4.58 1 1 4.58 1 9s3.58 8 8 8 8-3.58 8-8-3.58-8-8-8zm4 10.87L11.87 13 9 10.13 6.13 13 5 11.87 7.87 9 5 6.13 6.13 5 9 7.87 11.87 5 13 6.13 10.13 9 13 11.87z";
     -fx-scale-shape: false;
 }
@@ -116,12 +120,14 @@
 
 .tab-down-button .arrow
 {
+    -fx-background-color: white;
     -fx-shape: "M7 10l5 5 5-5z";
+    -fx-scale-shape: true;
 }
 
 .tab-down-button .arrow:hover
 {
-    -fx-background-color: transparent, transparent, transparent, -theme-default-bright;
+    -fx-background-color: -theme-default-bright;
 }
 
 /*******************************************************************************
@@ -129,18 +135,17 @@
  * Check box and Radio button styling                                          *
  *                                                                             *
  ******************************************************************************/
-.check-box:selected .box,
-.radio-button:selected .radio
+.check-box:selected .box .mark,
+.check-box:indeterminate .box .mark
 {
-    -fx-base: -theme-default;
+    -fx-mark-color: -theme-default;
+    -fx-mark-highlight-color: -theme-default-bright;
 }
 
-.check-box:selected .box .mark,
-.check-box:indeterminate .box .mark,
 .radio-button:selected .radio .dot
 {
-    -fx-mark-color: white;
-    -fx-mark-highlight-color: grey;
+    -fx-mark-color: -theme-default;
+    -fx-mark-highlight-color: -fx-base;
 }
 
 .slider .thumb
@@ -158,6 +163,7 @@
 {
     -fx-font-size: 16px;
     -fx-font-weight: bold;
+    -fx-text-fill: white;
 }
 
 .dialog-pane .content .label
@@ -167,17 +173,17 @@
 
 .alert.information.dialog-pane
 {
-    -fx-graphic: url("/icons/48/ic_info_outline_black_48dp.png");
+    -fx-graphic: url("/icons/48/ic_info_outline_white_48dp.png");
 }
 
 .alert.warning.dialog-pane
 {
-    -fx-graphic: url("/icons/48/ic_warning_black_48dp.png");
+    -fx-graphic: url("/icons/48/ic_warning_white_48dp.png");
 }
 
 .alert.error.dialog-pane
 {
-    -fx-graphic: url("/icons/48/ic_error_outline_black_48dp.png");
+    -fx-graphic: url("/icons/48/ic_error_outline_white_48dp.png");
 }
 
 /*******************************************************************************
@@ -233,55 +239,25 @@
 
 .start-button-1
 {
-    -fx-graphic: url("/icons/48/ic_home_black_48dp.png");
-}
-
-.start-button-1:hover,
-.start-button-1:selected
-{
     -fx-graphic: url("/icons/48/ic_home_white_48dp.png");
 }
 
 .start-button-2
-{
-    -fx-graphic: url("/icons/48/ic_archive_black_48dp.png");
-}
-
-.start-button-2:hover,
-.start-button-2:selected
 {
     -fx-graphic: url("/icons/48/ic_archive_white_48dp.png");
 }
 
 .start-button-3
 {
-    -fx-graphic: url("/icons/48/ic_assignment_black_48dp.png");
-}
-
-.start-button-3:hover,
-.start-button-3:selected
-{
     -fx-graphic: url("/icons/48/ic_assignment_white_48dp.png");
 }
 
 .start-button-4
 {
-    -fx-graphic: url("/icons/48/ic_history_black_48dp.png");
-}
-
-.start-button-4:hover,
-.start-button-4:selected
-{
     -fx-graphic: url("/icons/48/ic_history_white_48dp.png");
 }
 
 .start-button-5
-{
-    -fx-graphic: url("/icons/48/ic_settings_black_48dp.png");
-}
-
-.start-button-5:hover,
-.start-button-5:selected
 {
     -fx-graphic: url("/icons/48/ic_settings_white_48dp.png");
 }
@@ -298,15 +274,15 @@
 
 .info-button
 {
-    -fx-graphic: url('/icons/24/ic_info_outline_black_24dp.png');
+    -fx-graphic: url('/icons/24/ic_info_outline_white_24dp.png')
 }
 
 .warning-button
 {
-    -fx-graphic: url('/icons/24/ic_warning_black_24dp.png');
+    -fx-graphic: url('/icons/24/ic_warning_white_24dp.png');
 }
 
 .error-button
 {
-    -fx-graphic: url('/icons/24/ic_error_outline_black_24dp.png');
+    -fx-graphic: url('/icons/24/ic_error_outline_white_24dp.png');
 }

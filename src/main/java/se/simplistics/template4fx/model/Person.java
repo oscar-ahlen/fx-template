@@ -17,6 +17,13 @@ public class Person
         email = new SimpleStringProperty();
     }
 
+    public Person( String firstName, String lastName, String email )
+    {
+        this.firstName = new SimpleStringProperty( firstName );
+        this.lastName = new SimpleStringProperty( lastName );
+        this.email = new SimpleStringProperty( email );
+    }
+
     public String getFirstName()
     {
         return firstName.get();
