@@ -2,6 +2,7 @@
 <?import javafx.scene.control.Accordion?>
 <?import javafx.scene.control.CheckBox?>
 <?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.ListView?>
 <?import javafx.scene.control.RadioButton?>
 <?import javafx.scene.control.ScrollPane?>
@@ -69,6 +70,7 @@
                             <CheckBox text="Option 1"/>
                             <RadioButton text="Option 2"/>
                             <Slider/>
+                            <DatePicker prefWidth="120"/>
                         </VBox>
                     </TitledPane>
                 </panes>

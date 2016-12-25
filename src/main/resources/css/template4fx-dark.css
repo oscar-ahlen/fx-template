@@ -32,6 +32,13 @@
 
     -fx-focus-color: -theme-color-focus;
     -fx-faint-focus-color: -theme-fx-faint-focus-color;
+
+    /* Keep a white mark color on less dark areas */
+    -fx-mark-color: ladder(
+            -fx-color,
+            white 50%,
+            derive(-fx-color,-63%) 51%
+        );
 }
 
 /*******************************************************************************
@@ -132,7 +139,6 @@
 
 .tab-down-button .arrow
 {
-    -fx-background-color: white;
     -fx-shape: "M7 10l5 5 5-5z";
     -fx-scale-shape: true;
 }
@@ -174,6 +180,34 @@
 {
     -fx-base: -theme-color;
     -fx-text-box-border: derive(-theme-color,-50%);
+}
+
+/*******************************************************************************
+ *                                                                             *
+ * Date picker styling                                                         *
+ *                                                                             *
+ ******************************************************************************/
+.date-picker-popup * .previous-month,
+.date-picker-popup * .next-month
+{
+    -fx-background: -theme-color-nav-bar;
+}
+
+.date-picker-popup * .previous-month:hover,
+.date-picker-popup * .next-month:hover
+{
+    -fx-background: -fx-selection-bar-non-focused;
+}
+
+.date-picker-popup * .spinner .button .left-arrow,
+.date-picker-popup * .spinner .button .right-arrow
+{
+    -fx-background-color: white;
+}
+
+.date-picker-popup * .week-number-cell
+{
+    -fx-font-weight: bold;
 }
 
 /*******************************************************************************
