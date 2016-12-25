@@ -1,13 +1,13 @@
 <?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Accordion?>
 <?import javafx.scene.control.CheckBox?>
 <?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.ListView?>
 <?import javafx.scene.control.RadioButton?>
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.Slider?>
-<?import javafx.scene.control.Tab?>
-<?import javafx.scene.control.TabPane?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.TitledPane?>
 <?import javafx.scene.control.TreeTableView?>
 <?import javafx.scene.control.TreeView?>
 <?import javafx.scene.layout.BorderPane?>
@@ -19,58 +19,60 @@
             fx:id="root">
     <center>
         <StackPane styleClass="theme-menu">
-            <TabPane tabClosingPolicy="UNAVAILABLE">
-                <Tab text="Tree View">
-                    <VBox>
-                        <padding>
-                            <Insets left="12" top="8" right="12" bottom="12"/>
-                        </padding>
+            <Accordion expandedPane="$treePane">
+                <panes>
+                    <TitledPane fx:id="treePane" styleClass="folder-pane" text="Tree View" animated="false">
+                        <VBox>
+                            <padding>
+                                <Insets left="12" top="8" right="12" bottom="12"/>
+                            </padding>
 
-                        <ScrollPane fitToWidth="true" fitToHeight="true" VBox.vgrow="ALWAYS">
-                            <TreeView fx:id="treeView" showRoot="false" VBox.vgrow="ALWAYS"/>
-                        </ScrollPane>
-                    </VBox>
-                </Tab>
+                            <ScrollPane fitToWidth="true" fitToHeight="true" VBox.vgrow="ALWAYS">
+                                <TreeView fx:id="treeView" showRoot="false" VBox.vgrow="ALWAYS"/>
+                            </ScrollPane>
+                        </VBox>
+                    </TitledPane>
 
-                <Tab text="Tree Table View">
-                    <VBox>
-                        <padding>
-                            <Insets left="12" top="8" right="12" bottom="12"/>
-                        </padding>
+                    <TitledPane styleClass="folder-pane" text="Tree Table View" animated="false">
+                        <VBox>
+                            <padding>
+                                <Insets left="12" top="8" right="12" bottom="12"/>
+                            </padding>
 
-                        <ScrollPane fitToWidth="true" fitToHeight="true" VBox.vgrow="ALWAYS">
-                            <TreeTableView fx:id="treeTableView" showRoot="false" VBox.vgrow="ALWAYS"/>
-                        </ScrollPane>
-                    </VBox>
-                </Tab>
+                            <ScrollPane fitToWidth="true" fitToHeight="true" VBox.vgrow="ALWAYS">
+                                <TreeTableView fx:id="treeTableView" showRoot="false" VBox.vgrow="ALWAYS"/>
+                            </ScrollPane>
+                        </VBox>
+                    </TitledPane>
 
-                <Tab text="List View">
-                    <VBox>
-                        <padding>
-                            <Insets left="12" top="8" right="12" bottom="12"/>
-                        </padding>
+                    <TitledPane styleClass="folder-pane" text="List View" animated="false">
+                        <VBox>
+                            <padding>
+                                <Insets left="12" top="8" right="12" bottom="12"/>
+                            </padding>
 
-                        <ScrollPane>
-                            <ListView fx:id="listView"/>
-                        </ScrollPane>
-                    </VBox>
-                </Tab>
+                            <ScrollPane>
+                                <ListView fx:id="listView"/>
+                            </ScrollPane>
+                        </VBox>
+                    </TitledPane>
 
-                <Tab text="Controls">
-                    <VBox spacing="8">
-                        <padding>
-                            <Insets left="12" top="8" right="12" bottom="12"/>
-                        </padding>
+                    <TitledPane styleClass="folder-pane" text="Controls" animated="false">
+                        <VBox spacing="8">
+                            <padding>
+                                <Insets left="12" top="8" right="12" bottom="12"/>
+                            </padding>
 
-                        <TextField/>
-                        <ComboBox fx:id="comboBox" prefWidth="120"/>
-                        <ComboBox fx:id="textBox" prefWidth="120" editable="true"/>
-                        <CheckBox text="Option 1"/>
-                        <RadioButton text="Option 2"/>
-                        <Slider/>
-                    </VBox>
-                </Tab>
-            </TabPane>
+                            <TextField/>
+                            <ComboBox fx:id="comboBox" prefWidth="120"/>
+                            <ComboBox fx:id="textBox" prefWidth="120" editable="true"/>
+                            <CheckBox text="Option 1"/>
+                            <RadioButton text="Option 2"/>
+                            <Slider/>
+                        </VBox>
+                    </TitledPane>
+                </panes>
+            </Accordion>
         </StackPane>
     </center>
 </BorderPane>

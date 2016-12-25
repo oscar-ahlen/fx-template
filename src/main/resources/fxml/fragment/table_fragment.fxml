@@ -6,7 +6,7 @@
 <ScrollPane xmlns="http://javafx.com/javafx/8"
             fitToWidth="true" fitToHeight="true">
     <padding>
-        <Insets left="12" top="8"/>
+        <Insets left="12" top="8" right="12"/>
     </padding>
 
     <TableView>

@@ -6,6 +6,7 @@ import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.ListView;
+import javafx.scene.control.SelectionMode;
 import javafx.scene.control.TreeItem;
 import javafx.scene.control.TreeTableColumn;
 import javafx.scene.control.TreeTableView;
@@ -69,6 +70,8 @@ public class FormController
         addFile( "Random document 1", root, wordImage );
         addFile( "Random document 2", root, wordImage );
 
+        treeView.getSelectionModel().setSelectionMode( SelectionMode.MULTIPLE );
+
         list = FXCollections.observableArrayList();
         list.add( "Item 1" );
         list.add( "Item 2" );
@@ -80,7 +83,7 @@ public class FormController
 
         nameColumn.setCellValueFactory(
             ( TreeTableColumn.CellDataFeatures<Person, String> param ) ->
-                new ReadOnlyStringWrapper( param.getValue().getValue().getFirstName() )
+                new ReadOnlyStringWrapper( param.getValue().getValue().firstName.get() )
         );
 
         TreeTableColumn<Person, String> empColumn =
@@ -88,7 +91,7 @@ public class FormController
 
         empColumn.setCellValueFactory(
             ( TreeTableColumn.CellDataFeatures<Person, String> param ) ->
-                new ReadOnlyStringWrapper( param.getValue().getValue().getEmail() )
+                new ReadOnlyStringWrapper( param.getValue().getValue().email.get() )
         );
 
         treeTableView.getColumns().setAll( nameColumn, empColumn );
@@ -99,26 +102,26 @@ public class FormController
         root2.getChildren().add( root3 );
 
         Person p1 = new Person();
-        p1.setFirstName( "Oscar" );
-        p1.setEmail( "oscar.ahlen@protonmail.com" );
+        p1.firstName.set( "Oscar" );
+        p1.email.set( "oscar.ahlen@protonmail.com" );
         root3.getChildren().add( new TreeItem<>( p1 ) );
 
         Person p2 = new Person();
-        p2.setFirstName( "Ludvig" );
-        p2.setEmail( "ludvig.ahlen@protonmail.com" );
+        p2.firstName.set( "Ludvig" );
+        p2.email.set( "ludvig.ahlen@protonmail.com" );
         root3.getChildren().add( new TreeItem<>( p2 ) );
 
         TreeItem<Person> root4 = new TreeItem<>( new Person() );
         root2.getChildren().add( root4 );
 
         Person p3 = new Person();
-        p3.setFirstName( "Oscar" );
-        p3.setEmail( "oscar.ahlen@protonmail.com" );
+        p3.firstName.set( "Oscar" );
+        p3.email.set( "oscar.ahlen@protonmail.com" );
         root4.getChildren().add( new TreeItem<>( p3 ) );
 
         Person p4 = new Person();
-        p4.setFirstName( "Ludvig" );
-        p4.setEmail( "ludvig.ahlen@protonmail.com" );
+        p4.firstName.set( "Ludvig" );
+        p4.email.set( "ludvig.ahlen@protonmail.com" );
         root4.getChildren().add( new TreeItem<>( p4 ) );
 
         ObservableList<String> comboBoxList = FXCollections.observableArrayList();

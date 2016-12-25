@@ -13,7 +13,7 @@
     <top>
         <HBox spacing="8">
             <padding>
-                <Insets left="12" top="12" right="12" bottom="12"/>
+                <Insets left="12" top="8" right="12" bottom="8"/>
             </padding>
 
             <Button styleClass="special-button"
@@ -36,8 +36,7 @@
 
     <center>
         <StackPane styleClass="theme-menu">
-            <TabPane fx:id="tabPane" tabClosingPolicy="ALL_TABS">
-            </TabPane>
+            <TabPane fx:id="tabPane" tabClosingPolicy="ALL_TABS"/>
         </StackPane>
     </center>
 

@@ -5,22 +5,33 @@
  ******************************************************************************/
 .root
 {
-    -theme-default: #FFA000;           /* Amber: 700 */
-    -theme-default-bright: #FFB300;    /* Amber: 600 */
+    -theme-color: #7CB342;        /* Light green: 600 */
+    -theme-color-accent: #8BC34A; /* Light green: 500 */
+    -theme-color-focus: #AED581;  /* Light green: 300 */
+    -theme-fx-faint-focus-color: #AED58122;
 
-    -theme-main-menu: #505050;
+    -theme-color-warning: #FFB300;
+    -theme-color-error: #F4511E;
 
-    -fx-base: #404040;
-    -fx-background: #606060;
+    -theme-color-nav-bar: #505050;
 
-    -fx-control-inner-background: #707070;
+    -theme-fx-base: #404040;
+    -theme-fx-background: #606060;
+    -theme-fx-control-inner-background: #707070;
+    -theme-fx-default-button: #505050;
+
+    /* Root styling */
+    -fx-base: -theme-fx-base;
+    -fx-background: -theme-fx-background;
+
+    -fx-control-inner-background: -theme-fx-control-inner-background;
     -fx-control-inner-background-alt: -fx-control-inner-background;
 
-    -fx-accent: -theme-default-bright;
-    -fx-default-button: #505050;
+    -fx-accent: -theme-color-accent;
+    -fx-default-button: -theme-fx-default-button;
 
-    -fx-focus-color: -theme-default-bright;
-    -fx-faint-focus-color: #FFB30022;
+    -fx-focus-color: -theme-color-focus;
+    -fx-faint-focus-color: -theme-fx-faint-focus-color;
 }
 
 /*******************************************************************************
@@ -30,13 +41,14 @@
  ******************************************************************************/
 .special-button
 {
-    -fx-base: -theme-default;
+    -fx-base: -theme-color;
     -fx-hover-base: ladder(-fx-base,
                            derive(-fx-base,10%) 20%,
                            derive(-fx-base,15%) 35%,
                            derive(-fx-base,20%) 50%
                            );
 
+    -fx-outer-border: -theme-fx-base;
     -fx-font-weight: bold;
     -fx-text-fill: white;
 }
@@ -127,7 +139,17 @@
 
 .tab-down-button .arrow:hover
 {
-    -fx-background-color: -theme-default-bright;
+    -fx-background-color: -theme-color-accent;
+}
+
+/*******************************************************************************
+ *                                                                             *
+ * Accordion styling                                                           *
+ *                                                                             *
+ ******************************************************************************/
+.accordion
+{
+    -fx-background-color: transparent;
 }
 
 /*******************************************************************************
@@ -138,20 +160,20 @@
 .check-box:selected .box .mark,
 .check-box:indeterminate .box .mark
 {
-    -fx-mark-color: -theme-default;
-    -fx-mark-highlight-color: -theme-default-bright;
+    -fx-mark-color: -theme-color;
+    -fx-mark-highlight-color: -theme-color-accent;
 }
 
 .radio-button:selected .radio .dot
 {
-    -fx-mark-color: -theme-default;
+    -fx-mark-color: -theme-color;
     -fx-mark-highlight-color: -fx-base;
 }
 
 .slider .thumb
 {
-    -fx-base: -theme-default;
-    -fx-text-box-border: derive(-theme-default,-23%);
+    -fx-base: -theme-color;
+    -fx-text-box-border: derive(-theme-color,-50%);
 }
 
 /*******************************************************************************
@@ -159,6 +181,11 @@
  * Dialog styling                                                              *
  *                                                                             *
  ******************************************************************************/
+.dialog-pane:header *.header-panel
+{
+    -fx-background-color: -theme-color;
+}
+
 .dialog-pane:header .header-panel .label
 {
     -fx-font-size: 16px;
@@ -181,9 +208,19 @@
     -fx-graphic: url("/icons/48/ic_warning_white_48dp.png");
 }
 
+.alert.warning.dialog-pane:header *.header-panel
+{
+    -fx-background-color: -theme-color-warning;
+}
+
 .alert.error.dialog-pane
 {
     -fx-graphic: url("/icons/48/ic_error_outline_white_48dp.png");
+}
+
+.alert.error.dialog-pane:header *.header-panel
+{
+    -fx-background-color: -theme-color-error;
 }
 
 /*******************************************************************************
@@ -193,8 +230,8 @@
  ******************************************************************************/
 .start-menu
 {
-    -fx-background-color: -theme-main-menu;
-    -fx-border-color: -theme-default;
+    -fx-background-color: -theme-color-nav-bar;
+    -fx-border-color: -theme-color;
     -fx-border-width: 0 2 0 0;
 }
 
@@ -220,7 +257,7 @@
 .start-button-4:selected,
 .start-button-5:selected
 {
-    -fx-background-color: -theme-default;
+    -fx-background-color: -theme-color;
 }
 
 .start-button-1:hover,
@@ -234,7 +271,7 @@
 .start-button-5:hover,
 .start-button-5:selected:hover
 {
-    -fx-background-color: -theme-default-bright;
+    -fx-background-color: -theme-color-accent;
 }
 
 .start-button-1
@@ -285,4 +322,9 @@
 .error-button
 {
     -fx-graphic: url('/icons/24/ic_error_outline_white_24dp.png');
+}
+
+.folder-pane
+{
+    -fx-graphic: url('/icons/24/ic_folder_open_white_24dp.png');
 }

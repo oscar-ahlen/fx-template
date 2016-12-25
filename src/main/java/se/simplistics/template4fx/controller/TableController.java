@@ -109,8 +109,7 @@ public class TableController
         table.setItems( tableList );
 
         tab.setContent( scrollPane );
-        ( (TableView<Person>) scrollPane.getContent() ).getSelectionModel().setSelectionMode(
-            SelectionMode.MULTIPLE );
+        ( (TableView<Person>) scrollPane.getContent() ).getSelectionModel().setSelectionMode( SelectionMode.MULTIPLE );
 
         tabPane.getTabs().add( tab );
     }

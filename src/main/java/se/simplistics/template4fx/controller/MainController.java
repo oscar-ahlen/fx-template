@@ -45,6 +45,10 @@ public class MainController
         selectView( view3 );
     }
 
+    public void selectView4()
+    {
+    }
+
     private void selectView( Parent parent )
     {
         stackPane.getChildren().clear();

@@ -5,22 +5,32 @@
  ******************************************************************************/
 .root
 {
-    -theme-default: #1976D2;           /* Blue: 700 */
-    -theme-default-bright: #1E88E5;    /* Blue: 600 */
+    -theme-color: #1976D2;        /* Blue: 700 */
+    -theme-color-accent: #1E88E5; /* Blue: 600 */
+    -theme-color-focus: #42A5F5;  /* Blue: 400 */
+    -theme-fx-faint-focus-color: #42A5F522;
 
-    -theme-main-menu: #C0C0C0;
+    -theme-color-warning: #FFB300;
+    -theme-color-error: #F4511E;
 
-    -fx-base: #E0E0E0;
-    -fx-background: #E8E8E8;
+    -theme-color-nav-bar: #C0C0C0;
 
-    -fx-control-inner-background: white;
+    -theme-fx-base: #E0E0E0;
+    -theme-fx-background: #E8E8E8;
+    -theme-fx-control-inner-background: white;
+    -theme-fx-default-button: #D0D0D0;
+
+    -fx-base: -theme-fx-base;
+    -fx-background: -theme-fx-background;
+
+    -fx-control-inner-background: -theme-fx-control-inner-background;
     -fx-control-inner-background-alt: -fx-control-inner-background;
 
-    -fx-accent: -theme-default-bright;
-    -fx-default-button: #D0D0D0;
+    -fx-accent: -theme-color-accent;
+    -fx-default-button: -theme-fx-default-button;
 
-    -fx-focus-color: -theme-default-bright;
-    -fx-faint-focus-color: #1E88E522;
+    -fx-focus-color: -theme-color-focus;
+    -fx-faint-focus-color: -theme-fx-faint-focus-color;
 }
 
 /*******************************************************************************
@@ -30,12 +40,16 @@
  ******************************************************************************/
 .special-button
 {
-    -fx-base: -theme-default;
+    -fx-base: -theme-color;
     -fx-hover-base: ladder(-fx-base,
                            derive(-fx-base,10%) 20%,
                            derive(-fx-base,15%) 35%,
                            derive(-fx-base,20%) 50%
                            );
+
+    -fx-outer-border: #404040;
+    -fx-focus-color: #1976D2;
+    -fx-faint-focus-color: #1976D222;
 
     -fx-font-weight: bold;
     -fx-text-fill: white;
@@ -121,7 +135,17 @@
 
 .tab-down-button .arrow:hover
 {
-    -fx-background-color: transparent, transparent, transparent, -theme-default-bright;
+    -fx-background-color: transparent, transparent, transparent, -theme-color-accent;
+}
+
+/*******************************************************************************
+ *                                                                             *
+ * Accordion styling                                                           *
+ *                                                                             *
+ ******************************************************************************/
+.accordion
+{
+    -fx-background-color: transparent;
 }
 
 /*******************************************************************************
@@ -132,7 +156,7 @@
 .check-box:selected .box,
 .radio-button:selected .radio
 {
-    -fx-base: -theme-default;
+    -fx-base: -theme-color;
 }
 
 .check-box:selected .box .mark,
@@ -145,8 +169,8 @@
 
 .slider .thumb
 {
-    -fx-base: -theme-default;
-    -fx-text-box-border: derive(-theme-default,-23%);
+    -fx-base: -theme-color;
+    -fx-text-box-border: derive(-theme-color,-23%);
 }
 
 /*******************************************************************************
@@ -154,10 +178,17 @@
  * Dialog styling                                                              *
  *                                                                             *
  ******************************************************************************/
+.dialog-pane:header *.header-panel
+{
+    -fx-background-color: -theme-color;
+}
+
+
 .dialog-pane:header .header-panel .label
 {
     -fx-font-size: 16px;
     -fx-font-weight: bold;
+    -fx-text-fill: white;
 }
 
 .dialog-pane .content .label
@@ -167,17 +198,27 @@
 
 .alert.information.dialog-pane
 {
-    -fx-graphic: url("/icons/48/ic_info_outline_black_48dp.png");
+    -fx-graphic: url("/icons/48/ic_info_outline_white_48dp.png");
 }
 
 .alert.warning.dialog-pane
 {
-    -fx-graphic: url("/icons/48/ic_warning_black_48dp.png");
+    -fx-graphic: url("/icons/48/ic_warning_white_48dp.png");
+}
+
+.alert.warning.dialog-pane:header *.header-panel
+{
+    -fx-background-color: -theme-color-warning;
 }
 
 .alert.error.dialog-pane
 {
-    -fx-graphic: url("/icons/48/ic_error_outline_black_48dp.png");
+    -fx-graphic: url("/icons/48/ic_error_outline_white_48dp.png");
+}
+
+.alert.error.dialog-pane:header *.header-panel
+{
+    -fx-background-color: -theme-color-error;
 }
 
 /*******************************************************************************
@@ -187,8 +228,8 @@
  ******************************************************************************/
 .start-menu
 {
-    -fx-background-color: -theme-main-menu;
-    -fx-border-color: -theme-default;
+    -fx-background-color: -theme-color-nav-bar;
+    -fx-border-color: -theme-color;
     -fx-border-width: 0 2 0 0;
 }
 
@@ -214,7 +255,7 @@
 .start-button-4:selected,
 .start-button-5:selected
 {
-    -fx-background-color: -theme-default;
+    -fx-background-color: -theme-color;
 }
 
 .start-button-1:hover,
@@ -228,7 +269,7 @@
 .start-button-5:hover,
 .start-button-5:selected:hover
 {
-    -fx-background-color: -theme-default-bright;
+    -fx-background-color: -theme-color-accent;
 }
 
 .start-button-1
@@ -309,4 +350,9 @@
 .error-button
 {
     -fx-graphic: url('/icons/24/ic_error_outline_black_24dp.png');
+}
+
+.folder-pane
+{
+    -fx-graphic: url('/icons/24/ic_folder_open_black_24dp.png');
 }

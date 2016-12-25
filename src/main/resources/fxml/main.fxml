@@ -47,7 +47,7 @@
 
                 <ToggleButton toggleGroup="$startMenuGroup"
                               styleClass="start-button-4"
-                              onAction="#selectView1">
+                              onAction="#selectView4">
                     <tooltip>
                         <Tooltip text="%button.start4"/>
                     </tooltip>
