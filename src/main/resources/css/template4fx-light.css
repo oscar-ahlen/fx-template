@@ -31,6 +31,9 @@
 
     -fx-focus-color: -theme-color-focus;
     -fx-faint-focus-color: -theme-fx-faint-focus-color;
+
+    -fx-cell-hover-color: transparent;
+    -fx-cell-focus-inner-border: -fx-selection-bar;
 }
 
 /*******************************************************************************
@@ -41,11 +44,7 @@
 .special-button
 {
     -fx-base: -theme-color;
-    -fx-hover-base: ladder(-fx-base,
-                           derive(-fx-base,10%) 20%,
-                           derive(-fx-base,15%) 35%,
-                           derive(-fx-base,20%) 50%
-                           );
+    -fx-hover-base: -theme-color-accent;
 
     -fx-outer-border: #404040;
     -fx-focus-color: #1976D2;
@@ -76,6 +75,26 @@
     -fx-padding: 0.416667em 0.416667em 0.416667em  0.416667em;
 }
 
+.scroll-pane .scroll-bar:horizontal .increment-button
+{
+    -fx-background-insets: 0 1 1 0;
+}
+
+.scroll-pane .scroll-bar:horizontal .decrement-button
+{
+    -fx-background-insets: 0 0 1 1;
+}
+
+.scroll-pane .scroll-bar:vertical .increment-button
+{
+    -fx-background-insets: 0 1 1 0;
+}
+
+.scroll-pane .scroll-bar:vertical .decrement-button
+{
+    -fx-background-insets: 1 1 0 0;
+}
+
 .scroll-pane .increment-arrow,
 .scroll-pane .decrement-arrow
 {
@@ -91,6 +110,16 @@
 .scroll-bar .thumb:hover
 {
     -fx-color: -fx-control-inner-background;
+}
+
+.scroll-bar:horizontal .thumb
+{
+    -fx-background-insets: 0 0 1 0, 1;
+}
+
+.scroll-bar:vertical .thumb
+{
+    -fx-background-insets: 0 1 0 0, 1;
 }
 
 /*******************************************************************************
@@ -192,7 +221,6 @@
 {
     -fx-background-color: -theme-color;
 }
-
 
 .dialog-pane:header .header-panel .label
 {
@@ -363,6 +391,11 @@
 }
 
 .folder-pane
+{
+    -fx-graphic: url('/icons/24/ic_folder_open_black_24dp.png');
+}
+
+.folder-tab
 {
     -fx-graphic: url('/icons/24/ic_folder_open_black_24dp.png');
 }
