@@ -64,7 +64,7 @@ public class FXClient
             props.load( in );
         }
 
-        locale = ResourceBundle.getBundle( "localization.template4j", new Locale( "en", "EN" ) );
+        locale = ResourceBundle.getBundle( "localization.template4fx", new Locale( "en", "EN" ) );
     }
 
     @Override
