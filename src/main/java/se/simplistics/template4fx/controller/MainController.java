@@ -11,7 +11,7 @@ public class MainController
     private StackPane stackPane;
 
     @FXML
-    private Parent view1, view2, view3;
+    private Parent view1, view2, view3, view4, view5;
 
     @FXML
     private ToggleGroup startMenuGroup;
@@ -47,6 +47,11 @@ public class MainController
 
     public void selectView4()
     {
+    }
+
+    public void selectView5()
+    {
+        selectView( view5 );
     }
 
     private void selectView( Parent parent )

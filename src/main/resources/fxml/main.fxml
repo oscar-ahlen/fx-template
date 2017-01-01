@@ -55,7 +55,7 @@
 
                 <ToggleButton toggleGroup="$startMenuGroup"
                               styleClass="start-button-5"
-                              onAction="#selectView1">
+                              onAction="#selectView5">
                     <tooltip>
                         <Tooltip text="%button.start5"/>
                     </tooltip>
@@ -67,6 +67,7 @@
 
     <center>
         <StackPane fx:id="stackPane">
+            <fx:include fx:id="view5" source="settings.fxml"/>
             <fx:include fx:id="view3" source="form.fxml"/>
             <fx:include fx:id="view2" source="table.fxml"/>
             <fx:include fx:id="view1" source="web_view.fxml"/>

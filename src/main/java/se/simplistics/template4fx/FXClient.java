@@ -18,6 +18,8 @@ public class FXClient
 
     public static ResourceBundle locale;
 
+    public static Parent root;
+
     public static void main( String[] args )
     {
         launch( args );
@@ -75,10 +77,10 @@ public class FXClient
         FXMLLoader loader = new FXMLLoader( getClass().getResource( "/fxml/main.fxml" ) );
         loader.setResources( locale );
 
-        Parent root = loader.load();
+        root = loader.load();
         root.getStylesheets().add( getStringProperty( "stylesheet" ) );
 
-        primaryStage.setScene( new Scene( root, getIntProperty( "window_width" ), getIntProperty( "window_height" ) ) );
+        primaryStage.setScene( new Scene( root, getIntProperty( "window.width" ), getIntProperty( "window.height" ) ) );
         primaryStage.show();
     }
 
