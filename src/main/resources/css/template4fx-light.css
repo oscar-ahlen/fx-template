@@ -61,7 +61,7 @@
 
 /*******************************************************************************
  *                                                                             *
- * Scroll pane styling                                                         *
+ * Scroll bar styling                                                          *
  *                                                                             *
  ******************************************************************************/
 .scroll-pane
@@ -69,34 +69,34 @@
     -fx-background-color: transparent;
 }
 
-.scroll-pane .increment-button,
-.scroll-pane .decrement-button
+.scroll-bar .increment-button,
+.scroll-bar .decrement-button
 {
     -fx-padding: 0.416667em 0.416667em 0.416667em  0.416667em;
 }
 
-.scroll-pane .scroll-bar:horizontal .increment-button
+.scroll-bar:horizontal .increment-button
 {
     -fx-background-insets: 0 1 1 0;
 }
 
-.scroll-pane .scroll-bar:horizontal .decrement-button
+.scroll-bar:horizontal .decrement-button
 {
     -fx-background-insets: 0 0 1 1;
 }
 
-.scroll-pane .scroll-bar:vertical .increment-button
+.scroll-bar:vertical .increment-button
 {
     -fx-background-insets: 0 1 1 0;
 }
 
-.scroll-pane .scroll-bar:vertical .decrement-button
+.scroll-bar:vertical .decrement-button
 {
     -fx-background-insets: 1 1 0 0;
 }
 
-.scroll-pane .increment-arrow,
-.scroll-pane .decrement-arrow
+.scroll-bar .increment-arrow,
+.scroll-bar .decrement-arrow
 {
     -fx-background-color: #606060; /* To achieve a bit darker color */
 }
@@ -175,6 +175,17 @@
 .accordion
 {
     -fx-background-color: transparent;
+}
+
+/*******************************************************************************
+ *                                                                             *
+ * Split pane styling                                                           *
+ *                                                                             *
+ ******************************************************************************/
+.split-pane:horizontal .split-pane-divider,
+.split-pane:vertical .split-pane-divider
+{
+    -fx-background-insets: 0, 0;
 }
 
 /*******************************************************************************

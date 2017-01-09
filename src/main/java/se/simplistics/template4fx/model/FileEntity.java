@@ -1,7 +1,6 @@
 package se.simplistics.template4fx.model;
 
 import java.nio.file.Path;
-import java.util.Collection;
 
 public interface FileEntity
 {
@@ -9,7 +8,11 @@ public interface FileEntity
 
     Path getPath();
 
-    FileEntity getParent();
+    long getSize();
 
-    Collection<FileEntity> getChildren();
+    String getType();
+
+    boolean isDirectory();
+
+    boolean isFile();
 }

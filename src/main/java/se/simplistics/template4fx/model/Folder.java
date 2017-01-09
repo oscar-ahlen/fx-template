@@ -11,6 +11,11 @@ public class Folder
     public final ObservableList<FileEntity> children = FXCollections.observableArrayList();
 
     @Override
+    public boolean isDirectory()
+    {
+        return true;
+    }
+
     public Collection<FileEntity> getChildren()
     {
         return children;

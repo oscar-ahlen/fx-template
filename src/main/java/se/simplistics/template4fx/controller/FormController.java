@@ -101,15 +101,12 @@ public class FormController
         TreeItem<Person> root3 = new TreeItem<>( new Person() );
         root2.getChildren().add( root3 );
 
-        Person p1 = new Person();
-        p1.firstName.set( "Oscar" );
-        p1.email.set( "oscar.ahlen@protonmail.com" );
-        root3.getChildren().add( new TreeItem<>( p1 ) );
-
-        Person p2 = new Person();
-        p2.firstName.set( "Ludvig" );
-        p2.email.set( "ludvig.ahlen@protonmail.com" );
-        root3.getChildren().add( new TreeItem<>( p2 ) );
+        root3.getChildren().add( new TreeItem<>( new Person( "Jacob", "Smith", "jacob.smith@example.com" ) ) );
+        root3.getChildren().add(
+            new TreeItem<>( new Person( "Isabella", "Johnson", "isabella.johnson@example.com" ) ) );
+        root3.getChildren().add( new TreeItem<>( new Person( "Ethan", "Williams", "ethan.williams@example.com" ) ) );
+        root3.getChildren().add( new TreeItem<>( new Person( "Emma", "Jones", "emma.jones@example.com" ) ) );
+        root3.getChildren().add( new TreeItem<>( new Person( "Michael", "Brown", "michael.brown@example.com" ) ) );
 
         TreeItem<Person> root4 = new TreeItem<>( new Person() );
         root2.getChildren().add( root4 );

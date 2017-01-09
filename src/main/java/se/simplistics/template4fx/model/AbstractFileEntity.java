@@ -1,20 +1,22 @@
 package se.simplistics.template4fx.model;
 
 import javafx.beans.property.Property;
+import javafx.beans.property.SimpleLongProperty;
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.beans.property.SimpleStringProperty;
-import javafx.beans.property.StringProperty;
 
 import java.nio.file.Path;
 
 public abstract class AbstractFileEntity
     implements FileEntity
 {
-    public final StringProperty name = new SimpleStringProperty();
+    public final SimpleStringProperty name = new SimpleStringProperty();
 
     public final Property<Path> path = new SimpleObjectProperty<>();
 
-    public final Property<FileEntity> parent = new SimpleObjectProperty<>();
+    public final SimpleLongProperty size = new SimpleLongProperty();
+
+    public final SimpleStringProperty type = new SimpleStringProperty();
 
     @Override
     public String getName()
@@ -29,14 +31,32 @@ public abstract class AbstractFileEntity
     }
 
     @Override
-    public FileEntity getParent()
+    public long getSize()
     {
-        return parent.getValue();
+        return size.get();
+    }
+
+    @Override
+    public String getType()
+    {
+        return type.get();
+    }
+
+    @Override
+    public boolean isDirectory()
+    {
+        return false;
+    }
+
+    @Override
+    public boolean isFile()
+    {
+        return false;
     }
 
     public SimpleStringProperty nameProperty()
     {
-        return nameProperty();
+        return name;
     }
 
     public Property<Path> pathProperty()
@@ -44,9 +64,14 @@ public abstract class AbstractFileEntity
         return path;
     }
 
-    public Property<FileEntity> parentProperty()
+    public SimpleLongProperty sizeProperty()
     {
-        return parent;
+        return size;
+    }
+
+    public SimpleStringProperty typeProperty()
+    {
+        return type;
     }
 
     @Override

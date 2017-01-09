@@ -66,7 +66,7 @@
 
 /*******************************************************************************
  *                                                                             *
- * Scroll pane styling                                                         *
+ * Scroll bar styling                                                          *
  *                                                                             *
  ******************************************************************************/
 .scroll-pane
@@ -74,45 +74,45 @@
     -fx-background-color: transparent;
 }
 
-.scroll-pane .increment-button,
-.scroll-pane .decrement-button
+.scroll-bar .increment-button,
+.scroll-bar .decrement-button
 {
     -fx-padding: 0.416667em 0.416667em 0.416667em  0.416667em;
 }
 
-.scroll-pane .scroll-bar:horizontal .increment-button
+.scroll-bar:horizontal .increment-button
 {
     -fx-background-insets: 0 1 1 0;
 }
 
-.scroll-pane .scroll-bar:horizontal .decrement-button
+.scroll-bar:horizontal .decrement-button
 {
     -fx-background-insets: 0 0 1 1;
 }
 
-.scroll-pane .scroll-bar:vertical .increment-button
+.scroll-bar:vertical .increment-button
 {
     -fx-background-insets: 0 1 1 0;
 }
 
-.scroll-pane .scroll-bar:vertical .decrement-button
+.scroll-bar:vertical .decrement-button
 {
     -fx-background-insets: 1 1 0 0;
 }
 
-.scroll-pane .increment-arrow,
-.scroll-pane .decrement-arrow
+.scroll-bar .increment-arrow,
+.scroll-bar .decrement-arrow
 {
     -fx-background-color: white;
 }
 
-.scroll-pane .thumb
+.scroll-bar .thumb
 {
     -fx-background-radius: 0em;
     -fx-color: -fx-background;
 }
 
-.scroll-pane .thumb:hover
+.scroll-bar .thumb:hover
 {
     -fx-color: -fx-control-inner-background;
 }
