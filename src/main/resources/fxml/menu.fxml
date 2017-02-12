@@ -1,0 +1,26 @@
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.RadioMenuItem?>
+<MenuBar xmlns:fx="http://javafx.com/fxml"
+         xmlns="http://javafx.com/javafx/8"
+         fx:controller="se.simplistics.template4fx.controller.MenuController">
+
+    <Menu text="%menu.file"/>
+
+    <Menu text="%menu.edit"/>
+
+    <Menu text="%menu.view"/>
+
+    <Menu text="%menu.settings">
+        <Menu text="%menu.settings.theme" style="-fx-graphic: url('/icons/16/change_whm_theme.png')">
+            <RadioMenuItem fx:id="lightTheme" text="%menu.settings.theme.light"/>
+            <RadioMenuItem fx:id="darkTheme" text="%menu.settings.theme.dark"/>
+        </Menu>
+    </Menu>
+
+    <Menu text="%menu.help">
+        <MenuItem text="%menu.help.about" style="-fx-graphic: url('/icons/16/information.png')"
+                  onAction="#showAppInfo"/>
+    </Menu>
+</MenuBar>

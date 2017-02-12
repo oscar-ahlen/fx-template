@@ -1,76 +1,14 @@
-<?import javafx.scene.control.ToggleButton?>
-<?import javafx.scene.control.ToggleGroup?>
-<?import javafx.scene.control.Tooltip?>
-<?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
-<?import javafx.scene.layout.StackPane?>
-<?import javafx.scene.layout.VBox?>
+<?import se.simplistics.template4fx.fx.control.QuadTabPane?>
 <BorderPane xmlns:fx="http://javafx.com/fxml"
             xmlns="http://javafx.com/javafx/8"
-            fx:controller="se.simplistics.template4fx.controller.MainController"
-            fx:id="root">
+            fx:controller="se.simplistics.template4fx.controller.MainController">
 
-    <left>
-        <AnchorPane styleClass="start-menu">
-            <VBox AnchorPane.topAnchor="0"
-                  AnchorPane.leftAnchor="0"
-                  AnchorPane.rightAnchor="0"
-                  AnchorPane.bottomAnchor="0">
-
-                <fx:define>
-                    <ToggleGroup fx:id="startMenuGroup"/>
-                </fx:define>
-
-                <ToggleButton toggleGroup="$startMenuGroup"
-                              styleClass="start-button-1"
-                              onAction="#selectView1">
-                    <tooltip>
-                        <Tooltip text="%button.start1"/>
-                    </tooltip>
-                </ToggleButton>
-
-                <ToggleButton toggleGroup="$startMenuGroup"
-                              styleClass="start-button-2"
-                              onAction="#selectView2">
-                    <tooltip>
-                        <Tooltip text="%button.start2"/>
-                    </tooltip>
-                </ToggleButton>
-
-                <ToggleButton toggleGroup="$startMenuGroup"
-                              styleClass="start-button-3"
-                              onAction="#selectView3">
-                    <tooltip>
-                        <Tooltip text="%button.start3"/>
-                    </tooltip>
-                </ToggleButton>
-
-                <ToggleButton toggleGroup="$startMenuGroup"
-                              styleClass="start-button-4"
-                              onAction="#selectView4">
-                    <tooltip>
-                        <Tooltip text="%button.start4"/>
-                    </tooltip>
-                </ToggleButton>
-
-                <ToggleButton toggleGroup="$startMenuGroup"
-                              styleClass="start-button-5"
-                              onAction="#selectView5">
-                    <tooltip>
-                        <Tooltip text="%button.start5"/>
-                    </tooltip>
-                </ToggleButton>
-            </VBox>
-
-        </AnchorPane>
-    </left>
+    <top>
+        <fx:include source="menu.fxml"/>
+    </top>
 
     <center>
-        <StackPane fx:id="stackPane">
-            <fx:include fx:id="view5" source="settings.fxml"/>
-            <fx:include fx:id="view3" source="form.fxml"/>
-            <fx:include fx:id="view2" source="table.fxml"/>
-            <fx:include fx:id="view1" source="web_view.fxml"/>
-        </StackPane>
+        <QuadTabPane fx:id="pane"/>
     </center>
 </BorderPane>

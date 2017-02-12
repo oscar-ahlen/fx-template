@@ -1,62 +1,59 @@
 package se.simplistics.template4fx.controller;
 
 import javafx.fxml.FXML;
-import javafx.scene.Parent;
-import javafx.scene.control.ToggleGroup;
-import javafx.scene.layout.StackPane;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.control.Tab;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+import se.simplistics.template4fx.FXClient;
+import se.simplistics.template4fx.fx.control.QuadTabPane;
+
+import java.io.IOException;
 
 public class MainController
 {
     @FXML
-    private StackPane stackPane;
-
-    @FXML
-    private Parent view1, view2, view3, view4, view5;
-
-    @FXML
-    private ToggleGroup startMenuGroup;
+    private QuadTabPane pane;
 
     public void initialize()
     {
-        startMenuGroup.getToggles().get( 0 ).setSelected( true );
+        pane.initialize();
 
-        startMenuGroup.selectedToggleProperty().addListener(
-            ( observable, oldValue, newValue ) ->
-            {
-                if ( ( newValue == null ) )
-                {
-                    startMenuGroup.selectToggle( oldValue );
-                }
-            } );
+        pane.addWestTab( newTab( "View 1" ) );
+        pane.addWestTab( newTab( "View 2" ) );
+        pane.addWestTab( newTab( "View 3" ) );
+        pane.addWestTab( newTab( "View 4" ) );
+
+        pane.addEastTab( newTab( "View 5" ) );
+        pane.addEastTab( newTab( "View 6" ) );
+        pane.addEastTab( newTab( "View 7" ) );
+        pane.addEastTab( newTab( "View 8" ) );
     }
 
-    public void selectView1()
+    // TODO Clean up
+    private Tab newTab( String title )
     {
-        selectView( view1 );
-    }
+        Tab tab = new Tab();
+        tab.setText( title );
+        tab.setClosable( true );
 
-    public void selectView2()
-    {
-        selectView( view2 );
-    }
+        Image image = new Image( "icons/16/folder.png" );
+        ImageView imageView = new ImageView();
 
-    public void selectView3()
-    {
-        selectView( view3 );
-    }
+        imageView.setFitWidth( 16 );
+        imageView.setFitHeight( 16 );
+        imageView.setImage( image );
+        tab.setGraphic( imageView );
 
-    public void selectView4()
-    {
-    }
+        try
+        {
+            tab.setContent( FXMLLoader.load( getClass().getResource( "/fxml/module.fxml" ), FXClient.getLocale() ) );
+        }
+        catch ( IOException exc )
+        {
+            exc.printStackTrace();
+        }
 
-    public void selectView5()
-    {
-        selectView( view5 );
-    }
-
-    private void selectView( Parent parent )
-    {
-        stackPane.getChildren().clear();
-        stackPane.getChildren().add( parent );
+        return tab;
     }
 }

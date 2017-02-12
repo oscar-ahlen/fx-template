@@ -5,9 +5,15 @@
  ******************************************************************************/
 .root
 {
-    -theme-color: #7CB342;        /* Light green: 600 */
-    -theme-color-accent: #8BC34A; /* Light green: 500 */
-    -theme-color-focus: #AED581;  /* Light green: 300 */
+    /* Light green: 600 */
+    -theme-color: #7CB342;
+
+    /* Light green: 500 */
+    -theme-color-accent: #8BC34A;
+
+    /* Light green: 300 */
+    -theme-color-focus: #AED581;
+
     -theme-fx-faint-focus-color: #AED58122;
 
     -theme-color-warning: #FFB300;
@@ -46,9 +52,29 @@
 
 /*******************************************************************************
  *                                                                             *
- * Special button graphics                                                     *
+ * Accordion styling                                                           *
  *                                                                             *
  ******************************************************************************/
+.accordion
+{
+    -fx-background-color: transparent;
+}
+
+/*******************************************************************************
+ *                                                                             *
+ * Button styling                                                              *
+ *                                                                             *
+ ******************************************************************************/
+.button
+{
+    -fx-padding: 3 5 5 5;
+}
+
+.icon-button
+{
+    -fx-padding: 4 5 5 5;
+}
+
 .special-button
 {
     -fx-base: -theme-color;
@@ -62,145 +88,6 @@
 .special-button:hover
 {
     -fx-text-fill: white;
-}
-
-/*******************************************************************************
- *                                                                             *
- * Scroll bar styling                                                          *
- *                                                                             *
- ******************************************************************************/
-.scroll-pane
-{
-    -fx-background-color: transparent;
-}
-
-.scroll-bar .increment-button,
-.scroll-bar .decrement-button
-{
-    -fx-padding: 0.416667em 0.416667em 0.416667em  0.416667em;
-}
-
-.scroll-bar:horizontal .increment-button
-{
-    -fx-background-insets: 0 1 1 0;
-}
-
-.scroll-bar:horizontal .decrement-button
-{
-    -fx-background-insets: 0 0 1 1;
-}
-
-.scroll-bar:vertical .increment-button
-{
-    -fx-background-insets: 0 1 1 0;
-}
-
-.scroll-bar:vertical .decrement-button
-{
-    -fx-background-insets: 1 1 0 0;
-}
-
-.scroll-bar .increment-arrow,
-.scroll-bar .decrement-arrow
-{
-    -fx-background-color: white;
-}
-
-.scroll-bar .thumb
-{
-    -fx-background-radius: 0em;
-    -fx-color: -fx-background;
-}
-
-.scroll-bar .thumb:hover
-{
-    -fx-color: -fx-control-inner-background;
-}
-
-.scroll-bar:horizontal .thumb
-{
-    -fx-background-insets: 0 0 1 0, 1;
-}
-
-.scroll-bar:vertical .thumb
-{
-    -fx-background-insets: 0 1 0 0, 1;
-}
-
-/*******************************************************************************
- *                                                                             *
- * Tab styling                                                                 *
- *                                                                             *
- ******************************************************************************/
-.tab-pane
-{
-    -fx-tab-min-height: 30px;
-    -fx-tab-max-height: 60px;
-}
-
-.tab-pane .tab-header-area
-{
-    -fx-padding: 0.666667em 0.166667em 0.0em 1.0em;
-}
-
-/* Adds space between tab text and close button */
-.tab-pane .tab-header-area .headers-region .tab .tab-container .tab-label
-{
-    -fx-padding: 0em 0.333333em 0em 0em;
-}
-
-.tab:hover .tab-close-button
-{
-    -fx-background-color: white;
-}
-
-.tab .tab-close-button:hover
-{
-    -fx-shape: "M9 1C4.58 1 1 4.58 1 9s3.58 8 8 8 8-3.58 8-8-3.58-8-8-8zm4 10.87L11.87 13 9 10.13 6.13 13 5 11.87 7.87 9 5 6.13 6.13 5 9 7.87 11.87 5 13 6.13 10.13 9 13 11.87z";
-    -fx-scale-shape: false;
-}
-
-.tab-down-button
-{
-   -fx-background-color: transparent;
-   -fx-padding: 0.0em 0.666667em 0.666667em 0.0em;
-}
-
-.tab-down-button .arrow
-{
-    -fx-shape: "M7 10l5 5 5-5z";
-    -fx-scale-shape: true;
-}
-
-.tab-down-button .arrow:hover
-{
-    -fx-background-color: -theme-color-accent;
-}
-
-/*******************************************************************************
- *                                                                             *
- * Accordion styling                                                           *
- *                                                                             *
- ******************************************************************************/
-.accordion
-{
-    -fx-background-color: transparent;
-}
-
-/*******************************************************************************
- *                                                                             *
- * Split pane styling                                                          *
- *                                                                             *
- ******************************************************************************/
-.split-pane
-{
-    -fx-background-color: transparent;
-}
-
-.split-pane:horizontal .split-pane-divider,
-.split-pane:vertical .split-pane-divider
-{
-    -fx-background-insets: 0, 0;
 }
 
 /*******************************************************************************
@@ -304,106 +191,169 @@
 
 /*******************************************************************************
  *                                                                             *
- * Other styles...                                                             *
+ * Dialog styling                                                              *
+ *                                                                             *
+ ******************************************************************************/
+.menu-bar
+{
+    -fx-padding: 0;
+}
+
+/*******************************************************************************
+ *                                                                             *
+ * Scroll bar styling                                                          *
+ *                                                                             *
+ ******************************************************************************/
+.scroll-pane
+{
+    -fx-background-color: transparent;
+}
+
+.scroll-bar .increment-button,
+.scroll-bar .decrement-button
+{
+    -fx-padding: 0.416667em 0.416667em 0.416667em  0.416667em;
+}
+
+.scroll-bar:horizontal .increment-button
+{
+    -fx-background-insets: 0 1 1 0;
+}
+
+.scroll-bar:horizontal .decrement-button
+{
+    -fx-background-insets: 0 0 1 1;
+}
+
+.scroll-bar:vertical .increment-button
+{
+    -fx-background-insets: 0 1 1 0;
+}
+
+.scroll-bar:vertical .decrement-button
+{
+    -fx-background-insets: 1 1 0 0;
+}
+
+.scroll-bar .increment-arrow,
+.scroll-bar .decrement-arrow
+{
+    -fx-background-color: white;
+}
+
+.scroll-bar .thumb
+{
+    -fx-background-radius: 0em;
+    -fx-color: -fx-background;
+}
+
+.scroll-bar .thumb:hover
+{
+    -fx-color: -fx-control-inner-background;
+}
+
+.scroll-bar:horizontal .thumb
+{
+    -fx-background-insets: 0 0 1 0, 1;
+}
+
+.scroll-bar:vertical .thumb
+{
+    -fx-background-insets: 0 1 0 0, 1;
+}
+
+/*******************************************************************************
+ *                                                                             *
+ * Split pane styling                                                          *
+ *                                                                             *
+ ******************************************************************************/
+.split-pane
+{
+    -fx-background-color: transparent;
+    -fx-padding: 0px;
+}
+
+.split-pane:horizontal .split-pane-divider,
+.split-pane:vertical .split-pane-divider
+{
+    -fx-background-insets: 0, 0;
+}
+
+/*******************************************************************************
+ *                                                                             *
+ * Tab styling                                                                 *
+ *                                                                             *
+ ******************************************************************************/
+.tab-pane
+{
+    -fx-open-tab-animation: NONE;
+    -fx-close-tab-animation: NONE;
+
+    -fx-tab-min-height: 24px;
+    -fx-tab-max-height: 40px;
+}
+
+.tab-pane .tab-header-area
+{
+    -fx-padding: 0.5em 0.166667em 0.0em 0.666667em;
+}
+
+/* Adds space between tab text and close button */
+.tab-pane .tab-header-area .headers-region .tab .tab-container .tab-label
+{
+    -fx-padding: 0em 0.333333em 0em 0em;
+}
+
+.tab:hover .tab-close-button
+{
+    -fx-background-color: white;
+}
+
+.tab .tab-close-button:hover
+{
+    -fx-shape: "M9 1C4.58 1 1 4.58 1 9s3.58 8 8 8 8-3.58 8-8-3.58-8-8-8zm4 10.87L11.87 13 9 10.13 6.13 13 5 11.87 7.87 9 5 6.13 6.13 5 9 7.87 11.87 5 13 6.13 10.13 9 13 11.87z";
+    -fx-scale-shape: false;
+}
+
+.tab-down-button
+{
+   -fx-background-color: transparent;
+   -fx-padding: 0.0em 0.666667em 0.666667em 0.0em;
+}
+
+.tab-down-button .arrow
+{
+    -fx-shape: "M7 10l5 5 5-5z";
+    -fx-scale-shape: true;
+}
+
+.tab-down-button .arrow:hover
+{
+    -fx-background-color: -theme-color-accent;
+}
+
+/*******************************************************************************
+ *                                                                             *
+ * Toolbar styling                                                             *
+ *                                                                             *
+ ******************************************************************************/
+.tool-bar
+{
+    -fx-background-color: transparent;
+    -fx-border-color: -fx-box-border;
+    -fx-border-width: 1 0 1 0;
+
+    -fx-padding: 0.5em 0.666667em 0.5em 0.666667em;
+    -fx-spacing: 0.5em;
+}
+
+/*******************************************************************************
+ *                                                                             *
+ * Utility styling                                                             *
  *                                                                             *
  ******************************************************************************/
 .tooltip
 {
     -fx-font-size: 14px;
-}
-
-/*******************************************************************************
- *                                                                             *
- * Application specific styles                                                 *
- *                                                                             *
- ******************************************************************************/
-.start-menu
-{
-    -fx-background-color: -theme-color-nav-bar;
-    -fx-border-color: -theme-color;
-    -fx-border-width: 0 2 0 0;
-}
-
-.start-button-1,
-.start-button-2,
-.start-button-3,
-.start-button-4,
-.start-button-5
-{
-    -fx-background-color: transparent;
-    -fx-background-radius: 0px;
-    -fx-background-insets: 0;
-    -fx-padding: 0.666667em 0.666667em 0.666667em 0.666667em;
-
-    -fx-alignment: center-left;
     -fx-font-weight: bold;
-    -fx-text-fill: white;
-}
-
-.start-button-1:selected,
-.start-button-2:selected,
-.start-button-3:selected,
-.start-button-4:selected,
-.start-button-5:selected
-{
-    -fx-background-color: -theme-color;
-}
-
-.start-button-1:hover,
-.start-button-1:selected:hover,
-.start-button-2:hover,
-.start-button-2:selected:hover,
-.start-button-3:hover,
-.start-button-3:selected:hover,
-.start-button-4:hover,
-.start-button-4:selected:hover,
-.start-button-5:hover,
-.start-button-5:selected:hover
-{
-    -fx-background-color: -theme-color-accent;
-}
-
-.start-button-1
-{
-    -fx-graphic: url("/icons/48/ic_home_white_48dp.png");
-}
-
-.start-button-2
-{
-    -fx-graphic: url("/icons/48/ic_archive_white_48dp.png");
-}
-
-.start-button-3
-{
-    -fx-graphic: url("/icons/48/ic_assignment_white_48dp.png");
-}
-
-.start-button-4
-{
-    -fx-graphic: url("/icons/48/ic_history_white_48dp.png");
-}
-
-.start-button-5
-{
-    -fx-graphic: url("/icons/48/ic_settings_white_48dp.png");
-}
-
-.info-button
-{
-    -fx-graphic: url('/icons/24/ic_info_outline_white_24dp.png')
-}
-
-.warning-button
-{
-    -fx-graphic: url('/icons/24/ic_warning_white_24dp.png');
-}
-
-.error-button
-{
-    -fx-graphic: url('/icons/24/ic_error_outline_white_24dp.png');
-}
-
-.folder-pane
-{
-    -fx-graphic: url('/icons/24/ic_folder_open_white_24dp.png');
 }

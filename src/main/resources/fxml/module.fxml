@@ -1,0 +1,52 @@
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.cell.PropertyValueFactory?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.ToolBar?>
+<?import javafx.scene.layout.VBox?>
+<VBox xmlns:fx="http://javafx.com/fxml"
+      xmlns="http://javafx.com/javafx/8"
+      fx:controller="se.simplistics.template4fx.controller.ModuleController">
+
+    <padding>
+        <Insets top="4"/>
+    </padding>
+
+    <ToolBar>
+        <TextField/>
+        <Button styleClass="icon-button" style="-fx-graphic: url('/icons/16/add.png')" onAction="#showAlertInfo"/>
+        <Button text="Text button" style="-fx-graphic: url('/icons/16/add.png')" onAction="#showAlertWarning"/>
+        <Button styleClass="special-button" text="Text button" onAction="#showAlertError"/>
+    </ToolBar>
+
+    <ScrollPane fitToWidth="true" fitToHeight="true" VBox.vgrow="ALWAYS">
+        <padding>
+            <Insets left="8" top="8" right="8" bottom="8"/>
+        </padding>
+
+        <TableView>
+            <columns>
+                <TableColumn text="%table.col.firstname" prefWidth="200">
+                    <cellValueFactory>
+                        <PropertyValueFactory property="firstName"/>
+                    </cellValueFactory>
+                </TableColumn>
+
+                <TableColumn text="%table.col.lastname" prefWidth="200">
+                    <cellValueFactory>
+                        <PropertyValueFactory property="lastName"/>
+                    </cellValueFactory>
+                </TableColumn>
+
+                <TableColumn text="%table.col.email" prefWidth="200">
+                    <cellValueFactory>
+                        <PropertyValueFactory property="email"/>
+                    </cellValueFactory>
+                </TableColumn>
+            </columns>
+        </TableView>
+    </ScrollPane>
+</VBox>
