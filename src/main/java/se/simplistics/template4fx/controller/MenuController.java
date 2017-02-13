@@ -38,6 +38,6 @@ public class MenuController
 
     public void showAppInfo()
     {
-        FXUtils.showInfo( "Template4FX", FXClient.getString( "application.version" ) );
+        FXUtils.showInfo( FXClient.getString( "application.title" ), FXClient.getString( "application.version" ) );
     }
 }
