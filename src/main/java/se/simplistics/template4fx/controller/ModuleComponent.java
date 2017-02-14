@@ -2,7 +2,7 @@ package se.simplistics.template4fx.controller;
 
 import se.simplistics.template4fx.util.FXUtils;
 
-public class ModuleController
+public class ModuleComponent
 {
     public void showAlertInfo()
     {

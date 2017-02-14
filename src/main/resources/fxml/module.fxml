@@ -9,7 +9,7 @@
 <?import javafx.scene.layout.VBox?>
 <VBox xmlns:fx="http://javafx.com/fxml"
       xmlns="http://javafx.com/javafx/8"
-      fx:controller="se.simplistics.template4fx.controller.ModuleController">
+      fx:controller="se.simplistics.template4fx.controller.ModuleComponent">
 
     <padding>
         <Insets top="4"/>

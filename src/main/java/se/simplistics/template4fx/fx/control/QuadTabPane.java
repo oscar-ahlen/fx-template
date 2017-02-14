@@ -1,13 +1,21 @@
 package se.simplistics.template4fx.fx.control;
 
 import javafx.application.Platform;
+import javafx.event.EventHandler;
 import javafx.geometry.Orientation;
+import javafx.scene.Node;
+import javafx.scene.Scene;
 import javafx.scene.control.SplitPane;
 import javafx.scene.control.Tab;
 import javafx.scene.control.TabPane;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyCodeCombination;
+import javafx.scene.input.KeyCombination;
 import javafx.scene.input.KeyEvent;
 
 import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.Set;
 
 /**
  * A 4-way quadrant TabPane-SplitPane with two master TabPanes at the top and
@@ -23,6 +31,8 @@ public class QuadTabPane
     private final SplitPane left, right;
 
     private final TabPane northWestPane, northEastPane, southWestPane, southEastPane;
+
+    private final Set<Node> tabPaneSet = new HashSet<>();
 
     public QuadTabPane()
     {
@@ -47,30 +57,72 @@ public class QuadTabPane
         right.getItems().add( northEastPane );
     }
 
-    public void initialize()
+    public void addKeyBindings( Scene scene, KeyCombination.Modifier modifier )
     {
-        setOnKeyPressed( this::handleKeyPressed );
+        addKeyBinding( scene, KeyCode.LEFT, modifier, this::moveTabLeft );
+        addKeyBinding( scene, KeyCode.RIGHT, modifier, this::moveTabRight );
+        addKeyBinding( scene, KeyCode.UP, modifier, this::moveTabUp );
+        addKeyBinding( scene, KeyCode.DOWN, modifier, this::moveTabDown );
     }
 
     public void addNorthWestTab( Tab tab )
     {
-        tab.setOnClosed( event -> updateSplitPanes() );
-        northWestPane.getTabs().add( tab );
+        addTab( tab, northWestPane );
     }
 
     public void addNorthEastTab( Tab tab )
     {
-        addChildPane( tab, northEastPane );
+        addTab( tab, northEastPane );
     }
 
     public void addSouthWestPane( Tab tab )
     {
-        addChildPane( tab, southWestPane );
+        addTab( tab, southWestPane );
     }
 
     public void addSouthEastPane( Tab tab )
     {
-        addChildPane( tab, southEastPane );
+        addTab( tab, southEastPane );
+    }
+
+    public void moveTabLeft()
+    {
+        TabPane parent = getFocusedPane( getScene().focusOwnerProperty().get() );
+
+        if ( parent == northEastPane )
+            moveSelectedTab( northEastPane, Direction.LEFT );
+        else if ( parent == southEastPane )
+            moveSelectedTab( southEastPane, Direction.LEFT );
+    }
+
+    public void moveTabRight()
+    {
+        TabPane parent = getFocusedPane( getScene().focusOwnerProperty().get() );
+
+        if ( parent == northWestPane )
+            moveSelectedTab( northWestPane, Direction.RIGHT );
+        else if ( parent == southWestPane )
+            moveSelectedTab( southWestPane, Direction.RIGHT );
+    }
+
+    public void moveTabUp()
+    {
+        TabPane parent = getFocusedPane( getScene().focusOwnerProperty().get() );
+
+        if ( parent == southWestPane )
+            moveSelectedTab( southWestPane, Direction.UP );
+        else if ( parent == southEastPane )
+            moveSelectedTab( southEastPane, Direction.UP );
+    }
+
+    public void moveTabDown()
+    {
+        TabPane parent = getFocusedPane( getScene().focusOwnerProperty().get() );
+
+        if ( parent == northWestPane )
+            moveSelectedTab( northWestPane, Direction.DOWN );
+        else if ( parent == northEastPane )
+            moveSelectedTab( northEastPane, Direction.DOWN );
     }
 
     public void update()
@@ -87,13 +139,6 @@ public class QuadTabPane
         updateSplitPanes();
     }
 
-    private void addChildPane( Tab tab, TabPane childPane )
-    {
-        tab.setOnClosed( event -> update() );
-        childPane.getTabs().add( tab );
-        updateSplitPanes();
-    }
-
     private void initTabPane( TabPane pane )
     {
         pane.setTabClosingPolicy( TabPane.TabClosingPolicy.ALL_TABS );
@@ -101,50 +146,53 @@ public class QuadTabPane
         // Values based on template4fx theme
         pane.setMinWidth( 28 );
         pane.setMinHeight( 31 );
+
+        tabPaneSet.add( pane );
     }
 
-    private void handleKeyPressed( KeyEvent event )
+    private void addKeyBinding( Scene scene, KeyCode keyCode, KeyCombination.Modifier modifier, Runnable runnable )
     {
-        if ( event.isControlDown() )
+        scene.addEventFilter( KeyEvent.KEY_PRESSED, new EventHandler<KeyEvent>()
         {
-            switch ( event.getCode() )
+            final KeyCombination keyComb = new KeyCodeCombination( keyCode, modifier );
+
+            public void handle( KeyEvent event )
             {
-                case LEFT:
-                    if ( getScene().focusOwnerProperty().get() == northEastPane )
-                        transferSelectedTab( northEastPane, Direction.LEFT );
-                    else if ( getScene().focusOwnerProperty().get() == southEastPane )
-                        transferSelectedTab( southEastPane, Direction.LEFT );
-                    break;
-
-                case RIGHT:
-                    if ( getScene().focusOwnerProperty().get() == northWestPane )
-                        transferSelectedTab( northWestPane, Direction.RIGHT );
-                    else if ( getScene().focusOwnerProperty().get() == southWestPane )
-                        transferSelectedTab( southWestPane, Direction.RIGHT );
-                    break;
-
-                case UP:
-                    if ( getScene().focusOwnerProperty().get() == southWestPane )
-                        transferSelectedTab( southWestPane, Direction.UP );
-                    else if ( getScene().focusOwnerProperty().get() == southEastPane )
-                        transferSelectedTab( southEastPane, Direction.UP );
-                    break;
-
-                case DOWN:
-                    if ( getScene().focusOwnerProperty().get() == northWestPane )
-                        transferSelectedTab( northWestPane, Direction.DOWN );
-                    else if ( getScene().focusOwnerProperty().get() == northEastPane )
-                        transferSelectedTab( northEastPane, Direction.DOWN );
+                if ( keyComb.match( event ) )
+                {
+                    runnable.run();
+                    event.consume();
+                }
             }
-        }
+        } );
     }
 
-    private void transferSelectedTab( TabPane parent, Direction dir )
+    private void addTab( Tab tab, TabPane childPane )
     {
-        transferTab( parent.getSelectionModel().getSelectedItem(), dir );
+        tab.setOnClosed( event -> update() );
+        childPane.getTabs().add( tab );
+        updateSplitPanes();
     }
 
-    private void transferTab( Tab tab, Direction dir )
+    private TabPane getFocusedPane( Node node )
+    {
+        while ( node != null )
+        {
+            if ( tabPaneSet.contains( node ) )
+                return (TabPane) node;
+
+            node = node.getParent();
+        }
+
+        return null;
+    }
+
+    private void moveSelectedTab( TabPane parent, Direction dir )
+    {
+        moveTab( parent.getSelectionModel().getSelectedItem(), dir );
+    }
+
+    private void moveTab( Tab tab, Direction dir )
     {
         if ( tab == null )
             return;
@@ -153,6 +201,8 @@ public class QuadTabPane
 
         if ( parent == null )
             return;
+
+        boolean tabIsFocused = getScene().focusOwnerProperty().get() == parent;
 
         switch ( dir )
         {
@@ -186,7 +236,9 @@ public class QuadTabPane
         }
 
         update();
-        Platform.runLater( () -> tab.getTabPane().requestFocus() );
+
+        if ( tabIsFocused )
+            Platform.runLater( () -> tab.getTabPane().requestFocus() );
     }
 
     private void transferTab( Tab tab, TabPane source, TabPane dest )

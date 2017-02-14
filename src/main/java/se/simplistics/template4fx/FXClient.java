@@ -5,6 +5,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import se.simplistics.template4fx.controller.MainController;
 
 import java.io.InputStream;
 import java.util.Locale;
@@ -52,6 +53,10 @@ public class FXClient
         root.getStylesheets().add( getStringProperty( "stylesheet" ) );
 
         primaryStage.setScene( new Scene( root, getIntProperty( "window.width" ), getIntProperty( "window.height" ) ) );
+
+        MainController controller = loader.getController();
+        controller.initiateEventFilter( primaryStage.getScene() );
+
         primaryStage.show();
     }
 
