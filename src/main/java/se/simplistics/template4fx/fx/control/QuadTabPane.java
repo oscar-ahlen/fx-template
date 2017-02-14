@@ -32,16 +32,16 @@ public class QuadTabPane
         right = new SplitPane();
         right.setOrientation( Orientation.VERTICAL );
 
-        getItems().addAll( left, right );
+        getItems().add( left );
 
         northWestPane = new TabPane();
-        init( northWestPane );
+        initTabPane( northWestPane );
         northEastPane = new TabPane();
-        init( northEastPane );
+        initTabPane( northEastPane );
         southWestPane = new TabPane();
-        init( southWestPane );
+        initTabPane( southWestPane );
         southEastPane = new TabPane();
-        init( southEastPane );
+        initTabPane( southEastPane );
 
         left.getItems().add( northWestPane );
         right.getItems().add( northEastPane );
@@ -52,17 +52,49 @@ public class QuadTabPane
         setOnKeyPressed( this::handleKeyPressed );
     }
 
-    public void addWestTab( Tab tab )
+    public void addNorthWestTab( Tab tab )
     {
+        tab.setOnClosed( event -> updateSplitPanes() );
         northWestPane.getTabs().add( tab );
     }
 
-    public void addEastTab( Tab tab )
+    public void addNorthEastTab( Tab tab )
     {
-        northEastPane.getTabs().add( tab );
+        addChildPane( tab, northEastPane );
     }
 
-    private void init( TabPane pane )
+    public void addSouthWestPane( Tab tab )
+    {
+        addChildPane( tab, southWestPane );
+    }
+
+    public void addSouthEastPane( Tab tab )
+    {
+        addChildPane( tab, southEastPane );
+    }
+
+    public void update()
+    {
+        checkAndMerge( northWestPane, southWestPane );
+        checkAndMerge( northEastPane, southEastPane );
+
+        if ( northWestPane.getTabs().isEmpty() )
+        {
+            merge( northWestPane, northEastPane );
+            merge( southWestPane, southEastPane );
+        }
+
+        updateSplitPanes();
+    }
+
+    private void addChildPane( Tab tab, TabPane childPane )
+    {
+        tab.setOnClosed( event -> update() );
+        childPane.getTabs().add( tab );
+        updateSplitPanes();
+    }
+
+    private void initTabPane( TabPane pane )
     {
         pane.setTabClosingPolicy( TabPane.TabClosingPolicy.ALL_TABS );
 
@@ -79,32 +111,37 @@ public class QuadTabPane
             {
                 case LEFT:
                     if ( getScene().focusOwnerProperty().get() == northEastPane )
-                        transferTab( northEastPane.getSelectionModel().getSelectedItem(), Direction.LEFT );
+                        transferSelectedTab( northEastPane, Direction.LEFT );
                     else if ( getScene().focusOwnerProperty().get() == southEastPane )
-                        transferTab( southEastPane.getSelectionModel().getSelectedItem(), Direction.LEFT );
+                        transferSelectedTab( southEastPane, Direction.LEFT );
                     break;
 
                 case RIGHT:
                     if ( getScene().focusOwnerProperty().get() == northWestPane )
-                        transferTab( northWestPane.getSelectionModel().getSelectedItem(), Direction.RIGHT );
+                        transferSelectedTab( northWestPane, Direction.RIGHT );
                     else if ( getScene().focusOwnerProperty().get() == southWestPane )
-                        transferTab( southWestPane.getSelectionModel().getSelectedItem(), Direction.RIGHT );
+                        transferSelectedTab( southWestPane, Direction.RIGHT );
                     break;
 
                 case UP:
                     if ( getScene().focusOwnerProperty().get() == southWestPane )
-                        transferTab( southWestPane.getSelectionModel().getSelectedItem(), Direction.UP );
+                        transferSelectedTab( southWestPane, Direction.UP );
                     else if ( getScene().focusOwnerProperty().get() == southEastPane )
-                        transferTab( southEastPane.getSelectionModel().getSelectedItem(), Direction.UP );
+                        transferSelectedTab( southEastPane, Direction.UP );
                     break;
 
                 case DOWN:
                     if ( getScene().focusOwnerProperty().get() == northWestPane )
-                        transferTab( northWestPane.getSelectionModel().getSelectedItem(), Direction.DOWN );
+                        transferSelectedTab( northWestPane, Direction.DOWN );
                     else if ( getScene().focusOwnerProperty().get() == northEastPane )
-                        transferTab( northEastPane.getSelectionModel().getSelectedItem(), Direction.DOWN );
+                        transferSelectedTab( northEastPane, Direction.DOWN );
             }
         }
+    }
+
+    private void transferSelectedTab( TabPane parent, Direction dir )
+    {
+        transferTab( parent.getSelectionModel().getSelectedItem(), dir );
     }
 
     private void transferTab( Tab tab, Direction dir )
@@ -120,14 +157,14 @@ public class QuadTabPane
         switch ( dir )
         {
             case LEFT:
-                if ( parent == northEastPane && northEastPane.getTabs().size() + southEastPane.getTabs().size() > 1 )
+                if ( parent == northEastPane )
                     transferTab( tab, parent, northWestPane );
                 else if ( parent == southEastPane )
                     transferTab( tab, parent, southWestPane );
                 break;
 
             case RIGHT:
-                if ( parent == northWestPane && northWestPane.getTabs().size() + southWestPane.getTabs().size() > 1 )
+                if ( parent == northWestPane )
                     transferTab( tab, parent, northEastPane );
                 else if ( parent == southWestPane )
                     transferTab( tab, parent, southEastPane );
@@ -148,10 +185,7 @@ public class QuadTabPane
                 break;
         }
 
-        checkAndMerge( northWestPane, southWestPane );
-        checkAndMerge( northEastPane, southEastPane );
-        updateTabPanes();
-
+        update();
         Platform.runLater( () -> tab.getTabPane().requestFocus() );
     }
 
@@ -165,18 +199,21 @@ public class QuadTabPane
     private void checkAndMerge( TabPane master, TabPane slave )
     {
         if ( master.getTabs().isEmpty() )
-        {
-            for ( Tab tab : new ArrayList<>( slave.getTabs() ) )
-            {
-                slave.getTabs().remove( tab );
-                master.getTabs().add( tab );
-            }
-
-            master.getSelectionModel().selectLast();
-        }
+            merge( master, slave );
     }
 
-    private void updateTabPanes()
+    private void merge( TabPane master, TabPane slave )
+    {
+        for ( Tab tab : new ArrayList<>( slave.getTabs() ) )
+        {
+            slave.getTabs().remove( tab );
+            master.getTabs().add( tab );
+        }
+
+        master.getSelectionModel().selectLast();
+    }
+
+    private void updateSplitPanes()
     {
         if ( !southWestPane.getTabs().isEmpty() && left.getItems().size() == 1 )
             left.getItems().add( southWestPane );
@@ -187,5 +224,10 @@ public class QuadTabPane
             right.getItems().add( southEastPane );
         else if ( southEastPane.getTabs().isEmpty() && right.getItems().size() > 1 )
             right.getItems().remove( southEastPane );
+
+        if ( !northEastPane.getTabs().isEmpty() && getItems().size() == 1 )
+            getItems().add( right );
+        if ( northEastPane.getTabs().isEmpty() && getItems().size() > 1 )
+            getItems().remove( right );
     }
 }

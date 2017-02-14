@@ -19,15 +19,15 @@ public class MainController
     {
         pane.initialize();
 
-        pane.addWestTab( newTab( "View 1" ) );
-        pane.addWestTab( newTab( "View 2" ) );
-        pane.addWestTab( newTab( "View 3" ) );
-        pane.addWestTab( newTab( "View 4" ) );
+        pane.addNorthWestTab( newTab( "View 1" ) );
+        pane.addNorthWestTab( newTab( "View 2" ) );
+        pane.addNorthEastTab( newTab( "View 3" ) );
+        pane.addNorthEastTab( newTab( "View 4" ) );
 
-        pane.addEastTab( newTab( "View 5" ) );
-        pane.addEastTab( newTab( "View 6" ) );
-        pane.addEastTab( newTab( "View 7" ) );
-        pane.addEastTab( newTab( "View 8" ) );
+        pane.addSouthWestPane( newTab( "View 5" ) );
+        pane.addSouthWestPane( newTab( "View 6" ) );
+        pane.addSouthEastPane( newTab( "View 7" ) );
+        pane.addSouthEastPane( newTab( "View 8" ) );
     }
 
     // TODO Clean up
