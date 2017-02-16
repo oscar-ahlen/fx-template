@@ -63,6 +63,9 @@ public class QuadTabPane
         addKeyBinding( scene, KeyCode.RIGHT, modifier, this::moveTabRight );
         addKeyBinding( scene, KeyCode.UP, modifier, this::moveTabUp );
         addKeyBinding( scene, KeyCode.DOWN, modifier, this::moveTabDown );
+
+        addKeyBinding( scene, KeyCode.HOME, modifier,
+                       () -> getFocusedPane( getScene().focusOwnerProperty().get() ).requestFocus() );
     }
 
     public void addNorthWestTab( Tab tab )
@@ -87,42 +90,28 @@ public class QuadTabPane
 
     public void moveTabLeft()
     {
-        TabPane parent = getFocusedPane( getScene().focusOwnerProperty().get() );
-
-        if ( parent == northEastPane )
-            moveSelectedTab( northEastPane, Direction.LEFT );
-        else if ( parent == southEastPane )
-            moveSelectedTab( southEastPane, Direction.LEFT );
+        moveSelectedTab( getFocusedPane( getScene().focusOwnerProperty().get() ), Direction.LEFT );
     }
 
     public void moveTabRight()
     {
-        TabPane parent = getFocusedPane( getScene().focusOwnerProperty().get() );
-
-        if ( parent == northWestPane )
-            moveSelectedTab( northWestPane, Direction.RIGHT );
-        else if ( parent == southWestPane )
-            moveSelectedTab( southWestPane, Direction.RIGHT );
+        moveSelectedTab( getFocusedPane( getScene().focusOwnerProperty().get() ), Direction.RIGHT );
     }
 
     public void moveTabUp()
     {
         TabPane parent = getFocusedPane( getScene().focusOwnerProperty().get() );
 
-        if ( parent == southWestPane )
-            moveSelectedTab( southWestPane, Direction.UP );
-        else if ( parent == southEastPane )
-            moveSelectedTab( southEastPane, Direction.UP );
+        if ( parent == southWestPane || parent == southEastPane )
+            moveSelectedTab( parent, Direction.UP );
     }
 
     public void moveTabDown()
     {
         TabPane parent = getFocusedPane( getScene().focusOwnerProperty().get() );
 
-        if ( parent == northWestPane )
-            moveSelectedTab( northWestPane, Direction.DOWN );
-        else if ( parent == northEastPane )
-            moveSelectedTab( northEastPane, Direction.DOWN );
+        if ( parent == northWestPane || parent == northEastPane )
+            moveSelectedTab( parent, Direction.DOWN );
     }
 
     public void update()
@@ -204,17 +193,25 @@ public class QuadTabPane
 
         boolean tabIsFocused = getScene().focusOwnerProperty().get() == parent;
 
+        int index = parent.getSelectionModel().getSelectedIndex();
+        boolean internalMove = ( index > 0 && dir == Direction.LEFT )
+            || ( index < parent.getTabs().size() - 1 && dir == Direction.RIGHT );
+
         switch ( dir )
         {
             case LEFT:
-                if ( parent == northEastPane )
+                if ( internalMove )
+                    moveTabInternally( parent, index, -1 );
+                else if ( parent == northEastPane )
                     transferTab( tab, parent, northWestPane );
                 else if ( parent == southEastPane )
                     transferTab( tab, parent, southWestPane );
                 break;
 
             case RIGHT:
-                if ( parent == northWestPane )
+                if ( internalMove )
+                    moveTabInternally( parent, index, 1 );
+                else if ( parent == northWestPane )
                     transferTab( tab, parent, northEastPane );
                 else if ( parent == southWestPane )
                     transferTab( tab, parent, southEastPane );
@@ -235,10 +232,18 @@ public class QuadTabPane
                 break;
         }
 
-        update();
+        if ( !internalMove )
+            update();
 
         if ( tabIsFocused )
             Platform.runLater( () -> tab.getTabPane().requestFocus() );
+    }
+
+    private void moveTabInternally( TabPane parent, int index, int offset )
+    {
+        Tab tab = parent.getTabs().remove( index );
+        parent.getTabs().add( index + offset, tab );
+        parent.getSelectionModel().select( tab );
     }
 
     private void transferTab( Tab tab, TabPane source, TabPane dest )
