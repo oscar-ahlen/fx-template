@@ -31,11 +31,11 @@ public class MainController
         pane.addNorthEastTab( newTab( "View 3" ) );
         pane.addNorthEastTab( newTab( "View 4" ) );
 
-        pane.addSouthWestPane( newTab( "View 5" ) );
-        pane.addSouthWestPane( newTab( "View 6" ) );
+        pane.addSouthWestTab( newTab( "View 5" ) );
+        pane.addSouthWestTab( newTab( "View 6" ) );
 
-        pane.addSouthEastPane( newTab( "View 7" ) );
-        pane.addSouthEastPane( newTab( "View 8" ) );
+        pane.addSouthEastTab( newTab( "View 7" ) );
+        pane.addSouthEastTab( newTab( "View 8" ) );
 
         ToggleGroup themeGroup = new ToggleGroup();
         lightTheme.setToggleGroup( themeGroup );

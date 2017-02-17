@@ -18,7 +18,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 /**
- * A 4-way quadrant TabPane-SplitPane with two master TabPanes at the top and
+ * A 4-way quadrant TabPane-SplitPane with a top left master pane and 3 dynamic child panes.
  */
 public class QuadTabPane
     extends SplitPane
@@ -78,12 +78,12 @@ public class QuadTabPane
         addTab( tab, northEastPane );
     }
 
-    public void addSouthWestPane( Tab tab )
+    public void addSouthWestTab( Tab tab )
     {
         addTab( tab, southWestPane );
     }
 
-    public void addSouthEastPane( Tab tab )
+    public void addSouthEastTab( Tab tab )
     {
         addTab( tab, southEastPane );
     }
