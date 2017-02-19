@@ -134,7 +134,7 @@ public class QuadTabPane
 
         // Values based on template4fx theme
         pane.setMinWidth( 28 );
-        pane.setMinHeight( 31 );
+        pane.setMinHeight( 32 );
 
         tabPaneSet.add( pane );
     }
