@@ -19,8 +19,6 @@
     -theme-color-warning: #FFB300;
     -theme-color-error: #F4511E;
 
-    -theme-color-nav-bar: #C0C0C0;
-
     -theme-fx-base: #E0E0E0;
     -theme-fx-background: #E8E8E8;
     -theme-fx-control-inner-background: white;
@@ -174,6 +172,8 @@
  ******************************************************************************/
 .menu-bar
 {
+    -fx-background-color: -fx-outer-border, transparent, transparent, -theme-fx-background;
+    -fx-background-insets: 0 0 0 0, 0 0 1 0;
     -fx-padding: 0;
 }
 
@@ -251,10 +251,28 @@
     -fx-padding: 0px;
 }
 
-.split-pane:horizontal .split-pane-divider,
-.split-pane:vertical .split-pane-divider
+.split-pane:horizontal .split-pane-divider
 {
-    -fx-background-insets: 0, 0;
+    -fx-inner-border: linear-gradient(to right,
+                    ladder(
+                        -fx-color,
+                        derive(-fx-color,30%) 0%,
+                        derive(-fx-color,20%) 40%,
+                        derive(-fx-color,25%) 60%,
+                        derive(-fx-color,55%) 80%,
+                        derive(-fx-color,55%) 90%,
+                        derive(-fx-color,75%) 100%
+                    ),
+                    ladder(
+                        -fx-color,
+                        derive(-fx-color,20%) 0%,
+                        derive(-fx-color,10%) 20%,
+                        derive(-fx-color,5%) 40%,
+                        derive(-fx-color,-2%) 60%,
+                        derive(-fx-color,-5%) 100%
+                    ));
+
+    -fx-background-color: -fx-box-border, -fx-inner-border;
 }
 
 /*******************************************************************************
@@ -274,6 +292,12 @@
 .tab-pane .tab-header-area
 {
     -fx-padding: 0.5em 0.166667em 0.0em 0.666667em;
+}
+
+.tab-pane .tab-header-area .tab-header-background
+{
+    -fx-background-color: -fx-outer-border, transparent, transparent, -theme-fx-background;
+    -fx-background-insets: 0 0 0 0, 0 0 1 0;
 }
 
 /* Adds space between tab text and close button */
