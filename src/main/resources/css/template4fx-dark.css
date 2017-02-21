@@ -63,14 +63,12 @@
  * Button styling                                                              *
  *                                                                             *
  ******************************************************************************/
-.button
-{
-    -fx-padding: 3 5 5 5;
-}
-
 .icon-button
 {
-    -fx-padding: 4 5 5 5;
+    -fx-min-width: 28px;
+    -fx-max-width: 28px;
+    -fx-min-height: 25px;
+    -fx-max-height: 25px;
 }
 
 .special-button
