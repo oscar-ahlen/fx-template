@@ -1,26 +1,27 @@
 apply plugin: 'java'
 apply plugin: 'idea'
-apply plugin: 'java-library-distribution'
 
 group 'se.simplistics.template4fx'
 version '0.1.0'
 description 'Template desktop application for JavaFX to be used and built upon in other projects.'
 
+tasks.withType(Jar) {
+    destinationDir = file('build/output')
+}
+
 repositories {
-    mavenCentral()
+    jcenter()
 }
 
 dependencies {
     compile 'log4j:log4j:1.2.17'
     compile 'org.xerial:sqlite-jdbc:3.8.11.2'
 
-    // compile fileTree(dir: 'libs', include: ['*.jar'])
-
     testCompile 'junit:junit:4.+'
 }
 
 jar {
-    exclude 'META-INF/*.SF', 'META-INF/*.DSA', 'META-INF/*.RSA', 'META-INF/*.MF', '**/log4j.properties'
+    exclude 'META-INF/*.SF', 'META-INF/*.DSA', 'META-INF/*.RSA', 'META-INF/*.MF', 'log4j.properties'
 
     manifest {
         attributes 'Main-Class': 'se.simplistics.template4fx.FXClient',
@@ -28,4 +29,16 @@ jar {
     }
 }
 
-distZip.shouldRunAfter(build)
+task copyRuntimeLibs(type: Copy) {
+    from configurations.runtime
+    into 'build/output/lib'
+}
+
+task copyProperties(type: Copy) {
+    from 'src/main/resources'
+    into 'build/output'
+    include 'log4j.properties'
+}
+
+build.dependsOn(copyRuntimeLibs)
+build.dependsOn(copyProperties)
