@@ -352,3 +352,24 @@
     -fx-font-size: 14px;
     -fx-font-weight: bold;
 }
+
+/*******************************************************************************
+ *                                                                             *
+ * View styling                                                                *
+ *                                                                             *
+ ******************************************************************************/
+.list-view:focused .virtual-flow .clipped-container .sheet .list-cell:focused,
+.tree-view:focused .virtual-flow .clipped-container .sheet .tree-cell:focused,
+.tree-table-view:focused:row-selection .virtual-flow .clipped-container .sheet .tree-table-row-cell:focused,
+.tree-table-view:focused:cell-selection .virtual-flow .clipped-container .sheet .tree-table-row-cell .tree-table-cell:focused
+{
+    -fx-background-color: -fx-background;
+    -fx-background-insets: 0;
+}
+
+.table-view:focused:row-selection .virtual-flow .clipped-container .sheet .table-row-cell:focused,
+.table-view:focused:cell-selection .virtual-flow .clipped-container .sheet .table-row-cell .table-cell:focused
+{
+    -fx-background-color: -fx-table-cell-border-color, -fx-background;
+    -fx-background-insets: 0, 0 0 1 0;
+}
