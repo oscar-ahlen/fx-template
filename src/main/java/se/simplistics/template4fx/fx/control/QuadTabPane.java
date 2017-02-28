@@ -23,6 +23,11 @@ import java.util.Set;
 public class QuadTabPane
     extends SplitPane
 {
+    public enum Location
+    {
+        NORTH_WEST, NORTH_EAST, SOUTH_WEST, SOUTH_EAST
+    }
+
     private enum Direction
     {
         LEFT, RIGHT, UP, DOWN
@@ -66,26 +71,39 @@ public class QuadTabPane
 
         addKeyBinding( scene, KeyCode.HOME, modifier,
                        () -> getFocusedPane( getScene().focusOwnerProperty().get() ).requestFocus() );
+
+        addKeyBinding( scene, KeyCode.F4, modifier,
+                       () ->
+                       {
+                           TabPane focusedPane = getFocusedPane( getScene().focusOwnerProperty().get() );
+                           focusedPane.getTabs().remove( focusedPane.getSelectionModel().getSelectedItem() );
+                           update();
+                           focusedPane.requestFocus();
+                       } );
     }
 
-    public void addNorthWestTab( Tab tab )
+    public void addTab( Tab tab, Location location )
     {
-        addTab( tab, northWestPane );
+        addTab( tab, location, false );
     }
 
-    public void addNorthEastTab( Tab tab )
+    public void addTab( Tab tab, Location location, boolean focus )
     {
-        addTab( tab, northEastPane );
-    }
-
-    public void addSouthWestTab( Tab tab )
-    {
-        addTab( tab, southWestPane );
-    }
-
-    public void addSouthEastTab( Tab tab )
-    {
-        addTab( tab, southEastPane );
+        switch ( location )
+        {
+            case NORTH_WEST:
+                addTab( tab, northWestPane, focus );
+                break;
+            case NORTH_EAST:
+                addTab( tab, northEastPane, focus );
+                break;
+            case SOUTH_WEST:
+                addTab( tab, southWestPane, focus );
+                break;
+            case SOUTH_EAST:
+                addTab( tab, southEastPane, focus );
+                break;
+        }
     }
 
     public void moveTabLeft()
@@ -156,11 +174,17 @@ public class QuadTabPane
         } );
     }
 
-    private void addTab( Tab tab, TabPane childPane )
+    private void addTab( Tab tab, TabPane childPane, boolean focus )
     {
         tab.setOnClosed( event -> update() );
         childPane.getTabs().add( tab );
         updateSplitPanes();
+
+        if ( focus )
+        {
+            childPane.getSelectionModel().select( tab );
+            Platform.runLater( childPane::requestFocus );
+        }
     }
 
     private TabPane getFocusedPane( Node node )

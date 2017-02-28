@@ -30,7 +30,7 @@ public class FXClient
     public void init()
         throws Exception
     {
-        try (InputStream in = getClass().getClassLoader().getResourceAsStream( "config.properties" ))
+        try ( InputStream in = getClass().getClassLoader().getResourceAsStream( "config.properties" ) )
         {
             props = new Properties();
             props.load( in );

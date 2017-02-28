@@ -25,17 +25,17 @@ public class MainController
 
     public void initialize()
     {
-        pane.addNorthWestTab( newTab( "View 1" ) );
-        pane.addNorthWestTab( newTab( "View 2" ) );
+        pane.addTab( newTab( "View 1" ), QuadTabPane.Location.NORTH_WEST );
+        pane.addTab( newTab( "View 2" ), QuadTabPane.Location.NORTH_WEST );
 
-        pane.addNorthEastTab( newTab( "View 3" ) );
-        pane.addNorthEastTab( newTab( "View 4" ) );
+        pane.addTab( newTab( "View 3" ), QuadTabPane.Location.NORTH_EAST );
+        pane.addTab( newTab( "View 4" ), QuadTabPane.Location.NORTH_EAST );
 
-        pane.addSouthWestTab( newTab( "View 5" ) );
-        pane.addSouthWestTab( newTab( "View 6" ) );
+        pane.addTab( newTab( "View 5" ), QuadTabPane.Location.SOUTH_WEST );
+        pane.addTab( newTab( "View 6" ), QuadTabPane.Location.SOUTH_WEST );
 
-        pane.addSouthEastTab( newTab( "View 7" ) );
-        pane.addSouthEastTab( newTab( "View 8" ) );
+        pane.addTab( newTab( "View 7" ), QuadTabPane.Location.SOUTH_EAST );
+        pane.addTab( newTab( "View 8" ), QuadTabPane.Location.SOUTH_EAST, true );
 
         ToggleGroup themeGroup = new ToggleGroup();
         lightTheme.setToggleGroup( themeGroup );
