@@ -35,7 +35,7 @@ public class MainController
         pane.addTab( newTab( "View 6" ), QuadTabPane.Location.SOUTH_WEST );
 
         pane.addTab( newTab( "View 7" ), QuadTabPane.Location.SOUTH_EAST );
-        pane.addTab( newTab( "View 8" ), QuadTabPane.Location.SOUTH_EAST, true );
+        pane.addTab( newTab( "View 8" ), QuadTabPane.Location.SOUTH_EAST, true, null );
 
         ToggleGroup themeGroup = new ToggleGroup();
         lightTheme.setToggleGroup( themeGroup );

@@ -76,32 +76,51 @@ public class QuadTabPane
                        () ->
                        {
                            TabPane focusedPane = getFocusedPane( getScene().focusOwnerProperty().get() );
-                           focusedPane.getTabs().remove( focusedPane.getSelectionModel().getSelectedItem() );
-                           update();
-                           focusedPane.requestFocus();
+                           Tab tab = focusedPane.getSelectionModel().getSelectedItem();
+
+                           if ( focusedPane.getTabs().remove( tab ) )
+                           {
+                               tab.getOnClosed().handle( null );
+                               focusedPane.requestFocus();
+                           }
                        } );
     }
 
+    /**
+     * Adds a tab to this QuadTabPane at specified location. This is equivalent to:
+     * {@link #addTab(Tab, Location, boolean, Runnable)} with arguments (tab, location, false, null}
+     *
+     * @param tab      the tab to be added
+     * @param location where the tab should be located, i.e. NW, NE, SW, SE
+     */
     public void addTab( Tab tab, Location location )
     {
-        addTab( tab, location, false );
+        addTab( tab, location, false, null );
     }
 
-    public void addTab( Tab tab, Location location, boolean focus )
+    /**
+     * Adds a tab to this QuadTabPane at specified location.
+     *
+     * @param tab      the tab to be added
+     * @param location where the tab should be located, i.e. NW, NE, SW, SE
+     * @param focus    true if the newly added tab should be selected and focused after the operation, false otherwise
+     * @param runnable optional action to be performed after the tab is closed, can be null
+     */
+    public void addTab( Tab tab, Location location, boolean focus, Runnable runnable )
     {
         switch ( location )
         {
             case NORTH_WEST:
-                addTab( tab, northWestPane, focus );
+                addTab( tab, northWestPane, focus, runnable );
                 break;
             case NORTH_EAST:
-                addTab( tab, northEastPane, focus );
+                addTab( tab, northEastPane, focus, runnable );
                 break;
             case SOUTH_WEST:
-                addTab( tab, southWestPane, focus );
+                addTab( tab, southWestPane, focus, runnable );
                 break;
             case SOUTH_EAST:
-                addTab( tab, southEastPane, focus );
+                addTab( tab, southEastPane, focus, runnable );
                 break;
         }
     }
@@ -130,6 +149,26 @@ public class QuadTabPane
 
         if ( parent == northWestPane || parent == northEastPane )
             moveSelectedTab( parent, Direction.DOWN );
+    }
+
+    public void requestTabFocus( Tab tab )
+    {
+        TabPane targetPane = null;
+
+        if ( northWestPane.getTabs().contains( tab ) )
+            targetPane = northWestPane;
+        else if ( northEastPane.getTabs().contains( tab ) )
+            targetPane = northEastPane;
+        else if ( southWestPane.getTabs().contains( tab ) )
+            targetPane = southWestPane;
+        else if ( southEastPane.getTabs().contains( tab ) )
+            targetPane = southEastPane;
+
+        if ( targetPane != null )
+        {
+            targetPane.getSelectionModel().select( tab );
+            targetPane.requestFocus();
+        }
     }
 
     public void update()
@@ -174,9 +213,17 @@ public class QuadTabPane
         } );
     }
 
-    private void addTab( Tab tab, TabPane childPane, boolean focus )
+    private void addTab( Tab tab, TabPane childPane, boolean focus, Runnable runnable )
     {
-        tab.setOnClosed( event -> update() );
+        tab.setOnClosed(
+            event ->
+            {
+                update();
+
+                if ( runnable != null )
+                    runnable.run();
+            } );
+
         childPane.getTabs().add( tab );
         updateSplitPanes();
 
