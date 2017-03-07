@@ -1,16 +1,25 @@
 package se.simplistics.template4fx.controller;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.control.RadioMenuItem;
 import javafx.scene.control.Tab;
 import javafx.scene.control.ToggleGroup;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyCodeCombination;
 import javafx.scene.input.KeyCombination;
+import javafx.scene.input.KeyEvent;
+import javafx.scene.layout.StackPane;
 import se.simplistics.template4fx.FXClient;
 import se.simplistics.template4fx.fx.control.QuadTabPane;
+import se.simplistics.template4fx.fx.control.SearchBox;
 import se.simplistics.template4fx.util.FXUtils;
 
 import java.io.IOException;
@@ -18,13 +27,26 @@ import java.io.IOException;
 public class MainController
 {
     @FXML
+    private StackPane stackpane;
+
+    @FXML
+    private Group popup;
+
+    @FXML
+    private SearchBox<SearchObject> searchBox;
+
+    @FXML
     private QuadTabPane pane;
 
     @FXML
     private RadioMenuItem lightTheme, darkTheme;
 
+    private final ObservableList<SearchObject> searchObjects = FXCollections.observableArrayList();
+
     public void initialize()
     {
+        stackpane.getChildren().remove( popup );
+
         pane.addTab( newTab( "View 1" ), QuadTabPane.Location.NORTH_WEST );
         pane.addTab( newTab( "View 2" ), QuadTabPane.Location.NORTH_WEST );
 
@@ -58,11 +80,44 @@ public class MainController
                     FXClient.getRoot().getStylesheets().add( FXClient.getStringProperty( "stylesheet" ) );
                 }
             } );
+
+        searchBox.init( searchObjects );
+
+        searchBox.setOnEnter(
+            () ->
+            {
+                SearchObject so = searchBox.getResultView().getSelectionModel().getSelectedItem();
+                pane.requestTabFocus( so.getTab() );
+                stackpane.getChildren().remove( popup );
+            } );
+
+        searchBox.setOnEsc( () -> stackpane.getChildren().remove( popup ) );
     }
 
     public void initiateEventFilter( Scene scene )
     {
         pane.addKeyBindings( scene, KeyCombination.CONTROL_DOWN );
+
+        scene.addEventFilter( KeyEvent.KEY_PRESSED, new EventHandler<KeyEvent>()
+        {
+            final KeyCombination keyComb = new KeyCodeCombination( KeyCode.E, KeyCombination.CONTROL_DOWN );
+
+            public void handle( KeyEvent event )
+            {
+                if ( keyComb.match( event ) )
+                {
+                    if ( stackpane.getChildren().size() > 1 )
+                        stackpane.getChildren().remove( popup );
+                    else
+                    {
+                        stackpane.getChildren().add( popup );
+                        searchBox.requestFocus();
+                    }
+
+                    event.consume();
+                }
+            }
+        } );
     }
 
     public void showAppInfo()
@@ -94,6 +149,36 @@ public class MainController
             exc.printStackTrace();
         }
 
+        searchObjects.add( new SearchObject( tab.getText(), tab ) );
         return tab;
+    }
+
+    private class SearchObject
+    {
+        private final String title;
+
+        private final Tab tab;
+
+        public SearchObject( String title, Tab tab )
+        {
+            this.title = title;
+            this.tab = tab;
+        }
+
+        public String getTitle()
+        {
+            return title;
+        }
+
+        public Tab getTab()
+        {
+            return tab;
+        }
+
+        @Override
+        public String toString()
+        {
+            return title;
+        }
     }
 }

@@ -135,7 +135,7 @@
 
 .dialog-pane .content .label
 {
-    -fx-padding: 0.666667em, 0em, 0.666667em, 0em;
+    -fx-padding: 0.666667em 0em 0.666667em 0em;
 }
 
 .alert.information.dialog-pane
@@ -372,4 +372,36 @@
 {
     -fx-background-color: -fx-table-cell-border-color, -fx-background;
     -fx-background-insets: 0, 0 0 1 0;
+}
+
+/*******************************************************************************
+ *                                                                             *
+ * Custom styling                                                              *
+ *                                                                             *
+ *******************************************************************    ***********/
+.search-box
+{
+    -fx-background-color: white;
+    -fx-border-color: #404040;
+}
+
+.search-list
+{
+    -fx-focus-color: transparent;
+    -fx-faint-focus-color: transparent;
+
+    -fx-background-insets: 0, 0;
+    -fx-padding: 4px;
+}
+
+.search-list .list-cell:filled:hover
+{
+    -fx-background-color: -theme-color-focus;
+    -fx-text-fill: white;
+}
+
+.search-box-divider .line
+{
+    -fx-border-color: #404040;
+    -fx-border-width: 0 0 1 0;
 }

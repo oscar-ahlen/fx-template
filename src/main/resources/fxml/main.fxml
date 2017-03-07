@@ -1,9 +1,9 @@
-<?import javafx.scene.control.Menu?>
-<?import javafx.scene.control.MenuBar?>
-<?import javafx.scene.control.MenuItem?>
-<?import javafx.scene.control.RadioMenuItem?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.Group?>
 <?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.StackPane?>
 <?import se.simplistics.template4fx.fx.control.QuadTabPane?>
+<?import se.simplistics.template4fx.fx.control.SearchBox?>
 <BorderPane xmlns:fx="http://javafx.com/fxml"
             xmlns="http://javafx.com/javafx/8"
             fx:controller="se.simplistics.template4fx.controller.MainController">
@@ -31,6 +31,12 @@
     </top>
 
     <center>
-        <QuadTabPane fx:id="pane"/>
+        <StackPane fx:id="stackpane">
+            <QuadTabPane fx:id="pane"/>
+
+            <Group fx:id="popup" StackPane.alignment="CENTER">
+                <SearchBox fx:id="searchBox"/>
+            </Group>
+        </StackPane>
     </center>
 </BorderPane>

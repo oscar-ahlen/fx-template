@@ -15,7 +15,7 @@ repositories {
 
 dependencies {
     compile 'log4j:log4j:1.2.17'
-    compile 'org.xerial:sqlite-jdbc:3.8.11.2'
+    compile 'org.xerial:sqlite-jdbc:3.16.1'
 
     testCompile 'junit:junit:4.+'
 }
