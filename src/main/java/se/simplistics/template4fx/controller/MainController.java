@@ -92,6 +92,7 @@ public class MainController
             } );
 
         searchBox.setOnEsc( () -> stackpane.getChildren().remove( popup ) );
+        searchBox.setOnFocusedLost( () -> stackpane.getChildren().remove( popup ) );
     }
 
     public void initiateEventFilter( Scene scene )

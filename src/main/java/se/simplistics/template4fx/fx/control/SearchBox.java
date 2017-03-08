@@ -1,5 +1,6 @@
 package se.simplistics.template4fx.fx.control;
 
+import javafx.beans.value.ChangeListener;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import javafx.scene.control.Label;
@@ -106,6 +107,16 @@ public class SearchBox<T>
     public void setOnEsc( Runnable escAction )
     {
         this.escAction = escAction;
+    }
+
+    public void setOnFocusedLost( Runnable focusedLostAction )
+    {
+        resultView.focusedProperty().addListener(
+            ( arg0, arg1, arg2 ) ->
+            {
+                if ( arg1 && !arg2 )
+                    focusedLostAction.run();
+            } );
     }
 
     public ListView<T> getResultView()
