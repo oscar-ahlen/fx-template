@@ -1,37 +1,28 @@
-package se.simplistics.template4fx.controller;
+package se.simplistics.template4fx.demo;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.Group;
 import javafx.scene.Scene;
-import javafx.scene.control.RadioMenuItem;
-import javafx.scene.control.Tab;
-import javafx.scene.control.ToggleGroup;
+import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyCodeCombination;
 import javafx.scene.input.KeyCombination;
 import javafx.scene.input.KeyEvent;
-import javafx.scene.layout.StackPane;
 import se.simplistics.template4fx.FXClient;
-import se.simplistics.template4fx.fx.control.QuadTabPane;
-import se.simplistics.template4fx.fx.control.SearchBox;
-import se.simplistics.template4fx.util.FXUtils;
+import se.simplistics.template4fx.StyleSheets;
+import se.simplistics.template4fx.control.QuadTabPane;
+import se.simplistics.template4fx.control.SearchBox;
+import se.simplistics.template4fx.control.util.ISearchItem;
 
 import java.io.IOException;
 
 public class MainController
 {
-    @FXML
-    private StackPane stackpane;
-
-    @FXML
-    private Group popup;
-
     @FXML
     private SearchBox<SearchObject> searchBox;
 
@@ -43,21 +34,11 @@ public class MainController
 
     private final ObservableList<SearchObject> searchObjects = FXCollections.observableArrayList();
 
+    private int counter = 1;
+
     public void initialize()
     {
-        stackpane.getChildren().remove( popup );
-
-        pane.addTab( newTab( "View 1" ), QuadTabPane.Location.NORTH_WEST );
-        pane.addTab( newTab( "View 2" ), QuadTabPane.Location.NORTH_WEST );
-
-        pane.addTab( newTab( "View 3" ), QuadTabPane.Location.NORTH_EAST );
-        pane.addTab( newTab( "View 4" ), QuadTabPane.Location.NORTH_EAST );
-
-        pane.addTab( newTab( "View 5" ), QuadTabPane.Location.SOUTH_WEST );
-        pane.addTab( newTab( "View 6" ), QuadTabPane.Location.SOUTH_WEST );
-
-        pane.addTab( newTab( "View 7" ), QuadTabPane.Location.SOUTH_EAST );
-        pane.addTab( newTab( "View 8" ), QuadTabPane.Location.SOUTH_EAST, true, null );
+        newTab();
 
         ToggleGroup themeGroup = new ToggleGroup();
         lightTheme.setToggleGroup( themeGroup );
@@ -73,11 +54,12 @@ public class MainController
                     FXClient.getRoot().getStylesheets().clear();
 
                     if ( arg0.getValue() == lightTheme )
-                        FXClient.setStringProperty( "stylesheet", FXClient.getStringProperty( "stylesheet.light" ) );
+                        FXClient.setStyleSheet( "template4fx-light" );
                     else if ( arg0.getValue() == darkTheme )
-                        FXClient.setStringProperty( "stylesheet", FXClient.getStringProperty( "stylesheet.dark" ) );
+                        FXClient.setStyleSheet( "template4fx-dark" );
 
-                    FXClient.getRoot().getStylesheets().add( FXClient.getStringProperty( "stylesheet" ) );
+                    FXClient.getRoot().getStylesheets().add(
+                        StyleSheets.getTheme( FXClient.getStyleSheet() ) );
                 }
             } );
 
@@ -86,13 +68,13 @@ public class MainController
         searchBox.setOnEnter(
             () ->
             {
-                SearchObject so = searchBox.getResultView().getSelectionModel().getSelectedItem();
-                pane.requestTabFocus( so.getTab() );
-                stackpane.getChildren().remove( popup );
+                SearchObject searchObject = searchBox.getResultView().getSelectionModel().getSelectedItem();
+
+                if ( searchObject != null )
+                    pane.requestTabFocus( searchObject.getTab() );
             } );
 
-        searchBox.setOnEsc( () -> stackpane.getChildren().remove( popup ) );
-        searchBox.setOnFocusedLost( () -> stackpane.getChildren().remove( popup ) );
+        searchBox.setOnFocusedLost( () -> searchBox.setVisible( false ) );
     }
 
     public void initiateEventFilter( Scene scene )
@@ -107,13 +89,10 @@ public class MainController
             {
                 if ( keyComb.match( event ) )
                 {
-                    if ( stackpane.getChildren().size() > 1 )
-                        stackpane.getChildren().remove( popup );
-                    else
-                    {
-                        stackpane.getChildren().add( popup );
+                    searchBox.setVisible( !searchBox.isVisible() );
+
+                    if ( searchBox.isVisible() )
                         searchBox.requestFocus();
-                    }
 
                     event.consume();
                 }
@@ -121,40 +100,52 @@ public class MainController
         } );
     }
 
-    public void showAppInfo()
+    public void newTab()
     {
-        FXUtils.showInfo( FXClient.getString( "application.title" ), FXClient.getString( "application.version" ) );
+        Tab tab = newTab( String.format( "Tab %d", counter++ ) );
+        SearchObject searchObject = new SearchObject( tab.getText(), tab );
+        searchObjects.add( searchObject );
+
+        pane.addTab( tab, QuadTabPane.Location.NORTH_WEST, true, () -> searchObjects.remove( searchObject ) );
     }
 
-    // TODO Clean up
+    public void showAppInfo()
+    {
+        Alert alert = new Alert( Alert.AlertType.INFORMATION );
+        alert.setTitle( "Information" );
+        alert.setHeaderText( "Template4FX" );
+        alert.setContentText( "Version 0.1.0" );
+
+        DialogPane dialogPane = alert.getDialogPane();
+        dialogPane.getStylesheets().add( StyleSheets.getTheme( FXClient.getStyleSheet() ) );
+
+        alert.show();
+    }
+
     private Tab newTab( String title )
     {
-        Tab tab = new Tab();
-        tab.setText( title );
-        tab.setClosable( true );
+        Tab tab = new Tab( title );
 
-        Image image = new Image( "icons/16/folder.png" );
         ImageView imageView = new ImageView();
-
         imageView.setFitWidth( 16 );
         imageView.setFitHeight( 16 );
-        imageView.setImage( image );
+        imageView.setImage( new Image( "icons/16/folder.png" ) );
         tab.setGraphic( imageView );
 
         try
         {
-            tab.setContent( FXMLLoader.load( getClass().getResource( "/fxml/module.fxml" ), FXClient.getLocale() ) );
+            tab.setContent( FXMLLoader.load( getClass().getResource( "/fxml/module.fxml" ) ) );
         }
         catch ( IOException exc )
         {
             exc.printStackTrace();
         }
 
-        searchObjects.add( new SearchObject( tab.getText(), tab ) );
         return tab;
     }
 
     private class SearchObject
+        implements ISearchItem
     {
         private final String title;
 
@@ -166,7 +157,8 @@ public class MainController
             this.tab = tab;
         }
 
-        public String getTitle()
+        @Override
+        public String getSearchValue()
         {
             return title;
         }

@@ -1,17 +1,19 @@
-package se.simplistics.template4fx.fx.control;
+package se.simplistics.template4fx.control;
 
-import javafx.beans.value.ChangeListener;
+import javafx.beans.property.SimpleStringProperty;
+import javafx.beans.property.StringProperty;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
-import javafx.scene.control.Label;
+import javafx.scene.control.Control;
 import javafx.scene.control.ListView;
-import javafx.scene.control.Separator;
-import javafx.scene.layout.VBox;
+import javafx.scene.control.Skin;
+import se.simplistics.template4fx.control.util.ISearchItem;
+import se.simplistics.template4fx.skin.SearchBoxSkin;
 
-public class SearchBox<T>
-    extends VBox
+public class SearchBox<T extends ISearchItem>
+    extends Control
 {
-    private final Label searchBarLabel = new Label();
+    private final StringProperty searchText = new SimpleStringProperty();
 
     private final StringBuilder builder = new StringBuilder();
 
@@ -19,23 +21,7 @@ public class SearchBox<T>
 
     private FilteredList<T> filteredData;
 
-    private Runnable enterAction, escAction;
-
-    public SearchBox()
-    {
-        super();
-        getStyleClass().add( "search-box" );
-
-        searchBarLabel.setStyle( "-fx-padding: 4 8 4 8;" );
-        getChildren().add( searchBarLabel );
-
-        Separator separator = new Separator();
-        separator.getStyleClass().add( "search-box-divider" );
-        getChildren().add( separator );
-
-        resultView.getStyleClass().add( "search-list" );
-        getChildren().add( resultView );
-    }
+    private Runnable enterAction;
 
     @Override
     public void requestFocus()
@@ -53,8 +39,13 @@ public class SearchBox<T>
         resultView.setOnMouseClicked(
             click ->
             {
-                if ( enterAction != null )
-                    enterAction.run();
+                if ( resultView.getSelectionModel().getSelectedItem() != null )
+                {
+                    setVisible( false );
+
+                    if ( enterAction != null )
+                        enterAction.run();
+                }
             } );
 
         resultView.setOnKeyTyped(
@@ -74,11 +65,12 @@ public class SearchBox<T>
                 }
                 else if ( letter == 13 && enterAction != null )  // Enter
                 {
+                    setVisible( false );
                     enterAction.run();
                 }
-                else if ( letter == 27 && escAction != null ) // Esc
+                else if ( letter == 27 ) // Esc
                 {
-                    escAction.run();
+                    setVisible( false );
                 }
 
                 event.consume();
@@ -95,6 +87,9 @@ public class SearchBox<T>
                     case RIGHT:
                         event.consume();
                         break;
+                    case TAB:
+                        event.consume();
+                        break;
                 }
             } );
     }
@@ -102,11 +97,6 @@ public class SearchBox<T>
     public void setOnEnter( Runnable enterAction )
     {
         this.enterAction = enterAction;
-    }
-
-    public void setOnEsc( Runnable escAction )
-    {
-        this.escAction = escAction;
     }
 
     public void setOnFocusedLost( Runnable focusedLostAction )
@@ -126,13 +116,34 @@ public class SearchBox<T>
 
     private void update()
     {
-        searchBarLabel.setText( builder.toString() );
+        searchText.setValue( builder.toString() );
 
         filteredData.setPredicate(
             builder.length() == 0 ?
                 s -> true :
-                s -> s.toString().toLowerCase().contains( builder.toString().toLowerCase() ) );
+                s -> s.getSearchValue().toLowerCase().contains( builder.toString().toLowerCase() ) );
 
         resultView.getSelectionModel().selectFirst();
+    }
+
+    @Override
+    protected Skin<?> createDefaultSkin()
+    {
+        return new SearchBoxSkin( this );
+    }
+
+    public String getSearchText()
+    {
+        return searchText.get();
+    }
+
+    public StringProperty searchTextProperty()
+    {
+        return searchText;
+    }
+
+    public void setSearchText( String searchText )
+    {
+        this.searchText.set( searchText );
     }
 }

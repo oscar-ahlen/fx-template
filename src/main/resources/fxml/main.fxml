@@ -1,42 +1,41 @@
 <?import javafx.scene.control.*?>
-<?import javafx.scene.Group?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.StackPane?>
-<?import se.simplistics.template4fx.fx.control.QuadTabPane?>
-<?import se.simplistics.template4fx.fx.control.SearchBox?>
-<BorderPane xmlns:fx="http://javafx.com/fxml"
-            xmlns="http://javafx.com/javafx/8"
-            fx:controller="se.simplistics.template4fx.controller.MainController">
+<?import se.simplistics.template4fx.control.QuadTabPane?>
+<?import se.simplistics.template4fx.control.SearchBox?>
+<StackPane xmlns:fx="http://javafx.com/fxml"
+           xmlns="http://javafx.com/javafx/8"
+           fx:controller="se.simplistics.template4fx.demo.MainController">
 
-    <top>
-        <MenuBar>
-            <Menu text="%menu.file"/>
-
-            <Menu text="%menu.edit"/>
-
-            <Menu text="%menu.view"/>
-
-            <Menu text="%menu.settings">
-                <Menu text="%menu.settings.theme" style="-fx-graphic: url('/icons/16/change_whm_theme.png')">
-                    <RadioMenuItem fx:id="lightTheme" text="%menu.settings.theme.light"/>
-                    <RadioMenuItem fx:id="darkTheme" text="%menu.settings.theme.dark"/>
+    <BorderPane>
+        <top>
+            <MenuBar>
+                <Menu text="File">
+                    <MenuItem text="New tab" onAction="#newTab"/>
                 </Menu>
-            </Menu>
 
-            <Menu text="%menu.help">
-                <MenuItem text="%menu.help.about" style="-fx-graphic: url('/icons/16/information.png')"
-                          onAction="#showAppInfo"/>
-            </Menu>
-        </MenuBar>
-    </top>
+                <Menu text="Edit"/>
 
-    <center>
-        <StackPane fx:id="stackpane">
+                <Menu text="View"/>
+
+                <Menu text="Settings">
+                    <Menu text="Themes" style="-fx-graphic: url('/icons/16/change_whm_theme.png')">
+                        <RadioMenuItem fx:id="lightTheme" text="Light theme"/>
+                        <RadioMenuItem fx:id="darkTheme" text="Dark theme"/>
+                    </Menu>
+                </Menu>
+
+                <Menu text="Help">
+                    <MenuItem text="About" style="-fx-graphic: url('/icons/16/information.png')"
+                              onAction="#showAppInfo"/>
+                </Menu>
+            </MenuBar>
+        </top>
+
+        <center>
             <QuadTabPane fx:id="pane"/>
+        </center>
+    </BorderPane>
 
-            <Group fx:id="popup" StackPane.alignment="CENTER">
-                <SearchBox fx:id="searchBox"/>
-            </Group>
-        </StackPane>
-    </center>
-</BorderPane>
+    <SearchBox fx:id="searchBox" visible="false"/>
+</StackPane>

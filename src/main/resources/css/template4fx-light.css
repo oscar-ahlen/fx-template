@@ -376,13 +376,23 @@
 
 /*******************************************************************************
  *                                                                             *
- * Custom styling                                                              *
+ * Custom component styling                                                    *
  *                                                                             *
- *******************************************************************    ***********/
+ ******************************************************************************/
 .search-box
 {
     -fx-background-color: white;
     -fx-border-color: #404040;
+}
+
+.search-box-background
+{
+    -fx-background-color: rgba(0, 0, 0, .3);
+}
+
+.search-box-label
+{
+    -fx-padding: 4 8 4 8;
 }
 
 .search-list

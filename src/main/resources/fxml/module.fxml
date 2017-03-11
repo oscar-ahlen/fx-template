@@ -2,9 +2,7 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.control.cell.PropertyValueFactory?>
 <?import javafx.scene.layout.VBox?>
-<VBox xmlns:fx="http://javafx.com/fxml"
-      xmlns="http://javafx.com/javafx/8"
-      fx:controller="se.simplistics.template4fx.controller.ModuleComponent">
+<VBox xmlns="http://javafx.com/javafx/8">
 
     <padding>
         <Insets top="4"/>
@@ -12,9 +10,9 @@
 
     <ToolBar>
         <TextField/>
-        <Button styleClass="icon-button" style="-fx-graphic: url('/icons/16/add.png')" onAction="#showAlertInfo"/>
-        <Button text="Text button" style="-fx-graphic: url('/icons/16/add.png')" onAction="#showAlertWarning"/>
-        <Button styleClass="special-button" text="Text button" onAction="#showAlertError"/>
+        <Button styleClass="icon-button" style="-fx-graphic: url('/icons/16/add.png')"/>
+        <Button text="Text button" style="-fx-graphic: url('/icons/16/add.png')"/>
+        <Button styleClass="special-button" text="Text button"/>
     </ToolBar>
 
     <ScrollPane fitToWidth="true" fitToHeight="true" VBox.vgrow="ALWAYS">
@@ -24,19 +22,19 @@
 
         <TableView>
             <columns>
-                <TableColumn text="%table.col.firstname" prefWidth="200">
+                <TableColumn text="First name" prefWidth="200">
                     <cellValueFactory>
                         <PropertyValueFactory property="firstName"/>
                     </cellValueFactory>
                 </TableColumn>
 
-                <TableColumn text="%table.col.lastname" prefWidth="200">
+                <TableColumn text="Last name" prefWidth="200">
                     <cellValueFactory>
                         <PropertyValueFactory property="lastName"/>
                     </cellValueFactory>
                 </TableColumn>
 
-                <TableColumn text="%table.col.email" prefWidth="200">
+                <TableColumn text="Email" prefWidth="200">
                     <cellValueFactory>
                         <PropertyValueFactory property="email"/>
                     </cellValueFactory>

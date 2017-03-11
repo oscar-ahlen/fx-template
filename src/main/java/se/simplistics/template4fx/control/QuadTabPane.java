@@ -1,4 +1,4 @@
-package se.simplistics.template4fx.fx.control;
+package se.simplistics.template4fx.control;
 
 import javafx.application.Platform;
 import javafx.event.EventHandler;
