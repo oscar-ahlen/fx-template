@@ -7,8 +7,6 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyCodeCombination;
 import javafx.scene.input.KeyCombination;
@@ -37,6 +35,7 @@ public class MainController
     private int counter = 1;
 
     public void initialize()
+        throws IOException
     {
         newTab();
 
@@ -85,6 +84,7 @@ public class MainController
         {
             final KeyCombination keyComb = new KeyCodeCombination( KeyCode.E, KeyCombination.CONTROL_DOWN );
 
+            @Override
             public void handle( KeyEvent event )
             {
                 if ( keyComb.match( event ) )
@@ -101,8 +101,11 @@ public class MainController
     }
 
     public void newTab()
+        throws IOException
     {
-        Tab tab = newTab( String.format( "Tab %d", counter++ ) );
+        Tab tab = new Tab( String.format( "Tab view %d", counter++ ),
+                           FXMLLoader.load( getClass().getResource( "/fxml/module.fxml" ) ) );
+
         SearchObject searchObject = new SearchObject( tab.getText(), tab );
         searchObjects.add( searchObject );
 
@@ -120,28 +123,6 @@ public class MainController
         dialogPane.getStylesheets().add( StyleSheets.getTheme( FXClient.getStyleSheet() ) );
 
         alert.show();
-    }
-
-    private Tab newTab( String title )
-    {
-        Tab tab = new Tab( title );
-
-        ImageView imageView = new ImageView();
-        imageView.setFitWidth( 16 );
-        imageView.setFitHeight( 16 );
-        imageView.setImage( new Image( "icons/16/folder.png" ) );
-        tab.setGraphic( imageView );
-
-        try
-        {
-            tab.setContent( FXMLLoader.load( getClass().getResource( "/fxml/module.fxml" ) ) );
-        }
-        catch ( IOException exc )
-        {
-            exc.printStackTrace();
-        }
-
-        return tab;
     }
 
     private class SearchObject

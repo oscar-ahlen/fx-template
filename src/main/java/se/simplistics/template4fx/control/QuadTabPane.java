@@ -202,6 +202,7 @@ public class QuadTabPane
         {
             final KeyCombination keyComb = new KeyCodeCombination( keyCode, modifier );
 
+            @Override
             public void handle( KeyEvent event )
             {
                 if ( keyComb.match( event ) )

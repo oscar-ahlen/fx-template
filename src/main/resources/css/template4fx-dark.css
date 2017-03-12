@@ -421,15 +421,15 @@
  * Custom component styling                                                    *
  *                                                                             *
  ******************************************************************************/
+.glass-background
+{
+    -fx-background-color: rgba(0, 0, 0, .3);
+}
+
 .search-box
 {
     -fx-background-color: -theme-fx-control-inner-background;
-    -fx-border-color: black;
-}
-
-.search-box-background
-{
-    -fx-background-color: rgba(0, 0, 0, .3);
+    -fx-border-color: #404040;
 }
 
 .search-box-label
@@ -450,10 +450,4 @@
 {
     -fx-background-color: -theme-color-focus;
     -fx-text-fill: black;
-}
-
-.search-box-divider .line
-{
-    -fx-border-color: black;
-    -fx-border-width: 0 0 1 0;
 }

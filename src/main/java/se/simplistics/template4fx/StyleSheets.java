@@ -5,6 +5,12 @@ import java.net.URL;
 public class StyleSheets
 {
     /**
+     * Available theme names:
+     * <ul>
+     * <li>template4fx-light</li>
+     * <li>template4fx-dark</li>
+     * </ul>
+     *
      * @param name the name of the predefined css theme
      * @return the string url of the predefined css theme
      */

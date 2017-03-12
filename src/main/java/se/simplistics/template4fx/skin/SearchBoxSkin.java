@@ -28,9 +28,7 @@ public class SearchBoxSkin
         searchBarLabel.getStyleClass().add( "search-box-label" );
         vBox.getChildren().add( searchBarLabel );
 
-        Separator separator = new Separator();
-        separator.getStyleClass().add( "search-box-divider" );
-        vBox.getChildren().add( separator );
+        vBox.getChildren().add( new Separator() );
 
         getSkinnable().getResultView().getStyleClass().add( "search-list" );
         vBox.getChildren().add( getSkinnable().getResultView() );
@@ -40,7 +38,7 @@ public class SearchBoxSkin
 
         StackPane container = new StackPane();
         container.setAlignment( Pos.CENTER );
-        container.getStyleClass().add( "search-box-background" );
+        container.getStyleClass().add( "glass-background" );
         container.getChildren().add( group );
 
         return container;
