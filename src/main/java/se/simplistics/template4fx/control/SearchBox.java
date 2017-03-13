@@ -7,10 +7,9 @@ import javafx.collections.transformation.FilteredList;
 import javafx.scene.control.Control;
 import javafx.scene.control.ListView;
 import javafx.scene.control.Skin;
-import se.simplistics.template4fx.control.util.ISearchItem;
 import se.simplistics.template4fx.skin.SearchBoxSkin;
 
-public class SearchBox<T extends ISearchItem>
+public class SearchBox<T>
     extends Control
 {
     private final StringProperty searchText = new SimpleStringProperty();
@@ -121,7 +120,7 @@ public class SearchBox<T extends ISearchItem>
         filteredData.setPredicate(
             builder.length() == 0 ?
                 s -> true :
-                s -> s.getSearchValue().toLowerCase().contains( builder.toString().toLowerCase() ) );
+                s -> s.toString().toLowerCase().contains( builder.toString().toLowerCase() ) );
 
         resultView.getSelectionModel().selectFirst();
     }

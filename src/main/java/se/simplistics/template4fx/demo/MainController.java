@@ -6,7 +6,11 @@ import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
-import javafx.scene.control.*;
+import javafx.scene.control.Alert;
+import javafx.scene.control.DialogPane;
+import javafx.scene.control.RadioMenuItem;
+import javafx.scene.control.Tab;
+import javafx.scene.control.ToggleGroup;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyCodeCombination;
 import javafx.scene.input.KeyCombination;
@@ -15,7 +19,6 @@ import se.simplistics.template4fx.FXClient;
 import se.simplistics.template4fx.StyleSheets;
 import se.simplistics.template4fx.control.QuadTabPane;
 import se.simplistics.template4fx.control.SearchBox;
-import se.simplistics.template4fx.control.util.ISearchItem;
 
 import java.io.IOException;
 
@@ -126,7 +129,6 @@ public class MainController
     }
 
     private class SearchObject
-        implements ISearchItem
     {
         private final String title;
 
@@ -136,12 +138,6 @@ public class MainController
         {
             this.title = title;
             this.tab = tab;
-        }
-
-        @Override
-        public String getSearchValue()
-        {
-            return title;
         }
 
         public Tab getTab()

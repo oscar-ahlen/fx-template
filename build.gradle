@@ -1,9 +1,12 @@
 apply plugin: 'java'
 apply plugin: 'idea'
+apply plugin: 'maven'
 
 group 'se.simplistics.template4fx'
-version '0.1.0'
+version '0.1.1'
 description 'Template desktop application for JavaFX to be used and built upon in other projects.'
+
+jar.baseName = 'template4fx'
 
 tasks.withType(Jar) {
     destinationDir = file('build/output')
