@@ -11,9 +11,30 @@ public class FixedIconTableCell<S, T>
 
     private ImageView imageView;
 
+    private final boolean displayText;
+
+    private final String defaultText;
+
     public FixedIconTableCell( Image image )
     {
+        this( image, true, null );
+    }
+
+    public FixedIconTableCell( Image image, boolean displayText )
+    {
+        this( image, displayText, null );
+    }
+
+    public FixedIconTableCell( Image image, String defaultText )
+    {
+        this( image, true, defaultText );
+    }
+
+    public FixedIconTableCell( Image image, boolean displayText, String defaultText )
+    {
         this.image = image;
+        this.displayText = displayText;
+        this.defaultText = defaultText;
     }
 
     @Override
@@ -26,12 +47,16 @@ public class FixedIconTableCell<S, T>
             if ( imageView == null )
                 imageView = new ImageView( image );
 
-            setText( item.toString() );
+            if ( displayText )
+                setText( item.toString() );
+            else
+                setText( null );
+
             setGraphic( imageView );
         }
         else
         {
-            setText( null );
+            setText( defaultText );
             setGraphic( null );
             imageView = null;
         }
