@@ -40,7 +40,7 @@ public class MainController
     public void initialize()
         throws IOException
     {
-        newTab();
+        newMasterTab();
 
         ToggleGroup themeGroup = new ToggleGroup();
         lightTheme.setToggleGroup( themeGroup );
@@ -103,16 +103,28 @@ public class MainController
         } );
     }
 
-    public void newTab()
+    public void newMasterTab()
         throws IOException
     {
-        Tab tab = new Tab( String.format( "Tab view %d", counter++ ),
+        Tab tab = new Tab( String.format( "Master Tab %d", counter++ ),
                            FXMLLoader.load( getClass().getResource( "/fxml/module.fxml" ) ) );
 
         SearchObject searchObject = new SearchObject( tab.getText(), tab );
         searchObjects.add( searchObject );
 
-        pane.addTab( tab, QuadTabPane.Location.NORTH_WEST, true, () -> searchObjects.remove( searchObject ) );
+        pane.addSmartTab( tab, true, () -> searchObjects.remove( searchObject ) );
+    }
+
+    public void newSlaveTab()
+        throws IOException
+    {
+        Tab tab = new Tab( String.format( "Child Tab %d", counter++ ),
+                           FXMLLoader.load( getClass().getResource( "/fxml/module.fxml" ) ) );
+
+        SearchObject searchObject = new SearchObject( tab.getText(), tab );
+        searchObjects.add( searchObject );
+
+        pane.addSmartTab( tab, false, () -> searchObjects.remove( searchObject ) );
     }
 
     public void showAppInfo()

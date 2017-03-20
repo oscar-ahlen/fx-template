@@ -125,6 +125,49 @@ public class QuadTabPane
         }
     }
 
+    /**
+     * Adds a tab in a 'smart' way, considering how many tabs already exists and in which panes.
+     *
+     * @param tab              the tab to be added
+     * @param preferNorthPanes true if the tab should only be added to a northern pane, false if the tab can be inserted in whatever pane
+     * @param runnable         optional action to be performed after the tab is closed, can be null
+     */
+    public void addSmartTab( Tab tab, boolean preferNorthPanes, Runnable runnable )
+    {
+        if ( northWestPane.getTabs().isEmpty() )
+        {
+            addTab( tab, northWestPane, true, runnable );
+            return;
+        }
+
+        if ( northEastPane.getTabs().isEmpty() )
+        {
+            addTab( tab, northEastPane, true, runnable );
+            return;
+        }
+
+        if ( preferNorthPanes )
+        {
+            if ( northWestPane.getTabs().size() > northEastPane.getTabs().size() )
+                addTab( tab, northEastPane, true, runnable );
+            else
+                addTab( tab, northWestPane, true, runnable );
+
+            return;
+        }
+
+        TabPane current = getFocusedPane( getScene().focusOwnerProperty().get() );
+
+        if ( current == northWestPane )
+            addTab( tab, southWestPane, true, runnable );
+        else if ( current == northEastPane )
+            addTab( tab, southEastPane, true, runnable );
+        else if ( current == southWestPane )
+            addTab( tab, southWestPane, true, runnable );
+        else
+            addTab( tab, southEastPane, true, runnable );
+    }
+
     public void moveTabLeft()
     {
         moveSelectedTab( getFocusedPane( getScene().focusOwnerProperty().get() ), Direction.LEFT );
@@ -226,7 +269,7 @@ public class QuadTabPane
             } );
 
         childPane.getTabs().add( tab );
-        updateSplitPanes();
+        update();
 
         if ( focus )
         {

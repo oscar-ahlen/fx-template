@@ -11,7 +11,8 @@
         <top>
             <MenuBar>
                 <Menu text="File">
-                    <MenuItem text="New tab" onAction="#newTab"/>
+                    <MenuItem text="New master tab" onAction="#newMasterTab"/>
+                    <MenuItem text="New slave tab" onAction="#newSlaveTab"/>
                 </Menu>
 
                 <Menu text="Edit"/>
