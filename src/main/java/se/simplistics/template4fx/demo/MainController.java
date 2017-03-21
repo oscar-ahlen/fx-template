@@ -40,8 +40,6 @@ public class MainController
     public void initialize()
         throws IOException
     {
-        newMasterTab();
-
         ToggleGroup themeGroup = new ToggleGroup();
         lightTheme.setToggleGroup( themeGroup );
         lightTheme.setSelected( true );
@@ -112,7 +110,7 @@ public class MainController
         SearchObject searchObject = new SearchObject( tab.getText(), tab );
         searchObjects.add( searchObject );
 
-        pane.addSmartTab( tab, true, () -> searchObjects.remove( searchObject ) );
+        pane.addMasterTab( tab, true, () -> searchObjects.remove( searchObject ) );
     }
 
     public void newSlaveTab()
@@ -124,7 +122,7 @@ public class MainController
         SearchObject searchObject = new SearchObject( tab.getText(), tab );
         searchObjects.add( searchObject );
 
-        pane.addSmartTab( tab, false, () -> searchObjects.remove( searchObject ) );
+        pane.addChildTab( tab, false, () -> searchObjects.remove( searchObject ) );
     }
 
     public void showAppInfo()

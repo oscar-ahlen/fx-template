@@ -70,12 +70,12 @@ public class QuadTabPane
         addKeyBinding( scene, KeyCode.DOWN, modifier, this::moveTabDown );
 
         addKeyBinding( scene, KeyCode.HOME, modifier,
-                       () -> getFocusedPane( getScene().focusOwnerProperty().get() ).requestFocus() );
+                       () -> getFocusedPane( getScene().getFocusOwner() ).requestFocus() );
 
         addKeyBinding( scene, KeyCode.F4, modifier,
                        () ->
                        {
-                           TabPane focusedPane = getFocusedPane( getScene().focusOwnerProperty().get() );
+                           TabPane focusedPane = getFocusedPane( getScene().getFocusOwner() );
                            Tab tab = focusedPane.getSelectionModel().getSelectedItem();
 
                            if ( focusedPane.getTabs().remove( tab ) )
@@ -126,61 +126,56 @@ public class QuadTabPane
     }
 
     /**
-     * Adds a tab in a 'smart' way, considering how many tabs already exists and in which panes.
+     * Adds a 'master' tab to this QuadTabPane and will always be located at NW or NE depending on which side is focused.
      *
-     * @param tab              the tab to be added
-     * @param preferNorthPanes true if the tab should only be added to a northern pane, false if the tab can be inserted in whatever pane
-     * @param runnable         optional action to be performed after the tab is closed, can be null
+     * @param tab      the tab to be added
+     * @param focus    true if the newly added tab should be selected and focused after the operation, false otherwise
+     * @param runnable optional action to be performed after the tab is closed, can be null
      */
-    public void addSmartTab( Tab tab, boolean preferNorthPanes, Runnable runnable )
+    public void addMasterTab( Tab tab, boolean focus, Runnable runnable )
     {
-        if ( northWestPane.getTabs().isEmpty() )
-        {
-            addTab( tab, northWestPane, true, runnable );
-            return;
-        }
+        TabPane current = getFocusedPane( getScene().getFocusOwner() );
 
-        if ( northEastPane.getTabs().isEmpty() )
-        {
-            addTab( tab, northEastPane, true, runnable );
-            return;
-        }
+        if ( current == southWestPane )
+            addTab( tab, northWestPane, focus, runnable );
+        else if ( current == southEastPane )
+            addTab( tab, northEastPane, focus, runnable );
+        else
+            addTab( tab, current, focus, runnable );
+    }
 
-        if ( preferNorthPanes )
-        {
-            if ( northWestPane.getTabs().size() > northEastPane.getTabs().size() )
-                addTab( tab, northEastPane, true, runnable );
-            else
-                addTab( tab, northWestPane, true, runnable );
-
-            return;
-        }
-
-        TabPane current = getFocusedPane( getScene().focusOwnerProperty().get() );
+    /**
+     * Adds a 'child' tab to this QuadTabPane and will always be located at SW or SE depending on which side is focused.
+     *
+     * @param tab      the tab to be added
+     * @param focus    true if the newly added tab should be selected and focused after the operation, false otherwise
+     * @param runnable optional action to be performed after the tab is closed, can be null
+     */
+    public void addChildTab( Tab tab, boolean focus, Runnable runnable )
+    {
+        TabPane current = getFocusedPane( getScene().getFocusOwner() );
 
         if ( current == northWestPane )
-            addTab( tab, southWestPane, true, runnable );
+            addTab( tab, southWestPane, focus, runnable );
         else if ( current == northEastPane )
-            addTab( tab, southEastPane, true, runnable );
-        else if ( current == southWestPane )
-            addTab( tab, southWestPane, true, runnable );
+            addTab( tab, southEastPane, focus, runnable );
         else
-            addTab( tab, southEastPane, true, runnable );
+            addTab( tab, current, focus, runnable );
     }
 
     public void moveTabLeft()
     {
-        moveSelectedTab( getFocusedPane( getScene().focusOwnerProperty().get() ), Direction.LEFT );
+        moveSelectedTab( getFocusedPane( getScene().getFocusOwner() ), Direction.LEFT );
     }
 
     public void moveTabRight()
     {
-        moveSelectedTab( getFocusedPane( getScene().focusOwnerProperty().get() ), Direction.RIGHT );
+        moveSelectedTab( getFocusedPane( getScene().getFocusOwner() ), Direction.RIGHT );
     }
 
     public void moveTabUp()
     {
-        TabPane parent = getFocusedPane( getScene().focusOwnerProperty().get() );
+        TabPane parent = getFocusedPane( getScene().getFocusOwner() );
 
         if ( parent == southWestPane || parent == southEastPane )
             moveSelectedTab( parent, Direction.UP );
@@ -188,7 +183,7 @@ public class QuadTabPane
 
     public void moveTabDown()
     {
-        TabPane parent = getFocusedPane( getScene().focusOwnerProperty().get() );
+        TabPane parent = getFocusedPane( getScene().getFocusOwner() );
 
         if ( parent == northWestPane || parent == northEastPane )
             moveSelectedTab( parent, Direction.DOWN );
@@ -288,7 +283,7 @@ public class QuadTabPane
             node = node.getParent();
         }
 
-        return null;
+        return northWestPane;
     }
 
     private void moveSelectedTab( TabPane parent, Direction dir )
@@ -306,7 +301,7 @@ public class QuadTabPane
         if ( parent == null )
             return;
 
-        boolean tabIsFocused = getScene().focusOwnerProperty().get() == parent;
+        boolean tabIsFocused = getScene().getFocusOwner() == parent;
 
         int index = parent.getSelectionModel().getSelectedIndex();
         boolean internalMove = ( index > 0 && dir == Direction.LEFT )
