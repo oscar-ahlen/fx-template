@@ -5,24 +5,23 @@
  ******************************************************************************/
 .root
 {
-    /* Light green: 600 */
-    -theme-color: #7CB342;
+    /* Cyan: 800 */
+    -theme-color: #00838F;
 
-    /* Light green: 500 */
-    -theme-color-accent: #8BC34A;
+    /* Cyan: 700 */
+    -theme-color-accent: #0097A7;
 
-    /* Light green: 300 */
-    -theme-color-focus: #AED581;
-
-    -theme-fx-faint-focus-color: #AED58122;
+    /* Cyan: 400 */
+    -theme-color-focus: #26C6DA;
+    -theme-fx-faint-focus-color: #26C6DA22;
 
     -theme-color-warning: #FFB300;
     -theme-color-error: #F4511E;
 
-    -theme-fx-base: #404040;
-    -theme-fx-background: #606060;
-    -theme-fx-control-inner-background: #707070;
-    -theme-fx-default-button: #505050;
+    -theme-fx-base: #3C4040;
+    -theme-fx-background: #4C5050;
+    -theme-fx-control-inner-background: #5C6060;
+    -theme-fx-default-button: #4C5050;
 
     /* Root styling */
     -fx-base: -theme-fx-base;
@@ -46,6 +45,8 @@
             white 50%,
             derive(-fx-color,-63%) 51%
         );
+
+    -fx-text-box-border: derive(-fx-color,-15%);
 }
 
 /*******************************************************************************
@@ -311,7 +312,7 @@
 
 .tab-pane .tab-header-area
 {
-    -fx-padding: 0.583333em 0.166667em 0.0em 0.666667em;
+    //-fx-padding: 0.583333em 0.166667em 0.0em 0.666667em;
 }
 
 .tab-pane .tab-header-area .tab-header-background

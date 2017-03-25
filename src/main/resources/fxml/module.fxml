@@ -2,25 +2,29 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.control.cell.PropertyValueFactory?>
 <?import javafx.scene.layout.VBox?>
-<VBox xmlns="http://javafx.com/javafx/8">
-
-    <padding>
-        <Insets top="4"/>
-    </padding>
+<VBox xmlns:fx="http://javafx.com/fxml"
+      xmlns="http://javafx.com/javafx/8"
+      fx:controller="se.simplistics.template4fx.demo.ModuleController"
+      styleClass="tab-box">
 
     <ToolBar>
         <TextField/>
         <Button styleClass="icon-button" style="-fx-graphic: url('/icons/16/add.png')"/>
-        <Button text="Text button" style="-fx-graphic: url('/icons/16/add.png')"/>
+        <Button styleClass="icon-button" style="-fx-graphic: url('/icons/16/change_whm_theme.png')"/>
+        <Button styleClass="icon-button" style="-fx-graphic: url('/icons/16/information.png')"/>
+        <Button text="Text button"/>
         <Button styleClass="special-button" text="Text button"/>
+        <ComboBox/>
+        <ComboBox editable="true"/>
+        <DatePicker/>
     </ToolBar>
 
-    <ScrollPane fitToWidth="true" fitToHeight="true" VBox.vgrow="ALWAYS">
+    <ScrollPane fitToWidth="true" fitToHeight="true" VBox.vgrow="ALWAYS" vbarPolicy="NEVER">
         <padding>
             <Insets left="8" top="8" right="8" bottom="8"/>
         </padding>
 
-        <TableView>
+        <TableView fx:id="tableView">
             <columns>
                 <TableColumn text="First name" prefWidth="200">
                     <cellValueFactory>

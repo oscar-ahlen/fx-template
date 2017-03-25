@@ -55,8 +55,10 @@ public class QuadTabPane
         initTabPane( northEastPane );
         southWestPane = new TabPane();
         initTabPane( southWestPane );
+        //southWestPane.setPadding( new Insets( 8, 0, 0, 0 ) );
         southEastPane = new TabPane();
         initTabPane( southEastPane );
+        //southEastPane.setPadding( new Insets( 8, 0, 0, 0 ) );
 
         left.getItems().add( northWestPane );
         right.getItems().add( northEastPane );
@@ -228,8 +230,8 @@ public class QuadTabPane
         pane.setTabClosingPolicy( TabPane.TabClosingPolicy.ALL_TABS );
 
         // Values based on template4fx theme
-        pane.setMinWidth( 28 );
-        pane.setMinHeight( 32 );
+        pane.setMinWidth( 24 );
+        pane.setMinHeight( 30 );
 
         tabPaneSet.add( pane );
     }

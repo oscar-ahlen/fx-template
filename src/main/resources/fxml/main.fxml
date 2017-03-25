@@ -23,6 +23,10 @@
                     <Menu text="Themes" style="-fx-graphic: url('/icons/16/change_whm_theme.png')">
                         <RadioMenuItem fx:id="lightTheme" text="Light theme"/>
                         <RadioMenuItem fx:id="darkTheme" text="Dark theme"/>
+
+                        <SeparatorMenuItem/>
+
+                        <RadioMenuItem fx:id="modena" text="Modena"/>
                     </Menu>
                 </Menu>
 

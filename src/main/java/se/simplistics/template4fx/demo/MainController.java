@@ -6,11 +6,9 @@ import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
-import javafx.scene.control.Alert;
-import javafx.scene.control.DialogPane;
-import javafx.scene.control.RadioMenuItem;
-import javafx.scene.control.Tab;
-import javafx.scene.control.ToggleGroup;
+import javafx.scene.control.*;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyCodeCombination;
 import javafx.scene.input.KeyCombination;
@@ -31,7 +29,7 @@ public class MainController
     private QuadTabPane pane;
 
     @FXML
-    private RadioMenuItem lightTheme, darkTheme;
+    private RadioMenuItem lightTheme, darkTheme, modena;
 
     private final ObservableList<SearchObject> searchObjects = FXCollections.observableArrayList();
 
@@ -45,6 +43,7 @@ public class MainController
         lightTheme.setSelected( true );
 
         darkTheme.setToggleGroup( themeGroup );
+        modena.setToggleGroup( themeGroup );
 
         themeGroup.selectedToggleProperty().addListener(
             ( arg0, arg1, arg2 ) ->
@@ -53,13 +52,15 @@ public class MainController
                 {
                     FXClient.getRoot().getStylesheets().clear();
 
-                    if ( arg0.getValue() == lightTheme )
+                    if ( arg0.getValue() == modena )
+                        FXClient.setStyleSheet( "modena" );
+                    else if ( arg0.getValue() == lightTheme )
                         FXClient.setStyleSheet( "template4fx-light" );
                     else if ( arg0.getValue() == darkTheme )
                         FXClient.setStyleSheet( "template4fx-dark" );
 
-                    FXClient.getRoot().getStylesheets().add(
-                        StyleSheets.getTheme( FXClient.getStyleSheet() ) );
+                    if ( !FXClient.getStyleSheet().equals( "modena" ) )
+                        FXClient.getRoot().getStylesheets().add( StyleSheets.getTheme( FXClient.getStyleSheet() ) );
                 }
             } );
 
@@ -107,6 +108,8 @@ public class MainController
         Tab tab = new Tab( String.format( "Master Tab %d", counter++ ),
                            FXMLLoader.load( getClass().getResource( "/fxml/module.fxml" ) ) );
 
+        tab.setGraphic( loadImageView( "icons/16/information.png" ) );
+
         SearchObject searchObject = new SearchObject( tab.getText(), tab );
         searchObjects.add( searchObject );
 
@@ -118,6 +121,8 @@ public class MainController
     {
         Tab tab = new Tab( String.format( "Child Tab %d", counter++ ),
                            FXMLLoader.load( getClass().getResource( "/fxml/module.fxml" ) ) );
+
+        tab.setGraphic( loadImageView( "icons/16/information.png" ) );
 
         SearchObject searchObject = new SearchObject( tab.getText(), tab );
         searchObjects.add( searchObject );
@@ -133,9 +138,19 @@ public class MainController
         alert.setContentText( "Version 0.1.0" );
 
         DialogPane dialogPane = alert.getDialogPane();
-        dialogPane.getStylesheets().add( StyleSheets.getTheme( FXClient.getStyleSheet() ) );
+
+        if ( !FXClient.getStyleSheet().equals( "modena" ) )
+            dialogPane.getStylesheets().add( StyleSheets.getTheme( FXClient.getStyleSheet() ) );
 
         alert.show();
+    }
+
+    private ImageView loadImageView( String resource )
+    {
+        ImageView imageView = new ImageView( new Image( resource ) );
+        imageView.setFitWidth( 16 );
+        imageView.setFitHeight( 16 );
+        return imageView;
     }
 
     private class SearchObject
