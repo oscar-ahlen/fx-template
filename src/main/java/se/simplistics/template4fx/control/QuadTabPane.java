@@ -55,10 +55,8 @@ public class QuadTabPane
         initTabPane( northEastPane );
         southWestPane = new TabPane();
         initTabPane( southWestPane );
-        //southWestPane.setPadding( new Insets( 8, 0, 0, 0 ) );
         southEastPane = new TabPane();
         initTabPane( southEastPane );
-        //southEastPane.setPadding( new Insets( 8, 0, 0, 0 ) );
 
         left.getItems().add( northWestPane );
         right.getItems().add( northEastPane );

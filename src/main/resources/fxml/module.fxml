@@ -8,7 +8,7 @@
       styleClass="tab-box">
 
     <ToolBar>
-        <TextField/>
+        <TextField promptText="Enter text here"/>
         <Button styleClass="icon-button" style="-fx-graphic: url('/icons/16/add.png')"/>
         <Button styleClass="icon-button" style="-fx-graphic: url('/icons/16/change_whm_theme.png')"/>
         <Button styleClass="icon-button" style="-fx-graphic: url('/icons/16/information.png')"/>
@@ -17,6 +17,8 @@
         <ComboBox/>
         <ComboBox editable="true"/>
         <DatePicker/>
+        <CheckBox/>
+        <RadioButton/>
     </ToolBar>
 
     <ScrollPane fitToWidth="true" fitToHeight="true" VBox.vgrow="ALWAYS" vbarPolicy="NEVER">

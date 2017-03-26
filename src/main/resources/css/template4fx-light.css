@@ -8,12 +8,11 @@
     -theme-color: #1976D2;        /* Blue: 700 */
     -theme-color-accent: #1E88E5; /* Blue: 600 */
     -theme-color-focus: #42A5F5;  /* Blue: 400 */
-    -theme-color-focus-faint: #42A5F522;
 
     -theme-color-background: #E8E8E8;
     -theme-color-inner-background: white;
     -theme-color-base: #D4D4D4;
-    -theme-color-border: A0A0A0;
+    -theme-color-border: #A0A0A0;
     -theme-color-mark: #606060;
     -theme-color-error: #F4511E;
     -theme-color-warning: #FFB300;
@@ -36,7 +35,7 @@
     -fx-default-button: -theme-color-base;
 
     -fx-focus-color: -theme-color-focus;
-    -fx-faint-focus-color: -theme-color-focus-faint;
+    -fx-faint-focus-color: transparent;
 
     -fx-cell-hover-color: transparent;
     -fx-cell-focus-inner-border: -fx-selection-bar;
@@ -83,6 +82,7 @@
 .special-button
 {
     -fx-background-color: derive(-theme-color, -25%), -theme-color;
+    -fx-background-insets: 0, 1;
 
     -fx-font-weight: bold;
     -fx-text-fill: -theme-color-text-highlight;
@@ -90,18 +90,17 @@
 
 .special-button:focused
 {
-    -fx-background-color: derive(-theme-color, -25%), -theme-color;
-    -fx-background-insets: 0, 1;
+    -fx-background-color: derive(-theme-color, -40%), -theme-color;
 }
 
 .special-button:hover
 {
-    -fx-background-color: derive(-theme-color, -25%), -theme-color-accent;
+    -fx-background-color: derive(-theme-color-accent, -25%), -theme-color-accent;
 }
 
 .special-button:pressed
 {
-    -fx-background-color: derive(-theme-color, -25%), -theme-color-focus;
+    -fx-background-color: derive(-theme-color-focus, -25%), -theme-color-focus;
 }
 
 .icon-button,
@@ -109,7 +108,7 @@
 .icon-button:hover,
 .icon-button:pressed
 {
-    -fx-background-insets: -1 0 0 0, 0 1 1 1;
+    -fx-background-insets: 0, 1;
     -fx-background-radius: 3, 2;
 }
 
@@ -140,18 +139,20 @@
  *                                                                             *
  ******************************************************************************/
 .check-box .box,
-.radio-button .radio,
 .check-box:focused .box,
-.radio-button:focused .radio,
-.check-box:focused .box,
-.radio-button:focused .radio,
 .check-box:selected .box,
-.radio-button:selected .radio,
-.check-box:selected:focused .box,
-.radio-button:selected:focused .radio
+.check-box:selected:focused .box
 {
     -fx-background-insets: 0, 1;
     -fx-background-radius: 3, 2;
+}
+
+.radio-button .radio,
+.radio-button:focused .radio,
+.radio-button:selected .radio,
+.radio-button:selected:focused .radio
+{
+     -fx-background-insets: 0, 1;
 }
 
 .check-box .box,
@@ -161,7 +162,9 @@
 }
 
 .check-box:focused .box,
-.radio-button:focused .radio
+.check-box:hover .box,
+.radio-button:focused .radio,
+.radio-button:hover .radio
 {
     -fx-background-color: -theme-color-focus, -theme-color-base;
 }
@@ -175,7 +178,7 @@
 .check-box:selected:focused .box,
 .radio-button:selected:focused .radio
 {
-    -fx-background-color: derive(-theme-color, -25%), -theme-color;
+    -fx-background-color: -theme-color, -theme-color-accent;
 }
 
 .check-box:selected .box .mark,
@@ -199,6 +202,7 @@
     -fx-background-radius: 3, 2;
 }
 
+.combo-box-base:hover,
 .combo-box-base:focused
 {
     -fx-background-color: -theme-color-focus, -theme-color-base;
@@ -336,11 +340,19 @@
     -fx-background-color: -theme-color-mark; /* To achieve a bit darker color */
 }
 
-.scroll-bar .thumb,
-.scroll-bar .thumb:selected
+.scroll-bar:horizontal .thumb,
+.scroll-bar:horizontal .thumb:selected
 {
     -fx-background-color: -theme-color-border, -theme-color-base;
-    -fx-background-insets: 0, 1;
+    -fx-background-insets: 0 0 1 0, 1;
+    -fx-background-radius: 0;
+}
+
+.scroll-bar:vertical .thumb,
+.scroll-bar:vertical .thumb:selected
+{
+    -fx-background-color: -theme-color-border, -theme-color-base;
+    -fx-background-insets: 0 1 0 0, 1;
     -fx-background-radius: 0;
 }
 
@@ -427,7 +439,7 @@
 
 .tab .tab-close-button:hover
 {
-    -fx-background-color: red;
+    -fx-background-color: -fx-mark-highlight-color, red;
 }
 
 .tab-down-button
@@ -457,21 +469,31 @@
     -fx-background-color: -theme-color-border, -theme-color-inner-background;
 }
 
-.text-input:focused
+.text-input:focused,
+.text-input:hover
 {
     -fx-background-color: -theme-color-focus, -theme-color-inner-background;
     -fx-background-insets: 0, 1;
     -fx-background-radius: 3, 2;
 }
 
+.text-input:focused
+{
+    -fx-prompt-text-fill: transparent;
+}
+
 .combo-box-base:editable:focused .text-field,
+.combo-box-base:editable:hover .text-field,
 .combo-box-base:editable .text-field:focused,
+.combo-box-base:editable .text-field:hover,
 .date-picker:focused .text-field,
-.date-picker .text-field:focused
+.date-picker:hover .text-field,
+.date-picker .text-field:focused,
+.date-picker .text-field:hover
 {
     -fx-background-color: -theme-color-focus, -theme-color-inner-background;
     -fx-background-insets: 0 -1 0 0, 1 0 1 1;
-    -fx-background-radius: 3 0 0 3, 0;
+    -fx-background-radius: 3 0 0 3, 2 0 0 2;
 }
 
 /*******************************************************************************
@@ -487,6 +509,12 @@
 
     -fx-padding: 6 8 6 8;
     -fx-spacing: 5;
+}
+
+.tool-bar-overflow-button:focused .arrow,
+.tool-bar-overflow-button:hover .arrow
+{
+    -fx-background-color: -fx-mark-highlight-color, derive(-fx-mark-color, 45%);
 }
 
 /*******************************************************************************
@@ -511,6 +539,13 @@
  * View styling                                                                *
  *                                                                             *
  ******************************************************************************/
+.table-view,
+.tree-table-view
+{
+    -fx-table-header-border-color: derive(-theme-color-border, 30%);
+    -fx-table-cell-border-color: derive(-theme-color-border, 30%);
+}
+
 .list-view:focused .virtual-flow .clipped-container .sheet .list-cell:focused,
 .tree-view:focused .virtual-flow .clipped-container .sheet .tree-cell:focused,
 .tree-table-view:focused:row-selection .virtual-flow .clipped-container .sheet .tree-table-row-cell:focused,

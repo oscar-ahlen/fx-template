@@ -4,11 +4,11 @@ import javafx.beans.property.SimpleStringProperty;
 
 public class Person
 {
-    private SimpleStringProperty firstName = new SimpleStringProperty();
+    private final SimpleStringProperty firstName = new SimpleStringProperty();
 
-    private SimpleStringProperty lastName = new SimpleStringProperty();
+    private final SimpleStringProperty lastName = new SimpleStringProperty();
 
-    private SimpleStringProperty email = new SimpleStringProperty();
+    private final SimpleStringProperty email = new SimpleStringProperty();
 
     public Person( String firstName, String lastName, String email )
     {
