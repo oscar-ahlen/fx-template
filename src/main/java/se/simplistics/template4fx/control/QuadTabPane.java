@@ -41,6 +41,7 @@ public class QuadTabPane
 
     public QuadTabPane()
     {
+        getStyleClass().add( "quad-tab-pane" );
         left = new SplitPane();
         left.setOrientation( Orientation.VERTICAL );
 

@@ -24,4 +24,9 @@ public class ModuleController
         people.add( new Person( "Jane", "Doe", "jane.doe@example.con" ) );
         tableView.setItems( people );
     }
+
+    public void showErrorDialog()
+    {
+        FXUtils.showError( "En example error", new Exception( "Error message" ) );
+    }
 }

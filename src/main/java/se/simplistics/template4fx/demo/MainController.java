@@ -6,7 +6,9 @@ import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
-import javafx.scene.control.*;
+import javafx.scene.control.RadioMenuItem;
+import javafx.scene.control.Tab;
+import javafx.scene.control.ToggleGroup;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
@@ -132,18 +134,7 @@ public class MainController
 
     public void showAppInfo()
     {
-        Alert alert = new Alert( Alert.AlertType.INFORMATION );
-        alert.initOwner( FXClient.getRoot().getScene().getWindow() );
-        alert.setTitle( "Information" );
-        alert.setHeaderText( "Template4FX" );
-        alert.setContentText( "Version 0.1.0" );
-
-        DialogPane dialogPane = alert.getDialogPane();
-
-        if ( !FXClient.getStyleSheet().equals( "modena" ) )
-            dialogPane.getStylesheets().add( StyleSheets.getTheme( FXClient.getStyleSheet() ) );
-
-        alert.showAndWait();
+        FXUtils.showInfo( "Template4FX", "Version 0.2.0" );
     }
 
     private ImageView loadImageView( String resource )

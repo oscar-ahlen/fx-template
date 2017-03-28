@@ -2,6 +2,7 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.control.cell.PropertyValueFactory?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.layout.StackPane?>
 <VBox xmlns:fx="http://javafx.com/fxml"
       xmlns="http://javafx.com/javafx/8"
       fx:controller="se.simplistics.template4fx.demo.ModuleController"
@@ -9,11 +10,19 @@
 
     <ToolBar>
         <TextField promptText="Enter text here"/>
-        <Button styleClass="icon-button" style="-fx-graphic: url('/icons/16/add.png')"/>
-        <Button styleClass="icon-button" style="-fx-graphic: url('/icons/16/change_whm_theme.png')"/>
-        <Button styleClass="icon-button" style="-fx-graphic: url('/icons/16/information.png')"/>
-        <Button text="Text button"/>
-        <Button styleClass="special-button" text="Text button"/>
+
+        <Button styleClass="icon-button" style="-fx-graphic: url('/icons/16/add.png')" text="Icon button 1"
+                onAction="#showErrorDialog"/>
+
+        <Button styleClass="icon-button" style="-fx-graphic: url('/icons/16/change_whm_theme.png')"
+                text="Icon button 2"/>
+
+        <Button styleClass="icon-button" style="-fx-graphic: url('/icons/16/information.png')" text="Icon button 3"/>
+
+        <Button text="Text button 1"/>
+    </ToolBar>
+
+    <ToolBar>
         <ComboBox/>
         <ComboBox editable="true"/>
         <DatePicker/>
@@ -21,9 +30,9 @@
         <RadioButton/>
     </ToolBar>
 
-    <ScrollPane fitToWidth="true" fitToHeight="true" VBox.vgrow="ALWAYS" vbarPolicy="NEVER">
+    <StackPane styleClass="tab-content" VBox.vgrow="ALWAYS">
         <padding>
-            <Insets left="8" top="8" right="8" bottom="8"/>
+            <Insets top="8" right="8" bottom="8" left="8"/>
         </padding>
 
         <TableView fx:id="tableView">
@@ -47,5 +56,5 @@
                 </TableColumn>
             </columns>
         </TableView>
-    </ScrollPane>
+    </StackPane>
 </VBox>
