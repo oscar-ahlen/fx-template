@@ -303,6 +303,22 @@
 
 /*******************************************************************************
  *                                                                             *
+ * Hyperlink                                                                   *
+ *                                                                             *
+ ******************************************************************************/
+.hyperlink
+{
+    -fx-text-fill: -fx-text-background-color;
+}
+
+.hyperlink:hover,
+.hyperlink:hover:visited
+{
+    -fx-text-fill: -theme-color;
+}
+
+/*******************************************************************************
+ *                                                                             *
  * Popup menu                                                                  *
  *                                                                             *
  ******************************************************************************/
@@ -359,13 +375,15 @@
 .scroll-bar > .increment-button:hover,
 .scroll-bar > .decrement-button:hover
 {
-    -fx-background-color: transparent, -fx-base;
+    -fx-background-color: transparent, -theme-color-base;
 }
 
 .scroll-bar > .increment-button > .increment-arrow,
-.scroll-bar > .increment-button > .decrement-arrow
+.scroll-bar > .increment-button > .decrement-arrow,
+.scroll-bar > .decrement-button > .increment-arrow,
+.scroll-bar > .decrement-button > .decrement-arrow
 {
-    -fx-background-color: -theme-color-mark; /* To achieve a bit darker color */
+    -fx-background-color: -theme-color-mark;
 }
 
 .scroll-bar:horizontal > .thumb
@@ -473,7 +491,7 @@
 
 .tab-down-button > .arrow:hover
 {
-    -fx-background-color: -theme-color;
+    -fx-background-color: -theme-color-focus;
 }
 
 /*******************************************************************************

@@ -132,6 +132,11 @@ public class MainController
         pane.addChildTab( tab, false, () -> searchObjects.remove( searchObject ) );
     }
 
+    public void collapseAll()
+    {
+        pane.collapseAll();
+    }
+
     public void showAppInfo()
     {
         FXUtils.showInfo( "Template4FX", "Version 0.2.0" );

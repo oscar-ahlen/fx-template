@@ -5,18 +5,22 @@
  ******************************************************************************/
 .root
 {
-    -theme-color: #1976D2;        /* Blue: 700 */
-    -theme-color-accent: #1E88E5; /* Blue: 600 */
-    -theme-color-focus: #42A5F5;  /* Blue: 400 */
+    -theme-color: #1976D2;
+    -theme-color-focus: #2196F3;
 
     -theme-color-background: #3C3F41;
     -theme-color-inner-background: #45494A;
+
     -theme-color-base: #3C3E3F;
+    -theme-color-base-hover: derive(-theme-color-base, 30%);
+    -theme-color-base-pressed: derive(-theme-color-base, 45%);
+
     -theme-color-border: #646464;
     -theme-color-mark: white;
+    -theme-color-text-highlight: white;
+
     -theme-color-error: #F4511E;
     -theme-color-warning: #FFB300;
-    -theme-color-text-highlight: white;
 
     // FX color styling
     -fx-base: -theme-color-base;
@@ -31,11 +35,11 @@
     -fx-control-inner-background: -theme-color-inner-background;
     -fx-control-inner-background-alt: -theme-color-inner-background;
 
-    -fx-accent: -theme-color-accent;
-    -fx-default-button: -theme-color-base;
-
+    -fx-accent: -theme-color;
     -fx-focus-color: -theme-color-focus;
     -fx-faint-focus-color: transparent;
+
+    -fx-default-button: -theme-color-base;
 
     -fx-cell-hover-color: transparent;
     -fx-cell-focus-inner-border: -fx-selection-bar;
@@ -46,147 +50,115 @@
 
 /*******************************************************************************
  *                                                                             *
- * Accordion styling                                                           *
+ * General                                                                     *
  *                                                                             *
  ******************************************************************************/
-.accordion
+.scroll-pane:focused,
+.split-pane:focused,
+.list-view:focused,
+.tree-view:focused,
+.table-view:focused,
+.tree-table-view:focused,
+.html-editor:contains-focus
 {
-    -fx-background-color: transparent;
+    -fx-background-color: -theme-color-focus, -theme-color-inner-background;
+    -fx-background-insets: 0, 1;
+    -fx-background-radius: 0;
 }
 
 /*******************************************************************************
  *                                                                             *
- * Button styling                                                              *
+ * Button                                                                      *
  *                                                                             *
  ******************************************************************************/
 .button
 {
     -fx-background-color: -theme-color-border, -theme-color-base;
     -fx-background-insets: 0, 1;
-    -fx-background-radius: 0, 0;
+    -fx-background-radius: 0;
 }
 
+.button:hover,
 .button:focused
 {
-    -fx-background-color: -theme-color-focus, -theme-color-base;
-    -fx-background-insets: 0, 1;
-}
-
-.button:hover
-{
-    -fx-background-color: -theme-color-focus, derive(-theme-color-base, 15%);
+    -fx-background-color: -theme-color-focus, -theme-color-base-hover;
 }
 
 .button:pressed
 {
-    -fx-background-color: -theme-color-focus, derive(-theme-color-base, 30%);
-}
-
-.special-button
-{
-    -fx-background-color: derive(-theme-color, 25%), -theme-color;
-
-    -fx-background-insets: 0, 1;
-    -fx-font-weight: bold;
-    -fx-text-fill: -theme-color-text-highlight;
-}
-
-.special-button:focused
-{
-    -fx-background-color: derive(-theme-color, 40%), -theme-color;
-}
-
-.special-button:hover
-{
-    -fx-background-color: derive(-theme-color-accent, 25%), -theme-color-accent;
-}
-
-.special-button:pressed
-{
-    -fx-background-color: derive(-theme-color-focus, 25%), -theme-color-focus;
-}
-
-.icon-button,
-.icon-button:focused,
-.icon-button:hover,
-.icon-button:pressed
-{
-    -fx-background-insets: 0, 1;
-    -fx-background-radius: 3, 2;
+    -fx-background-color: -theme-color-focus, -theme-color-base-pressed;
 }
 
 .icon-button
 {
     -fx-background-color: transparent;
+    -fx-background-insets: 0, 1;
+    -fx-background-radius: 3, 2;
     -fx-padding: 4 5 4 5;
+
+    -fx-focus-traversable: false;
 }
 
-.icon-button:focused
-{
-    -fx-background-color: -theme-color-focus, -theme-color-background;
-}
-
+.icon-button:focused,
 .icon-button:hover
 {
-    -fx-background-color: -theme-color-border, -theme-color-base;
+    -fx-background-color: -theme-color-focus, -theme-color-base;
 }
 
 .icon-button:pressed
 {
-    -fx-background-color: -theme-color-border, derive(-theme-color-base, 15%);
+    -fx-background-color: derive(-theme-color-focus, -10%), derive(-theme-color-base, -10%);
 }
 
 /*******************************************************************************
  *                                                                             *
- * Check box and Radio button styling                                          *
+ * Check box and Radio button                                                  *
  *                                                                             *
  ******************************************************************************/
-.check-box .box,
-.check-box:focused .box,
-.check-box:selected .box,
-.check-box:selected:focused .box
+.check-box > .box
 {
     -fx-background-insets: 0, 1;
     -fx-background-radius: 3, 2;
 }
 
-.radio-button .radio,
-.radio-button:focused .radio,
-.radio-button:selected .radio,
-.radio-button:selected:focused .radio
+.radio-button > .radio
 {
      -fx-background-insets: 0, 1;
 }
 
-.check-box .box,
-.radio-button .radio
+.check-box > .box,
+.radio-button > .radio
 {
     -fx-background-color: -theme-color-border, -theme-color-base;
 }
 
-.check-box:focused .box,
-.check-box:hover .box,
-.radio-button:focused .radio,
-.radio-button:hover .radio
+.check-box:focused > .box,
+.radio-button:focused > .radio
 {
     -fx-background-color: -theme-color-focus, -theme-color-base;
 }
 
-.check-box:selected .box,
-.radio-button:selected .radio
+.check-box:hover > .box,
+.radio-button:hover > .radio
 {
-    -fx-background-color: derive(-theme-color, 25%), -theme-color;
+    -fx-background-color: -theme-color-focus, -theme-color-base-hover;
 }
 
-.check-box:selected:focused .box,
-.radio-button:selected:focused .radio
+.check-box:pressed > .box,
+.radio-button:pressed > .radio
 {
-    -fx-background-color: derive(-theme-color, 25%), -theme-color-accent;
+    -fx-background-color: -theme-color-focus, -theme-color-base-pressed;
 }
 
-.check-box:selected .box .mark,
-.check-box:indeterminate .box .mark,
-.radio-button:selected .radio .dot
+.check-box:selected > .box,
+.radio-button:selected > .radio
+{
+    -fx-background-color: derive(-theme-color, -25%), -theme-color;
+}
+
+.check-box:selected > .box > .mark,
+.check-box:indeterminate > .box > .mark,
+.radio-button:selected > .radio > .dot
 {
     -fx-mark-color: -theme-color-text-highlight;
     -fx-mark-highlight-color: grey;
@@ -194,59 +166,82 @@
 
 /*******************************************************************************
  *                                                                             *
- * Combo box styling                                                           *
+ * Combo box                                                                   *
  *                                                                             *
  ******************************************************************************/
-.combo-box-base,
-.combo-box-base:editable
+.combo-box-base
 {
     -fx-background-color: -theme-color-border, -theme-color-base;
     -fx-background-insets: 0, 1;
-    -fx-background-radius: 3, 2;
+    -fx-background-radius: 0;
+}
+
+.combo-box-base:editable > .arrow-button
+{
+    -fx-background-color: -theme-color-border, -theme-color-base;
+    -fx-background-insets: 0, 1 1 1 0;
+    -fx-background-radius: 0;
 }
 
 .combo-box-base:hover,
 .combo-box-base:focused
 {
-    -fx-background-color: -theme-color-focus, -theme-color-base;
+    -fx-background-color: -theme-color-focus, -theme-color-base-hover;
 }
 
-.combo-box-base:editable:focused .arrow-button,
-.date-picker:focused .arrow-button
+.combo-box-base:editable:hover > .arrow-button,
+.combo-box-base:editable:focused > .arrow-button
 {
-    -fx-faint-focus-color: transparent;
+    -fx-background-color: -theme-color-focus, -theme-color-base-hover;
+    -fx-background-insets: 0, 1 1 1 0;
+}
+
+.combo-box-base:pressed,
+.combo-box-base:editable:pressed > .arrow-button
+{
+    -fx-background-color: -theme-color-focus, -theme-color-base-pressed;
 }
 
 /*******************************************************************************
  *                                                                             *
- * Date picker styling                                                         *
+ * Date picker                                                                 *
  *                                                                             *
  ******************************************************************************/
-.date-picker-popup .month-year-pane
+.date-picker-popup > .month-year-pane
 {
     -fx-background-color: -theme-color-border, -theme-color-base;
 }
 
-.date-picker-popup * .week-number-cell
+.date-picker-popup > * > .week-number-cell
 {
     -fx-font-weight: bold;
 }
 
-.date-picker-popup * .spinner .button
+.date-picker-popup > * > .spinner .button
 {
     -fx-background-color: -theme-color-border, -theme-color-background;
     -fx-padding: 2 6 2 6;
 }
 
-.date-picker-popup * .spinner .button:focused
+.date-picker-popup > * > .spinner .button
 {
-    -fx-background-color: -theme-color-focus, -theme-color-background;
+    -fx-background-color: transparent;
     -fx-background-insets: 0, 1;
     -fx-background-radius: 0, 0;
 }
 
-.date-picker-popup * .spinner .button .left-arrow,
-.date-picker-popup * .spinner .button .right-arrow
+.date-picker-popup > * > .spinner .button:focused
+{
+    -fx-background-color: -theme-color-focus, -theme-color-base;
+}
+
+.date-picker-popup > * > .spinner .button:hover
+{
+    -fx-background-color: -theme-color-focus, -theme-color-base-hover;
+}
+
+.date-picker-popup > * > .spinner .button .left-arrow,
+.date-picker-popup > * > .spinner .button .right-arrow
 {
     -fx-background-color: -theme-color-mark;
     -fx-background-insets: 0;
@@ -254,22 +249,22 @@
 
 /*******************************************************************************
  *                                                                             *
- * Dialog styling                                                              *
+ * Dialog                                                                      *
  *                                                                             *
  ******************************************************************************/
-.dialog-pane:header *.header-panel
+.dialog-pane:header > .header-panel
 {
     -fx-background-color: -theme-color;
 }
 
-.dialog-pane:header .header-panel .label
+.dialog-pane:header > .header-panel > .label
 {
     -fx-font-size: 16px;
     -fx-font-weight: bold;
     -fx-text-fill: -theme-color-text-highlight;
 }
 
-.dialog-pane .content .label
+.dialog-pane > .content > .label
 {
     -fx-padding: 8 0 8 0;
 }
@@ -284,7 +279,7 @@
     -fx-graphic: url("/icons/48/ic_warning_white_48dp.png");
 }
 
-.alert.warning.dialog-pane:header *.header-panel
+.alert.warning.dialog-pane:header > .header-panel
 {
     -fx-background-color: -theme-color-warning;
 }
@@ -294,117 +289,150 @@
     -fx-graphic: url("/icons/48/ic_error_outline_white_48dp.png");
 }
 
-.alert.error.dialog-pane:header *.header-panel
+.alert.error.dialog-pane:header > .header-panel
 {
     -fx-background-color: -theme-color-error;
 }
 
+.dialog-pane > .button-bar > .container > .details-button
+{
+    -fx-text-fill: -theme-color-text-highlight;
+}
+
+.dialog-pane > .button-bar > .container > .details-button.more
+{
+    -fx-graphic: url("/icons/24/ic_expand_more_white_24dp.png");
+}
+
+.dialog-pane > .button-bar > .container > .details-button.less
+{
+    -fx-graphic: url("/icons/24/ic_expand_less_white_24dp.png");
+}
+
 /*******************************************************************************
  *                                                                             *
- * Popup menu styling                                                          *
+ * Hyperlink                                                                   *
+ *                                                                             *
+ ******************************************************************************/
+.hyperlink
+{
+    -fx-text-fill: -fx-text-background-color;
+}
+
+.hyperlink:hover,
+.hyperlink:hover:visited
+{
+    -fx-text-fill: -theme-color-focus;
+}
+
+/*******************************************************************************
+ *                                                                             *
+ * Popup menu                                                                  *
  *                                                                             *
  ******************************************************************************/
 .context-menu,
-.combo-box-popup .list-view,
+.combo-box-popup > .list-view,
 .date-picker-popup
 {
      -fx-background-color: -theme-color-border, -theme-color-inner-background;
 }
 
+.combo-box-popup > .list-view
+{
+    -fx-background-insets: 0, 0 1 1 1;
+}
+
 /*******************************************************************************
  *                                                                             *
- * Scroll bar styling                                                          *
+ * Scroll bar                                                                  *
  *                                                                             *
  ******************************************************************************/
-.scroll-pane,
-.scroll-pane .corner
-{
-    -fx-background-color: -theme-color-background;
-    -fx-background-insets: 0;
-}
-
-.scroll-bar:horizontal
-{
-    -fx-background-color: -theme-color-border, -theme-color-background;
-    -fx-background-insets: 0, 1 0 0 0;
-}
-
+.scroll-bar:horizontal,
 .scroll-bar:vertical
 {
     -fx-background-color: -theme-color-border, -theme-color-background;
-    -fx-background-insets: 0, 0 0 0 1;
 }
 
-.scroll-bar .increment-button,
-.scroll-bar .decrement-button
+.scroll-bar > .increment-button,
+.scroll-bar > .decrement-button
 {
-    -fx-background-color: -theme-color-background;
+    -fx-background-color: transparent, -theme-color-background;
     -fx-padding: 6;
 }
 
-.scroll-bar .increment-button:hover,
-.scroll-bar .decrement-button:hover
+.scroll-bar:horizontal > .increment-button
 {
-    -fx-background-color: derive(-theme-color-base, 15%);
-    -fx-background-insets: 1;
+    -fx-background-insets: 0, 1 1 1 0;
 }
 
-.scroll-bar .increment-arrow,
-.scroll-bar .decrement-arrow
+.scroll-bar:horizontal > .decrement-button
 {
-    -fx-background-color: -theme-color-mark; /* To achieve a bit darker color */
+    -fx-background-insets: 0, 1 0 1 1;
 }
 
-.scroll-bar:horizontal .thumb,
-.scroll-bar:horizontal .thumb:selected
+.scroll-bar:vertical > .increment-button
+{
+    -fx-background-insets: 0, 0 1 1 1;
+}
+
+.scroll-bar:vertical > .decrement-button
+{
+    -fx-background-insets: 0, 1 1 0 1;
+}
+
+.scroll-bar > .increment-button:hover,
+.scroll-bar > .decrement-button:hover
+{
+    -fx-background-color: transparent, -theme-color-base-hover;
+}
+
+.scroll-bar > .increment-button > .increment-arrow,
+.scroll-bar > .increment-button > .decrement-arrow,
+.scroll-bar > .decrement-button > .increment-arrow,
+.scroll-bar > .decrement-button > .decrement-arrow
+{
+    -fx-background-color: -theme-color-mark;
+}
+
+.scroll-bar:horizontal > .thumb
 {
     -fx-background-color: -theme-color-border, -theme-color-base;
     -fx-background-insets: 0 0 1 0, 1;
     -fx-background-radius: 0;
 }
 
-.scroll-bar:vertical .thumb,
-.scroll-bar:vertical .thumb:selected
+.scroll-bar:vertical > .thumb
 {
     -fx-background-color: -theme-color-border, -theme-color-base;
     -fx-background-insets: 0 1 0 0, 1;
     -fx-background-radius: 0;
 }
 
-.scroll-bar .thumb:hover
+.scroll-bar > .thumb:hover
 {
-     -fx-background-color: -theme-color-border,  derive(-theme-color-base, 15%);
+     -fx-background-color: -theme-color-border,  -theme-color-base-hover;
 }
 
 /*******************************************************************************
  *                                                                             *
- * Split pane styling                                                          *
+ * Split pane                                                                  *
  *                                                                             *
  ******************************************************************************/
-.split-pane
-{
-    -fx-background-color: transparent;
-    -fx-padding: 0;
-}
-
-.split-pane:horizontal .split-pane-divider
+.split-pane:horizontal > .split-pane-divider
 {
     -fx-background-color: -theme-color-border,
                           linear-gradient(to right, derive(-theme-color-base, 25%), derive(-theme-color-base ,-5%));
-    -fx-background-insets: 0, 1 1 0 1;
 }
 
-.split-pane:vertical .split-pane-divider
+.split-pane:vertical > .split-pane-divider
 {
     -fx-background-color: -theme-color-border,
                           linear-gradient(to bottom, derive(-theme-color-base, 25%), derive(-theme-color-base,-5%));
-    -fx-background-insets: 0, 1 0 0 0;
-    -fx-padding: 0 3 0 2;
 }
 
 /*******************************************************************************
  *                                                                             *
- * Tab styling                                                                 *
+ * Tab pane                                                                    *
  *                                                                             *
  ******************************************************************************/
 .tab-pane
@@ -416,46 +444,46 @@
     -fx-tab-max-height: 40px;
 }
 
-.tab-pane .tab-header-area
+.tab-pane > .tab-header-area
 {
     -fx-padding: 0;
 }
 
-.tab-pane .tab-header-area .tab-header-background
+.tab-pane > .tab-header-area > .tab-header-background
 {
     -fx-background-color: -theme-color-border, -theme-color-background;
     -fx-background-insets: 0 0 0 0, 1 0 1 0;
 }
 
-.tab-pane .tab-header-area .headers-region .tab
+.tab-pane > .tab-header-area > .headers-region > .tab
 {
     -fx-background-insets: 0, 1 1 1 0;
     -fx-background-radius: 0;
 }
 
-.tab-pane .tab-header-area .headers-region .tab:selected
+.tab-pane > .tab-header-area > .headers-region > .tab:selected
 {
     -fx-background-insets: 0, 1 1 0 0;
     -fx-background-color: -theme-color-border, -theme-color-inner-background;
     -fx-faint-focus-color: transparent;
 }
 
-.tab-pane .tab-header-area .headers-region .tab:selected .focus-indicator
+.tab-pane:focused > .tab-header-area > .headers-region > .tab:selected .focus-indicator
 {
-    -fx-border-insets: -4 -5 -5 -6, 0;
+    -fx-border-color: -theme-color-focus;
+    -fx-border-insets: -4 -5 -5 -6;
     -fx-border-radius: 0;
 }
 
 /* Adds space between tab text and close button */
-.tab-pane .tab-header-area .headers-region .tab .tab-container .tab-label
+.tab-pane > .tab-header-area > .headers-region > .tab > .tab-container > .tab-label
 {
     -fx-padding: 0 4 0 0;
 }
 
-.tab .tab-close-button:hover
+.tab-pane > .tab-header-area > .headers-region > .tab > .tab-container > .tab-close-button:hover
 {
     -fx-background-color: -fx-mark-highlight-color, red;
-    -fx-effect: dropshadow(two-pass-box , rgba(255, 255, 255, 0.2), 1, 0.0 , 0, 1);
 }
 
 .tab-down-button
@@ -464,25 +492,48 @@
    -fx-padding: 0 8 8 0;
 }
 
-.tab-down-button .arrow
+.tab-down-button > .arrow
 {
     -fx-shape: "M7 10l5 5 5-5z";
 }
 
-.tab-down-button .arrow:hover
+.tab-down-button > .arrow:hover
 {
-    -fx-background-color: -theme-color-accent;
+    -fx-background-color: -theme-color-focus;
 }
 
 /*******************************************************************************
  *                                                                             *
- * Text input styling                                                          *
+ * Text area                                                                   *
+ *                                                                             *
+ ******************************************************************************/
+.text-area > .scroll-pane > .scroll-bar:vertical
+{
+    -fx-background-color: transparent, -theme-color-border, -theme-color-background;
+    -fx-background-insets: 0, 1 0 1 0, 1 0 1 1;
+    -fx-padding: 0 -1 0 0;
+}
+
+.text-area .content,
+.text-area:focused .content
+{
+    -fx-background-color: -theme-color-inner-background;
+    -fx-background-insets: 0;
+}
+
+/*******************************************************************************
+ *                                                                             *
+ * Text input                                                                  *
  *                                                                             *
  ******************************************************************************/
 .text-input,
-.combo-box-base:editable .text-field
+.combo-box-base:editable > .text-field,
+.date-picker > .text-field
 {
     -fx-background-color: -theme-color-border, -theme-color-inner-background;
+    -fx-background-insets: 0, 1;
+    -fx-background-radius: 0;
+
     -fx-prompt-text-fill: derive(-fx-control-inner-background, 50%);
 }
 
@@ -490,8 +541,6 @@
 .text-input:hover
 {
     -fx-background-color: -theme-color-focus, -theme-color-inner-background;
-    -fx-background-insets: 0, 1;
-    -fx-background-radius: 3, 2;
 }
 
 .text-input:focused
@@ -499,46 +548,52 @@
     -fx-prompt-text-fill: transparent;
 }
 
-.combo-box-base:editable:focused .text-field,
-.combo-box-base:editable:hover .text-field,
-.combo-box-base:editable .text-field:focused,
-.combo-box-base:editable .text-field:hover,
-.date-picker:focused .text-field,
-.date-picker:hover .text-field,
-.date-picker .text-field:focused,
-.date-picker .text-field:hover
+.combo-box-base:editable:focused > .text-field,
+.combo-box-base:editable:hover > .text-field,
+.combo-box-base:editable > .text-field:focused,
+.combo-box-base:editable > .text-field:hover,
+.date-picker:focused > .text-field,
+.date-picker:hover > .text-field,
+.date-picker > .text-field:focused,
+.date-picker > .text-field:hover
 {
     -fx-background-color: -theme-color-focus, -theme-color-inner-background;
-    -fx-background-insets: 0 -1 0 0, 1 0 1 1;
-    -fx-background-radius: 3 0 0 3, 2 0 0 2;
+    -fx-background-insets: 0, 1;
+    -fx-background-radius: 0;
 }
 
 /*******************************************************************************
  *                                                                             *
- * Toolbar styling                                                             *
+ * Toolbar                                                                     *
  *                                                                             *
  ******************************************************************************/
 .tool-bar
 {
     -fx-background-color: transparent;
     -fx-border-color: -fx-box-border;
-    -fx-border-width: 1 0 1 0;
+    -fx-border-width: 0 0 1 0;
 
     -fx-padding: 6 8 6 8;
     -fx-spacing: 5;
 }
 
-.tool-bar-overflow-button:focused .arrow,
-.tool-bar-overflow-button:hover .arrow
+.tool-bar-overflow-button:focused > .arrow,
+.tool-bar-overflow-button:hover > .arrow
 {
     -fx-background-color: -fx-mark-highlight-color, derive(-fx-mark-color, -30%);
 }
 
 /*******************************************************************************
  *                                                                             *
- * Utility styling                                                             *
+ * Utility                                                                     *
  *                                                                             *
  ******************************************************************************/
+.corner
+{
+    -fx-background-color: -theme-color-background;
+    -fx-background-insets: 0;
+}
+
 .menu-bar
 {
     -fx-background-color: -theme-color-background;
@@ -559,21 +614,20 @@
 .table-view,
 .tree-table-view
 {
-    -fx-table-header-border-color: -theme-color-border;
-    -fx-table-cell-border-color: -theme-color-border;
+    -fx-table-cell-border-color: derive(-theme-color-border, 30%);
 }
 
-.list-view:focused .virtual-flow .clipped-container .sheet .list-cell:focused,
-.tree-view:focused .virtual-flow .clipped-container .sheet .tree-cell:focused,
-.tree-table-view:focused:row-selection .virtual-flow .clipped-container .sheet .tree-table-row-cell:focused,
-.tree-table-view:focused:cell-selection .virtual-flow .clipped-container .sheet .tree-table-row-cell .tree-table-cell:focused
+.list-view:focused > .virtual-flow > .clipped-container > .sheet > .list-cell:focused,
+.tree-view:focused > .virtual-flow > .clipped-container > .sheet > .tree-cell:focused,
+.tree-table-view:focused:row-selection > .virtual-flow > .clipped-container > .sheet > .tree-table-row-cell:focused,
+.tree-table-view:focused:cell-selection > .virtual-flow > .clipped-container > .sheet > .tree-table-row-cell > .tree-table-cell:focused
 {
     -fx-background-color: -fx-background;
     -fx-background-insets: 0;
 }
 
-.table-view:focused:row-selection .virtual-flow .clipped-container .sheet .table-row-cell:focused,
-.table-view:focused:cell-selection .virtual-flow .clipped-container .sheet .table-row-cell .table-cell:focused
+.table-view:focused:row-selection > .virtual-flow > .clipped-container .sheet > .table-row-cell:focused,
+.table-view:focused:cell-selection > .virtual-flow > .clipped-container .sheet > .table-row-cell .table-cell:focused
 {
     -fx-background-color: -fx-table-cell-border-color, -fx-background;
     -fx-background-insets: 0, 0 0 1 0;
@@ -581,13 +635,38 @@
 
 /*******************************************************************************
  *                                                                             *
- * Custom component styling                                                    *
+ * QuadTabPane                                                                 *
+ *                                                                             *
+ ******************************************************************************/
+.quad-tab-pane
+{
+    -fx-padding: 0;
+}
+
+.quad-tab-pane > .split-pane-divider
+{
+    -fx-background-color: -theme-color-border,
+                          linear-gradient(to right, derive(-theme-color-base, 25%), derive(-theme-color-base ,-5%));
+    -fx-background-insets: 0, 1 1 0 1;
+}
+
+.quad-tab-pane > * > .split-pane:vertical > .split-pane-divider
+{
+    -fx-background-color: -theme-color-border,
+                          linear-gradient(to bottom, derive(-theme-color-base, 25%), derive(-theme-color-base,-5%));
+    -fx-background-insets: 0, 1 0 0 0;
+    -fx-padding: 0 3 0 2;
+}
+
+/*******************************************************************************
+ *                                                                             *
+ * Custom components                                                           *
  *                                                                             *
  ******************************************************************************/
 .tab-box
 {
-    -fx-background-color: -theme-color-inner-background, -theme-color-background;
-    -fx-background-insets: 0, 4 0 0 0;
+    -fx-background-color: -theme-color-inner-background, -theme-color-border, -theme-color-background;
+    -fx-background-insets: 0, 4 0 0 0, 5 0 0 0;
     -fx-padding: 4 0 0 0;
 }
 
@@ -614,6 +693,11 @@
 
     -fx-background-insets: 0;
     -fx-padding: 4;
+}
+
+.search-list:focused
+{
+    -fx-background-insets: 0;
 }
 
 .search-list .list-cell:filled:hover

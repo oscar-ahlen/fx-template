@@ -190,6 +190,23 @@ public class QuadTabPane
             moveSelectedTab( parent, Direction.DOWN );
     }
 
+    /**
+     * Collapses all panes into a single one.
+     */
+    public void collapseAll()
+    {
+        while ( !northEastPane.getTabs().isEmpty() )
+            northWestPane.getTabs().add( northEastPane.getTabs().remove( 0 ) );
+
+        while ( !southWestPane.getTabs().isEmpty() )
+            northWestPane.getTabs().add( southWestPane.getTabs().remove( 0 ) );
+
+        while ( !southEastPane.getTabs().isEmpty() )
+            northWestPane.getTabs().add( southEastPane.getTabs().remove( 0 ) );
+
+        update();
+    }
+
     public void requestTabFocus( Tab tab )
     {
         TabPane targetPane = null;
