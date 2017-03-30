@@ -12,8 +12,8 @@
     -theme-color-inner-background: #45494A;
 
     -theme-color-base: #3C3E3F;
-    -theme-color-base-hover: derive(-theme-color-base, 30%);
-    -theme-color-base-pressed: derive(-theme-color-base, 45%);
+    -theme-color-base-hover: derive(-theme-color-base, 15%);
+    -theme-color-base-pressed: derive(-theme-color-base, 30%);
 
     -theme-color-border: #646464;
     -theme-color-mark: white;
@@ -560,6 +560,47 @@
     -fx-background-color: -theme-color-focus, -theme-color-inner-background;
     -fx-background-insets: 0, 1;
     -fx-background-radius: 0;
+}
+
+/*******************************************************************************
+ *                                                                             *
+ * Titled pane                                                                 *
+ *                                                                             *
+ ******************************************************************************/
+.titled-pane > .title
+{
+    -fx-background-color: -theme-color-border, -theme-color-base;
+    -fx-background-insets: 0, 1;
+    -fx-background-radius: 0;
+}
+
+.titled-pane:collapsed > .title
+{
+    -fx-background-insets: 0, 1 1 0 1;
+}
+
+.titled-pane > .title:hover
+{
+    -fx-background-color: -theme-color-border, -theme-color-base-hover;
+}
+
+.titled-pane > *.content
+{
+    -fx-border-insets: -1 0 -1 0;
+    -fx-background-color: transparent;
+}
+
+.titled-pane > .content > AnchorPane,
+.titled-pane > .content > BorderPane,
+.titled-pane > .content > FlowPane,
+.titled-pane > .content > GridPane,
+.titled-pane > .content > HBox,
+.titled-pane > .content > Pane,
+.titled-pane > .content > StackPane,
+.titled-pane > .content > TilePane,
+.titled-pane > .content > VBox
+{
+    -fx-padding: 8;
 }
 
 /*******************************************************************************
