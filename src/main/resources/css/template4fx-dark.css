@@ -574,11 +574,6 @@
     -fx-background-radius: 0;
 }
 
-.titled-pane:collapsed > .title
-{
-    -fx-background-insets: 0, 1 1 0 1;
-}
-
 .titled-pane > .title:hover
 {
     -fx-background-color: -theme-color-border, -theme-color-base-hover;
@@ -586,7 +581,6 @@
 
 .titled-pane > *.content
 {
-    -fx-border-insets: -1 0 -1 0;
     -fx-background-color: transparent;
 }
 

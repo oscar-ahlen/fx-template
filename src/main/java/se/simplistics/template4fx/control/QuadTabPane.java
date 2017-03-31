@@ -1,17 +1,11 @@
 package se.simplistics.template4fx.control;
 
 import javafx.application.Platform;
-import javafx.event.EventHandler;
 import javafx.geometry.Orientation;
 import javafx.scene.Node;
-import javafx.scene.Scene;
 import javafx.scene.control.SplitPane;
 import javafx.scene.control.Tab;
 import javafx.scene.control.TabPane;
-import javafx.scene.input.KeyCode;
-import javafx.scene.input.KeyCodeCombination;
-import javafx.scene.input.KeyCombination;
-import javafx.scene.input.KeyEvent;
 
 import java.util.ArrayList;
 import java.util.HashSet;
@@ -61,30 +55,6 @@ public class QuadTabPane
 
         left.getItems().add( northWestPane );
         right.getItems().add( northEastPane );
-    }
-
-    public void addKeyBindings( Scene scene, KeyCombination.Modifier modifier )
-    {
-        addKeyBinding( scene, KeyCode.LEFT, modifier, this::moveTabLeft );
-        addKeyBinding( scene, KeyCode.RIGHT, modifier, this::moveTabRight );
-        addKeyBinding( scene, KeyCode.UP, modifier, this::moveTabUp );
-        addKeyBinding( scene, KeyCode.DOWN, modifier, this::moveTabDown );
-
-        addKeyBinding( scene, KeyCode.HOME, modifier,
-                       () -> getFocusedPane( getScene().getFocusOwner() ).requestFocus() );
-
-        addKeyBinding( scene, KeyCode.F4, modifier,
-                       () ->
-                       {
-                           TabPane focusedPane = getFocusedPane( getScene().getFocusOwner() );
-                           Tab tab = focusedPane.getSelectionModel().getSelectedItem();
-
-                           if ( focusedPane.getTabs().remove( tab ) )
-                           {
-                               tab.getOnClosed().handle( null );
-                               focusedPane.requestFocus();
-                           }
-                       } );
     }
 
     /**
@@ -207,6 +177,34 @@ public class QuadTabPane
         update();
     }
 
+    /**
+     * @return the currently selected tab in the currently focused pane
+     */
+    public Tab getFocusedTab()
+    {
+        return getFocusedPane( getScene().getFocusOwner() ).getSelectionModel().getSelectedItem();
+    }
+
+    /**
+     * Closes the currently selected tab
+     */
+    public void closeFocusedTab()
+    {
+        TabPane focusedPane = getFocusedPane( getScene().getFocusOwner() );
+        Tab tab = focusedPane.getSelectionModel().getSelectedItem();
+
+        if ( focusedPane.getTabs().remove( tab ) )
+        {
+            tab.getOnClosed().handle( null );
+            focusedPane.requestFocus();
+        }
+    }
+
+    /**
+     * Requests focus for a specific tab
+     *
+     * @param tab the tab to be focused
+     */
     public void requestTabFocus( Tab tab )
     {
         TabPane targetPane = null;
@@ -225,6 +223,15 @@ public class QuadTabPane
             targetPane.getSelectionModel().select( tab );
             targetPane.requestFocus();
         }
+    }
+
+    /**
+     * Requests focus for the selected tab in the tab pane that contains the currently focused node.
+     * If the focused node is not contained in this QuadTabPane the selected tab in the NW pane is focused.
+     */
+    public void requestTabPaneFocus()
+    {
+        getFocusedPane( getScene().getFocusOwner() ).requestFocus();
     }
 
     public void update()
@@ -250,24 +257,6 @@ public class QuadTabPane
         pane.setMinHeight( 30 );
 
         tabPaneSet.add( pane );
-    }
-
-    private void addKeyBinding( Scene scene, KeyCode keyCode, KeyCombination.Modifier modifier, Runnable runnable )
-    {
-        scene.addEventFilter( KeyEvent.KEY_PRESSED, new EventHandler<KeyEvent>()
-        {
-            final KeyCombination keyComb = new KeyCodeCombination( keyCode, modifier );
-
-            @Override
-            public void handle( KeyEvent event )
-            {
-                if ( keyComb.match( event ) )
-                {
-                    runnable.run();
-                    event.consume();
-                }
-            }
-        } );
     }
 
     private void addTab( Tab tab, TabPane childPane, boolean focus, Runnable runnable )

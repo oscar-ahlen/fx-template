@@ -108,6 +108,14 @@ public class SearchBox<T>
             } );
     }
 
+    public void toggle()
+    {
+        setVisible( !isVisible() );
+
+        if ( isVisible() )
+            requestFocus();
+    }
+
     public ListView<T> getResultView()
     {
         return resultView;

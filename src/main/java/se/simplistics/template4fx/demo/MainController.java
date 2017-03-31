@@ -2,19 +2,13 @@ package se.simplistics.template4fx.demo;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.Scene;
 import javafx.scene.control.RadioMenuItem;
 import javafx.scene.control.Tab;
 import javafx.scene.control.ToggleGroup;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.input.KeyCode;
-import javafx.scene.input.KeyCodeCombination;
-import javafx.scene.input.KeyCombination;
-import javafx.scene.input.KeyEvent;
 import se.simplistics.template4fx.FXClient;
 import se.simplistics.template4fx.StyleSheets;
 import se.simplistics.template4fx.control.QuadTabPane;
@@ -80,30 +74,6 @@ public class MainController
         searchBox.setOnFocusedLost( () -> searchBox.setVisible( false ) );
     }
 
-    public void initiateEventFilter( Scene scene )
-    {
-        pane.addKeyBindings( scene, KeyCombination.CONTROL_DOWN );
-
-        scene.addEventFilter( KeyEvent.KEY_PRESSED, new EventHandler<KeyEvent>()
-        {
-            final KeyCombination keyComb = new KeyCodeCombination( KeyCode.E, KeyCombination.CONTROL_DOWN );
-
-            @Override
-            public void handle( KeyEvent event )
-            {
-                if ( keyComb.match( event ) )
-                {
-                    searchBox.setVisible( !searchBox.isVisible() );
-
-                    if ( searchBox.isVisible() )
-                        searchBox.requestFocus();
-
-                    event.consume();
-                }
-            }
-        } );
-    }
-
     public void newMasterTab()
         throws IOException
     {
@@ -130,6 +100,41 @@ public class MainController
         searchObjects.add( searchObject );
 
         pane.addChildTab( tab, false, () -> searchObjects.remove( searchObject ) );
+    }
+
+    public void toggleSearch()
+    {
+        searchBox.toggle();
+    }
+
+    public void moveTabLeft()
+    {
+        pane.moveTabLeft();
+    }
+
+    public void moveTabRight()
+    {
+        pane.moveTabRight();
+    }
+
+    public void moveTabUp()
+    {
+        pane.moveTabUp();
+    }
+
+    public void moveTabDown()
+    {
+        pane.moveTabDown();
+    }
+
+    public void focusTab()
+    {
+        pane.requestTabPaneFocus();
+    }
+
+    public void closeTab()
+    {
+        pane.closeFocusedTab();
     }
 
     public void collapseAll()

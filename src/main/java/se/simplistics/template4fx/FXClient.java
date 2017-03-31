@@ -5,7 +5,6 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
-import se.simplistics.template4fx.demo.MainController;
 
 public class FXClient
     extends Application
@@ -31,10 +30,6 @@ public class FXClient
         root.getStylesheets().add( StyleSheets.getTheme( styleSheet ) );
 
         primaryStage.setScene( new Scene( root, 800, 600 ) );
-
-        MainController controller = loader.getController();
-        controller.initiateEventFilter( primaryStage.getScene() );
-
         primaryStage.show();
     }
 

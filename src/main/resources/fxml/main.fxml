@@ -22,7 +22,20 @@
                 <Menu text="Edit"/>
 
                 <Menu text="View">
-                    <MenuItem text="Collapse all" onAction="#collapseAll"/>
+                    <MenuItem text="Show search view" onAction="#toggleSearch" accelerator="Shortcut+E"/>
+
+                    <SeparatorMenuItem/>
+
+                    <MenuItem text="Move tab left" onAction="#moveTabLeft" accelerator="Shortcut+LEFT"/>
+                    <MenuItem text="Move tab right" onAction="#moveTabRight" accelerator="Shortcut+RIGHT"/>
+                    <MenuItem text="Move tab up" onAction="#moveTabUp" accelerator="Shortcut+UP"/>
+                    <MenuItem text="Move tab down" onAction="#moveTabDown" accelerator="Shortcut+DOWN"/>
+
+                    <SeparatorMenuItem/>
+
+                    <MenuItem text="Focus tab" onAction="#focusTab" accelerator="Shortcut+HOME"/>
+                    <MenuItem text="Close tab" onAction="#closeTab" accelerator="Shortcut+F4"/>
+                    <MenuItem text="Collapse all" onAction="#collapseAll" accelerator="F12"/>
                 </Menu>
 
                 <Menu text="Settings">
