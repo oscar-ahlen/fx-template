@@ -33,7 +33,7 @@
 
                     <SeparatorMenuItem/>
 
-                    <MenuItem text="Focus tab" onAction="#focusTab" accelerator="Shortcut+HOME"/>
+                    <MenuItem text="Focus tab" onAction="#focusTab" accelerator="Shortcut+Shift+Enter"/>
                     <MenuItem text="Close tab" onAction="#closeTab" accelerator="Shortcut+F4"/>
                     <MenuItem text="Collapse all" onAction="#collapseAll" accelerator="F12"/>
                 </Menu>
