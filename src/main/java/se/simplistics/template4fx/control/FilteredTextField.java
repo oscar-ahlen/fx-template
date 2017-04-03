@@ -21,7 +21,7 @@ public class FilteredTextField
                     {
                         String text = getText();
 
-                        if ( isFocused() && text != null && !text.isEmpty() )
+                        if ( newValue && text != null && !text.isEmpty() )
                             selectAll();
                     } )
         );

@@ -44,6 +44,8 @@
     -fx-cell-hover-color: transparent;
     -fx-cell-focus-inner-border: -fx-selection-bar;
 
+    -fx-selection-bar-non-focused: derive(-theme-color-inner-background, 40%);
+
     /* Keep a white mark color on less dark areas */
     -fx-mark-color: -theme-color-mark;
 }
@@ -64,6 +66,15 @@
     -fx-background-color: -theme-color-focus, -theme-color-inner-background;
     -fx-background-insets: 0, 1;
     -fx-background-radius: 0;
+}
+
+.split-pane > * > .list-view:focused,
+.split-pane > * > .tree-view:focused,
+.split-pane > * > .table-view:focused,
+.split-pane > * > .tree-table-view:focused
+{
+    -fx-background-insets: -theme-color-inner-background;
+    -fx-background-insets: 0;
 }
 
 /*******************************************************************************

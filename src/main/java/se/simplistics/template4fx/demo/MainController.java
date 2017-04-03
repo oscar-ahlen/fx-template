@@ -9,7 +9,6 @@ import javafx.scene.control.Tab;
 import javafx.scene.control.ToggleGroup;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import se.simplistics.template4fx.FXClient;
 import se.simplistics.template4fx.StyleSheets;
 import se.simplistics.template4fx.control.QuadTabPane;
 import se.simplistics.template4fx.control.SearchBox;

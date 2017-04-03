@@ -5,7 +5,6 @@ import javafx.scene.control.DialogPane;
 import javafx.scene.control.TextArea;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Priority;
-import se.simplistics.template4fx.FXClient;
 import se.simplistics.template4fx.StyleSheets;
 
 import java.io.PrintWriter;
@@ -40,20 +39,7 @@ public class FXUtils
         t.printStackTrace( pw );
         pw.close();
 
-        TextArea textArea = new TextArea( sw.toString() );
-        textArea.setEditable( false );
-        textArea.setWrapText( true );
-
-        textArea.setMaxWidth( Double.MAX_VALUE );
-        textArea.setMaxHeight( Double.MAX_VALUE );
-        GridPane.setVgrow( textArea, Priority.ALWAYS );
-        GridPane.setHgrow( textArea, Priority.ALWAYS );
-
-        GridPane expContent = new GridPane();
-        expContent.setMaxWidth( Double.MAX_VALUE );
-        expContent.add( textArea, 0, 0 );
-
-        alert.getDialogPane().setExpandableContent( expContent );
+        alert.getDialogPane().setExpandableContent( createTextArea( sw.toString() ) );
         alert.showAndWait();
     }
 
@@ -67,5 +53,23 @@ public class FXUtils
             dialogPane.getStylesheets().add( StyleSheets.getTheme( FXClient.getStyleSheet() ) );
 
         return alert;
+    }
+
+    private static GridPane createTextArea( String content )
+    {
+        TextArea textArea = new TextArea( content );
+        textArea.setEditable( false );
+        textArea.setWrapText( true );
+
+        textArea.setMaxWidth( Double.MAX_VALUE );
+        textArea.setMaxHeight( Double.MAX_VALUE );
+        GridPane.setVgrow( textArea, Priority.ALWAYS );
+        GridPane.setHgrow( textArea, Priority.ALWAYS );
+
+        GridPane gridPane = new GridPane();
+        gridPane.setMaxWidth( Double.MAX_VALUE );
+        gridPane.add( textArea, 0, 0 );
+
+        return gridPane;
     }
 }

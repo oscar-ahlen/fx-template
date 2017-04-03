@@ -14,14 +14,14 @@ public class ModuleController
     public void initialize()
     {
         ObservableList<Person> people = FXCollections.observableArrayList();
-        people.add( new Person( "John", "Doe", "john.doe@example.con" ) );
-        people.add( new Person( "Jane", "Doe", "jane.doe@example.con" ) );
-        people.add( new Person( "John", "Doe", "john.doe@example.con" ) );
-        people.add( new Person( "Jane", "Doe", "jane.doe@example.con" ) );
-        people.add( new Person( "John", "Doe", "john.doe@example.con" ) );
-        people.add( new Person( "Jane", "Doe", "jane.doe@example.con" ) );
-        people.add( new Person( "John", "Doe", "john.doe@example.con" ) );
-        people.add( new Person( "Jane", "Doe", "jane.doe@example.con" ) );
+        people.add( new Person( "John", "Doe", "john.doe@example.com" ) );
+        people.add( new Person( "Jane", "Doe", "jane.doe@example.com" ) );
+        people.add( new Person( "John", "Doe", "john.doe@example.com" ) );
+        people.add( new Person( "Jane", "Doe", "jane.doe@example.com" ) );
+        people.add( new Person( "John", "Doe", "john.doe@example.com" ) );
+        people.add( new Person( "Jane", "Doe", "jane.doe@example.com" ) );
+        people.add( new Person( "John", "Doe", "john.doe@example.com" ) );
+        people.add( new Person( "Jane", "Doe", "jane.doe@example.com" ) );
         tableView.setItems( people );
     }
 

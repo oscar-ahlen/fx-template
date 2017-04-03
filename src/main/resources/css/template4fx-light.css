@@ -63,6 +63,15 @@
     -fx-background-radius: 0;
 }
 
+.split-pane > * > .list-view:focused,
+.split-pane > * > .tree-view:focused,
+.split-pane > * > .table-view:focused,
+.split-pane > * > .tree-table-view:focused
+{
+    -fx-background-insets: -theme-color-inner-background;
+    -fx-background-insets: 0;
+}
+
 /*******************************************************************************
  *                                                                             *
  * Button                                                                      *
