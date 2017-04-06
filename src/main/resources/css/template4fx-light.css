@@ -734,7 +734,7 @@
     -fx-background-insets: 0;
 }
 
-.search-list > .list-cell:filled:hover
+.search-list .list-cell:filled:hover
 {
     -fx-background-color: -theme-color-focus;
     -fx-text-fill: -theme-color-text-highlight;
