@@ -5,14 +5,14 @@
 <?import se.simplistics.template4fx.control.SearchBox?>
 <StackPane xmlns:fx="http://javafx.com/fxml"
            xmlns="http://javafx.com/javafx/8"
-           fx:controller="se.simplistics.template4fx.demo.MainController">
+           fx:controller="se.simplistics.template4fx.MainController">
 
     <BorderPane>
         <top>
             <MenuBar>
                 <Menu text="File">
-                    <MenuItem text="New master tab" onAction="#newMasterTab"/>
-                    <MenuItem text="New slave tab" onAction="#newSlaveTab"/>
+                    <MenuItem text="New master tab" onAction="#newMasterTab" accelerator="Shortcut+1"/>
+                    <MenuItem text="New slave tab" onAction="#newSlaveTab" accelerator="Shortcut+2"/>
                 </Menu>
 
                 <Menu text="Edit"/>
@@ -29,7 +29,7 @@
 
                     <SeparatorMenuItem/>
 
-                    <MenuItem text="Focus tab" onAction="#focusTab" accelerator="Shortcut+Shift+Enter"/>
+                    <MenuItem text="Focus tab" onAction="#focusTab" accelerator="F8"/>
                     <MenuItem text="Close tab" onAction="#closeTab" accelerator="Shortcut+F4"/>
                     <MenuItem text="Collapse all" onAction="#collapseAll" accelerator="F12"/>
                 </Menu>
@@ -38,7 +38,9 @@
                     <Menu text="Themes" style="-fx-graphic: url('/icons/16/change_whm_theme.png')">
                         <RadioMenuItem fx:id="lightTheme" text="Light theme"/>
                         <RadioMenuItem fx:id="darkTheme" text="Dark theme"/>
+
                         <SeparatorMenuItem/>
+
                         <RadioMenuItem fx:id="modena" text="Modena"/>
                     </Menu>
                 </Menu>

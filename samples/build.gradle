@@ -1,0 +1,27 @@
+group 'se.simplistics.template4fx'
+version '0.3.0'
+description 'Template desktop application for JavaFX to be used and built upon in other projects.'
+
+dependencies {
+    compile project(':template4fx-core')
+}
+
+tasks.withType(Jar) {
+    destinationDir = file('build/output')
+}
+
+jar {
+    exclude 'META-INF/*.SF', 'META-INF/*.DSA', 'META-INF/*.RSA', 'META-INF/*.MF', 'log4j.properties'
+
+    manifest {
+        attributes 'Main-Class': 'se.simplistics.template4fx.FXClient',
+                'Class-Path': '. ' + configurations.runtime.files.collect { "lib/$it.name" }.join(' ')
+    }
+}
+
+task copyRuntimeLibs(type: Copy) {
+    from configurations.runtime
+    into 'build/output/lib'
+}
+
+build.dependsOn(copyRuntimeLibs)

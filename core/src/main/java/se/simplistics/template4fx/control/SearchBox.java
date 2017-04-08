@@ -65,7 +65,9 @@ public class SearchBox<T>
                 else if ( letter == 13 && enterAction != null )  // Enter
                 {
                     setVisible( false );
-                    enterAction.run();
+
+                    if ( enterAction != null )
+                        enterAction.run();
                 }
                 else if ( letter == 27 ) // Esc
                 {
@@ -91,21 +93,18 @@ public class SearchBox<T>
                         break;
                 }
             } );
+
+        resultView.focusedProperty().addListener(
+            ( arg0, arg1, arg2 ) ->
+            {
+                if ( arg1 && !arg2 )
+                    setVisible( false );
+            } );
     }
 
     public void setOnEnter( Runnable enterAction )
     {
         this.enterAction = enterAction;
-    }
-
-    public void setOnFocusedLost( Runnable focusedLostAction )
-    {
-        resultView.focusedProperty().addListener(
-            ( arg0, arg1, arg2 ) ->
-            {
-                if ( arg1 && !arg2 )
-                    focusedLostAction.run();
-            } );
     }
 
     public void toggle()

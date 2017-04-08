@@ -1,4 +1,4 @@
-package se.simplistics.template4fx.demo;
+package se.simplistics.template4fx;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -69,8 +69,6 @@ public class MainController
                 if ( searchObject != null )
                     pane.requestTabFocus( searchObject.getTab() );
             } );
-
-        searchBox.setOnFocusedLost( () -> searchBox.setVisible( false ) );
     }
 
     public void newMasterTab()

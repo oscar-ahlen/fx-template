@@ -1,4 +1,4 @@
-package se.simplistics.template4fx.demo.model;
+package se.simplistics.template4fx.model;
 
 import javafx.beans.property.SimpleStringProperty;
 

@@ -1,4 +1,4 @@
-package se.simplistics.template4fx.demo;
+package se.simplistics.template4fx;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;

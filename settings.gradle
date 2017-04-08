@@ -1,1 +1,6 @@
+include 'core'
+include 'samples'
+
 rootProject.name = 'Template4FX'
+project(':core').name = 'template4fx-core'
+project(':samples').name = 'template4fx-samples'
