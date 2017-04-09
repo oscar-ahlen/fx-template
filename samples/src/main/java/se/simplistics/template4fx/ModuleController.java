@@ -3,8 +3,12 @@ package se.simplistics.template4fx;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.scene.control.Alert;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.TableView;
 import se.simplistics.template4fx.model.Person;
+
+import java.util.Optional;
 
 public class ModuleController
 {
@@ -28,5 +32,12 @@ public class ModuleController
     public void showErrorDialog()
     {
         FXUtils.showError( "En example error", new Exception( "Error message" ) );
+    }
+
+    public void showConfirmationDialog()
+    {
+        Alert alert = FXUtils.confirmationDialog( "Do you want to continue?" );
+        Optional<ButtonType> response = alert.showAndWait();
+        response.ifPresent( buttonType -> System.out.println( buttonType.getButtonData().getTypeCode() ) );
     }
 }

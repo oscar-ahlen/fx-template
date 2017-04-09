@@ -43,6 +43,13 @@ public class FXUtils
         alert.showAndWait();
     }
 
+    public static Alert confirmationDialog( String header )
+    {
+        Alert alert = customAlert( Alert.AlertType.CONFIRMATION );
+        alert.setHeaderText( header );
+        return alert;
+    }
+
     private static Alert customAlert( Alert.AlertType type )
     {
         Alert alert = new Alert( type );

@@ -15,7 +15,7 @@
                 onAction="#showErrorDialog"/>
 
         <Button styleClass="icon-button" style="-fx-graphic: url('/icons/16/change_whm_theme.png')"
-                text="Icon button 2"/>
+                text="Icon button 2" onAction="#showConfirmationDialog"/>
 
         <Button styleClass="icon-button" style="-fx-graphic: url('/icons/16/information.png')" text="Icon button 3"/>
 
