@@ -1,6 +1,14 @@
 <?import javafx.geometry.Insets?>
-<?import javafx.scene.control.*?>
+<?import javafx.scene.control.Button?>
 <?import javafx.scene.control.cell.PropertyValueFactory?>
+<?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.RadioButton?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
 <VBox xmlns:fx="http://javafx.com/fxml"
@@ -8,7 +16,7 @@
       fx:controller="se.simplistics.template4fx.ModuleController"
       styleClass="tab-box">
 
-    <ToolBar>
+    <HBox styleClass="hbox-tool-bar">
         <TextField promptText="Enter text here"/>
 
         <Button styleClass="icon-button" style="-fx-graphic: url('/icons/16/add.png')" text="Icon button 1"
@@ -20,15 +28,15 @@
         <Button styleClass="icon-button" style="-fx-graphic: url('/icons/16/information.png')" text="Icon button 3"/>
 
         <Button text="Text button 1"/>
-    </ToolBar>
+    </HBox>
 
-    <ToolBar>
+    <HBox styleClass="hbox-tool-bar">
         <ComboBox/>
         <ComboBox editable="true"/>
         <DatePicker/>
         <CheckBox/>
         <RadioButton/>
-    </ToolBar>
+    </HBox>
 
     <StackPane styleClass="tab-content" VBox.vgrow="ALWAYS">
         <padding>

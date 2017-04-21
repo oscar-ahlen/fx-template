@@ -23,5 +23,4 @@ target/
 # Generated files
 build/
 gen/
-log/
 out/

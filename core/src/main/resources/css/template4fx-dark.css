@@ -615,10 +615,11 @@
 
 /*******************************************************************************
  *                                                                             *
- * Toolbar                                                                     *
+ * Toolbar-like things                                                         *
  *                                                                             *
  ******************************************************************************/
-.tool-bar
+.tool-bar,
+.hbox-tool-bar
 {
     -fx-background-color: transparent;
     -fx-border-color: -fx-box-border;
