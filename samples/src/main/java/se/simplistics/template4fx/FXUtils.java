@@ -5,7 +5,6 @@ import javafx.scene.control.DialogPane;
 import javafx.scene.control.TextArea;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Priority;
-import se.simplistics.template4fx.StyleSheets;
 
 import java.io.PrintWriter;
 import java.io.StringWriter;

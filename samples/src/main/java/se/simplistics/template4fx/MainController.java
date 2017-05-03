@@ -9,7 +9,6 @@ import javafx.scene.control.Tab;
 import javafx.scene.control.ToggleGroup;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import se.simplistics.template4fx.StyleSheets;
 import se.simplistics.template4fx.control.QuadTabPane;
 import se.simplistics.template4fx.control.SearchBox;
 
@@ -82,7 +81,7 @@ public class MainController
         SearchObject searchObject = new SearchObject( tab.getText(), tab );
         searchObjects.add( searchObject );
 
-        pane.addMasterTab( tab, true, () -> searchObjects.remove( searchObject ) );
+        pane.addMasterTab( tab, () -> searchObjects.remove( searchObject ) );
     }
 
     public void newSlaveTab()
@@ -96,7 +95,7 @@ public class MainController
         SearchObject searchObject = new SearchObject( tab.getText(), tab );
         searchObjects.add( searchObject );
 
-        pane.addChildTab( tab, false, () -> searchObjects.remove( searchObject ) );
+        pane.addChildTab( tab, () -> searchObjects.remove( searchObject ) );
     }
 
     public void toggleSearch()

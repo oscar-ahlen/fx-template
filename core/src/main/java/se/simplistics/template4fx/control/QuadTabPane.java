@@ -1,6 +1,5 @@
 package se.simplistics.template4fx.control;
 
-import javafx.application.Platform;
 import javafx.geometry.Orientation;
 import javafx.scene.Node;
 import javafx.scene.control.SplitPane;
@@ -98,40 +97,40 @@ public class QuadTabPane
 
     /**
      * Adds a 'master' tab to this QuadTabPane and will always be located at NW or NE depending on which side is focused.
+     * The newly added tab will be selected and focused.
      *
      * @param tab      the tab to be added
-     * @param focus    true if the newly added tab should be selected and focused after the operation, false otherwise
      * @param runnable optional action to be performed after the tab is closed, can be null
      */
-    public void addMasterTab( Tab tab, boolean focus, Runnable runnable )
+    public void addMasterTab( Tab tab, Runnable runnable )
     {
         TabPane current = getFocusedPane( getScene().getFocusOwner() );
 
         if ( current == southWestPane )
-            addTab( tab, northWestPane, focus, runnable );
+            addTab( tab, northWestPane, true, runnable );
         else if ( current == southEastPane )
-            addTab( tab, northEastPane, focus, runnable );
+            addTab( tab, northEastPane, true, runnable );
         else
-            addTab( tab, current, focus, runnable );
+            addTab( tab, current, true, runnable );
     }
 
     /**
      * Adds a 'child' tab to this QuadTabPane and will always be located at SW or SE depending on which side is focused.
+     * The newly added tab will be selected and focused.
      *
      * @param tab      the tab to be added
-     * @param focus    true if the newly added tab should be selected and focused after the operation, false otherwise
      * @param runnable optional action to be performed after the tab is closed, can be null
      */
-    public void addChildTab( Tab tab, boolean focus, Runnable runnable )
+    public void addChildTab( Tab tab, Runnable runnable )
     {
         TabPane current = getFocusedPane( getScene().getFocusOwner() );
 
         if ( current == northWestPane )
-            addTab( tab, southWestPane, focus, runnable );
+            addTab( tab, southWestPane, true, runnable );
         else if ( current == northEastPane )
-            addTab( tab, southEastPane, focus, runnable );
+            addTab( tab, southEastPane, true, runnable );
         else
-            addTab( tab, current, focus, runnable );
+            addTab( tab, current, true, runnable );
     }
 
     public void moveTabLeft()
@@ -275,8 +274,8 @@ public class QuadTabPane
 
         if ( focus )
         {
-            childPane.getSelectionModel().select( tab );
-            Platform.runLater( childPane::requestFocus );
+            tab.getTabPane().getSelectionModel().select( tab );
+            tab.getTabPane().requestFocus();
         }
     }
 
@@ -296,6 +295,16 @@ public class QuadTabPane
     private void moveSelectedTab( TabPane parent, Direction dir )
     {
         moveTab( parent.getSelectionModel().getSelectedItem(), dir );
+    }
+
+    private void moveTab( Tab tab, TabPane destination )
+    {
+        tab.getTabPane().getTabs().remove( tab );
+        destination.getTabs().add( tab );
+        update();
+
+        tab.getTabPane().getSelectionModel().select( tab );
+        tab.getTabPane().requestFocus();
     }
 
     private void moveTab( Tab tab, Direction dir )
@@ -353,7 +362,7 @@ public class QuadTabPane
             update();
 
         if ( tabIsFocused )
-            Platform.runLater( () -> tab.getTabPane().requestFocus() );
+            tab.getTabPane().requestFocus();
     }
 
     private void moveTabInternally( TabPane parent, int index, int offset )
