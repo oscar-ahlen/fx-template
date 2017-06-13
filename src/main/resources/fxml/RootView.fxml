@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import com.example.template4fx.control.SVGButton?>
+<BorderPane xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:controller="com.example.template4fx.component.RootView">
+
+    <top>
+        <HBox styleClass="nav-bar-top">
+            <SVGButton content="menu" onAction="#toggleSideBar"/>
+
+            <SVGButton content="arrow_back"/>
+
+            <SVGButton content="arrow_forward" disable="true"/>
+
+            <SVGButton fx:id="refresh" content="refresh"/>
+
+            <TextField styleClass="tool-bar-text-field" promptText="%prompt.search" HBox.hgrow="ALWAYS"/>
+
+            <SVGButton content="search"/>
+        </HBox>
+    </top>
+
+    <left>
+        <VBox fx:id="sideBar" styleClass="nav-bar-left" prefWidth="180">
+            <SVGButton content="home" text="%menu.home" maxWidth="Infinity"/>
+
+            <Separator/>
+
+            <SVGButton content="inbox" text="%menu.inbox" maxWidth="Infinity"/>
+
+            <SVGButton content="contacts" text="%menu.contacts" maxWidth="Infinity" onAction="#showContactView"/>
+
+            <SVGButton content="folder_open" text="%menu.files" maxWidth="Infinity" onAction="#showFileView"/>
+
+            <Separator styleClass="nav-bar-separator"/>
+
+            <SVGButton content="settings" text="%menu.settings" maxWidth="Infinity" onAction="#toggleSideBar"/>
+
+            <SVGButton content="help_outline" text="%menu.help" maxWidth="Infinity" onAction="#toggleSideBar"/>
+
+            <SVGButton content="exit_to_app" text="%menu.exit" maxWidth="Infinity" onAction="#exit"/>
+        </VBox>
+    </left>
+
+    <center>
+        <StackPane fx:id="center"/>
+    </center>
+</BorderPane>

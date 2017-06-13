@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.control.cell.PropertyValueFactory?>
+<?import javafx.scene.layout.*?>
+<VBox xmlns="http://javafx.com/javafx"
+      xmlns:fx="http://javafx.com/fxml"
+      fx:controller="com.example.template4fx.component.ContactView">
+
+    <VBox spacing="8" VBox.vgrow="ALWAYS">
+        <padding>
+            <Insets left="8" top="8" right="8" bottom="8"/>
+        </padding>
+
+        <Button text="Test Button"/>
+
+        <CheckBox text="Checkbox"/>
+
+        <RadioButton text="Checkbox"/>
+
+        <GridPane hgap="12" vgap="12">
+            <Label text="Beskrivning" GridPane.rowIndex="0" GridPane.columnIndex="0" GridPane.fillWidth="true"
+                   maxWidth="Infinity"/>
+
+            <TextField GridPane.rowIndex="0" GridPane.columnIndex="1" maxWidth="Infinity"/>
+
+            <Label text="Datum" GridPane.rowIndex="0" GridPane.columnIndex="2" maxWidth="Infinity"/>
+
+            <ComboBox GridPane.rowIndex="0" GridPane.columnIndex="3" maxWidth="Infinity"/>
+
+            <Label text="Datum" GridPane.rowIndex="1" GridPane.columnIndex="0" maxWidth="Infinity"/>
+
+            <ComboBox editable="true" GridPane.rowIndex="1" GridPane.columnIndex="1" maxWidth="Infinity"/>
+
+            <Label text="Datum" GridPane.rowIndex="1" GridPane.columnIndex="2" maxWidth="Infinity"/>
+
+            <DatePicker GridPane.rowIndex="1" GridPane.columnIndex="3" maxWidth="Infinity"/>
+        </GridPane>
+
+        <TableView fx:id="contactView" VBox.vgrow="ALWAYS">
+            <columns>
+                <TableColumn fx:id="contactNameColumn" text="First name" prefWidth="200">
+                    <cellValueFactory>
+                        <PropertyValueFactory property="firstName"/>
+                    </cellValueFactory>
+                </TableColumn>
+
+                <TableColumn text="Last name" prefWidth="200">
+                    <cellValueFactory>
+                        <PropertyValueFactory property="lastName"/>
+                    </cellValueFactory>
+                </TableColumn>
+
+                <TableColumn text="Email" prefWidth="200">
+                    <cellValueFactory>
+                        <PropertyValueFactory property="email"/>
+                    </cellValueFactory>
+                </TableColumn>
+            </columns>
+        </TableView>
+    </VBox>
+</VBox>
