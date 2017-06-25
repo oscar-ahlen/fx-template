@@ -32,6 +32,7 @@ public class RootView
     {
         views.put( "ContactView", (MainView) load( "/fxml/ContactView.fxml" ) );
         views.put( "FileView", (MainView) load( "/fxml/FileView.fxml" ) );
+        views.put( "SettingsView", (MainView) load( "/fxml/SettingsView.fxml" ) );
 
         center.getChildren().add( views.get( "ContactView" ).getRoot() );
         current = views.get( "ContactView" );
@@ -45,6 +46,11 @@ public class RootView
     public void showFileView()
     {
         switchView( views.get( "FileView" ) );
+    }
+
+    public void showSettingsView()
+    {
+        switchView( views.get( "SettingsView" ) );
     }
 
     public void exit()

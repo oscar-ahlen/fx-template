@@ -17,9 +17,9 @@ public class SVG
                 svgPaths.load( in );
             }
         }
-        catch ( IOException ignored )
+        catch ( IOException exc )
         {
-
+            System.err.println( exc.getMessage() );
         }
     }
 

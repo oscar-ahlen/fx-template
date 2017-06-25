@@ -30,7 +30,7 @@ public class FileFacade
 
     private final LongProperty size = new SimpleLongProperty();
 
-    private File file;
+    private final File file;
 
     public FileFacade( File file )
     {

@@ -6,58 +6,70 @@
 <?import javafx.scene.layout.*?>
 <VBox xmlns="http://javafx.com/javafx"
       xmlns:fx="http://javafx.com/fxml"
-      fx:controller="com.example.template4fx.component.ContactView">
+      fx:controller="com.example.template4fx.component.ContactView"
+      spacing="8">
 
-    <VBox spacing="8" VBox.vgrow="ALWAYS">
-        <padding>
-            <Insets left="8" top="8" right="8" bottom="8"/>
-        </padding>
+    <padding>
+        <Insets left="8" top="8" right="8" bottom="8"/>
+    </padding>
 
-        <Button text="Test Button"/>
+    <Button text="Button"/>
 
-        <CheckBox text="Checkbox"/>
+    <CheckBox text="Checkbox"/>
 
-        <RadioButton text="Checkbox"/>
+    <RadioButton text="Radio Button"/>
 
-        <GridPane hgap="12" vgap="12">
-            <Label text="Beskrivning" GridPane.rowIndex="0" GridPane.columnIndex="0" GridPane.fillWidth="true"
-                   maxWidth="Infinity"/>
+    <GridPane vgap="12">
+        <Label styleClass="title-label" text="Textfield" GridPane.rowIndex="0" GridPane.columnIndex="0"
+               GridPane.fillWidth="true"
+               maxWidth="Infinity"/>
 
-            <TextField GridPane.rowIndex="0" GridPane.columnIndex="1" maxWidth="Infinity"/>
+        <TextField styleClass="title-content" GridPane.rowIndex="0" GridPane.columnIndex="1" maxWidth="Infinity">
+            <GridPane.margin>
+                <Insets right="12"/>
+            </GridPane.margin>
+        </TextField>
 
-            <Label text="Datum" GridPane.rowIndex="0" GridPane.columnIndex="2" maxWidth="Infinity"/>
+        <Label styleClass="title-label" text="Combobox" GridPane.rowIndex="0" GridPane.columnIndex="2"
+               maxWidth="Infinity"/>
 
-            <ComboBox GridPane.rowIndex="0" GridPane.columnIndex="3" maxWidth="Infinity"/>
+        <ComboBox styleClass="title-content" GridPane.rowIndex="0" GridPane.columnIndex="3" maxWidth="Infinity"/>
 
-            <Label text="Datum" GridPane.rowIndex="1" GridPane.columnIndex="0" maxWidth="Infinity"/>
+        <Label styleClass="title-label" text="Editable Combobox" GridPane.rowIndex="1" GridPane.columnIndex="0"
+               maxWidth="Infinity"/>
 
-            <ComboBox editable="true" GridPane.rowIndex="1" GridPane.columnIndex="1" maxWidth="Infinity"/>
+        <ComboBox styleClass="title-content" editable="true" GridPane.rowIndex="1" GridPane.columnIndex="1"
+                  maxWidth="Infinity">
+            <GridPane.margin>
+                <Insets right="12"/>
+            </GridPane.margin>
+        </ComboBox>
 
-            <Label text="Datum" GridPane.rowIndex="1" GridPane.columnIndex="2" maxWidth="Infinity"/>
+        <Label styleClass="title-label" text="Date Picker" GridPane.rowIndex="1" GridPane.columnIndex="2"
+               maxWidth="Infinity"/>
 
-            <DatePicker GridPane.rowIndex="1" GridPane.columnIndex="3" maxWidth="Infinity"/>
-        </GridPane>
+        <DatePicker styleClass="title-content" GridPane.rowIndex="1" GridPane.columnIndex="3" maxWidth="Infinity"/>
+    </GridPane>
 
-        <TableView fx:id="contactView" VBox.vgrow="ALWAYS">
-            <columns>
-                <TableColumn fx:id="contactNameColumn" text="First name" prefWidth="200">
-                    <cellValueFactory>
-                        <PropertyValueFactory property="firstName"/>
-                    </cellValueFactory>
-                </TableColumn>
+    <TableView fx:id="contactView" VBox.vgrow="ALWAYS">
+        <columns>
+            <TableColumn fx:id="contactNameColumn" text="First name" prefWidth="200">
+                <cellValueFactory>
+                    <PropertyValueFactory property="firstName"/>
+                </cellValueFactory>
+            </TableColumn>
 
-                <TableColumn text="Last name" prefWidth="200">
-                    <cellValueFactory>
-                        <PropertyValueFactory property="lastName"/>
-                    </cellValueFactory>
-                </TableColumn>
+            <TableColumn text="Last name" prefWidth="200">
+                <cellValueFactory>
+                    <PropertyValueFactory property="lastName"/>
+                </cellValueFactory>
+            </TableColumn>
 
-                <TableColumn text="Email" prefWidth="200">
-                    <cellValueFactory>
-                        <PropertyValueFactory property="email"/>
-                    </cellValueFactory>
-                </TableColumn>
-            </columns>
-        </TableView>
-    </VBox>
+            <TableColumn text="Email" prefWidth="200">
+                <cellValueFactory>
+                    <PropertyValueFactory property="email"/>
+                </cellValueFactory>
+            </TableColumn>
+        </columns>
+    </TableView>
 </VBox>

@@ -38,7 +38,8 @@ public class App
                                                 ResourceBundle.getBundle( "Template4FX", Locale.ENGLISH ),
                                                 context.getSettings().getValue( "theme" ) );
 
-        primaryStage.setScene( new Scene( mainComponent.getRoot(), 800, 600 ) );
+        primaryStage.setScene( new Scene( mainComponent.getRoot() ) );
+        primaryStage.setMaximized( true );
         primaryStage.show();
     }
 

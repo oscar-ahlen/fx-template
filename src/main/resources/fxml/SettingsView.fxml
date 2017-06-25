@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.control.TitledPane?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.control.Button?>
+<VBox xmlns="http://javafx.com/javafx"
+      xmlns:fx="http://javafx.com/fxml"
+      fx:controller="com.example.template4fx.component.SettingsView"
+      spacing="8">
+
+    <padding>
+        <Insets left="8" top="8" right="8" bottom="8"/>
+    </padding>
+
+    <TitledPane text="%settings.theme.title" collapsible="false">
+        <GridPane vgap="12">
+            <Label styleClass="title-label" text="%settings.theme.main" GridPane.rowIndex="0" GridPane.columnIndex="0"
+                   maxWidth="Infinity"/>
+            <ComboBox styleClass="title-content" fx:id="themeBox" prefWidth="120" GridPane.rowIndex="0"
+                      GridPane.columnIndex="1" maxWidth="Infinity"/>
+
+            <Label styleClass="title-label" text="%settings.theme.color" GridPane.rowIndex="1" GridPane.columnIndex="0"
+                   maxWidth="Infinity"/>
+            <ComboBox styleClass="title-content" fx:id="colorBox" GridPane.rowIndex="1" GridPane.columnIndex="1"
+                      maxWidth="Infinity"/>
+        </GridPane>
+    </TitledPane>
+
+    <HBox alignment="CENTER_RIGHT">
+        <Button text="%button.settings.save" onAction="#save"/>
+    </HBox>
+</VBox>

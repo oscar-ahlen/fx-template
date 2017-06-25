@@ -1,35 +1,44 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import com.example.template4fx.control.SVGTab?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.cell.PropertyValueFactory?>
-<?import javafx.scene.control.TableColumn?>
-<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
 <VBox xmlns="http://javafx.com/javafx"
       xmlns:fx="http://javafx.com/fxml"
-      fx:controller="com.example.template4fx.component.FileView">
+      fx:controller="com.example.template4fx.component.FileView"
+      spacing="8">
 
-    <VBox spacing="8" VBox.vgrow="ALWAYS">
+    <TabPane tabClosingPolicy="ALL_TABS" VBox.vgrow="ALWAYS">
         <padding>
-            <Insets left="8" top="8" right="8" bottom="8"/>
+            <Insets top="8"/>
         </padding>
 
-        <TableView fx:id="fileView" VBox.vgrow="ALWAYS">
-            <columns>
-                <TableColumn fx:id="fileNameColumn" text="Name" prefWidth="200"/>
+        <SVGTab text="Tab 1" svgContent="file_unknown">
+            <StackPane styleClass="tab-box">
+                <TableView fx:id="fileView">
+                    <columns>
+                        <TableColumn fx:id="fileNameColumn" text="Name" prefWidth="200"/>
 
-                <TableColumn text="Format" prefWidth="200">
-                    <cellValueFactory>
-                        <PropertyValueFactory property="format"/>
-                    </cellValueFactory>
-                </TableColumn>
+                        <TableColumn text="Format" prefWidth="200">
+                            <cellValueFactory>
+                                <PropertyValueFactory property="format"/>
+                            </cellValueFactory>
+                        </TableColumn>
 
-                <TableColumn text="Size" prefWidth="200">
-                    <cellValueFactory>
-                        <PropertyValueFactory property="size"/>
-                    </cellValueFactory>
-                </TableColumn>
-            </columns>
-        </TableView>
-    </VBox>
+                        <TableColumn text="Size" prefWidth="200">
+                            <cellValueFactory>
+                                <PropertyValueFactory property="size"/>
+                            </cellValueFactory>
+                        </TableColumn>
+                    </columns>
+                </TableView>
+            </StackPane>
+        </SVGTab>
+
+        <SVGTab text="Tab 2" svgContent="file_image"/>
+        <SVGTab text="Tab 3" svgContent="file_image"/>
+    </TabPane>
 </VBox>

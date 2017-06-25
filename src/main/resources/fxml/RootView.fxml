@@ -37,7 +37,7 @@
 
             <Separator styleClass="nav-bar-separator"/>
 
-            <SVGButton content="settings" text="%menu.settings" maxWidth="Infinity" onAction="#toggleSideBar"/>
+            <SVGButton content="settings" text="%menu.settings" maxWidth="Infinity" onAction="#showSettingsView"/>
 
             <SVGButton content="help_outline" text="%menu.help" maxWidth="Infinity" onAction="#toggleSideBar"/>
 

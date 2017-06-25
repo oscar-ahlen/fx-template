@@ -1,9 +1,11 @@
 package com.example.template4fx.facade;
 
+import com.example.template4fx.model.Contact;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 
-public class Contact
+public class ContactFacade
+    implements FXFacade<Contact>
 {
     private final StringProperty firstName = new SimpleStringProperty();
 
@@ -11,15 +13,29 @@ public class Contact
 
     private final StringProperty email = new SimpleStringProperty();
 
-    public Contact()
+    private final Contact contact;
+
+    public ContactFacade( Contact contact )
     {
+        this.contact = contact;
+        refresh();
     }
 
-    public Contact( String firstName, String lastName, String email )
+    @Override
+    public Contact get()
     {
-        this.firstName.set( firstName );
-        this.lastName.set( lastName );
-        this.email.set( email );
+        return contact;
+    }
+
+    @Override
+    public void refresh()
+    {
+        if ( contact != null )
+        {
+            firstName.set( contact.getFirstName() );
+            lastName.set( contact.getLastName() );
+            email.set( contact.getEmail() );
+        }
     }
 
     public String getFirstName()

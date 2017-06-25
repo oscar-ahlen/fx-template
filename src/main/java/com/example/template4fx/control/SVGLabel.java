@@ -22,7 +22,7 @@ public class SVGLabel
 
         content.addListener( ( observable, oldValue, newValue ) -> path.contentProperty().set( SVG.get( newValue ) ) );
 
-        path.setFill( Paint.valueOf( "#FFFFFF" ) );
+        path.setFill( Paint.valueOf( "#000000" ) );
         setGraphic( path );
     }
 
