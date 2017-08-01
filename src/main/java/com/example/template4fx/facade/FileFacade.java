@@ -2,6 +2,7 @@ package com.example.template4fx.facade;
 
 import com.example.template4fx.SVG;
 import com.example.template4fx.model.File;
+import com.example.template4fx.view.Displayable;
 import javafx.beans.property.LongProperty;
 import javafx.beans.property.SimpleLongProperty;
 import javafx.beans.property.SimpleStringProperty;
@@ -11,7 +12,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class FileFacade
-    implements FXFacade<File>
+    implements FXFacade<File>, Displayable<String>
 {
     private static final Map<String, String> ICONS = new HashMap<>();
 
@@ -100,7 +101,14 @@ public class FileFacade
         this.size.set( size );
     }
 
-    public String getSVGIcon()
+    @Override
+    public String getText()
+    {
+        return name.get();
+    }
+
+    @Override
+    public String getContent()
     {
         return SVG.get( ICONS.get( format.get() ) );
     }

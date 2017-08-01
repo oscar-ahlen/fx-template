@@ -20,8 +20,8 @@ public class SVGTab
         SVGPath path = new SVGPath();
         path.getStyleClass().add( "svg" );
 
-        svgContent.addListener( ( observable, oldValue, newValue )
-                                    -> path.contentProperty().set( SVG.get( newValue ) ) );
+        svgContent
+            .addListener( ( observable, oldValue, newValue ) -> path.contentProperty().set( SVG.get( newValue ) ) );
 
         path.setFill( Paint.valueOf( "#000000" ) );
         setGraphic( path );

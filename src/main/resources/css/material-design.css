@@ -10,7 +10,11 @@
      * Custom values                                                               *
      *                                                                             *
      ******************************************************************************/
-    -menu-color: #202020;
+    -background-color: #ECEFF1;
+
+    -menu-color: #455A64; /* Blue Grey 700 */
+
+    -menu-border: white;
 
     -menu-text-color: ladder(
         -menu-color,
@@ -20,11 +24,9 @@
         -fx-mid-text-color   60%
     );
 
-    -header-color: linear-gradient(to bottom, -fx-focus-color, -fx-accent);
+    -header-color: #607D8B; /* Blue Grey 500 */
 
-    -header-border-color: #0277BD;
-
-    -default-border: #C0C0C0;
+    -default-border: #B0BEC5; /* Blue Grey 200 */
 
     -accent-text-color: ladder(
         -fx-accent,
@@ -34,7 +36,7 @@
         -fx-mid-text-color   60%
     );
 
-    -util-control-color: #D0D0D0;
+    -util-control-color: #B0BEC5; /* Blue Grey 200 */
 
     /*******************************************************************************
      *                                                                             *
@@ -43,16 +45,20 @@
      ******************************************************************************/
     -fx-base: white; /* Base color */
 
-    -fx-background: #F8F8F8; /* Background color */
+    -fx-background: -background-color;
 
     -fx-control-inner-background: white; /* Inner background color */
     -fx-control-inner-background-alt: -fx-control-inner-background;
 
-    -fx-accent: #0288D1; /* Accent color (Light Blue 700) */
+    -fx-dark-text-color: #263238; /* Blue Grey 900 */
+
+    -fx-mid-text-color: #37474F; /* Blue Grey 800 */
+
+    -fx-accent: #FFAB00; /* Amber Accent 700 */
 
     -fx-default-button: -fx-accent;
 
-    -fx-focus-color: #03A9F4; /* Focus color (Light Blue 500) */
+    -fx-focus-color: #FFAB00; /* Amber Accent 700 */
 
     -fx-faint-focus-color: -fx-focus-color;
 
@@ -60,7 +66,7 @@
 
     -fx-hover-base: -fx-base;
 
-    -fx-pressed-base: #F0F0F0;
+    -fx-pressed-base: derive(-fx-background, -5%); //#F0F0F0;
 
     -fx-box-border: -default-border;
     -fx-text-box-border: -default-border;
@@ -80,7 +86,9 @@
 
     -fx-mark-highlight-color: transparent;
 
-    -fx-selection-bar-non-focused: -util-control-color;
+    -fx-selection-bar: #CFD8DC; /* Blue Grey 100 */
+
+    -fx-selection-bar-non-focused: #ECEFF1; /* Blue Grey 50 */
 
     -fx-cell-hover-color: transparent;
 
@@ -230,19 +238,22 @@
 
 .date-picker-popup > .month-year-pane
 {
-    -fx-background-color: -header-border-color, -header-color;
-    -fx-text-fill: -accent-text-color;
+    -fx-background-color: -header-color;
+    -fx-background-insets: 0;
+
+    -fx-text-fill: -menu-text-color;
 }
 
 .date-picker-popup > * > .week-number-cell
 {
+    -fx-text-fill: -fx-dark-text-color;
     -fx-font-weight: bold;
 }
 
 .date-picker-popup > * > .spinner > .label
 {
     -fx-font-weight: bold;
-    -fx-text-fill: -accent-text-color;
+    -fx-text-fill: -menu-text-color;
 }
 
 .date-picker-popup > * > .spinner > .button
@@ -267,8 +278,14 @@
 .date-picker-popup > * > .spinner > .button > .left-arrow,
 .date-picker-popup > * > .spinner > .button > .right-arrow
 {
-    -fx-background-color: -accent-text-color;
-    -fx-shadow-highlight-color: -accent-text-color;
+    -fx-background-color: -menu-text-color;
+    -fx-shadow-highlight-color: -menu-text-color;
+}
+
+.date-picker-popup > * > .previous-month,
+.date-picker-popup > * > .next-month
+{
+    -fx-background-color: -background-color;
 }
 
 /*******************************************************************************
@@ -346,8 +363,6 @@
 {
     -fx-open-tab-animation: NONE;
     -fx-close-tab-animation: NONE;
-
-    -fx-tab-max-height: 40;
 }
 
 .tab-pane > .tab-header-area
@@ -418,6 +433,8 @@
     -fx-background-color: -fx-box-border, -fx-body-color;
     -fx-background-insets: 0, 1;
     -fx-background-radius: 0;
+
+    -fx-font-weight: bold;
 }
 
 .titled-pane > *.content
@@ -499,8 +516,7 @@
  ******************************************************************************/
 .nav-bar-top
 {
-    -fx-background-color: -header-border-color, -header-color;
-    -fx-background-insets: 0, 0 0 1 0;
+    -fx-background-color: -header-color;
 
     -fx-alignment: CENTER;
     -fx-padding: 8;
@@ -514,8 +530,7 @@
 
 .nav-bar-left
 {
-    -fx-background-color: -fx-box-border, -menu-color;
-    -fx-background-insets: 0, 0 1 0 0;
+    -fx-background-color: -menu-color;
     -fx-padding: 8;
 }
 
@@ -537,13 +552,13 @@
 
 .nav-bar-left .button:hover
 {
-    -fx-background-color: -fx-accent;
+    -fx-background-color: -fx-selection-bar;
     -fx-text-fill: -accent-text-color;
 }
 
 .nav-bar-left .button:pressed
 {
-    -fx-background-color: -fx-focus-color;
+    -fx-background-color: -fx-selection-bar-non-focused;
 }
 
 .nav-bar-left .separator:horizontal
@@ -553,7 +568,7 @@
 
 .nav-bar-left .separator:horizontal .line
 {
-    -fx-border-color: -fx-outer-border;
+    -fx-border-color: -menu-border;
     -fx-border-style: solid;
     -fx-border-width: 0 0 1 0;
 }
@@ -571,6 +586,8 @@
 
     -fx-padding: 4 8 4 8 ;
 
+    -fx-font-weight: bold;
+
     -fx-alignment: BASELINE_CENTER;
 }
 
@@ -578,6 +595,11 @@
 {
     -fx-background-insets: 0, 1;
     -fx-background-radius: 0 3 3 0, 0 2 2 0;
+}
+
+.title-content:editable > .text-field
+{
+    -fx-background-radius: 0;
 }
 
 .tab-box

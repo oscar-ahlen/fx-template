@@ -1,11 +1,13 @@
 package com.example.template4fx.facade;
 
+import com.example.template4fx.SVG;
 import com.example.template4fx.model.Contact;
+import com.example.template4fx.view.Displayable;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 
 public class ContactFacade
-    implements FXFacade<Contact>
+    implements FXFacade<Contact>, Displayable<String>
 {
     private final StringProperty firstName = new SimpleStringProperty();
 
@@ -81,5 +83,17 @@ public class ContactFacade
     public void setEmail( String email )
     {
         this.email.set( email );
+    }
+
+    @Override
+    public String getText()
+    {
+        return firstName.get();
+    }
+
+    @Override
+    public String getContent()
+    {
+        return SVG.get( "file_image" );
     }
 }

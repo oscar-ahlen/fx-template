@@ -1,9 +1,9 @@
 package com.example.template4fx.component;
 
-import com.example.template4fx.SVG;
 import com.example.template4fx.facade.ContactFacade;
 import com.example.template4fx.model.Contact;
 import com.example.template4fx.view.SVGTableCell;
+import javafx.beans.property.SimpleObjectProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -17,7 +17,7 @@ public class ContactView
     private TableView<ContactFacade> contactView;
 
     @FXML
-    private TableColumn<ContactFacade, String> contactNameColumn;
+    private TableColumn<ContactFacade, ContactFacade> contactNameColumn;
 
     private final ObservableList<ContactFacade> contacts = FXCollections.observableArrayList();
 
@@ -35,6 +35,7 @@ public class ContactView
         contacts.add( new ContactFacade( new Contact( "John", "Doe", "john.doe@example.com" ) ) );
         contacts.add( new ContactFacade( new Contact( "John", "Doe", "john.doe@example.com" ) ) );
 
-        contactNameColumn.setCellFactory( callback -> new SVGTableCell<>( SVG.get( "file_image" ) ) );
+        contactNameColumn.setCellValueFactory( v -> new SimpleObjectProperty<>( v.getValue() ) );
+        contactNameColumn.setCellFactory( callback -> new SVGTableCell<>() );
     }
 }

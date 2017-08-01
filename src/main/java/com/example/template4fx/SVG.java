@@ -1,11 +1,15 @@
 package com.example.template4fx;
 
+import javafx.scene.paint.Paint;
+
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.Properties;
 
 public class SVG
 {
+    public static Paint BASE = Paint.valueOf( "#0288D1" );
+
     private static final Properties svgPaths = new Properties();
 
     static

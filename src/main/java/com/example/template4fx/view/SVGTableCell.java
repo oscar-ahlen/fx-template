@@ -3,15 +3,14 @@ package com.example.template4fx.view;
 import javafx.scene.control.TableCell;
 import javafx.scene.shape.SVGPath;
 
-public class SVGTableCell<S, T>
+public class SVGTableCell<S, T extends Displayable<String>>
     extends TableCell<S, T>
 {
     private final SVGPath icon;
 
-    public SVGTableCell( String content )
+    public SVGTableCell()
     {
         icon = new SVGPath();
-        icon.setContent( content );
         icon.fillProperty().bind( textFillProperty() );
     }
 
@@ -27,8 +26,9 @@ public class SVGTableCell<S, T>
         }
         else
         {
+            icon.setContent( item.getContent() );
             setGraphic( icon );
-            setText( item.toString() );
+            setText( item.getText() );
         }
     }
 }

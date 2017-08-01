@@ -2,15 +2,14 @@ package com.example.template4fx.component;
 
 import com.example.template4fx.facade.FileFacade;
 import com.example.template4fx.model.File;
+import com.example.template4fx.view.SVGTableCell;
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.SelectionMode;
-import javafx.scene.control.TableCell;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
-import javafx.scene.shape.SVGPath;
 
 public class FileView
     extends MainView
@@ -42,34 +41,6 @@ public class FileView
         files.add( new FileFacade( new File( "Folder 2", "folder", 0 ) ) );
 
         fileNameColumn.setCellValueFactory( v -> new SimpleObjectProperty<>( v.getValue() ) );
-
-        fileNameColumn.setCellFactory( callback -> new TableCell<FileFacade, FileFacade>()
-        {
-            private SVGPath icon;
-
-            @Override
-            protected void updateItem( FileFacade item, boolean empty )
-            {
-                super.updateItem( item, empty );
-
-                if ( empty || item == null )
-                {
-                    setGraphic( null );
-                    setText( null );
-                }
-                else
-                {
-                    if ( icon == null )
-                    {
-                        icon = new SVGPath();
-                        icon.fillProperty().bind( textFillProperty() );
-                    }
-
-                    icon.setContent( item.getSVGIcon() );
-                    setGraphic( icon );
-                    setText( item.getName() );
-                }
-            }
-        } );
+        fileNameColumn.setCellFactory( callback -> new SVGTableCell<>() );
     }
 }
