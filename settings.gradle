@@ -1,1 +1,7 @@
+include 'core'
+include 'client'
+
 rootProject.name = 'Template4FX'
+
+project(':core').name = 'Template4FX-Core'
+project(':client').name = 'Template4FX-Client'

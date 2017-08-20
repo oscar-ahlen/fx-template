@@ -1,0 +1,9 @@
+group 'com.example.template4fx'
+
+dependencies {
+    compile 'org.apache.httpcomponents:fluent-hc:4.5.3'
+    compile 'org.apache.httpcomponents:httpclient-win:4.5.3'
+    compile 'org.apache.httpcomponents:httpmime:4.5.3'
+
+    compile 'com.google.code.gson:gson:2.8.1'
+}

@@ -27,3 +27,6 @@ gradlew.bat
 build/
 gen/
 out/
+
+# Project specific
+/logs/

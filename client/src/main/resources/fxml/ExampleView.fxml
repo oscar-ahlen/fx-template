@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.control.cell.PropertyValueFactory?>
+<?import javafx.scene.layout.VBox?>
+<VBox xmlns="http://javafx.com/javafx"
+      xmlns:fx="http://javafx.com/fxml"
+      fx:controller="com.example.template4fx.component.ExampleView"
+      spacing="8">
+
+    <padding>
+        <Insets left="12" top="12" right="12" bottom="12"/>
+    </padding>
+
+    <Button text="Dialog button" onAction="#showDialog"/>
+
+    <TableView fx:id="fileView" VBox.vgrow="ALWAYS">
+        <columns>
+            <TableColumn fx:id="fileNameColumn" text="%file.name" prefWidth="200"/>
+
+            <TableColumn text="%file.format" prefWidth="200">
+                <cellValueFactory>
+                    <PropertyValueFactory property="format"/>
+                </cellValueFactory>
+            </TableColumn>
+
+            <TableColumn text="%file.size" prefWidth="200">
+                <cellValueFactory>
+                    <PropertyValueFactory property="size"/>
+                </cellValueFactory>
+            </TableColumn>
+        </columns>
+    </TableView>
+</VBox>
