@@ -21,6 +21,10 @@ public class RootView
 {
     private final Map<String, MainView> views = new HashMap<>();
 
+    private MainView current;
+
+    private final HistoryList<MainView> recent = new HistoryList<>();
+
     @FXML
     private Pane navBar;
 
@@ -30,14 +34,9 @@ public class RootView
     @FXML
     private Button backward, forward, refresh;
 
-    private final HistoryList<MainView> recent = new HistoryList<>();
-
-    private MainView current;
-
     private final StringProperty title = new SimpleStringProperty();
 
     public void initialize()
-        throws IOException
     {
         backward.disableProperty().bind( recent.backwardEnabledProperty().not() );
         forward.disableProperty().bind( recent.forwardEnabledProperty().not() );
@@ -60,7 +59,7 @@ public class RootView
         Platform.exit();
     }
 
-    public void toggleSideBar()
+    public void toggleNavBar()
     {
         if ( isActive( navBar ) )
             hide( navBar );

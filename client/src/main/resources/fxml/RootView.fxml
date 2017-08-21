@@ -1,8 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
 <?import com.example.template4fx.control.SVGButton?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
 <StackPane xmlns="http://javafx.com/javafx"
            xmlns:fx="http://javafx.com/fxml"
            fx:controller="com.example.template4fx.component.RootView"
@@ -26,7 +30,7 @@
             <BorderPane>
                 <top>
                     <HBox styleClass="nav-bar-top">
-                        <SVGButton svgContent="menu" onAction="#toggleSideBar"/>
+                        <SVGButton svgContent="menu" onAction="#toggleNavBar"/>
 
                         <SVGButton fx:id="backward" svgContent="arrow_back"/>
 
