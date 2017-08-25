@@ -20,20 +20,24 @@ public abstract class MainView
 
     public abstract void refresh();
 
-    protected void start()
+    private void start()
     {
         idle.set( false );
     }
 
-    protected void stop()
+    private void stop()
     {
         idle.set( true );
     }
 
     protected void run( Task<?> task )
     {
-        if ( idle.get() )
+        if ( isIdle() )
         {
+            task.setOnSucceeded( event -> stop() );
+            task.setOnFailed( event -> stop() );
+            task.setOnCancelled( event -> stop() );
+
             start();
             executorService().submit( task );
         }
