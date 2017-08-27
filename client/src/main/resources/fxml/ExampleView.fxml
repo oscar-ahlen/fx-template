@@ -4,6 +4,7 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.control.cell.PropertyValueFactory?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.layout.HBox?>
 <VBox xmlns="http://javafx.com/javafx"
       xmlns:fx="http://javafx.com/fxml"
       fx:controller="com.example.template4fx.component.ExampleView"
@@ -13,7 +14,11 @@
         <Insets left="12" top="12" right="12" bottom="12"/>
     </padding>
 
-    <Button text="Dialog button" onAction="#showDialog"/>
+    <HBox spacing="8">
+        <Button text="Information Dialog" onAction="#showInfoDialog"/>
+        <Button text="Error Dialog" onAction="#showErrorDialog"/>
+        <Button text="Confirm Dialog" onAction="#showConfirmDialog"/>
+    </HBox>
 
     <TableView fx:id="fileView" VBox.vgrow="ALWAYS">
         <columns>

@@ -1,9 +1,9 @@
 package com.example.template4fx;
 
 import com.example.template4fx.component.RootView;
-import com.example.template4fx.fx.FXContext;
-import com.example.template4fx.fx.FXContextBuilder;
 import javafx.application.Application;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 import org.apache.log4j.Logger;
@@ -41,14 +41,8 @@ public class App
     public void start( Stage primaryStage )
         throws Exception
     {
-        primaryStage.setTitle( "Template4FX" );
+        RootView rootView = loadRootView();
 
-        RootView rootView = (RootView) context.Load( "/fxml/RootView.fxml",
-                                                     ResourceBundle.getBundle( "Template4FX", Locale.ENGLISH ),
-                                                     "/css/theme.css" );
-
-        rootView.setup();
-        rootView.setTitle( "Template4FX" );
         primaryStage.titleProperty().bindBidirectional( rootView.titleProperty() );
 
         primaryStage.setScene( new Scene( rootView.getRoot() ) );
@@ -61,6 +55,26 @@ public class App
         throws Exception
     {
         context.shutdown();
+    }
+
+    private RootView loadRootView()
+        throws IOException
+    {
+        FXMLLoader loader = new FXMLLoader( getClass().getResource( "/fxml/RootView.fxml" ) );
+        loader.setResources( ResourceBundle.getBundle( "Template4FX", Locale.ENGLISH ) );
+
+        Parent root = loader.load();
+        root.getStylesheets().add( "/css/theme.css" );
+
+        RootView rootView = loader.getController();
+
+        rootView.setRoot( root );
+        rootView.setContext( context );
+        rootView.setTitle( "Template4FX" );
+
+        rootView.setup();
+
+        return rootView;
     }
 
     private Settings initSettings()

@@ -1,6 +1,5 @@
 package com.example.template4fx.view;
 
-import com.example.template4fx.fx.SVGIcon;
 import javafx.scene.control.ListCell;
 
 public class SVGListCell<S extends Displayable<String>>

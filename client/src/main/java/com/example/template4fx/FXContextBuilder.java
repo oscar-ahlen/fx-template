@@ -1,6 +1,4 @@
-package com.example.template4fx.fx;
-
-import com.example.template4fx.Settings;
+package com.example.template4fx;
 
 import java.util.concurrent.ExecutorService;
 

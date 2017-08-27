@@ -64,7 +64,7 @@
 
     -fx-accent: #FFAB00; /* Amber Accent 700 */
 
-    -fx-default-button: -fx-accent;
+    -fx-default-button: -header-color;
 
     -fx-focus-color: #FFAB00; /* Amber Accent 700 */
 
@@ -122,6 +122,16 @@
 {
     -fx-background-insets: 0, 1;
     -fx-background-radius: 0;
+}
+
+.button:default
+{
+    -fx-pressed-base: derive(-fx-default-button, 25%);
+
+    -fx-background-color: -fx-color;
+
+    -fx-text-fill: -header-text-color;
+    -fx-font-weight: bold;
 }
 
 .button,

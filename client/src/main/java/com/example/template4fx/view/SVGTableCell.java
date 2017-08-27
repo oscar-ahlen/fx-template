@@ -1,6 +1,5 @@
 package com.example.template4fx.view;
 
-import com.example.template4fx.fx.SVGIcon;
 import javafx.scene.control.TableCell;
 
 public class SVGTableCell<S, T extends Displayable<String>>

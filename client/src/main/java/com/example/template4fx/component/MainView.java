@@ -1,5 +1,7 @@
 package com.example.template4fx.component;
 
+import com.example.template4fx.FXContext;
+import com.example.template4fx.control.dialog.AbstractDialog;
 import javafx.beans.property.BooleanProperty;
 import javafx.beans.property.SimpleBooleanProperty;
 import javafx.concurrent.Task;
@@ -9,25 +11,27 @@ public abstract class MainView
 {
     private RootView rootView;
 
+    private FXContext context;
+
     private final BooleanProperty refreshable = new SimpleBooleanProperty( true );
 
     private final BooleanProperty idle = new SimpleBooleanProperty( true );
+
+    public abstract void refresh();
 
     protected MainView view( String name )
     {
         return rootView.getView( name );
     }
 
-    public abstract void refresh();
-
-    private void start()
+    protected void showDialog( AbstractDialog dialog )
     {
-        idle.set( false );
+        rootView.showDialog( dialog );
     }
 
-    private void stop()
+    protected String setting( String key )
     {
-        idle.set( true );
+        return context.getSettings().getValue( key );
     }
 
     protected void run( Task<?> task )
@@ -39,18 +43,28 @@ public abstract class MainView
             task.setOnCancelled( event -> stop() );
 
             start();
-            executorService().submit( task );
+            context.getExecutorService().submit( task );
         }
     }
 
-    public RootView getRootView()
+    private void start()
     {
-        return rootView;
+        idle.set( false );
+    }
+
+    private void stop()
+    {
+        idle.set( true );
     }
 
     public void setRootView( RootView rootView )
     {
         this.rootView = rootView;
+    }
+
+    public void setContext( FXContext context )
+    {
+        this.context = context;
     }
 
     public boolean isRefreshable()

@@ -1,6 +1,7 @@
 package com.example.template4fx.component;
 
-import com.example.template4fx.control.FXDialog;
+import com.example.template4fx.FXContext;
+import com.example.template4fx.control.dialog.AbstractDialog;
 import com.example.template4fx.util.HistoryList;
 import javafx.application.Platform;
 import javafx.beans.binding.BooleanBinding;
@@ -21,9 +22,11 @@ public class RootView
 {
     private final Map<String, MainView> views = new HashMap<>();
 
+    private final HistoryList<MainView> recent = new HistoryList<>();
+
     private MainView current;
 
-    private final HistoryList<MainView> recent = new HistoryList<>();
+    private FXContext context;
 
     @FXML
     private Pane navBar;
@@ -82,6 +85,17 @@ public class RootView
         current.refresh();
     }
 
+    public void showDialog( AbstractDialog dialog )
+    {
+        dialog.visibleProperty().addListener(
+            ( observable, oldValue, newValue ) -> {
+                if ( !newValue && oldValue )
+                    rootPane.getChildren().remove( dialog );
+            } );
+
+        rootPane.getChildren().add( dialog );
+    }
+
     public void switchView( String name )
     {
         MainView view = views.get( name );
@@ -116,6 +130,7 @@ public class RootView
     {
         MainView mainView = (MainView) load( fxml );
         mainView.setRootView( this );
+        mainView.setContext( context );
         views.put( name, mainView );
     }
 
@@ -137,11 +152,9 @@ public class RootView
         source.bind( target );
     }
 
-    public void showDialog()
+    public void setContext( FXContext context )
     {
-        FXDialog dialog = new FXDialog();
-        dialog.setOnClose( () -> rootPane.getChildren().remove( dialog ) );
-        rootPane.getChildren().add( dialog );
+        this.context = context;
     }
 
     public String getTitle()

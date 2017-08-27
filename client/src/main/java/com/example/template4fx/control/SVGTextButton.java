@@ -10,7 +10,7 @@ import javafx.scene.shape.SVGPath;
 public class SVGTextButton
     extends Button
 {
-    private final StringProperty svgContent = new SimpleStringProperty( "" );
+    private final StringProperty svg = new SimpleStringProperty( "" );
 
     public SVGTextButton()
     {
@@ -20,7 +20,7 @@ public class SVGTextButton
         SVGPath path = new SVGPath();
         path.getStyleClass().add( "svg" );
 
-        svgContent.addListener(
+        svg.addListener(
             ( observable, oldValue, newValue ) -> path.contentProperty().set( SVG.get( newValue ) ) );
 
         path.setFill( Paint.valueOf( "#000000" ) );
@@ -29,18 +29,18 @@ public class SVGTextButton
         setMaxHeight( 25 );
     }
 
-    public String getSvgContent()
+    public String getSvg()
     {
-        return svgContent.get();
+        return svg.get();
     }
 
-    public StringProperty svgContentProperty()
+    public StringProperty svgProperty()
     {
-        return svgContent;
+        return svg;
     }
 
-    public void setSvgContent( String svgContent )
+    public void setSvg( String svg )
     {
-        this.svgContent.set( svgContent );
+        this.svg.set( svg );
     }
 }

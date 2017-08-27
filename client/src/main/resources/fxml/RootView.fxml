@@ -14,15 +14,15 @@
     <BorderPane>
         <left>
             <VBox fx:id="navBar" styleClass="nav-bar-left" prefWidth="180">
-                <SVGButton svgContent="home" text="%menu.home" maxWidth="Infinity"/>
+                <SVGButton svg="home" text="%menu.home" maxWidth="Infinity"/>
 
                 <Separator styleClass="nav-bar-separator"/>
 
-                <SVGButton svgContent="settings" text="%menu.settings" maxWidth="Infinity"/>
+                <SVGButton svg="settings" text="%menu.settings" maxWidth="Infinity"/>
 
-                <SVGButton svgContent="help_outline" text="%menu.help" maxWidth="Infinity"/>
+                <SVGButton svg="help_outline" text="%menu.help" maxWidth="Infinity"/>
 
-                <SVGButton svgContent="exit_to_app" text="%menu.exit" maxWidth="Infinity" onAction="#exit"/>
+                <SVGButton svg="exit_to_app" text="%menu.exit" maxWidth="Infinity" onAction="#exit"/>
             </VBox>
         </left>
 
@@ -30,17 +30,17 @@
             <BorderPane>
                 <top>
                     <HBox styleClass="nav-bar-top">
-                        <SVGButton svgContent="menu" onAction="#toggleNavBar"/>
+                        <SVGButton svg="menu" onAction="#toggleNavBar"/>
 
-                        <SVGButton fx:id="backward" svgContent="arrow_back"/>
+                        <SVGButton fx:id="backward" svg="arrow_back"/>
 
-                        <SVGButton fx:id="forward" svgContent="arrow_forward"/>
+                        <SVGButton fx:id="forward" svg="arrow_forward"/>
 
-                        <SVGButton fx:id="refresh" svgContent="refresh"/>
+                        <SVGButton fx:id="refresh" svg="refresh"/>
 
                         <TextField styleClass="tool-bar-text-field" promptText="%prompt.search" HBox.hgrow="ALWAYS"/>
 
-                        <SVGButton svgContent="search"/>
+                        <SVGButton svg="search"/>
                     </HBox>
                 </top>
 

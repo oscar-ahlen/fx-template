@@ -1,7 +1,7 @@
 package com.example.template4fx.control;
 
 import com.example.template4fx.SVG;
-import com.example.template4fx.fx.SVGIcon;
+import com.example.template4fx.view.SVGIcon;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 import javafx.scene.control.Tab;
@@ -9,7 +9,7 @@ import javafx.scene.control.Tab;
 public class SVGTab
     extends Tab
 {
-    private final StringProperty svgContent = new SimpleStringProperty( "" );
+    private final StringProperty svg = new SimpleStringProperty( "" );
 
     public SVGTab()
     {
@@ -19,24 +19,24 @@ public class SVGTab
         SVGIcon icon = new SVGIcon();
         icon.getSVG().getStyleClass().add( "svg" );
 
-        svgContent.addListener(
+        svg.addListener(
             ( observable, oldValue, newValue ) -> icon.getSVG().contentProperty().set( SVG.get( newValue ) ) );
 
         setGraphic( icon.getContent() );
     }
 
-    public String getSvgContent()
+    public String getSvg()
     {
-        return svgContent.get();
+        return svg.get();
     }
 
-    public StringProperty svgContentProperty()
+    public StringProperty svgProperty()
     {
-        return svgContent;
+        return svg;
     }
 
-    public void setSvgContent( String svgContent )
+    public void setSvg( String svgContent )
     {
-        this.svgContent.set( svgContent );
+        this.svg.set( svgContent );
     }
 }

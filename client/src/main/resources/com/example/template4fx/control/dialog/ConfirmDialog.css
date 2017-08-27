@@ -1,0 +1,36 @@
+.confirm-dialog
+{
+}
+
+.confirm-dialog .masker-glass
+{
+    -fx-background-color: rgba(0, 0, 0, .4);
+}
+
+.confirm-dialog-background
+{
+    -fx-background-color: -fx-background;
+    -fx-background-radius: 3, 2;
+
+    -fx-pref-width: 400;
+}
+
+.confirm-dialog-header
+{
+    -fx-background-color: -header-color;
+    -fx-background-radius: 3 3 0 0, 2 2 0 0;
+    -fx-padding: 8 12 8 12;
+}
+
+.confirm-dialog-header .label
+{
+    -fx-text-fill: -header-text-color;
+    -fx-font-size: 16;
+    -fx-font-weight: bold;
+}
+
+.confirm-dialog-content
+{
+    -fx-padding: 12;
+    -fx-spacing: 8;
+}
