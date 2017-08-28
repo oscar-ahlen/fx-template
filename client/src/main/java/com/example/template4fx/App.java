@@ -6,7 +6,6 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
-import org.apache.log4j.Logger;
 
 import java.io.IOException;
 import java.util.Locale;
@@ -16,8 +15,6 @@ import java.util.concurrent.Executors;
 public class App
     extends Application
 {
-    private final Logger log = Logger.getLogger( getClass() );
-
     private FXContext context;
 
     public static void main( String[] args )
