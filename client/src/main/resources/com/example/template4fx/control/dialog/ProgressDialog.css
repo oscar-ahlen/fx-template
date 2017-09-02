@@ -1,0 +1,41 @@
+.progress-dialog
+{
+}
+
+.progress-dialog .masker-glass
+{
+    -fx-background-color: rgba(0, 0, 0, .4);
+}
+
+.progress-dialog-background
+{
+    -fx-background-color: -fx-background;
+    -fx-background-radius: 3, 2;
+
+    -fx-pref-width: 400;
+}
+
+.progress-dialog-header
+{
+    -fx-background-color: -header-color;
+    -fx-background-radius: 3 3 0 0, 2 2 0 0;
+    -fx-padding: 8 12 8 12;
+}
+
+.progress-dialog-header .label
+{
+    -fx-text-fill: -header-text-color;
+    -fx-font-size: 16;
+    -fx-font-weight: bold;
+}
+
+.progress-dialog-content
+{
+    -fx-padding: 12;
+    -fx-spacing: 8;
+}
+
+.progress-dialog-content .progress-bar
+{
+    -fx-pref-height: 25;
+}

@@ -1,10 +1,10 @@
 package com.example.template4fx.component;
 
 import com.example.template4fx.FXContext;
-import com.example.template4fx.control.dialog.AbstractDialog;
 import javafx.beans.property.BooleanProperty;
 import javafx.beans.property.SimpleBooleanProperty;
 import javafx.concurrent.Task;
+import javafx.scene.control.Control;
 
 public abstract class MainView
     extends Component
@@ -24,9 +24,9 @@ public abstract class MainView
         return rootView.getView( name );
     }
 
-    protected void showDialog( AbstractDialog dialog )
+    protected void show( Control control )
     {
-        rootView.showDialog( dialog );
+        rootView.show( control );
     }
 
     protected String setting( String key )

@@ -329,6 +329,24 @@
 
 /*******************************************************************************
  *                                                                             *
+ * Progress bar                                                                *
+ *                                                                             *
+ ******************************************************************************/
+.progress-bar > .bar
+{
+    -fx-background-color: derive(-fx-accent, -10%), -fx-accent;
+    -fx-background-insets: 0, 1;
+}
+
+.progress-bar > .track
+{
+    -fx-background-color: -fx-text-box-border, -fx-control-inner-background;
+    -fx-background-insets: 0, 1;
+    -fx-background-radius: 3, 2;
+}
+
+/*******************************************************************************
+ *                                                                             *
  * Scroll bar                                                                  *
  *                                                                             *
  ******************************************************************************/

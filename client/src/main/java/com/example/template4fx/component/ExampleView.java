@@ -3,12 +3,15 @@ package com.example.template4fx.component;
 import com.example.template4fx.control.dialog.ConfirmDialog;
 import com.example.template4fx.control.dialog.ErrorDialog;
 import com.example.template4fx.control.dialog.InfoDialog;
+import com.example.template4fx.control.dialog.ProgressDialog;
 import com.example.template4fx.facade.FileFacade;
 import com.example.template4fx.model.File;
+import com.example.template4fx.task.ProgressTask;
 import com.example.template4fx.view.SVGTableCell;
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.concurrent.Task;
 import javafx.fxml.FXML;
 import javafx.scene.control.SelectionMode;
 import javafx.scene.control.TableColumn;
@@ -53,12 +56,12 @@ public class ExampleView
 
     public void showInfoDialog()
     {
-        showDialog( new InfoDialog( "Information Dialog", "Testing the new Info Dialog" ) );
+        show( new InfoDialog( "Information Dialog", "Testing the new Info Dialog" ) );
     }
 
     public void showErrorDialog()
     {
-        showDialog( new ErrorDialog( "Error Dialog", new RuntimeException( "Something went wrong" ) ) );
+        show( new ErrorDialog( "Error Dialog", new RuntimeException( "Something went wrong" ) ) );
     }
 
     public void showConfirmDialog()
@@ -66,6 +69,13 @@ public class ExampleView
         ConfirmDialog dialog = new ConfirmDialog( "Confirm Dialog", "Are you sure this is okay?" );
         dialog.setOnOK( () -> System.out.println( "Ok pressed" ) );
         dialog.setOnCancel( () -> System.out.println( "Cancel pressed" ) );
-        showDialog( dialog );
+        show( dialog );
+    }
+
+    public void showProgressDialog()
+    {
+        Task task = new ProgressTask( 10 );
+        show( new ProgressDialog( "Task in progress", task ) );
+        run( task );
     }
 }

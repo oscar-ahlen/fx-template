@@ -1,7 +1,6 @@
 package com.example.template4fx.component;
 
 import com.example.template4fx.FXContext;
-import com.example.template4fx.control.dialog.AbstractDialog;
 import com.example.template4fx.util.HistoryList;
 import javafx.application.Platform;
 import javafx.beans.binding.BooleanBinding;
@@ -10,6 +9,7 @@ import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
+import javafx.scene.control.Control;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
 
@@ -85,15 +85,15 @@ public class RootView
         current.refresh();
     }
 
-    public void showDialog( AbstractDialog dialog )
+    public void show( Control control )
     {
-        dialog.visibleProperty().addListener(
+        control.visibleProperty().addListener(
             ( observable, oldValue, newValue ) -> {
                 if ( !newValue && oldValue )
-                    rootPane.getChildren().remove( dialog );
+                    rootPane.getChildren().remove( control );
             } );
 
-        rootPane.getChildren().add( dialog );
+        rootPane.getChildren().add( control );
     }
 
     public void switchView( String name )
