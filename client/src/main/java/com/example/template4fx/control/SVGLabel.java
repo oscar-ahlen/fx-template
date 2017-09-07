@@ -1,7 +1,6 @@
 package com.example.template4fx.control;
 
 import com.example.template4fx.SVG;
-import com.example.template4fx.view.SVGIcon;
 import javafx.beans.property.DoubleProperty;
 import javafx.beans.property.SimpleDoubleProperty;
 import javafx.beans.property.SimpleStringProperty;
@@ -21,14 +20,13 @@ public class SVGLabel
         getStyleClass().add( "svg-label" );
 
         SVGIcon icon = new SVGIcon();
-        icon.getSVG().getStyleClass().add( "svg" );
 
         svg.addListener(
             ( observable, oldValue, newValue ) -> icon.getSVG().contentProperty().set( SVG.get( newValue ) ) );
 
         scale.addListener( ( observable, oldValue, newValue ) -> icon.scale( (Double) newValue ) );
 
-        setGraphic( icon.getContent() );
+        setGraphic( icon );
     }
 
     public String getSvg()

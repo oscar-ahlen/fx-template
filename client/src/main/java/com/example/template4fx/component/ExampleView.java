@@ -7,12 +7,14 @@ import com.example.template4fx.control.dialog.ProgressDialog;
 import com.example.template4fx.facade.FileFacade;
 import com.example.template4fx.model.File;
 import com.example.template4fx.task.ProgressTask;
+import com.example.template4fx.view.SVGListCell;
 import com.example.template4fx.view.SVGTableCell;
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.concurrent.Task;
 import javafx.fxml.FXML;
+import javafx.scene.control.ListView;
 import javafx.scene.control.SelectionMode;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
@@ -27,6 +29,9 @@ public class ExampleView
     private TableColumn<FileFacade, FileFacade> fileNameColumn;
 
     private final ObservableList<FileFacade> files = FXCollections.observableArrayList();
+
+    @FXML
+    private ListView<FileFacade> testList;
 
     public void initialize()
     {
@@ -46,6 +51,10 @@ public class ExampleView
 
         fileNameColumn.setCellValueFactory( v -> new SimpleObjectProperty<>( v.getValue() ) );
         fileNameColumn.setCellFactory( callback -> new SVGTableCell<>() );
+
+        testList.setItems( files );
+
+        testList.setCellFactory( callback -> new SVGListCell<>() );
     }
 
     @Override

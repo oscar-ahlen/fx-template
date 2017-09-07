@@ -19,6 +19,8 @@
         <Button text="Error Dialog" onAction="#showErrorDialog"/>
         <Button text="Confirm Dialog" onAction="#showConfirmDialog"/>
         <Button text="Progress Dialog" onAction="#showProgressDialog"/>
+
+        <DatePicker/>
     </HBox>
 
     <TableView fx:id="fileView" VBox.vgrow="ALWAYS">
@@ -38,4 +40,8 @@
             </TableColumn>
         </columns>
     </TableView>
+
+    <ListView fx:id="testList">
+
+    </ListView>
 </VBox>

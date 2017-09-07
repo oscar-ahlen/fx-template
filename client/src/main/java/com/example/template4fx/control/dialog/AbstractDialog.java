@@ -11,6 +11,8 @@ public abstract class AbstractDialog
 
     public AbstractDialog( String header )
     {
+        getStyleClass().add( "dialog" );
+
         setHeader( header );
         visibleProperty().bindBidirectional( managedProperty() );
     }

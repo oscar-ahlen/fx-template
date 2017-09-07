@@ -1,7 +1,6 @@
 package com.example.template4fx.control;
 
 import com.example.template4fx.SVG;
-import com.example.template4fx.view.SVGIcon;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 import javafx.scene.control.Tab;
@@ -17,12 +16,11 @@ public class SVGTab
         getStyleClass().add( "svg-tab" );
 
         SVGIcon icon = new SVGIcon();
-        icon.getSVG().getStyleClass().add( "svg" );
 
         svg.addListener(
             ( observable, oldValue, newValue ) -> icon.getSVG().contentProperty().set( SVG.get( newValue ) ) );
 
-        setGraphic( icon.getContent() );
+        setGraphic( icon );
     }
 
     public String getSvg()

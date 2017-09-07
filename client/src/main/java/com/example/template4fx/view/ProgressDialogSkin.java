@@ -67,7 +67,7 @@ public class ProgressDialogSkin
         HBox.setHgrow( expander, Priority.ALWAYS );
 
         SVGLabel icon = new SVGLabel();
-        icon.setSvg( "info_outline" );
+        icon.setSvg( "timelapse" );
         icon.setScale( 2.0 );
 
         header.getChildren().addAll( headerText, expander, icon );

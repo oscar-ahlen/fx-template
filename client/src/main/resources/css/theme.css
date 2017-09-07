@@ -1,6 +1,6 @@
 /*******************************************************************************
  *                                                                             *
- * Material design                                                             *
+ * Material design theme                                                       *
  *                                                                             *
  ******************************************************************************/
 .root
@@ -13,38 +13,16 @@
     -background-color: #ECEFF1; /* Blue Grey 50 */
 
     -header-color: #607D8B; /* Blue Grey 500 */
-
-    -header-text-color: ladder(
-        -header-color,
-        -fx-light-text-color 50%,
-        -fx-dark-text-color  51%,
-        -fx-dark-text-color  64%,
-        -fx-mid-text-color   65%
-    );
+    -header-text-color:  -fx-light-text-color;
 
     -menu-color: #455A64; /* Blue Grey 700 */
-
+    -menu-text-color: -fx-light-text-color;
     -menu-border: white;
-
-    -menu-text-color: ladder(
-        -menu-color,
-        -fx-light-text-color 45%,
-        -fx-dark-text-color  46%,
-        -fx-dark-text-color  59%,
-        -fx-mid-text-color   60%
-    );
 
     -default-border: #B0BEC5; /* Blue Grey 200 */
 
-    -accent-text-color: ladder(
-        -fx-accent,
-        -fx-light-text-color 45%,
-        -fx-dark-text-color  46%,
-        -fx-dark-text-color  59%,
-        -fx-mid-text-color   60%
-    );
-
-    -util-control-color: #B0BEC5; /* Blue Grey 200 */
+    -default-icon-color: #455A64; /* Blue Grey 700 */
+    -dark-icon-color: #263238; /* Blue Grey 900 */
 
     /*******************************************************************************
      *                                                                             *
@@ -58,15 +36,11 @@
     -fx-control-inner-background: white; /* Inner background color */
     -fx-control-inner-background-alt: -fx-control-inner-background;
 
-    -fx-dark-text-color: #263238; /* Blue Grey 900 */
-
-    -fx-mid-text-color: #37474F; /* Blue Grey 800 */
-
-    -fx-accent: #FFAB00; /* Amber Accent 700 */
+    -fx-accent: #00B0FF; /* Light Blue A400 */
 
     -fx-default-button: -header-color;
 
-    -fx-focus-color: #FFAB00; /* Amber Accent 700 */
+    -fx-focus-color: #00B0FF; /* Light Blue A400 */
 
     -fx-faint-focus-color: -fx-focus-color;
 
@@ -94,7 +68,7 @@
 
     -fx-mark-highlight-color: transparent;
 
-    -fx-selection-bar: #CFD8DC; /* Blue Grey 100 */
+    -fx-selection-bar: #0091EA; /* Light Blue A700 */
 
     -fx-selection-bar-non-focused: #ECEFF1; /* Blue Grey 50 */
 
@@ -183,11 +157,6 @@
 .date-picker:hover > .text-field
 {
     -fx-background-color: -fx-focus-color, -fx-control-inner-background;
-}
-
-.svg
-{
-    -fx-fill: -fx-text-fill;
 }
 
 /*******************************************************************************
@@ -350,6 +319,11 @@
  * Scroll bar                                                                  *
  *                                                                             *
  ******************************************************************************/
+.scroll-bar
+{
+    -scroll-bar-background: #B0BEC5; /* Blue Grey 200 */
+}
+
 .scroll-bar > .track
 {
     -fx-background-color: transparent, -fx-background;
@@ -358,7 +332,7 @@
 .scroll-bar:horizontal > .thumb,
 .scroll-bar:vertical > .thumb
 {
-    -fx-background-color: transparent, -util-control-color;
+    -fx-background-color: transparent, -scroll-bar-background;
     -fx-background-radius: 0;
 }
 
@@ -376,7 +350,7 @@
 
 .scroll-bar > .thumb:hover
 {
-    -fx-background-color: transparent, derive(-util-control-color, -10%);
+    -fx-background-color: transparent, derive(-scroll-bar-background, -10%);
 }
 
 .scroll-bar > .increment-button,
@@ -409,6 +383,39 @@
 {
     -fx-background-color: -fx-background;
     -fx-background-insets: 0;
+}
+
+/*******************************************************************************
+ *                                                                             *
+ * Scalable Vector Graphics                                                    *
+ *                                                                             *
+ ******************************************************************************/
+.svg
+{
+    -fx-fill: -default-icon-color;
+}
+
+.dialog * .svg
+{
+    -fx-fill: -fx-text-fill;
+}
+
+.nav-bar-left .button .svg
+{
+    -fx-fill: -fx-text-fill;
+}
+
+.svg-button .svg
+{
+    -fx-fill: -dark-icon-color;
+}
+
+.list-cell:selected .svg-icon .svg,
+.tree-view-cell:selected .svg-icon .svg,
+.table-row-cell:selected .table-cell .svg-icon .svg,
+.tree-table-row-cell:selected .tree-table-cell .svg-icon .svg
+{
+    -fx-fill: -fx-text-fill;
 }
 
 /*******************************************************************************
@@ -653,13 +660,14 @@
 
 .nav-bar-left .button:hover
 {
-    -fx-background-color: -fx-selection-bar;
-    -fx-text-fill: -accent-text-color;
+    -fx-background-color: #B0BEC5; /* Blue Grey 200 */
+    -fx-text-fill: -fx-dark-text-color;
 }
 
 .nav-bar-left .button:pressed
 {
     -fx-background-color: -fx-selection-bar-non-focused;
+    -fx-text-fill: -fx-dark-text-color;
 }
 
 .nav-bar-left .separator:horizontal

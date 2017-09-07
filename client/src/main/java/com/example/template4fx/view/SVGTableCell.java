@@ -1,5 +1,6 @@
 package com.example.template4fx.view;
 
+import com.example.template4fx.control.SVGIcon;
 import javafx.scene.control.TableCell;
 
 public class SVGTableCell<S, T extends Displayable<String>>
@@ -10,7 +11,6 @@ public class SVGTableCell<S, T extends Displayable<String>>
     public SVGTableCell()
     {
         icon = new SVGIcon();
-        icon.getSVG().fillProperty().bind( textFillProperty() );
     }
 
     @Override
@@ -26,7 +26,7 @@ public class SVGTableCell<S, T extends Displayable<String>>
         else
         {
             icon.getSVG().setContent( item.getContent() );
-            setGraphic( icon.getContent() );
+            setGraphic( icon );
             setText( item.getText() );
         }
     }
