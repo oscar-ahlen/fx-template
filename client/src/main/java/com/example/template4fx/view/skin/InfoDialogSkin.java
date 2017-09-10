@@ -1,7 +1,7 @@
-package com.example.template4fx.view;
+package com.example.template4fx.view.skin;
 
 import com.example.template4fx.control.SVGLabel;
-import com.example.template4fx.control.dialog.ConfirmDialog;
+import com.example.template4fx.control.dialog.InfoDialog;
 import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
@@ -15,12 +15,12 @@ import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.TextAlignment;
 
-public class ConfirmDialogSkin
-    extends SkinBase<ConfirmDialog>
+public class InfoDialogSkin
+    extends SkinBase<InfoDialog>
 {
-    private final ConfirmDialog dialog;
+    private final InfoDialog dialog;
 
-    public ConfirmDialogSkin( ConfirmDialog dialog )
+    public InfoDialogSkin( InfoDialog dialog )
     {
         super( dialog );
         this.dialog = dialog;
@@ -29,19 +29,18 @@ public class ConfirmDialogSkin
 
     private Node init()
     {
+        StackPane glass = new StackPane();
+        glass.getStyleClass().add( "masker-glass" );
+
         VBox vBox = new VBox();
         vBox.setAlignment( Pos.CENTER );
 
         HBox hBox = new HBox();
         hBox.setAlignment( Pos.CENTER );
 
-        hBox.getChildren().add( createDialogSkin() );
-        vBox.getChildren().add( hBox );
-
-        StackPane glass = new StackPane();
-        glass.setAlignment( Pos.CENTER );
-        glass.getStyleClass().add( "masker-glass" );
         glass.getChildren().add( vBox );
+        vBox.getChildren().add( hBox );
+        hBox.getChildren().add( createDialogSkin() );
 
         return glass;
     }
@@ -49,7 +48,7 @@ public class ConfirmDialogSkin
     private Node createDialogSkin()
     {
         VBox background = new VBox();
-        background.getStyleClass().add( "confirm-dialog-background" );
+        background.getStyleClass().add( "info-dialog-background" );
 
         background.getChildren().addAll( createHeader(), createContent() );
         return background;
@@ -58,7 +57,7 @@ public class ConfirmDialogSkin
     private Node createHeader()
     {
         HBox header = new HBox();
-        header.getStyleClass().add( "confirm-dialog-header" );
+        header.getStyleClass().add( "info-dialog-header" );
         header.setAlignment( Pos.CENTER );
 
         Label headerText = new Label( dialog.getHeader() );
@@ -67,7 +66,7 @@ public class ConfirmDialogSkin
         HBox.setHgrow( expander, Priority.ALWAYS );
 
         SVGLabel icon = new SVGLabel();
-        icon.setSvg( "help_outline" );
+        icon.setSvg( "info_outline" );
         icon.setScale( 2.0 );
 
         header.getChildren().addAll( headerText, expander, icon );
@@ -77,7 +76,7 @@ public class ConfirmDialogSkin
     private Node createContent()
     {
         VBox content = new VBox();
-        content.getStyleClass().add( "confirm-dialog-content" );
+        content.getStyleClass().add( "info-dialog-content" );
 
         Label text = new Label( dialog.getContent() );
         text.setWrapText( true );
@@ -89,12 +88,7 @@ public class ConfirmDialogSkin
         ok.setDefaultButton( true );
         ok.setOnAction( event -> dialog.ok() );
         ButtonBar.setButtonData( ok, ButtonBar.ButtonData.OK_DONE );
-
-        Button cancel = new Button( "Cancel" );
-        cancel.setOnAction( event -> dialog.cancel() );
-        ButtonBar.setButtonData( cancel, ButtonBar.ButtonData.OK_DONE );
-
-        buttonBar.getButtons().addAll( ok, cancel );
+        buttonBar.getButtons().add( ok );
 
         content.getChildren().addAll( text, buttonBar );
         return content;

@@ -1,6 +1,6 @@
 package com.example.template4fx.control.dialog;
 
-import com.example.template4fx.view.ConfirmDialogSkin;
+import com.example.template4fx.view.skin.ConfirmDialogSkin;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 import javafx.scene.control.Skin;

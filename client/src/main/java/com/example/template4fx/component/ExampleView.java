@@ -65,12 +65,12 @@ public class ExampleView
 
     public void showInfoDialog()
     {
-        show( new InfoDialog( "Information Dialog", "Testing the new Info Dialog" ) );
+        showDialog( new InfoDialog( "Information Dialog", "Testing the new Info Dialog" ) );
     }
 
     public void showErrorDialog()
     {
-        show( new ErrorDialog( "Error Dialog", new RuntimeException( "Something went wrong" ) ) );
+        showDialog( new ErrorDialog( "Error Dialog", new RuntimeException( "Something went wrong" ) ) );
     }
 
     public void showConfirmDialog()
@@ -78,13 +78,13 @@ public class ExampleView
         ConfirmDialog dialog = new ConfirmDialog( "Confirm Dialog", "Are you sure this is okay?" );
         dialog.setOnOK( () -> System.out.println( "Ok pressed" ) );
         dialog.setOnCancel( () -> System.out.println( "Cancel pressed" ) );
-        show( dialog );
+        showDialog( dialog );
     }
 
     public void showProgressDialog()
     {
         Task task = new ProgressTask( 10 );
-        show( new ProgressDialog( "Task in progress", task ) );
+        showDialog( new ProgressDialog( "Task in progress", task ) );
         run( task );
     }
 }

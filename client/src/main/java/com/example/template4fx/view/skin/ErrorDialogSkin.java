@@ -1,4 +1,4 @@
-package com.example.template4fx.view;
+package com.example.template4fx.view.skin;
 
 import com.example.template4fx.control.SVGLabel;
 import com.example.template4fx.control.dialog.ErrorDialog;
@@ -33,19 +33,18 @@ public class ErrorDialogSkin
 
     private Node init()
     {
+        StackPane glass = new StackPane();
+        glass.getStyleClass().add( "masker-glass" );
+
         VBox vBox = new VBox();
         vBox.setAlignment( Pos.CENTER );
 
         HBox hBox = new HBox();
         hBox.setAlignment( Pos.CENTER );
 
-        hBox.getChildren().add( createDialogSkin() );
-        vBox.getChildren().add( hBox );
-
-        StackPane glass = new StackPane();
-        glass.setAlignment( Pos.CENTER );
-        glass.getStyleClass().add( "masker-glass" );
         glass.getChildren().add( vBox );
+        vBox.getChildren().add( hBox );
+        hBox.getChildren().add( createDialogSkin() );
 
         return glass;
     }

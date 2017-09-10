@@ -1,6 +1,6 @@
 package com.example.template4fx.control.dialog;
 
-import com.example.template4fx.view.ProgressDialogSkin;
+import com.example.template4fx.view.skin.ProgressDialogSkin;
 import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.concurrent.Task;

@@ -85,7 +85,7 @@ public class RootView
         current.refresh();
     }
 
-    public void show( Control control )
+    public void showDialog( Control control )
     {
         control.visibleProperty().addListener(
             ( observable, oldValue, newValue ) -> {

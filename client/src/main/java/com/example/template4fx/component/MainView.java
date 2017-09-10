@@ -24,9 +24,9 @@ public abstract class MainView
         return rootView.getView( name );
     }
 
-    protected void show( Control control )
+    protected void showDialog( Control control )
     {
-        rootView.show( control );
+        rootView.showDialog( control );
     }
 
     protected String setting( String key )
