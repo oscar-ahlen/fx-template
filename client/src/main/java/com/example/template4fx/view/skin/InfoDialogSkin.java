@@ -30,18 +30,18 @@ public class InfoDialogSkin
     private Node init()
     {
         StackPane glass = new StackPane();
-        glass.setAlignment( Pos.CENTER );
         glass.getStyleClass().add( "masker-glass" );
 
         VBox vBox = new VBox();
         vBox.setAlignment( Pos.CENTER );
-        glass.getChildren().add( vBox );
 
         HBox hBox = new HBox();
         hBox.setAlignment( Pos.CENTER );
-        vBox.getChildren().add( hBox );
 
+        glass.getChildren().add( vBox );
+        vBox.getChildren().add( hBox );
         hBox.getChildren().add( createDialogSkin() );
+
         return glass;
     }
 

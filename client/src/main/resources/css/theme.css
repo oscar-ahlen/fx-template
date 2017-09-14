@@ -395,11 +395,9 @@
     -fx-fill: -default-icon-color;
 }
 
-.dialog * .svg
-{
-    -fx-fill: -fx-text-fill;
-}
-
+// Controls where icon color should be synced with text color.
+.dialog * .svg,
+.header * .svg,
 .nav-bar-left .button .svg
 {
     -fx-fill: -fx-text-fill;

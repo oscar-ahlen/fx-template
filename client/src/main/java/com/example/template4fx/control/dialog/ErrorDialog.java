@@ -48,5 +48,4 @@ public class ErrorDialog
     {
         this.error.set( error );
     }
-
 }
