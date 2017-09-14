@@ -40,8 +40,4 @@
             </TableColumn>
         </columns>
     </TableView>
-
-    <ListView fx:id="testList">
-
-    </ListView>
 </VBox>

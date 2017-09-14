@@ -1,15 +1,18 @@
 package com.example.template4fx.component;
 
 import com.example.template4fx.FXContext;
+import com.example.template4fx.Keys;
 import com.example.template4fx.util.HistoryList;
 import javafx.application.Platform;
 import javafx.beans.binding.BooleanBinding;
 import javafx.beans.property.BooleanProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Control;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
 
@@ -20,7 +23,7 @@ import java.util.Map;
 public class RootView
     extends Component
 {
-    private final Map<String, MainView> views = new HashMap<>();
+    private final Map<View, MainView> views = new HashMap<>();
 
     private final HistoryList<MainView> recent = new HistoryList<>();
 
@@ -39,17 +42,22 @@ public class RootView
 
     private final StringProperty title = new SimpleStringProperty();
 
+    private boolean showsDialog = false;
+
     public void initialize()
     {
         backward.disableProperty().bind( recent.backwardEnabledProperty().not() );
         forward.disableProperty().bind( recent.forwardEnabledProperty().not() );
+
+        rootPane.addEventFilter( KeyEvent.KEY_PRESSED, new RootViewEventHandler() );
     }
 
     public void setup()
         throws IOException
     {
-        loadMainView( "ExampleView", "/fxml/ExampleView.fxml" );
-        switchView( "ExampleView" );
+        loadMainView( View.ExampleView, "/fxml/ExampleView.fxml" );
+        loadMainView( View.SettingsView, "/fxml/SettingsView.fxml" );
+        switchView( View.ExampleView );
     }
 
     public MainView getView( String name )
@@ -85,18 +93,34 @@ public class RootView
         current.refresh();
     }
 
-    public void show( Control control )
+    public void showExampleView()
+    {
+        switchView( View.ExampleView );
+        toggleNavBar();
+    }
+
+    public void showSettingsView()
+    {
+        switchView( View.SettingsView );
+        toggleNavBar();
+    }
+
+    public void showDialog( Control control )
     {
         control.visibleProperty().addListener(
             ( observable, oldValue, newValue ) -> {
                 if ( !newValue && oldValue )
+                {
                     rootPane.getChildren().remove( control );
+                    showsDialog = false;
+                }
             } );
 
         rootPane.getChildren().add( control );
+        showsDialog = true;
     }
 
-    public void switchView( String name )
+    public void switchView( View name )
     {
         MainView view = views.get( name );
         switchView( view );
@@ -125,7 +149,7 @@ public class RootView
         rebindProperty( refresh.disableProperty(), current.idleProperty().not() );
     }
 
-    private void loadMainView( String name, String fxml )
+    private void loadMainView( View name, String fxml )
         throws IOException
     {
         MainView mainView = (MainView) load( fxml );
@@ -170,5 +194,35 @@ public class RootView
     public void setTitle( String title )
     {
         this.title.set( title );
+    }
+
+    private class RootViewEventHandler
+        implements EventHandler<KeyEvent>
+    {
+        public void handle( KeyEvent event )
+        {
+            if ( showsDialog )
+                return;
+
+            if ( Keys.ALT_LEFT.match( event ) )
+            {
+                backward();
+                event.consume();
+            }
+            else if ( Keys.ALT_RIGHT.match( event ) )
+            {
+                forward();
+                event.consume();
+            }
+            else if ( Keys.CTRL_E.match( event ) )
+            {
+                toggleNavBar();
+                event.consume();
+            }
+            else
+            {
+                current.handleKeyEvent( event );
+            }
+        }
     }
 }

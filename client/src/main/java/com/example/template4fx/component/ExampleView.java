@@ -1,5 +1,6 @@
 package com.example.template4fx.component;
 
+import com.example.template4fx.Keys;
 import com.example.template4fx.control.dialog.ConfirmDialog;
 import com.example.template4fx.control.dialog.ErrorDialog;
 import com.example.template4fx.control.dialog.InfoDialog;
@@ -7,17 +8,16 @@ import com.example.template4fx.control.dialog.ProgressDialog;
 import com.example.template4fx.facade.FileFacade;
 import com.example.template4fx.model.File;
 import com.example.template4fx.task.ProgressTask;
-import com.example.template4fx.view.SVGListCell;
 import com.example.template4fx.view.SVGTableCell;
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.concurrent.Task;
 import javafx.fxml.FXML;
-import javafx.scene.control.ListView;
 import javafx.scene.control.SelectionMode;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.input.KeyEvent;
 
 public class ExampleView
     extends MainView
@@ -29,9 +29,6 @@ public class ExampleView
     private TableColumn<FileFacade, FileFacade> fileNameColumn;
 
     private final ObservableList<FileFacade> files = FXCollections.observableArrayList();
-
-    @FXML
-    private ListView<FileFacade> testList;
 
     public void initialize()
     {
@@ -51,10 +48,16 @@ public class ExampleView
 
         fileNameColumn.setCellValueFactory( v -> new SimpleObjectProperty<>( v.getValue() ) );
         fileNameColumn.setCellFactory( callback -> new SVGTableCell<>() );
+    }
 
-        testList.setItems( files );
-
-        testList.setCellFactory( callback -> new SVGListCell<>() );
+    @Override
+    public void handleKeyEvent( KeyEvent event )
+    {
+        if ( Keys.F5.match( event ) )
+        {
+            System.out.println( "Refreshing..." );
+            event.consume();
+        }
     }
 
     @Override
@@ -65,12 +68,12 @@ public class ExampleView
 
     public void showInfoDialog()
     {
-        show( new InfoDialog( "Information Dialog", "Testing the new Info Dialog" ) );
+        showDialog( new InfoDialog( "Information Dialog", "Testing the new Info Dialog" ) );
     }
 
     public void showErrorDialog()
     {
-        show( new ErrorDialog( "Error Dialog", new RuntimeException( "Something went wrong" ) ) );
+        showDialog( new ErrorDialog( "Error Dialog", new RuntimeException( "Something went wrong" ) ) );
     }
 
     public void showConfirmDialog()
@@ -78,13 +81,13 @@ public class ExampleView
         ConfirmDialog dialog = new ConfirmDialog( "Confirm Dialog", "Are you sure this is okay?" );
         dialog.setOnOK( () -> System.out.println( "Ok pressed" ) );
         dialog.setOnCancel( () -> System.out.println( "Cancel pressed" ) );
-        show( dialog );
+        showDialog( dialog );
     }
 
     public void showProgressDialog()
     {
         Task task = new ProgressTask( 10 );
-        show( new ProgressDialog( "Task in progress", task ) );
+        showDialog( new ProgressDialog( "Task in progress", task ) );
         run( task );
     }
 }

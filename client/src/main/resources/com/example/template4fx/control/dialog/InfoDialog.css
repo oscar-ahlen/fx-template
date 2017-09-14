@@ -4,7 +4,7 @@
 
 .info-dialog .masker-glass
 {
-    -fx-background-color: rgba(0, 0, 0, .4);
+    -fx-background-color: rgba(0, 0, 0, .3);
 }
 
 .info-dialog-background
