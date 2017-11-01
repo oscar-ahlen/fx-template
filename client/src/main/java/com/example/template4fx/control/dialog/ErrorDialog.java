@@ -8,8 +8,6 @@ import javafx.scene.control.Skin;
 public class ErrorDialog
     extends AbstractDialog
 {
-    private final ObjectProperty<Throwable> error = new SimpleObjectProperty<>();
-
     public ErrorDialog( String header, Throwable error )
     {
         super( header );
@@ -33,6 +31,8 @@ public class ErrorDialog
     {
         return getUserAgentStylesheet( ErrorDialog.class, "ErrorDialog.css" );
     }
+
+    private final ObjectProperty<Throwable> error = new SimpleObjectProperty<>();
 
     public Throwable getError()
     {

@@ -18,12 +18,9 @@ import javafx.scene.text.TextAlignment;
 public class InfoDialogSkin
     extends SkinBase<InfoDialog>
 {
-    private final InfoDialog dialog;
-
     public InfoDialogSkin( InfoDialog dialog )
     {
         super( dialog );
-        this.dialog = dialog;
         getChildren().add( init() );
     }
 
@@ -60,7 +57,8 @@ public class InfoDialogSkin
         header.getStyleClass().add( "info-dialog-header" );
         header.setAlignment( Pos.CENTER );
 
-        Label headerText = new Label( dialog.getHeader() );
+        Label headerText = new Label();
+        headerText.textProperty().bind( getSkinnable().headerProperty() );
 
         Pane expander = new Pane();
         HBox.setHgrow( expander, Priority.ALWAYS );
@@ -78,7 +76,8 @@ public class InfoDialogSkin
         VBox content = new VBox();
         content.getStyleClass().add( "info-dialog-content" );
 
-        Label text = new Label( dialog.getContent() );
+        Label text = new Label();
+        text.textProperty().bind( getSkinnable().contentProperty() );
         text.setWrapText( true );
         text.setTextAlignment( TextAlignment.JUSTIFY );
 
@@ -86,7 +85,7 @@ public class InfoDialogSkin
 
         Button ok = new Button( "OK" );
         ok.setDefaultButton( true );
-        ok.setOnAction( event -> dialog.ok() );
+        ok.setOnAction( event -> getSkinnable().ok() );
         ButtonBar.setButtonData( ok, ButtonBar.ButtonData.OK_DONE );
         buttonBar.getButtons().add( ok );
 

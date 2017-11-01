@@ -15,9 +15,8 @@
     -header-color: #607D8B; /* Blue Grey 500 */
     -header-text-color:  -fx-light-text-color;
 
-    -menu-color: #455A64; /* Blue Grey 700 */
-    -menu-text-color: -fx-light-text-color;
-    -menu-border: white;
+    -nav-bar-color: #455A64; /* Blue Grey 700 */
+    -nav-bar-text-color: -fx-light-text-color;
 
     -default-border: #B0BEC5; /* Blue Grey 200 */
 
@@ -239,7 +238,7 @@
     -fx-background-color: -header-color;
     -fx-background-insets: 0;
 
-    -fx-text-fill: -menu-text-color;
+    -fx-text-fill: -header-text-color;
 }
 
 .date-picker-popup > * > .week-number-cell
@@ -251,7 +250,7 @@
 .date-picker-popup > * > .spinner > .label
 {
     -fx-font-weight: bold;
-    -fx-text-fill: -menu-text-color;
+    -fx-text-fill: -header-text-color;
 }
 
 .date-picker-popup > * > .spinner > .button
@@ -276,8 +275,8 @@
 .date-picker-popup > * > .spinner > .button > .left-arrow,
 .date-picker-popup > * > .spinner > .button > .right-arrow
 {
-    -fx-background-color: -menu-text-color;
-    -fx-shadow-highlight-color: -menu-text-color;
+    -fx-background-color: -header-text-color;
+    -fx-shadow-highlight-color: -header-text-color;
 }
 
 .date-picker-popup > * > .previous-month,
@@ -398,7 +397,7 @@
 // Controls where icon color should be synced with text color.
 .dialog * .svg,
 .header * .svg,
-.nav-bar-left .button .svg
+.header .button .svg
 {
     -fx-fill: -fx-text-fill;
 }
@@ -610,72 +609,94 @@
 
 /*******************************************************************************
  *                                                                             *
- * Navigation Bar                                                              *
+ * Header and Navigation Bar                                                   *
  *                                                                             *
  ******************************************************************************/
 .header
 {
     -fx-background-color: -header-color;
+}
 
-    -fx-padding: 8;
-
+.header .button,
+.header .label
+{
     -fx-text-fill: -header-text-color;
-    -fx-font-size: 14;
+}
+
+.header .label
+{
+    -fx-padding: 0 0 0 8;
+    -fx-graphic-text-gap: 8;
+
+    -fx-font-size: 16;
     -fx-font-weight: bold;
 }
 
-.nav-bar-top
+.nav-bar
 {
-    -fx-background-color: -fx-box-border, -fx-color;
-    -fx-background-insets: 0, 0 0 1 0;
-
-    -fx-alignment: CENTER;
-    -fx-padding: 8;
-    -fx-spacing: 8;
+    -fx-background-color: -nav-bar-color;
 }
 
-.nav-bar-left
+.header .button,
+.nav-bar .button
 {
-    -fx-background-color: -menu-color;
-    -fx-padding: 8;
-}
-
-.nav-bar-left .button
-{
-    -fx-background-color: transparent;
     -fx-background-insets: 0;
     -fx-background-radius: 0;
+    -fx-padding: 8;
 
-    -fx-pref-height: 32px;
-    -fx-alignment: CENTER_LEFT;
-    -fx-padding: 4 16 4 16;
-    -fx-graphic-text-gap: 8;
-
-    -fx-text-fill: -menu-text-color;
+    -fx-text-fill: -nav-bar-text-color;
 
     -fx-focus-traversable: false;
 }
 
-.nav-bar-left .button:hover
+.nav-bar .button .svg
+{
+    -fx-fill: -fx-text-fill;
+}
+
+.nav-bar .svg-text-button
+{
+    -fx-background-color: transparent;
+
+    -fx-alignment: CENTER_LEFT;
+    -fx-padding: 8;
+    -fx-graphic-text-gap: 12;
+
+    -fx-max-width: infinity;
+}
+
+.header .button:hover,
+.header .button:focused,
+.nav-bar .button:hover
 {
     -fx-background-color: #B0BEC5; /* Blue Grey 200 */
     -fx-text-fill: -fx-dark-text-color;
+
+    -fx-font-weight: bold;
 }
 
-.nav-bar-left .button:pressed
+.header .button:pressed,
+.nav-bar .button:pressed
 {
     -fx-background-color: -fx-selection-bar-non-focused;
     -fx-text-fill: -fx-dark-text-color;
 }
 
-.nav-bar-left .separator:horizontal
+.nav-bar .separator:horizontal
 {
-    -fx-padding: 8 0 6 0;
+    -fx-padding: 0 12 0 12;
 }
 
-.nav-bar-left .separator:horizontal .line
+.nav-bar .separator:horizontal .line
 {
-    -fx-border-color: -menu-border;
+    -fx-border-color: white;
+    -fx-border-style: solid;
+    -fx-border-width: 0 0 1 0;
+}
+
+.nav-bar .spacer:horizontal .line
+{
+    -fx-border-color: transparent;
     -fx-border-style: solid;
     -fx-border-width: 0 0 1 0;
 }

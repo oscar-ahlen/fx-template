@@ -10,10 +10,6 @@ import javafx.scene.control.Label;
 public class SVGLabel
     extends Label
 {
-    private final StringProperty svg = new SimpleStringProperty( "" );
-
-    private final DoubleProperty scale = new SimpleDoubleProperty( 1.0 );
-
     public SVGLabel()
     {
         super();
@@ -21,13 +17,15 @@ public class SVGLabel
 
         SVGIcon icon = new SVGIcon();
 
-        svg.addListener(
-            ( observable, oldValue, newValue ) -> icon.getSVG().contentProperty().set( SVG.get( newValue ) ) );
+        svg.addListener( ( observable, oldValue, newValue ) ->
+                             icon.getSVG().contentProperty().set( SVG.INSTANCE.get( newValue ) ) );
 
         scale.addListener( ( observable, oldValue, newValue ) -> icon.scale( (Double) newValue ) );
 
         setGraphic( icon );
     }
+
+    private final StringProperty svg = new SimpleStringProperty( "" );
 
     public String getSvg()
     {
@@ -43,6 +41,8 @@ public class SVGLabel
     {
         this.svg.set( svg );
     }
+
+    private final DoubleProperty scale = new SimpleDoubleProperty( 1.0 );
 
     public double getScale()
     {

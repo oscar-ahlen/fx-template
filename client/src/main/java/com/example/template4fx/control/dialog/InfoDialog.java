@@ -8,8 +8,6 @@ import javafx.scene.control.Skin;
 public class InfoDialog
     extends AbstractDialog
 {
-    private final StringProperty content = new SimpleStringProperty();
-
     public InfoDialog( String header, String content )
     {
         super( header );
@@ -33,6 +31,8 @@ public class InfoDialog
     {
         return getUserAgentStylesheet( InfoDialog.class, "InfoDialog.css" );
     }
+
+    private final StringProperty content = new SimpleStringProperty();
 
     public String getContent()
     {

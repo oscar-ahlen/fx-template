@@ -22,12 +22,9 @@ import java.io.StringWriter;
 public class ErrorDialogSkin
     extends SkinBase<ErrorDialog>
 {
-    private final ErrorDialog dialog;
-
     public ErrorDialogSkin( ErrorDialog dialog )
     {
         super( dialog );
-        this.dialog = dialog;
         getChildren().add( init() );
     }
 
@@ -65,7 +62,8 @@ public class ErrorDialogSkin
         header.getStyleClass().add( "error-dialog-header" );
         header.setAlignment( Pos.CENTER );
 
-        Label headerText = new Label( dialog.getHeader() );
+        Label headerText = new Label();
+        headerText.textProperty().bind( getSkinnable().headerProperty() );
 
         Pane expander = new Pane();
         HBox.setHgrow( expander, Priority.ALWAYS );
@@ -84,13 +82,13 @@ public class ErrorDialogSkin
         content.getStyleClass().add( "error-dialog-content" );
         VBox.setVgrow( content, Priority.ALWAYS );
 
-        Label errorHeader = new Label( dialog.getError().getLocalizedMessage() );
+        Label errorHeader = new Label( getSkinnable().getError().getLocalizedMessage() );
         errorHeader.setWrapText( true );
         errorHeader.setTextAlignment( TextAlignment.JUSTIFY );
 
         StringWriter sw = new StringWriter();
         PrintWriter pw = new PrintWriter( sw );
-        dialog.getError().printStackTrace( pw );
+        getSkinnable().getError().printStackTrace( pw );
 
         TextArea errorText = new TextArea( sw.toString() );
         errorText.setFocusTraversable( false );
@@ -104,7 +102,7 @@ public class ErrorDialogSkin
 
         Button ok = new Button( "OK" );
         ok.setDefaultButton( true );
-        ok.setOnAction( event -> dialog.ok() );
+        ok.setOnAction( event -> getSkinnable().ok() );
         ButtonBar.setButtonData( ok, ButtonBar.ButtonData.OK_DONE );
         buttonBar.getButtons().add( ok );
 

@@ -1,0 +1,66 @@
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.cell.PropertyValueFactory?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<BorderPane xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:controller="com.example.template4fx.component.UserView">
+    <top>
+        <HBox>
+            <padding>
+                <Insets left="12" top="12" right="12" bottom="12"/>
+            </padding>
+
+            <Button text="%button.refresh" onAction="#refresh"/>
+        </HBox>
+    </top>
+
+    <center>
+        <VBox>
+            <padding>
+                <Insets left="12" right="12" bottom="12"/>
+            </padding>
+
+            <TextField styleClass="filter-field" promptText="%prompt.filter"/>
+
+            <TableView fx:id="userView" VBox.vgrow="ALWAYS">
+                <columns>
+                    <TableColumn fx:id="userNameColumn" text="%user.name" prefWidth="200">
+                        <cellValueFactory>
+                            <PropertyValueFactory property="name"/>
+                        </cellValueFactory>
+                    </TableColumn>
+
+                    <TableColumn text="%user.username" prefWidth="150">
+                        <cellValueFactory>
+                            <PropertyValueFactory property="username"/>
+                        </cellValueFactory>
+                    </TableColumn>
+
+                    <TableColumn text="%user.email" prefWidth="150">
+                        <cellValueFactory>
+                            <PropertyValueFactory property="email"/>
+                        </cellValueFactory>
+                    </TableColumn>
+
+                    <TableColumn text="%user.phone" prefWidth="150">
+                        <cellValueFactory>
+                            <PropertyValueFactory property="phone"/>
+                        </cellValueFactory>
+                    </TableColumn>
+
+                    <TableColumn text="%user.website" prefWidth="150">
+                        <cellValueFactory>
+                            <PropertyValueFactory property="website"/>
+                        </cellValueFactory>
+                    </TableColumn>
+                </columns>
+            </TableView>
+        </VBox>
+    </center>
+</BorderPane>

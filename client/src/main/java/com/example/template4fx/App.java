@@ -1,6 +1,8 @@
 package com.example.template4fx;
 
 import com.example.template4fx.component.RootView;
+import com.google.inject.Guice;
+import com.google.inject.Injector;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -10,12 +12,11 @@ import javafx.stage.Stage;
 import java.io.IOException;
 import java.util.Locale;
 import java.util.ResourceBundle;
-import java.util.concurrent.Executors;
 
 public class App
     extends Application
 {
-    private FXContext context;
+    private ApplicationContext context;
 
     public static void main( String[] args )
     {
@@ -26,12 +27,8 @@ public class App
     public void init()
         throws Exception
     {
-        FXContextBuilder contextBuilder = new FXContextBuilder();
-
-        contextBuilder.setExecutorService( Executors.newFixedThreadPool( 4 ) );
-        contextBuilder.setSettings( initSettings() );
-
-        context = contextBuilder.createFXContext();
+        Injector injector = Guice.createInjector( new ApplicationModule() );
+        context = injector.getInstance( ApplicationContext.class );
     }
 
     @Override
@@ -51,7 +48,7 @@ public class App
     public void stop()
         throws Exception
     {
-        context.shutdown();
+        context.close();
     }
 
     private RootView loadRootView()
@@ -67,28 +64,8 @@ public class App
 
         rootView.setRoot( root );
         rootView.setContext( context );
-        rootView.setTitle( "Template4FX" );
-
         rootView.setup();
 
         return rootView;
-    }
-
-    private Settings initSettings()
-        throws IOException
-    {
-        Settings settings;
-
-        try
-        {
-            settings = Settings.load();
-        }
-        catch ( IOException exc )
-        {
-            settings = Settings.createDefault();
-            settings.save();
-        }
-
-        return settings;
     }
 }

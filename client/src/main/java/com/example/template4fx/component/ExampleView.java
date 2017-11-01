@@ -9,7 +9,6 @@ import com.example.template4fx.facade.FileFacade;
 import com.example.template4fx.model.File;
 import com.example.template4fx.task.ProgressTask;
 import com.example.template4fx.view.SVGTableCell;
-import javafx.beans.property.SimpleObjectProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.concurrent.Task;
@@ -26,12 +25,15 @@ public class ExampleView
     private TableView<FileFacade> fileView;
 
     @FXML
-    private TableColumn<FileFacade, FileFacade> fileNameColumn;
+    private TableColumn<FileFacade, String> fileNameColumn;
 
     private final ObservableList<FileFacade> files = FXCollections.observableArrayList();
 
     public void initialize()
     {
+        setTitle( message( "title.home" ) );
+        setSvg( "home" );
+
         fileView.getSelectionModel().setSelectionMode( SelectionMode.MULTIPLE );
 
         fileView.setItems( files );
@@ -46,7 +48,6 @@ public class ExampleView
         files.add( new FileFacade( new File( "Powerpoint Document 1", "pptx", 7000 ) ) );
         files.add( new FileFacade( new File( "Powerpoint Document 2", "pptx", 8000 ) ) );
 
-        fileNameColumn.setCellValueFactory( v -> new SimpleObjectProperty<>( v.getValue() ) );
         fileNameColumn.setCellFactory( callback -> new SVGTableCell<>() );
     }
 
@@ -58,12 +59,6 @@ public class ExampleView
             System.out.println( "Refreshing..." );
             event.consume();
         }
-    }
-
-    @Override
-    public void refresh()
-    {
-        // Not to be implemented
     }
 
     public void showInfoDialog()

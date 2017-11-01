@@ -1,10 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import com.example.template4fx.control.SVGButton?>
+<?import com.example.template4fx.control.SVGLabel?>
+<?import com.example.template4fx.control.SVGTextButton?>
 <?import javafx.scene.control.Separator?>
-<?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
 <StackPane xmlns="http://javafx.com/javafx"
@@ -12,42 +14,60 @@
            fx:controller="com.example.template4fx.component.RootView"
            fx:id="rootPane">
     <BorderPane>
+        <top>
+            <HBox styleClass="header" alignment="CENTER_LEFT">
+                <SVGLabel fx:id="header" HBox.hgrow="ALWAYS" maxWidth="Infinity"/>
+
+                <SVGButton fx:id="backward" svg="arrow_back" onAction="#backward"/>
+
+                <SVGButton fx:id="forward" svg="arrow_forward" onAction="#forward"/>
+
+                <SVGButton svg="more_vert"/>
+            </HBox>
+        </top>
+
         <left>
-            <VBox fx:id="navBar" styleClass="nav-bar-left" prefWidth="180">
-                <SVGButton svg="home" text="%menu.home" maxWidth="Infinity" onAction="#showExampleView"/>
+            <StackPane>
+                <VBox fx:id="collapsedNavBar" styleClass="nav-bar">
+                    <SVGButton svg="menu" onAction="#toggleNavBar"/>
 
-                <Separator styleClass="nav-bar-separator"/>
+                    <SVGButton svg="home" onAction="#showExampleView"/>
 
-                <SVGButton svg="settings" text="%menu.settings" maxWidth="Infinity" onAction="#showSettingsView"/>
+                    <SVGButton svg="person" onAction="#showUserView"/>
 
-                <SVGButton svg="help_outline" text="%menu.help" maxWidth="Infinity"/>
+                    <Separator styleClass="spacer"/>
 
-                <SVGButton svg="exit_to_app" text="%menu.exit" maxWidth="Infinity" onAction="#exit"/>
-            </VBox>
+                    <SVGButton svg="settings" onAction="#showSettingsView"/>
+
+                    <SVGButton svg="help_outline"/>
+
+                    <Pane VBox.vgrow="ALWAYS"/>
+
+                    <SVGButton svg="exit_to_app" onAction="#exit"/>
+                </VBox>
+
+                <VBox fx:id="expandedNavBar" styleClass="nav-bar" prefWidth="240">
+                    <SVGButton svg="menu" onAction="#toggleNavBar"/>
+
+                    <SVGTextButton svg="home" text="%menu.home" onAction="#showExampleView"/>
+
+                    <SVGTextButton svg="person" text="%menu.user" onAction="#showUserView"/>
+
+                    <Separator/>
+
+                    <SVGTextButton svg="settings" text="%menu.settings" onAction="#showSettingsView"/>
+
+                    <SVGTextButton svg="help_outline" text="%menu.help"/>
+
+                    <Pane VBox.vgrow="ALWAYS"/>
+
+                    <SVGTextButton svg="exit_to_app" text="%menu.exit" onAction="#exit"/>
+                </VBox>
+            </StackPane>
         </left>
 
         <center>
-            <BorderPane>
-                <top>
-                    <HBox styleClass="nav-bar-top">
-                        <SVGButton svg="menu" onAction="#toggleNavBar"/>
-
-                        <SVGButton fx:id="backward" svg="arrow_back" onAction="#backward"/>
-
-                        <SVGButton fx:id="forward" svg="arrow_forward" onAction="#forward"/>
-
-                        <SVGButton fx:id="refresh" svg="refresh" onAction="#refresh"/>
-
-                        <TextField styleClass="tool-bar-text-field" promptText="%prompt.search" HBox.hgrow="ALWAYS"/>
-
-                        <SVGButton svg="search"/>
-                    </HBox>
-                </top>
-
-                <center>
-                    <StackPane fx:id="center"/>
-                </center>
-            </BorderPane>
+            <StackPane fx:id="center"/>
         </center>
     </BorderPane>
 </StackPane>

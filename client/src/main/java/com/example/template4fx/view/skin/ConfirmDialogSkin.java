@@ -18,12 +18,9 @@ import javafx.scene.text.TextAlignment;
 public class ConfirmDialogSkin
     extends SkinBase<ConfirmDialog>
 {
-    private final ConfirmDialog dialog;
-
     public ConfirmDialogSkin( ConfirmDialog dialog )
     {
         super( dialog );
-        this.dialog = dialog;
         getChildren().add( init() );
     }
 
@@ -60,7 +57,8 @@ public class ConfirmDialogSkin
         header.getStyleClass().add( "confirm-dialog-header" );
         header.setAlignment( Pos.CENTER );
 
-        Label headerText = new Label( dialog.getHeader() );
+        Label headerText = new Label();
+        headerText.textProperty().bind( getSkinnable().headerProperty() );
 
         Pane expander = new Pane();
         HBox.setHgrow( expander, Priority.ALWAYS );
@@ -78,7 +76,8 @@ public class ConfirmDialogSkin
         VBox content = new VBox();
         content.getStyleClass().add( "confirm-dialog-content" );
 
-        Label text = new Label( dialog.getContent() );
+        Label text = new Label();
+        text.textProperty().bind( getSkinnable().contentProperty() );
         text.setWrapText( true );
         text.setTextAlignment( TextAlignment.JUSTIFY );
 
@@ -86,11 +85,11 @@ public class ConfirmDialogSkin
 
         Button ok = new Button( "OK" );
         ok.setDefaultButton( true );
-        ok.setOnAction( event -> dialog.ok() );
+        ok.setOnAction( event -> getSkinnable().ok() );
         ButtonBar.setButtonData( ok, ButtonBar.ButtonData.OK_DONE );
 
         Button cancel = new Button( "Cancel" );
-        cancel.setOnAction( event -> dialog.cancel() );
+        cancel.setOnAction( event -> getSkinnable().cancel() );
         ButtonBar.setButtonData( cancel, ButtonBar.ButtonData.OK_DONE );
 
         buttonBar.getButtons().addAll( ok, cancel );

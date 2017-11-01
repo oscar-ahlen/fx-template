@@ -5,15 +5,15 @@ import javafx.scene.input.KeyEvent;
 public class SettingsView
     extends MainView
 {
+    public void initialize()
+    {
+        setTitle( message( "title.settings" ) );
+        setSvg( "settings" );
+    }
+
     @Override
     public void handleKeyEvent( KeyEvent event )
     {
 
-    }
-
-    @Override
-    public void refresh()
-    {
-        // Not to be implemented
     }
 }

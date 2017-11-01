@@ -4,27 +4,37 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.util.Properties;
 
-public class SVG
+public enum SVG
 {
-    private static final Properties svgPaths = new Properties();
-
-    static
-    {
-        try ( InputStream in = SVG.class.getResourceAsStream( "/icons/svg.properties" ) )
+    INSTANCE
         {
-            if ( in != null )
+            @Override
+            String getResource()
             {
-                svgPaths.load( in );
+                return "/icons/svg.properties";
             }
+        };
+
+    private final Properties svgPaths = load( getResource() );
+
+    abstract String getResource();
+
+    public String get( String key )
+    {
+        return svgPaths.getProperty( key, "" );
+    }
+
+    private Properties load( String resource )
+    {
+        try ( InputStream inputStream = SVG.class.getResourceAsStream( resource ) )
+        {
+            Properties properties = new Properties();
+            properties.load( inputStream );
+            return properties;
         }
         catch ( IOException exc )
         {
-            System.err.println( exc.getMessage() );
+            throw new RuntimeException( "Could not initialize SVG resources", exc );
         }
-    }
-
-    public static String get( String key )
-    {
-        return svgPaths.getProperty( key, "" );
     }
 }

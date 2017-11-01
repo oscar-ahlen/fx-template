@@ -8,8 +8,6 @@ import javafx.scene.control.Tab;
 public class SVGTab
     extends Tab
 {
-    private final StringProperty svg = new SimpleStringProperty( "" );
-
     public SVGTab()
     {
         super();
@@ -17,11 +15,13 @@ public class SVGTab
 
         SVGIcon icon = new SVGIcon();
 
-        svg.addListener(
-            ( observable, oldValue, newValue ) -> icon.getSVG().contentProperty().set( SVG.get( newValue ) ) );
+        svg.addListener( ( observable, oldValue, newValue ) ->
+                             icon.getSVG().contentProperty().set( SVG.INSTANCE.get( newValue ) ) );
 
         setGraphic( icon );
     }
+
+    private final StringProperty svg = new SimpleStringProperty( "" );
 
     public String getSvg()
     {

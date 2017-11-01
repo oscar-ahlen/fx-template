@@ -1,7 +1,8 @@
 package com.example.template4fx.component;
 
-import com.example.template4fx.FXContext;
+import com.example.template4fx.ApplicationContext;
 import com.example.template4fx.Keys;
+import com.example.template4fx.control.SVGLabel;
 import com.example.template4fx.util.HistoryList;
 import javafx.application.Platform;
 import javafx.beans.binding.BooleanBinding;
@@ -23,44 +24,52 @@ import java.util.Map;
 public class RootView
     extends Component
 {
+    private static final String TITLE = "Template4FX";
+
     private final Map<View, MainView> views = new HashMap<>();
 
     private final HistoryList<MainView> recent = new HistoryList<>();
 
     private MainView current;
 
-    private FXContext context;
+    private ApplicationContext context;
 
     @FXML
-    private Pane navBar;
+    private Pane expandedNavBar, collapsedNavBar;
 
     @FXML
     private StackPane rootPane, center;
 
     @FXML
-    private Button backward, forward, refresh;
+    private SVGLabel header;
 
-    private final StringProperty title = new SimpleStringProperty();
+    @FXML
+    private Button backward, forward;
 
     private boolean showsDialog = false;
 
     public void initialize()
     {
+        setTitle( TITLE );
+
         backward.disableProperty().bind( recent.backwardEnabledProperty().not() );
         forward.disableProperty().bind( recent.forwardEnabledProperty().not() );
 
         rootPane.addEventFilter( KeyEvent.KEY_PRESSED, new RootViewEventHandler() );
+
+        toggleNavBar();
     }
 
     public void setup()
         throws IOException
     {
         loadMainView( View.ExampleView, "/fxml/ExampleView.fxml" );
+        loadMainView( View.UserView, "/fxml/UserView.fxml" );
         loadMainView( View.SettingsView, "/fxml/SettingsView.fxml" );
         switchView( View.ExampleView );
     }
 
-    public MainView getView( String name )
+    public MainView getView( View name )
     {
         return views.get( name );
     }
@@ -72,10 +81,16 @@ public class RootView
 
     public void toggleNavBar()
     {
-        if ( isActive( navBar ) )
-            hide( navBar );
+        if ( isActive( expandedNavBar ) )
+        {
+            hide( expandedNavBar );
+            show( collapsedNavBar );
+        }
         else
-            show( navBar );
+        {
+            hide( collapsedNavBar );
+            show( expandedNavBar );
+        }
     }
 
     public void backward()
@@ -88,21 +103,19 @@ public class RootView
         switchView( recent.forward() );
     }
 
-    public void refresh()
-    {
-        current.refresh();
-    }
-
     public void showExampleView()
     {
         switchView( View.ExampleView );
-        toggleNavBar();
+    }
+
+    public void showUserView()
+    {
+        switchView( View.UserView );
     }
 
     public void showSettingsView()
     {
         switchView( View.SettingsView );
-        toggleNavBar();
     }
 
     public void showDialog( Control control )
@@ -133,20 +146,14 @@ public class RootView
             return;
 
         if ( current != null )
-        {
             switchNode( center, current.getRoot(), view.getRoot() );
-        }
         else
-        {
             switchNode( center, null, view.getRoot() );
-        }
 
         current = view;
 
-        rebindProperty( refresh.managedProperty(), current.refreshableProperty() );
-        rebindProperty( refresh.visibleProperty(), current.refreshableProperty() );
-
-        rebindProperty( refresh.disableProperty(), current.idleProperty().not() );
+        rebindProperty( header.textProperty(), current.titleProperty() );
+        rebindProperty( header.svgProperty(), current.svgProperty() );
     }
 
     private void loadMainView( View name, String fxml )
@@ -176,10 +183,12 @@ public class RootView
         source.bind( target );
     }
 
-    public void setContext( FXContext context )
+    public void setContext( ApplicationContext context )
     {
         this.context = context;
     }
+
+    private final StringProperty title = new SimpleStringProperty();
 
     public String getTitle()
     {
@@ -216,7 +225,6 @@ public class RootView
             }
             else if ( Keys.CTRL_E.match( event ) )
             {
-                toggleNavBar();
                 event.consume();
             }
             else

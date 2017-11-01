@@ -3,7 +3,7 @@ package com.example.template4fx.view;
 import com.example.template4fx.control.SVGIcon;
 import javafx.scene.control.TableCell;
 
-public class SVGTableCell<S, T extends Displayable<String>>
+public class SVGTableCell<S extends Displayable<String>, T>
     extends TableCell<S, T>
 {
     private final SVGIcon icon;
@@ -25,9 +25,11 @@ public class SVGTableCell<S, T extends Displayable<String>>
         }
         else
         {
-            icon.getSVG().setContent( item.getContent() );
+            S object = getTableView().getItems().get( getIndex() );
+            icon.getSVG().setContent( object.getContent() );
+
             setGraphic( icon );
-            setText( item.getText() );
+            setText( item.toString() );
         }
     }
 }

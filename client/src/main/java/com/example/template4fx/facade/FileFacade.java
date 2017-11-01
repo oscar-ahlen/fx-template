@@ -25,12 +25,6 @@ public class FileFacade
         ICONS.put( "folder", "folder" );
     }
 
-    private final StringProperty name = new SimpleStringProperty();
-
-    private final StringProperty format = new SimpleStringProperty();
-
-    private final LongProperty size = new SimpleLongProperty();
-
     private final File file;
 
     public FileFacade( File file )
@@ -56,6 +50,8 @@ public class FileFacade
         }
     }
 
+    private final StringProperty name = new SimpleStringProperty();
+
     public String getName()
     {
         return name.get();
@@ -71,6 +67,8 @@ public class FileFacade
         this.name.set( name );
     }
 
+    private final StringProperty format = new SimpleStringProperty();
+
     public String getFormat()
     {
         return format.get();
@@ -85,6 +83,8 @@ public class FileFacade
     {
         this.format.set( format );
     }
+
+    private final LongProperty size = new SimpleLongProperty();
 
     public long getSize()
     {
@@ -129,6 +129,6 @@ public class FileFacade
     @Override
     public String getContent()
     {
-        return SVG.get( ICONS.get( format.get() ) );
+        return SVG.INSTANCE.get( ICONS.get( format.get() ) );
     }
 }

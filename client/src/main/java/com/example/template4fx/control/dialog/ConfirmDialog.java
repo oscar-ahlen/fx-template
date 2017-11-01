@@ -8,8 +8,6 @@ import javafx.scene.control.Skin;
 public class ConfirmDialog
     extends AbstractDialog
 {
-    private final StringProperty content = new SimpleStringProperty();
-
     private Runnable ok, cancel;
 
     public ConfirmDialog( String header, String content )
@@ -63,6 +61,8 @@ public class ConfirmDialog
     {
         return content.get();
     }
+
+    private final StringProperty content = new SimpleStringProperty();
 
     public StringProperty contentProperty()
     {

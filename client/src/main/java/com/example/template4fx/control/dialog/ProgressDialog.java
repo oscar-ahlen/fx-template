@@ -9,8 +9,6 @@ import javafx.scene.control.Skin;
 public class ProgressDialog
     extends AbstractDialog
 {
-    private final ObjectProperty<Task> task = new SimpleObjectProperty<>();
-
     public ProgressDialog( String header, Task task )
     {
         super( header );
@@ -34,6 +32,8 @@ public class ProgressDialog
     {
         return getUserAgentStylesheet( ProgressDialog.class, "ProgressDialog.css" );
     }
+
+    private final ObjectProperty<Task> task = new SimpleObjectProperty<>();
 
     public Task getTask()
     {

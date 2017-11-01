@@ -1,34 +1,31 @@
 package com.example.template4fx.control;
 
 import com.example.template4fx.SVG;
+import javafx.beans.property.DoubleProperty;
+import javafx.beans.property.SimpleDoubleProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 import javafx.scene.control.Button;
-import javafx.scene.paint.Paint;
-import javafx.scene.shape.SVGPath;
 
 public class SVGButton
     extends Button
 {
-    private final StringProperty svg = new SimpleStringProperty( "" );
-
     public SVGButton()
     {
         super();
         getStyleClass().add( "svg-button" );
 
-        SVGPath path = new SVGPath();
-        path.getStyleClass().add( "svg" );
+        SVGIcon icon = new SVGIcon();
 
-        svg.addListener(
-            ( observable, oldValue, newValue ) -> path.contentProperty().set( SVG.get( newValue ) ) );
+        svg.addListener( ( observable, oldValue, newValue ) ->
+                             icon.getSVG().contentProperty().set( SVG.INSTANCE.get( newValue ) ) );
 
-        path.setFill( Paint.valueOf( "#000000" ) );
-        setGraphic( path );
+        scale.addListener( ( observable, oldValue, newValue ) -> icon.scale( (Double) newValue ) );
 
-        setPrefWidth( 26 );
-        setPrefHeight( 25 );
+        setGraphic( icon );
     }
+
+    private final StringProperty svg = new SimpleStringProperty( "" );
 
     public String getSvg()
     {
@@ -43,5 +40,22 @@ public class SVGButton
     public void setSvg( String svg )
     {
         this.svg.set( svg );
+    }
+
+    private final DoubleProperty scale = new SimpleDoubleProperty( 1.0 );
+
+    public double getScale()
+    {
+        return scale.get();
+    }
+
+    public DoubleProperty scaleProperty()
+    {
+        return scale;
+    }
+
+    public void setScale( double scale )
+    {
+        this.scale.set( scale );
     }
 }

@@ -18,12 +18,9 @@ import javafx.scene.layout.VBox;
 public class ProgressDialogSkin
     extends SkinBase<ProgressDialog>
 {
-    private final ProgressDialog dialog;
-
     public ProgressDialogSkin( ProgressDialog dialog )
     {
         super( dialog );
-        this.dialog = dialog;
         getChildren().add( init() );
     }
 
@@ -60,7 +57,8 @@ public class ProgressDialogSkin
         header.getStyleClass().add( "progress-dialog-header" );
         header.setAlignment( Pos.CENTER );
 
-        Label headerText = new Label( dialog.getHeader() );
+        Label headerText = new Label();
+        headerText.textProperty().bind( getSkinnable().headerProperty() );
 
         Pane expander = new Pane();
         HBox.setHgrow( expander, Priority.ALWAYS );
@@ -80,20 +78,20 @@ public class ProgressDialogSkin
         content.getStyleClass().add( "progress-dialog-content" );
 
         ProgressBar progressBar = new ProgressBar();
-        progressBar.progressProperty().bind( dialog.getTask().progressProperty() );
+        progressBar.progressProperty().bind( getSkinnable().getTask().progressProperty() );
         progressBar.setMaxWidth( Double.MAX_VALUE );
 
         Label status = new Label();
-        status.textProperty().bind( dialog.getTask().messageProperty() );
+        status.textProperty().bind( getSkinnable().getTask().messageProperty() );
         status.setWrapText( true );
 
         ButtonBar buttonBar = new ButtonBar();
 
         Button ok = new Button( "Close" );
         ok.setDefaultButton( true );
-        ok.setOnAction( event -> dialog.close() );
+        ok.setOnAction( event -> getSkinnable().close() );
 
-        ok.disableProperty().bind( dialog.getTask().runningProperty() );
+        ok.disableProperty().bind( getSkinnable().getTask().runningProperty() );
 
         ButtonBar.setButtonData( ok, ButtonBar.ButtonData.OK_DONE );
         buttonBar.getButtons().add( ok );

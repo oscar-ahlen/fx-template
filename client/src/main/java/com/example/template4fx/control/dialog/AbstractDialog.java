@@ -7,8 +7,6 @@ import javafx.beans.property.StringProperty;
 public abstract class AbstractDialog
     extends FXControl
 {
-    protected final StringProperty header = new SimpleStringProperty();
-
     public AbstractDialog( String header )
     {
         getStyleClass().add( "dialog" );
@@ -16,6 +14,8 @@ public abstract class AbstractDialog
         setHeader( header );
         visibleProperty().bindBidirectional( managedProperty() );
     }
+
+    protected final StringProperty header = new SimpleStringProperty();
 
     public String getHeader()
     {

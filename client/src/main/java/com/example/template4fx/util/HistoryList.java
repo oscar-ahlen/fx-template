@@ -13,10 +13,6 @@ public class HistoryList<T>
 
     private final int limit;
 
-    private final BooleanProperty backwardEnabled = new SimpleBooleanProperty( false );
-
-    private final BooleanProperty forwardEnabled = new SimpleBooleanProperty( false );
-
     public HistoryList()
     {
         this( 20 );
@@ -96,6 +92,8 @@ public class HistoryList<T>
         pointer--;
     }
 
+    private final BooleanProperty backwardEnabled = new SimpleBooleanProperty( false );
+
     public boolean isBackwardEnabled()
     {
         return backwardEnabled.get();
@@ -105,6 +103,8 @@ public class HistoryList<T>
     {
         return backwardEnabled;
     }
+
+    private final BooleanProperty forwardEnabled = new SimpleBooleanProperty( false );
 
     public boolean isForwardEnabled()
     {

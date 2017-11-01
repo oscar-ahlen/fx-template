@@ -1,8 +1,10 @@
 package com.example.template4fx.component;
 
-import com.example.template4fx.FXContext;
+import com.example.template4fx.ApplicationContext;
 import javafx.beans.property.BooleanProperty;
 import javafx.beans.property.SimpleBooleanProperty;
+import javafx.beans.property.SimpleStringProperty;
+import javafx.beans.property.StringProperty;
 import javafx.concurrent.Task;
 import javafx.scene.control.Control;
 import javafx.scene.input.KeyEvent;
@@ -10,19 +12,13 @@ import javafx.scene.input.KeyEvent;
 public abstract class MainView
     extends Component
 {
-    private RootView rootView;
+    protected RootView rootView;
 
-    private FXContext context;
-
-    private final BooleanProperty refreshable = new SimpleBooleanProperty( true );
-
-    private final BooleanProperty idle = new SimpleBooleanProperty( true );
+    protected ApplicationContext context;
 
     public abstract void handleKeyEvent( KeyEvent event );
 
-    public abstract void refresh();
-
-    protected MainView view( String name )
+    protected MainView view( View name )
     {
         return rootView.getView( name );
     }
@@ -34,7 +30,7 @@ public abstract class MainView
 
     protected String setting( String key )
     {
-        return context.getSettings().getValue( key );
+        return context.getSettingsService().getValue( key );
     }
 
     protected void run( Task<?> task )
@@ -65,25 +61,46 @@ public abstract class MainView
         this.rootView = rootView;
     }
 
-    public void setContext( FXContext context )
+    public void setContext( ApplicationContext context )
     {
         this.context = context;
     }
 
-    public boolean isRefreshable()
+    private final StringProperty title = new SimpleStringProperty();
+
+    public String getTitle()
     {
-        return refreshable.get();
+        return title.get();
     }
 
-    public BooleanProperty refreshableProperty()
+    public StringProperty titleProperty()
     {
-        return refreshable;
+        return title;
     }
 
-    public void setRefreshable( boolean refreshable )
+    public void setTitle( String title )
     {
-        this.refreshable.set( refreshable );
+        this.title.set( title );
     }
+
+    private final StringProperty svg = new SimpleStringProperty();
+
+    public String getSvg()
+    {
+        return svg.get();
+    }
+
+    public StringProperty svgProperty()
+    {
+        return svg;
+    }
+
+    public void setSvg( String svg )
+    {
+        this.svg.set( svg );
+    }
+
+    private final BooleanProperty idle = new SimpleBooleanProperty( true );
 
     public boolean isIdle()
     {
