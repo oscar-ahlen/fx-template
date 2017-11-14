@@ -47,7 +47,7 @@
 
     -fx-hover-base: -fx-base;
 
-    -fx-pressed-base: derive(-background-color, -5%);
+    -fx-pressed-base: #CFD8DC; /* Blue Grey 100 */ // derive(-background-color, -5%);
 
     -fx-box-border: -default-border;
     -fx-text-box-border: -default-border;
@@ -284,6 +284,57 @@
 {
     -fx-background-color: -background-color;
 }
+/*******************************************************************************
+ *                                                                             *
+ * Dialog                                                                      *
+ *                                                                             *
+ ******************************************************************************/
+.dialog-pane:header > .header-panel
+{
+    -fx-background-color: -header-color;
+}
+
+.dialog-pane:header > .header-panel > .label
+{
+    -fx-font-size: 16;
+    -fx-font-weight: bold;
+    -fx-text-fill: -header-text-color;
+}
+
+.dialog-pane > .content > .label
+{
+    -fx-padding: 8 0 8 0;
+}
+
+.alert.information.dialog-pane
+{
+    -fx-graphic: url("/icons/48/ic_info_outline_white_48dp.png");
+}
+
+.alert.confirmation.dialog-pane
+{
+    -fx-graphic: url("/icons/48/ic_help_outline_white_48dp.png");
+}
+
+.alert.warning.dialog-pane
+{
+    -fx-graphic: url("/icons/48/ic_warning_white_48dp.png");
+}
+
+.alert.warning.dialog-pane:header > .header-panel
+{
+
+}
+
+.alert.error.dialog-pane
+{
+    -fx-graphic: url("/icons/48/ic_error_outline_white_48dp.png");
+}
+
+.alert.error.dialog-pane:header > .header-panel
+{
+
+}
 
 /*******************************************************************************
  *                                                                             *
@@ -439,11 +490,16 @@
 
 .tab-pane > .tab-header-area > .headers-region > .tab
 {
-    -fx-background-color: -fx-box-border, -fx-pressed-base;
+    -fx-background-color: transparent;
     -fx-background-insets: 0 2 0 0, 1 3 1 1;
     -fx-background-radius: 3 3 0 0, 2 2 0 0;
 
-    -fx-padding: 4 8 4 6;
+    -fx-padding: 6 10 6 8;
+}
+
+.tab-pane > .tab-header-area > .headers-region > .tab:hover
+{
+    -fx-background-color: -fx-box-border, -fx-pressed-base;
 }
 
 .tab-pane > .tab-header-area > .headers-region > .tab:selected

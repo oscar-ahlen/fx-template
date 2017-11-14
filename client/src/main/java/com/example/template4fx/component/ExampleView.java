@@ -3,7 +3,6 @@ package com.example.template4fx.component;
 import com.example.template4fx.Keys;
 import com.example.template4fx.control.dialog.ConfirmDialog;
 import com.example.template4fx.control.dialog.ErrorDialog;
-import com.example.template4fx.control.dialog.InfoDialog;
 import com.example.template4fx.control.dialog.ProgressDialog;
 import com.example.template4fx.facade.FileFacade;
 import com.example.template4fx.model.File;
@@ -13,6 +12,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.concurrent.Task;
 import javafx.fxml.FXML;
+import javafx.scene.control.Alert;
 import javafx.scene.control.SelectionMode;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
@@ -63,7 +63,7 @@ public class ExampleView
 
     public void showInfoDialog()
     {
-        showDialog( new InfoDialog( "Information Dialog", "Testing the new Info Dialog" ) );
+        alert( Alert.AlertType.INFORMATION, "Information Dialog", "Testing the new Info Dialog" ).showAndWait();
     }
 
     public void showErrorDialog()
