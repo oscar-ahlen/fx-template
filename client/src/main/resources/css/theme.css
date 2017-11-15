@@ -82,7 +82,6 @@
  *                                                                             *
  ******************************************************************************/
 .scroll-pane,
-.split-pane,
 .list-view,
 .tree-view,
 .table-view,
@@ -382,6 +381,34 @@
 {
     -fx-background-color: -fx-background;
     -fx-background-insets: 0;
+}
+
+/*******************************************************************************
+ *                                                                             *
+ * Split Pane                                                                  *
+ *                                                                             *
+ ******************************************************************************/
+.split-pane
+{
+    -fx-background-insets: 0;
+    -fx-padding: 0;
+}
+
+.split-pane > .split-pane-divider
+{
+    -fx-padding: 0;
+}
+
+.split-pane:horizontal > .split-pane-divider
+{
+   -fx-background-color: black, -fx-box-border;
+   -fx-background-insets: 0 -4 0 -4, 0;
+}
+
+.split-pane:vertical > .split-pane-divider
+{
+   -fx-background-color: black, -fx-box-border;
+   -fx-background-insets: -4 0 -4 0, 0;
 }
 
 /*******************************************************************************

@@ -60,7 +60,7 @@ public class FileSettingsService
 
         try ( Writer writer = new FileWriter( defaultPath.toFile() ) )
         {
-            gson.toJson( this, writer );
+            gson.toJson( settings, writer );
         }
     }
 
