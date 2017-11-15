@@ -4,6 +4,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
+import javafx.scene.control.Alert;
 import javafx.scene.layout.Pane;
 
 import java.io.IOException;
@@ -31,6 +32,18 @@ public abstract class Component
     protected String message( String key )
     {
         return resources.getString( key );
+    }
+
+    protected Alert alert( Alert.AlertType type, String header, String content )
+    {
+        Alert alert = new Alert( type );
+
+        alert.initOwner( root.getScene().getWindow() );
+        alert.getDialogPane().getStylesheets().add( "/css/theme.css" );
+
+        alert.setHeaderText( header );
+        alert.setContentText( content );
+        return alert;
     }
 
     protected boolean isActive( Node node )
