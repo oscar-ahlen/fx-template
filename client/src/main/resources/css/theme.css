@@ -13,7 +13,7 @@
     -background-color: #ECEFF1; /* Blue Grey 50 */
 
     -header-color: #607D8B; /* Blue Grey 500 */
-    -header-text-color:  -fx-light-text-color;
+    -header-text-color: -fx-light-text-color;
 
     -nav-bar-color: #455A64; /* Blue Grey 700 */
     -nav-bar-text-color: -fx-light-text-color;
@@ -47,7 +47,7 @@
 
     -fx-hover-base: -fx-base;
 
-    -fx-pressed-base: #CFD8DC; /* Blue Grey 100 */ // derive(-background-color, -5%);
+    -fx-pressed-base: #CFD8DC; /* Blue Grey 100 */
 
     -fx-box-border: -default-border;
     -fx-text-box-border: -default-border;
@@ -56,7 +56,7 @@
 
     -fx-inner-border: transparent;
     -fx-inner-border-horizontal: transparent;
-    -fx-inner-border-horizontal: transparent;
+    -fx-inner-border-vertical: transparent;
 
     -fx-body-color: -fx-color;
 
@@ -283,57 +283,6 @@
 {
     -fx-background-color: -background-color;
 }
-/*******************************************************************************
- *                                                                             *
- * Dialog                                                                      *
- *                                                                             *
- ******************************************************************************/
-.dialog-pane:header > .header-panel
-{
-    -fx-background-color: -header-color;
-}
-
-.dialog-pane:header > .header-panel > .label
-{
-    -fx-font-size: 16;
-    -fx-font-weight: bold;
-    -fx-text-fill: -header-text-color;
-}
-
-.dialog-pane > .content > .label
-{
-    -fx-padding: 8 0 8 0;
-}
-
-.alert.information.dialog-pane
-{
-    -fx-graphic: url("/icons/48/ic_info_outline_white_48dp.png");
-}
-
-.alert.confirmation.dialog-pane
-{
-    -fx-graphic: url("/icons/48/ic_help_outline_white_48dp.png");
-}
-
-.alert.warning.dialog-pane
-{
-    -fx-graphic: url("/icons/48/ic_warning_white_48dp.png");
-}
-
-.alert.warning.dialog-pane:header > .header-panel
-{
-
-}
-
-.alert.error.dialog-pane
-{
-    -fx-graphic: url("/icons/48/ic_error_outline_white_48dp.png");
-}
-
-.alert.error.dialog-pane:header > .header-panel
-{
-
-}
 
 /*******************************************************************************
  *                                                                             *
@@ -452,14 +401,14 @@
 
 .split-pane:horizontal > .split-pane-divider
 {
-   -fx-background-color: black, -fx-box-border;
-   -fx-background-insets: 0 -4 0 -4, 0;
+    -fx-background-color: transparent, -fx-box-border;
+    -fx-background-insets: 0 -4 0 -4, 0;
 }
 
 .split-pane:vertical > .split-pane-divider
 {
-   -fx-background-color: black, -fx-box-border;
-   -fx-background-insets: -4 0 -4 0, 0;
+    -fx-background-color: transparent, -fx-box-border;
+    -fx-background-insets: -4 0 -4 0, 0;
 }
 
 /*******************************************************************************
@@ -472,7 +421,7 @@
     -fx-fill: -default-icon-color;
 }
 
-// Controls where icon color should be synced with text color.
+/* Controls where icon color should be synced with text color. */
 .dialog * .svg,
 .header * .svg,
 .header .button .svg
@@ -553,8 +502,8 @@
 
 .tab-down-button
 {
-   -fx-background-color: transparent;
-   -fx-padding: 0 8 8 0;
+    -fx-background-color: transparent;
+    -fx-padding: 0 8 8 0;
 }
 
 .tab-down-button > .arrow
@@ -795,7 +744,7 @@
     -fx-background-insets: 0, 1 0 1 1;
     -fx-background-radius: 3 0 0 3, 2 0 0 2;
 
-    -fx-padding: 4 8 4 8 ;
+    -fx-padding: 4 8 4 8;
 
     -fx-font-weight: bold;
 

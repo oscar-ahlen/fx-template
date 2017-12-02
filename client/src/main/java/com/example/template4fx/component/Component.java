@@ -6,13 +6,14 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.control.Alert;
 import javafx.scene.layout.Pane;
+import javafx.stage.Window;
 
 import java.io.IOException;
 import java.util.ResourceBundle;
 
 public abstract class Component
 {
-    private Parent root;
+    private Parent node;
 
     @FXML
     private ResourceBundle resources;
@@ -25,8 +26,13 @@ public abstract class Component
         Parent root = loader.load();
 
         Component component = loader.getController();
-        component.setRoot( root );
+        component.setNode( root );
         return component;
+    }
+
+    protected Window getWindow()
+    {
+        return node.getScene().getWindow();
     }
 
     protected String message( String key )
@@ -38,7 +44,7 @@ public abstract class Component
     {
         Alert alert = new Alert( type );
 
-        alert.initOwner( root.getScene().getWindow() );
+        alert.initOwner( getWindow() );
         alert.getDialogPane().getStylesheets().add( "/css/theme.css" );
 
         alert.setHeaderText( header );
@@ -69,14 +75,14 @@ public abstract class Component
         parent.getChildren().remove( oldNode );
     }
 
-    public Parent getRoot()
+    public Parent getNode()
     {
-        return root;
+        return node;
     }
 
-    public void setRoot( Parent root )
+    public void setNode( Parent node )
     {
-        this.root = root;
+        this.node = node;
     }
 
     public ResourceBundle getResources()

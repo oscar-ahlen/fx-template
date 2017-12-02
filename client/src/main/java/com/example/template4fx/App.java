@@ -39,7 +39,7 @@ public class App
 
         primaryStage.titleProperty().bindBidirectional( rootView.titleProperty() );
 
-        primaryStage.setScene( new Scene( rootView.getRoot() ) );
+        primaryStage.setScene( new Scene( rootView.getNode() ) );
         primaryStage.setMaximized( true );
         primaryStage.show();
     }
@@ -62,7 +62,7 @@ public class App
 
         RootView rootView = loader.getController();
 
-        rootView.setRoot( root );
+        rootView.setNode( root );
         rootView.setContext( context );
         rootView.setup();
 

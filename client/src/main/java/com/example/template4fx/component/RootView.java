@@ -146,9 +146,9 @@ public class RootView
             return;
 
         if ( current != null )
-            switchNode( center, current.getRoot(), view.getRoot() );
+            switchNode( center, current.getNode(), view.getNode() );
         else
-            switchNode( center, null, view.getRoot() );
+            switchNode( center, null, view.getNode() );
 
         current = view;
 
