@@ -26,7 +26,7 @@ public enum SVG
 
     private Properties load( String resource )
     {
-        try ( InputStream inputStream = SVG.class.getResourceAsStream( resource ) )
+        try ( InputStream inputStream = getClass().getResourceAsStream( resource ) )
         {
             Properties properties = new Properties();
             properties.load( inputStream );
