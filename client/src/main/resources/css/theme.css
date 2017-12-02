@@ -5,45 +5,65 @@
  ******************************************************************************/
 .root
 {
-    -ok: #31A749;
-    -warning: #FEC02C;
-    -error: #DA3148;
+    /*******************************************************************************
+     *                                                                             *
+     * Color constants                                                             *
+     *                                                                             *
+     ******************************************************************************/
+    -blue-grey-50: #ECEFF1;
+    -blue-grey-100: #CFD8DC;
+    -blue-grey-200: #B0BEC5;
+    -blue-grey-300: #90A4AE;
+    -blue-grey-400: #78909C;
+    -blue-grey-500: #607D8B;
+    -blue-grey-600: #546E7A;
+    -blue-grey-700: #455A64;
+    -blue-grey-800: #37474F;
+    -blue-grey-900: #263238;
+
+    -light-blue-400: #00B0FF;
+    -light-blue-A700: #0091EA;
+
+    -ok: #28A745;
+    -warning: #FFC107;
+    -error: #DC3545;
 
     /*******************************************************************************
      *                                                                             *
      * Custom values                                                               *
      *                                                                             *
      ******************************************************************************/
-    -background-color: #ECEFF1; /* Blue Grey 50 */
+    -background-color: -blue-grey-50;
 
-    -header-color: #607D8B; /* Blue Grey 500 */
+    -header-color: -blue-grey-500;
     -header-text-color: -fx-light-text-color;
 
-    -nav-bar-color: #455A64; /* Blue Grey 700 */
+    -nav-bar-color: -blue-grey-700;
     -nav-bar-text-color: -fx-light-text-color;
 
-    -default-border: #B0BEC5; /* Blue Grey 200 */
+    -default-border: -blue-grey-200;
 
-    -default-icon-color: #455A64; /* Blue Grey 700 */
-    -dark-icon-color: #263238; /* Blue Grey 900 */
+    -default-icon-color: -blue-grey-600;
+
+    -dark-icon-color: -blue-grey-900;
 
     /*******************************************************************************
      *                                                                             *
      * Modena values                                                               *
      *                                                                             *
      ******************************************************************************/
-    -fx-base: white; /* Base color */
+    -fx-base: white;
 
     -fx-background: -background-color;
 
-    -fx-control-inner-background: white; /* Inner background color */
+    -fx-control-inner-background: white;
     -fx-control-inner-background-alt: -fx-control-inner-background;
 
-    -fx-accent: #00B0FF; /* Light Blue A400 */
+    -fx-accent: -light-blue-400;
 
     -fx-default-button: -header-color;
 
-    -fx-focus-color: #00B0FF; /* Light Blue A400 */
+    -fx-focus-color: -light-blue-400;
 
     -fx-faint-focus-color: -fx-focus-color;
 
@@ -51,7 +71,7 @@
 
     -fx-hover-base: -fx-base;
 
-    -fx-pressed-base: #CFD8DC; /* Blue Grey 100 */
+    -fx-pressed-base: -blue-grey-100;
 
     -fx-box-border: -default-border;
     -fx-text-box-border: -default-border;
@@ -67,13 +87,13 @@
     -fx-body-color-bottomup: -fx-color;
     -fx-body-color-to-right: -fx-color;
 
-    -fx-mark-color: -fx-text-base-color;
+    -fx-mark-color: -default-icon-color;
 
     -fx-mark-highlight-color: transparent;
 
-    -fx-selection-bar: #0091EA; /* Light Blue A700 */
+    -fx-selection-bar: -light-blue-A700;
 
-    -fx-selection-bar-non-focused: #ECEFF1; /* Blue Grey 50 */
+    -fx-selection-bar-non-focused: -blue-grey-50;
 
     -fx-cell-hover-color: transparent;
 
@@ -196,7 +216,7 @@
     -fx-background-insets: 0;
     -fx-background-radius: 3;
 
-    -fx-padding: 0;
+    -fx-padding: 4;
 
     -fx-focus-traversable: false;
 }
@@ -329,7 +349,7 @@
  ******************************************************************************/
 .scroll-bar
 {
-    -scroll-bar-background: #B0BEC5; /* Blue Grey 200 */
+    -scroll-bar-background: -blue-grey-200;
 }
 
 .scroll-bar > .track
@@ -431,17 +451,17 @@
     -fx-fill: -default-icon-color;
 }
 
+.svg-button .svg
+{
+    -fx-fill: -dark-icon-color;
+}
+
 /* Controls where icon color should be synced with text color. */
 .dialog * .svg,
 .header * .svg,
 .header .button .svg
 {
     -fx-fill: -fx-text-fill;
-}
-
-.svg-button .svg
-{
-    -fx-fill: -dark-icon-color;
 }
 
 .list-cell:selected .svg-icon .svg,
@@ -651,6 +671,19 @@
 
 /*******************************************************************************
  *                                                                             *
+ * Tooltip                                                                     *
+ *                                                                             *
+ ******************************************************************************/
+.tooltip
+{
+    -fx-font-size: 14;
+    -fx-font-weight: bold;
+
+    -fx-padding: 6 10 6 10;
+}
+
+/*******************************************************************************
+ *                                                                             *
  * Header and Navigation Bar                                                   *
  *                                                                             *
  ******************************************************************************/
@@ -711,7 +744,7 @@
 .header .button:focused,
 .nav-bar .button:hover
 {
-    -fx-background-color: #B0BEC5; /* Blue Grey 200 */
+    -fx-background-color: -blue-grey-200;
     -fx-text-fill: -fx-dark-text-color;
 
     -fx-font-weight: bold;
@@ -777,6 +810,11 @@
     -fx-background-color: -fx-control-inner-background, -fx-box-border, -fx-background;
     -fx-background-insets: 0, 4 0 0 0, 5 0 0 0;
     -fx-padding: 12 8 8 8;
+}
+
+.tab-box.no-padding
+{
+    -fx-padding: 5 0 0 0;
 }
 
 .filter-field

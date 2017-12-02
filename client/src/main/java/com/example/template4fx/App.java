@@ -25,7 +25,6 @@ public class App
 
     @Override
     public void init()
-        throws Exception
     {
         Injector injector = Guice.createInjector( new ApplicationModule() );
         context = injector.getInstance( ApplicationContext.class );

@@ -9,7 +9,6 @@
       xmlns:fx="http://javafx.com/fxml"
       fx:controller="com.example.template4fx.component.SettingsView"
       spacing="8">
-
     <padding>
         <Insets top="12" bottom="12"/>
     </padding>
