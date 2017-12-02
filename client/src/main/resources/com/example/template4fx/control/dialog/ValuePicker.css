@@ -1,36 +1,37 @@
-.error-dialog
+.value-picker
 {
 }
 
-.error-dialog .masker-glass
+.value-picker .masker-glass
 {
     -fx-background-color: rgba(0, 0, 0, .3);
 }
 
-.error-dialog-background
+.value-picker-background
 {
     -fx-background-color: -fx-background;
     -fx-background-radius: 3, 2;
 
-    -fx-pref-width: 600;
-    -fx-pref-height: 400;
+    -fx-pref-width: 400;
+    -fx-padding: 8;
+    -fx-spacing: 8;
 }
 
-.error-dialog-header
+.value-picker-header
 {
-    -fx-background-color: -error;
-    -fx-background-radius: 3 3 0 0;
+    -fx-background-color: -header-color;
+    -fx-background-radius: 3 3 0 0, 2 2 0 0;
     -fx-padding: 8 12 8 12;
 }
 
-.error-dialog-header .label
+.value-picker-header .label
 {
     -fx-text-fill: -header-text-color;
     -fx-font-size: 16;
     -fx-font-weight: bold;
 }
 
-.error-dialog-content
+.value-picker-content
 {
     -fx-padding: 12;
     -fx-spacing: 8;

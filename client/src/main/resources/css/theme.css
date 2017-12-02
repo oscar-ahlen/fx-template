@@ -5,6 +5,10 @@
  ******************************************************************************/
 .root
 {
+    -ok: #31A749;
+    -warning: #FEC02C;
+    -error: #DA3148;
+
     /*******************************************************************************
      *                                                                             *
      * Custom values                                                               *
@@ -97,7 +101,8 @@
     -fx-background-radius: 0;
 }
 
-.button:default
+.button:default,
+.button:default:focused
 {
     -fx-pressed-base: derive(-fx-default-button, 25%);
 
@@ -105,6 +110,11 @@
 
     -fx-text-fill: -header-text-color;
     -fx-font-weight: bold;
+}
+
+.button:default:hover
+{
+    -fx-background-color: derive(-fx-color, 15%);
 }
 
 .button,
@@ -283,57 +293,6 @@
 .date-picker-popup > * > .next-month
 {
     -fx-background-color: -background-color;
-}
-/*******************************************************************************
- *                                                                             *
- * Dialog                                                                      *
- *                                                                             *
- ******************************************************************************/
-.dialog-pane:header > .header-panel
-{
-    -fx-background-color: -header-color;
-}
-
-.dialog-pane:header > .header-panel > .label
-{
-    -fx-font-size: 16;
-    -fx-font-weight: bold;
-    -fx-text-fill: -header-text-color;
-}
-
-.dialog-pane > .content > .label
-{
-    -fx-padding: 8 0 8 0;
-}
-
-.alert.information.dialog-pane
-{
-    -fx-graphic: url("/icons/48/ic_info_outline_white_48dp.png");
-}
-
-.alert.confirmation.dialog-pane
-{
-    -fx-graphic: url("/icons/48/ic_help_outline_white_48dp.png");
-}
-
-.alert.warning.dialog-pane
-{
-    -fx-graphic: url("/icons/48/ic_warning_white_48dp.png");
-}
-
-.alert.warning.dialog-pane:header > .header-panel
-{
-
-}
-
-.alert.error.dialog-pane
-{
-    -fx-graphic: url("/icons/48/ic_error_outline_white_48dp.png");
-}
-
-.alert.error.dialog-pane:header > .header-panel
-{
-
 }
 
 /*******************************************************************************

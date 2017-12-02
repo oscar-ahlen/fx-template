@@ -17,14 +17,15 @@
 
 .progress-dialog-header
 {
-    -fx-background-color: -header-color;
-    -fx-background-radius: 3 3 0 0, 2 2 0 0;
-    -fx-padding: 8 12 8 12;
+    -fx-background-color: -header-color, white;
+    -fx-background-insets: 0 0 0 0, 0 0 4 0;
+    -fx-background-radius: 3 3 0 0;
+    -fx-padding: 8 12 12 12;
 }
 
 .progress-dialog-header .label
 {
-    -fx-text-fill: -header-text-color;
+    -fx-text-fill: -header-color;
     -fx-font-size: 16;
     -fx-font-weight: bold;
 }

@@ -23,6 +23,7 @@
         <Button text="Confirm Dialog" onAction="#showConfirmDialog"/>
         <Button text="Progress Dialog" onAction="#showProgressDialog"/>
 
+        <Button fx:id="valuePickerButton" text="Test ValuePicker" onAction="#testValuePicker"/>
         <DatePicker/>
     </HBox>
 
