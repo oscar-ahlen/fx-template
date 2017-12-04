@@ -3,15 +3,10 @@ package com.example.template4fx.view;
 import com.example.template4fx.control.SVGIcon;
 import javafx.scene.control.ListCell;
 
-public class SVGListCell<S extends Displayable<String>>
+public class SVGListCell<S extends Displayable>
     extends ListCell<S>
 {
-    private final SVGIcon icon;
-
-    public SVGListCell()
-    {
-        icon = new SVGIcon();
-    }
+    private final SVGIcon icon = new SVGIcon();
 
     @Override
     protected void updateItem( S item, boolean empty )
@@ -27,7 +22,7 @@ public class SVGListCell<S extends Displayable<String>>
         {
             icon.getSVG().setContent( item.getContent() );
             setGraphic( icon );
-            setText( item.getText() );
+            setText( item.getTitle() );
         }
     }
 }

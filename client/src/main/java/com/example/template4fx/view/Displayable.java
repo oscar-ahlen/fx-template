@@ -1,8 +1,8 @@
 package com.example.template4fx.view;
 
-public interface Displayable<T>
+public interface Displayable
 {
-    String getText();
+    String getTitle();
 
-    T getContent();
+    String getContent();
 }

@@ -12,7 +12,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class FileFacade
-    implements FXFacade<File>, Displayable<String>
+    implements FXFacade<File>, Displayable
 {
     private static final Map<String, String> ICONS = new HashMap<>();
 
@@ -121,7 +121,7 @@ public class FileFacade
     }
 
     @Override
-    public String getText()
+    public String getTitle()
     {
         return name.get();
     }

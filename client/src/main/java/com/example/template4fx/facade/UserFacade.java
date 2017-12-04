@@ -7,7 +7,7 @@ import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 
 public class UserFacade
-    implements FXFacade<User>, Displayable<String>
+    implements FXFacade<User>, Displayable
 {
     private final User user;
 
@@ -122,7 +122,7 @@ public class UserFacade
     }
 
     @Override
-    public String getText()
+    public String getTitle()
     {
         return name.get();
     }
