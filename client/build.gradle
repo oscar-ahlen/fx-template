@@ -1,3 +1,5 @@
+apply plugin: 'javafx-gradle-plugin'
+
 group 'com.example.template4fx'
 version '0.4.0'
 description 'Template desktop application for JavaFX to be used and built upon in other projects.'
@@ -16,6 +18,8 @@ tasks.withType(Jar) {
     destinationDir = file('build/output')
 }
 
+jar.baseName = 'template4fx'
+
 jar {
     exclude 'META-INF/*.SF', 'META-INF/*.DSA', 'META-INF/*.RSA', 'META-INF/*.MF', 'log4j.properties'
 
@@ -31,4 +35,44 @@ task copyRuntimeLibs(type: Copy) {
 }
 
 build.dependsOn(copyRuntimeLibs)
+
+/*******************************************************************************
+ *                                                                             *
+ * Native build                                                                *
+ *                                                                             *
+ ******************************************************************************/
+buildscript {
+    dependencies {
+        classpath group: 'de.dynamicfiles.projects.gradle.plugins', name: 'javafx-gradle-plugin', version: '8.8.2'
+    }
+
+    repositories {
+        mavenLocal()
+        mavenCentral()
+    }
+}
+
+jfx {
+    appName = 'Template4FX'
+    jfxMainAppJarName = 'template4fx.jar'
+    mainClass = 'com.example.template4fx.App'
+    vendor = 'ACME'
+
+    jvmArgs = ['-Xms128m', '-Xmx256m', '-Dfile.encoding=UTF-8']
+}
+
+task copyProperties(type: Copy, dependsOn: jfxNative) {
+    from 'client/src/main/resources'
+    into 'build/jfx/native/Template4FX'
+    include 'log4j.properties'
+}
+
+task packageZip(type: Zip, dependsOn: copyProperties) {
+    archiveName 'Template4FX-' + version + '.zip'
+    from 'build/jfx/native/Template4FX'
+
+    /* UTV build directory */
+    destinationDir file('build/jfx/native/Template4FX')
+}
+
 
