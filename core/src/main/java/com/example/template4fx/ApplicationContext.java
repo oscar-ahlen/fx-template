@@ -1,19 +1,11 @@
 package com.example.template4fx;
 
-import com.example.template4fx.service.PostService;
-import com.example.template4fx.service.SettingsService;
-import com.example.template4fx.service.UserService;
-
-import java.util.concurrent.ExecutorService;
+import java.util.Set;
 
 public interface ApplicationContext
     extends AutoCloseable
 {
-    ExecutorService getExecutorService();
+    Set<Class> getServices();
 
-    UserService getUserService();
-
-    PostService getPostService();
-
-    SettingsService getSettingsService();
+    <T> T getService( Class<T> clazz );
 }

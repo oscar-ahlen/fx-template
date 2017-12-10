@@ -1,6 +1,7 @@
 package com.example.template4fx.control.dialog;
 
 import com.example.template4fx.view.skin.ConfirmDialogSkin;
+import javafx.application.Platform;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 import javafx.scene.control.Skin;
@@ -42,7 +43,7 @@ public class ConfirmDialog
         setVisible( false );
 
         if ( runnable != null )
-            runnable.run();
+            Platform.runLater( runnable );
     }
 
     @Override

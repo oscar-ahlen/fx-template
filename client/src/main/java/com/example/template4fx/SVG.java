@@ -6,27 +6,18 @@ import java.util.Properties;
 
 public enum SVG
 {
-    INSTANCE
-        {
-            @Override
-            String getResource()
-            {
-                return "/icons/svg.properties";
-            }
-        };
+    INSTANCE;
 
-    private final Properties svgPaths = load( getResource() );
-
-    abstract String getResource();
+    private final Properties svgPaths = load();
 
     public String get( String key )
     {
         return svgPaths.getProperty( key, "" );
     }
 
-    private Properties load( String resource )
+    private Properties load()
     {
-        try ( InputStream inputStream = getClass().getResourceAsStream( resource ) )
+        try ( InputStream inputStream = getClass().getResourceAsStream( "/icons/svg.properties" ) )
         {
             Properties properties = new Properties();
             properties.load( inputStream );

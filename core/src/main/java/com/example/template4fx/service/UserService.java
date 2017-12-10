@@ -1,7 +1,7 @@
 package com.example.template4fx.service;
 
-import com.example.template4fx.model.User;
 import com.example.template4fx.error.HttpException;
+import com.example.template4fx.model.User;
 
 import java.io.IOException;
 import java.util.Collection;

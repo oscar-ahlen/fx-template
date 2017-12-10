@@ -12,7 +12,7 @@
 <StackPane xmlns="http://javafx.com/javafx"
            xmlns:fx="http://javafx.com/fxml"
            fx:controller="com.example.template4fx.component.RootView"
-           fx:id="rootPane">
+           fx:id="root">
     <BorderPane>
         <top>
             <HBox styleClass="header" alignment="CENTER_LEFT">

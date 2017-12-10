@@ -4,24 +4,20 @@ import com.example.template4fx.Keys;
 import com.example.template4fx.control.dialog.ValuePicker;
 import javafx.application.Platform;
 import javafx.beans.value.ChangeListener;
-import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.control.ListView;
-import javafx.scene.control.SkinBase;
 import javafx.scene.control.TextField;
 import javafx.scene.input.KeyEvent;
-import javafx.scene.layout.HBox;
-import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 
 public class ValuePickerSkin<T>
-    extends SkinBase<ValuePicker<T>>
+    extends OverlaySkin<ValuePicker<T>>
 {
     private TextField filter;
 
     private ListView<T> listView;
 
-    private ChangeListener<Boolean> focusListener = ( observable, oldValue, newValue ) ->
+    private final ChangeListener<Boolean> focusListener = ( observable, oldValue, newValue ) ->
     {
         if ( !newValue && lostFocus() )
             close();
@@ -30,25 +26,7 @@ public class ValuePickerSkin<T>
     public ValuePickerSkin( ValuePicker<T> control )
     {
         super( control );
-        getChildren().add( initialize() );
-    }
-
-    public Node initialize()
-    {
-        StackPane glass = new StackPane();
-        glass.getStyleClass().add( "masker-glass" );
-
-        VBox vBox = new VBox();
-        vBox.setAlignment( Pos.CENTER );
-        glass.getChildren().add( vBox );
-
-        HBox hBox = new HBox();
-        hBox.setAlignment( Pos.CENTER );
-        vBox.getChildren().add( hBox );
-
-        hBox.getChildren().add( createDialogSkin() );
-
-        return glass;
+        createOverlay( createDialogSkin() );
     }
 
     private Node createDialogSkin()

@@ -25,10 +25,7 @@ public class HistoryList<T>
 
     public T getCurrent()
     {
-        if ( !items.isEmpty() )
-            return items.get( pointer );
-
-        return null;
+        return !items.isEmpty() ? items.get( pointer ) : null;
     }
 
     public void add( T item )

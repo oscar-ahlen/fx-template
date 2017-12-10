@@ -7,15 +7,10 @@ import com.example.template4fx.service.UserService;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import com.google.inject.Inject;
-import org.apache.http.client.methods.CloseableHttpResponse;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.client.utils.URIBuilder;
 
-import java.io.BufferedReader;
 import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.io.Reader;
 import java.lang.reflect.Type;
 import java.net.URI;
 import java.net.URISyntaxException;
@@ -62,14 +57,6 @@ public class UserServiceImpl
         HttpGet httpGet = new HttpGet( uri );
         httpGet.addHeader( "Accept", "application/json" );
 
-        try ( CloseableHttpResponse response = service.execute( httpGet ) )
-        {
-            try ( InputStream inputStream = response.getEntity().getContent();
-                  InputStreamReader streamReader = new InputStreamReader( inputStream );
-                  Reader reader = new BufferedReader( streamReader ) )
-            {
-                return gson.fromJson( reader, usersType );
-            }
-        }
+        return service.execute( httpGet, usersType );
     }
 }

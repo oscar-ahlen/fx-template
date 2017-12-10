@@ -47,6 +47,8 @@
 
     -dark-icon-color: -blue-grey-900;
 
+    -highlight-color: -light-blue-A700;
+
     /*******************************************************************************
      *                                                                             *
      * Modena values                                                               *
@@ -259,6 +261,8 @@
  ******************************************************************************/
 .date-picker-popup
 {
+    -fx-cell-focus-inner-border: -fx-focus-color;
+
     -fx-background-color: -fx-box-border, -fx-control-inner-background;
 }
 
@@ -503,9 +507,15 @@
     -fx-padding: 6 10 6 8;
 }
 
-.tab-pane > .tab-header-area > .headers-region > .tab:hover
+.tab-pane > .tab-header-area > .headers-region > .tab:hover > .tab-container > .tab-label
 {
-    -fx-background-color: -fx-box-border, -fx-pressed-base;
+    -fx-text-fill: -highlight-color;
+    -fx-cursor: hand;
+}
+
+.tab-pane > .tab-header-area > .headers-region > .tab:hover > .tab-container > .tab-label .svg
+{
+    -fx-fill: -highlight-color;
 }
 
 .tab-pane > .tab-header-area > .headers-region > .tab:selected

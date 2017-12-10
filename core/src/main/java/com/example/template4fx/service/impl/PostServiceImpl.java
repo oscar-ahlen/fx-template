@@ -7,15 +7,10 @@ import com.example.template4fx.service.PostService;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import com.google.inject.Inject;
-import org.apache.http.client.methods.CloseableHttpResponse;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.client.utils.URIBuilder;
 
-import java.io.BufferedReader;
 import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.io.Reader;
 import java.lang.reflect.Type;
 import java.net.URI;
 import java.net.URISyntaxException;
@@ -99,15 +94,7 @@ public class PostServiceImpl
         HttpGet httpGet = new HttpGet( uri );
         httpGet.addHeader( "Accept", "application/json" );
 
-        try ( CloseableHttpResponse response = service.execute( httpGet ) )
-        {
-            try ( InputStream inputStream = response.getEntity().getContent();
-                  InputStreamReader streamReader = new InputStreamReader( inputStream );
-                  Reader reader = new BufferedReader( streamReader ) )
-            {
-                return gson.fromJson( reader, postType );
-            }
-        }
+        return service.execute( httpGet, postType );
     }
 
     private Collection<Post> getPosts( URI uri )
@@ -116,14 +103,6 @@ public class PostServiceImpl
         HttpGet httpGet = new HttpGet( uri );
         httpGet.addHeader( "Accept", "application/json" );
 
-        try ( CloseableHttpResponse response = service.execute( httpGet ) )
-        {
-            try ( InputStream inputStream = response.getEntity().getContent();
-                  InputStreamReader streamReader = new InputStreamReader( inputStream );
-                  Reader reader = new BufferedReader( streamReader ) )
-            {
-                return gson.fromJson( reader, postsType );
-            }
-        }
+        return service.execute( httpGet, postsType );
     }
 }

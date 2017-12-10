@@ -26,7 +26,7 @@ public class RootView
 {
     private static final String TITLE = "Template4FX";
 
-    private final Map<View, MainView> views = new HashMap<>();
+    private final Map<String, MainView> views = new HashMap<>();
 
     private final HistoryList<MainView> recent = new HistoryList<>();
 
@@ -38,7 +38,7 @@ public class RootView
     private Pane expandedNavBar, collapsedNavBar;
 
     @FXML
-    private StackPane rootPane, center;
+    private StackPane root, center;
 
     @FXML
     private SVGLabel header;
@@ -46,7 +46,7 @@ public class RootView
     @FXML
     private Button backward, forward;
 
-    private boolean showsDialog = false;
+    private boolean locked = false;
 
     public void initialize()
     {
@@ -55,7 +55,7 @@ public class RootView
         backward.disableProperty().bind( recent.backwardEnabledProperty().not() );
         forward.disableProperty().bind( recent.forwardEnabledProperty().not() );
 
-        rootPane.addEventFilter( KeyEvent.KEY_PRESSED, new RootViewEventHandler() );
+        root.addEventFilter( KeyEvent.KEY_PRESSED, new RootEventHandler() );
 
         toggleNavBar();
     }
@@ -63,15 +63,10 @@ public class RootView
     public void setup()
         throws IOException
     {
-        loadMainView( View.ExampleView, "/fxml/ExampleView.fxml" );
-        loadMainView( View.UserView, "/fxml/UserView.fxml" );
-        loadMainView( View.SettingsView, "/fxml/SettingsView.fxml" );
-        switchView( View.ExampleView );
-    }
-
-    public MainView getView( View name )
-    {
-        return views.get( name );
+        loadMainView( "ExampleView", "/fxml/ExampleView.fxml" );
+        loadMainView( "UserView", "/fxml/UserView.fxml" );
+        loadMainView( "SettingsView", "/fxml/SettingsView.fxml" );
+        switchView( "ExampleView" );
     }
 
     public void exit()
@@ -105,35 +100,35 @@ public class RootView
 
     public void showExampleView()
     {
-        switchView( View.ExampleView );
+        switchView( "ExampleView" );
     }
 
     public void showUserView()
     {
-        switchView( View.UserView );
+        switchView( "UserView" );
     }
 
     public void showSettingsView()
     {
-        switchView( View.SettingsView );
+        switchView( "SettingsView" );
     }
 
-    public void showDialog( Control control )
+    public void popup( Control control )
     {
         control.visibleProperty().addListener(
             ( observable, oldValue, newValue ) -> {
                 if ( !newValue && oldValue )
                 {
-                    rootPane.getChildren().remove( control );
-                    showsDialog = false;
+                    root.getChildren().remove( control );
+                    locked = false;
                 }
             } );
 
-        rootPane.getChildren().add( control );
-        showsDialog = true;
+        root.getChildren().add( control );
+        locked = true;
     }
 
-    public void switchView( View name )
+    public void switchView( String name )
     {
         MainView view = views.get( name );
         switchView( view );
@@ -156,7 +151,7 @@ public class RootView
         rebindProperty( header.svgProperty(), current.svgProperty() );
     }
 
-    private void loadMainView( View name, String fxml )
+    private void loadMainView( String name, String fxml )
         throws IOException
     {
         MainView mainView = (MainView) load( fxml );
@@ -205,12 +200,12 @@ public class RootView
         this.title.set( title );
     }
 
-    private class RootViewEventHandler
+    private class RootEventHandler
         implements EventHandler<KeyEvent>
     {
         public void handle( KeyEvent event )
         {
-            if ( showsDialog )
+            if ( locked )
                 return;
 
             if ( Keys.ALT_LEFT.match( event ) )

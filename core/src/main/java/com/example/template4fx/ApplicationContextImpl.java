@@ -6,21 +6,16 @@ import com.example.template4fx.service.SettingsService;
 import com.example.template4fx.service.UserService;
 import com.google.inject.Inject;
 
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Set;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
 public class ApplicationContextImpl
     implements ApplicationContext
 {
-    private final ExecutorService executorService = Executors.newFixedThreadPool( 4 );
-
-    private final HttpService httpService;
-
-    private final UserService userService;
-
-    private final PostService postService;
-
-    private final SettingsService settingsService;
+    private final Map<Class, Object> services = new HashMap<>();
 
     @Inject
     public ApplicationContextImpl( HttpService httpService,
@@ -28,41 +23,39 @@ public class ApplicationContextImpl
                                    PostService postService,
                                    SettingsService settingsService )
     {
-        this.httpService = httpService;
-        this.userService = userService;
-        this.postService = postService;
-        this.settingsService = settingsService;
+        put( ExecutorService.class, Executors.newFixedThreadPool( 4 ) );
+
+        put( HttpService.class, httpService );
+        put( UserService.class, userService );
+        put( PostService.class, postService );
+        put( SettingsService.class, settingsService );
     }
 
     @Override
-    public ExecutorService getExecutorService()
+    public Set<Class> getServices()
     {
-        return executorService;
+        return services.keySet();
     }
 
-    @Override
-    public UserService getUserService()
+    @SuppressWarnings( "unchecked" )
+    public <T> T getService( Class<T> clazz )
     {
-        return userService;
-    }
+        if ( !services.containsKey( clazz ) )
+            throw new IllegalArgumentException( String.format( "%s does not exist in application context", clazz ) );
 
-    @Override
-    public PostService getPostService()
-    {
-        return postService;
-    }
-
-    @Override
-    public SettingsService getSettingsService()
-    {
-        return settingsService;
+        return (T) services.get( clazz );
     }
 
     @Override
     public void close()
         throws Exception
     {
-        executorService.shutdown();
-        httpService.close();
+        getService( ExecutorService.class ).shutdown();
+        getService( HttpService.class ).close();
+    }
+
+    private <T> void put( Class<T> clazz, T service )
+    {
+        services.put( clazz, service );
     }
 }

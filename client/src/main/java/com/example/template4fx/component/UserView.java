@@ -3,6 +3,7 @@ package com.example.template4fx.component;
 import com.example.template4fx.control.dialog.ErrorDialog;
 import com.example.template4fx.facade.UserFacade;
 import com.example.template4fx.model.User;
+import com.example.template4fx.service.UserService;
 import com.example.template4fx.view.SVGTableCell;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -52,7 +53,7 @@ public class UserView
         protected Collection<User> call()
             throws Exception
         {
-            return context.getUserService().getUsers();
+            return service( UserService.class ).getUsers();
         }
 
         @Override
@@ -65,7 +66,7 @@ public class UserView
         @Override
         protected void failed()
         {
-            showDialog( new ErrorDialog( "Error Dialog", getException() ) );
+            popup( new ErrorDialog( "Error Dialog", getException() ) );
         }
     }
 }

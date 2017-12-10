@@ -7,12 +7,10 @@ import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonBar;
 import javafx.scene.control.Label;
-import javafx.scene.control.SkinBase;
 import javafx.scene.control.TextArea;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.Priority;
-import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.TextAlignment;
 
@@ -20,30 +18,12 @@ import java.io.PrintWriter;
 import java.io.StringWriter;
 
 public class ErrorDialogSkin
-    extends SkinBase<ErrorDialog>
+    extends OverlaySkin<ErrorDialog>
 {
     public ErrorDialogSkin( ErrorDialog dialog )
     {
         super( dialog );
-        getChildren().add( init() );
-    }
-
-    private Node init()
-    {
-        StackPane glass = new StackPane();
-        glass.getStyleClass().add( "masker-glass" );
-
-        VBox vBox = new VBox();
-        vBox.setAlignment( Pos.CENTER );
-
-        HBox hBox = new HBox();
-        hBox.setAlignment( Pos.CENTER );
-
-        glass.getChildren().add( vBox );
-        vBox.getChildren().add( hBox );
-        hBox.getChildren().add( createDialogSkin() );
-
-        return glass;
+        createOverlay( createDialogSkin() );
     }
 
     private Node createDialogSkin()

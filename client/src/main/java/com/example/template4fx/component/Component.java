@@ -14,7 +14,7 @@ public abstract class Component
     private Parent node;
 
     @FXML
-    private ResourceBundle resources;
+    protected ResourceBundle resources;
 
     protected Component load( String fxml )
         throws IOException
@@ -64,10 +64,5 @@ public abstract class Component
     public void setNode( Parent node )
     {
         this.node = node;
-    }
-
-    public ResourceBundle getResources()
-    {
-        return resources;
     }
 }
