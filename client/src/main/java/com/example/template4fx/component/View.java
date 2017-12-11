@@ -41,7 +41,7 @@ public abstract class View
 
     protected String setting( String key )
     {
-        return context.getService( SettingsService.class ).getValue( key );
+        return service( SettingsService.class ).getValue( key );
     }
 
     protected void run( Task<?> task )
@@ -53,7 +53,7 @@ public abstract class View
             task.setOnCancelled( event -> stop() );
 
             start();
-            context.getService( ExecutorService.class ).submit( task );
+            service( ExecutorService.class ).submit( task );
         }
     }
 

@@ -11,7 +11,7 @@ import javafx.scene.layout.VBox;
 public abstract class OverlaySkin<T extends Control>
     extends SkinBase<T>
 {
-    public OverlaySkin( T control )
+    protected OverlaySkin( T control )
     {
         super( control );
     }

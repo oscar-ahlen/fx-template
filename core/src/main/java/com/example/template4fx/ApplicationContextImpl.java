@@ -38,12 +38,19 @@ public class ApplicationContextImpl
     }
 
     @SuppressWarnings( "unchecked" )
+    @Override
     public <T> T getService( Class<T> clazz )
     {
         if ( !services.containsKey( clazz ) )
             throw new IllegalArgumentException( String.format( "%s does not exist in application context", clazz ) );
 
         return (T) services.get( clazz );
+    }
+
+    @Override
+    public <T> void setService( Class<T> clazz, T service )
+    {
+        services.put( clazz, service );
     }
 
     @Override

@@ -8,4 +8,6 @@ public interface ApplicationContext
     Set<Class> getServices();
 
     <T> T getService( Class<T> clazz );
+
+    <T> void setService( Class<T> clazz, T service );
 }

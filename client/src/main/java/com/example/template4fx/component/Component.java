@@ -5,6 +5,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.layout.Pane;
+import javafx.stage.Window;
 
 import java.io.IOException;
 import java.util.ResourceBundle;
@@ -26,6 +27,11 @@ public abstract class Component
         Component component = loader.getController();
         component.setNode( root );
         return component;
+    }
+
+    protected Window getWindow()
+    {
+        return node.getScene().getWindow();
     }
 
     protected String message( String key )

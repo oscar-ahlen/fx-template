@@ -15,7 +15,6 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Control;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.Pane;
-import javafx.scene.layout.StackPane;
 
 import java.io.IOException;
 import java.util.HashMap;
@@ -26,7 +25,7 @@ public class RootView
 {
     private static final String TITLE = "Template4FX";
 
-    private final Map<String, MainView> views = new HashMap<>();
+    private final Map<NavBarView, MainView> views = new HashMap<>();
 
     private final HistoryList<MainView> recent = new HistoryList<>();
 
@@ -35,10 +34,7 @@ public class RootView
     private ApplicationContext context;
 
     @FXML
-    private Pane expandedNavBar, collapsedNavBar;
-
-    @FXML
-    private StackPane root, center;
+    private Pane root, center, expandedNavBar, collapsedNavBar;
 
     @FXML
     private SVGLabel header;
@@ -63,10 +59,10 @@ public class RootView
     public void setup()
         throws IOException
     {
-        loadMainView( "ExampleView", "/fxml/ExampleView.fxml" );
-        loadMainView( "UserView", "/fxml/UserView.fxml" );
-        loadMainView( "SettingsView", "/fxml/SettingsView.fxml" );
-        switchView( "ExampleView" );
+        loadMainView( NavBarView.ExampleView, "/fxml/ExampleView.fxml" );
+        loadMainView( NavBarView.UserView, "/fxml/UserView.fxml" );
+        loadMainView( NavBarView.SettingsView, "/fxml/SettingsView.fxml" );
+        switchView( NavBarView.ExampleView );
     }
 
     public void exit()
@@ -100,17 +96,17 @@ public class RootView
 
     public void showExampleView()
     {
-        switchView( "ExampleView" );
+        switchView( NavBarView.ExampleView );
     }
 
     public void showUserView()
     {
-        switchView( "UserView" );
+        switchView( NavBarView.UserView );
     }
 
     public void showSettingsView()
     {
-        switchView( "SettingsView" );
+        switchView( NavBarView.SettingsView );
     }
 
     public void popup( Control control )
@@ -128,7 +124,7 @@ public class RootView
         locked = true;
     }
 
-    public void switchView( String name )
+    public void switchView( NavBarView name )
     {
         MainView view = views.get( name );
         switchView( view );
@@ -151,7 +147,7 @@ public class RootView
         rebindProperty( header.svgProperty(), current.svgProperty() );
     }
 
-    private void loadMainView( String name, String fxml )
+    private void loadMainView( NavBarView name, String fxml )
         throws IOException
     {
         MainView mainView = (MainView) load( fxml );
@@ -203,6 +199,7 @@ public class RootView
     private class RootEventHandler
         implements EventHandler<KeyEvent>
     {
+        @Override
         public void handle( KeyEvent event )
         {
             if ( locked )
@@ -227,5 +224,12 @@ public class RootView
                 current.handleKeyEvent( event );
             }
         }
+    }
+
+    private enum NavBarView
+    {
+        ExampleView,
+        UserView,
+        SettingsView,
     }
 }
