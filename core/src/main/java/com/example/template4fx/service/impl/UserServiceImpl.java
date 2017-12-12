@@ -4,7 +4,6 @@ import com.example.template4fx.error.HttpException;
 import com.example.template4fx.model.User;
 import com.example.template4fx.service.HttpService;
 import com.example.template4fx.service.UserService;
-import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import com.google.inject.Inject;
 import org.apache.http.client.methods.HttpGet;
@@ -25,8 +24,6 @@ public class UserServiceImpl
     }.getType();
 
     private final HttpService service;
-
-    private final Gson gson = new Gson();
 
     @Inject
     public UserServiceImpl( HttpService service )

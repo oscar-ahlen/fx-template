@@ -1,7 +1,7 @@
 include 'core'
-include 'client'
+include 'app'
 
 rootProject.name = 'Template4FX'
 
 project(':core').name = 'Template4FX-Core'
-project(':client').name = 'Template4FX-Client'
+project(':app').name = 'Template4FX-App'

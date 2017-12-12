@@ -5,34 +5,44 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.layout.Pane;
-import javafx.stage.Window;
+import javafx.util.Callback;
 
 import java.io.IOException;
 import java.util.ResourceBundle;
 
 public abstract class Component
 {
-    private Parent node;
+    private static Callback<Class<?>, Object> CONTROLLER_FACTORY;
 
-    @FXML
-    protected ResourceBundle resources;
+    public static void setDefaultControllerFactory( Callback<Class<?>, Object> controllerFactory )
+    {
+        CONTROLLER_FACTORY = controllerFactory;
+    }
 
-    protected Component load( String fxml )
+    public static <T> T load( String fxml, ResourceBundle resources )
         throws IOException
     {
-        FXMLLoader loader = new FXMLLoader( getClass().getResource( fxml ) );
-        loader.setResources( resources );
-        Parent root = loader.load();
+        FXMLLoader loader = new FXMLLoader( Component.class.getResource( fxml ), resources );
+        loader.setControllerFactory( CONTROLLER_FACTORY );
+        loader.load();
 
-        Component component = loader.getController();
-        component.setNode( root );
-        return component;
+        return loader.getController();
     }
 
-    protected Window getWindow()
+    @FXML
+    private ResourceBundle resources;
+
+    protected <T> T load( String fxml )
+        throws IOException
     {
-        return node.getScene().getWindow();
+        FXMLLoader loader = new FXMLLoader( getClass().getResource( fxml ), resources );
+        loader.setControllerFactory( CONTROLLER_FACTORY );
+        loader.load();
+
+        return loader.getController();
     }
+
+    public abstract Parent getParent();
 
     protected String message( String key )
     {
@@ -60,15 +70,5 @@ public abstract class Component
     {
         parent.getChildren().add( newNode );
         parent.getChildren().remove( oldNode );
-    }
-
-    public Parent getNode()
-    {
-        return node;
-    }
-
-    public void setNode( Parent node )
-    {
-        this.node = node;
     }
 }

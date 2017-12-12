@@ -10,19 +10,25 @@ import com.example.template4fx.facade.FileFacade;
 import com.example.template4fx.model.File;
 import com.example.template4fx.task.ProgressTask;
 import com.example.template4fx.view.SVGTableCell;
+import com.google.inject.Singleton;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.concurrent.Task;
 import javafx.fxml.FXML;
+import javafx.scene.Parent;
 import javafx.scene.control.Button;
 import javafx.scene.control.SelectionMode;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.input.KeyEvent;
 
+@Singleton
 public class ExampleView
     extends MainView
 {
+    @FXML
+    private Parent root;
+
     @FXML
     private TableView<FileFacade> fileView;
 
@@ -54,6 +60,12 @@ public class ExampleView
         files.add( new FileFacade( new File( "Powerpoint Document 2", "pptx", 8000 ) ) );
 
         fileNameColumn.setCellFactory( callback -> new SVGTableCell<>() );
+    }
+
+    @Override
+    public Parent getParent()
+    {
+        return root;
     }
 
     @Override

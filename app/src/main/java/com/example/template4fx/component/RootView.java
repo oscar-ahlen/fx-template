@@ -1,9 +1,9 @@
 package com.example.template4fx.component;
 
-import com.example.template4fx.ApplicationContext;
 import com.example.template4fx.Keys;
 import com.example.template4fx.control.SVGLabel;
 import com.example.template4fx.util.HistoryList;
+import com.google.inject.Singleton;
 import javafx.application.Platform;
 import javafx.beans.binding.BooleanBinding;
 import javafx.beans.property.BooleanProperty;
@@ -11,6 +11,7 @@ import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
+import javafx.scene.Parent;
 import javafx.scene.control.Button;
 import javafx.scene.control.Control;
 import javafx.scene.input.KeyEvent;
@@ -20,6 +21,7 @@ import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
+@Singleton
 public class RootView
     extends Component
 {
@@ -30,8 +32,6 @@ public class RootView
     private final HistoryList<MainView> recent = new HistoryList<>();
 
     private MainView current;
-
-    private ApplicationContext context;
 
     @FXML
     private Pane root, center, expandedNavBar, collapsedNavBar;
@@ -45,6 +45,7 @@ public class RootView
     private boolean locked = false;
 
     public void initialize()
+        throws IOException
     {
         setTitle( TITLE );
 
@@ -54,15 +55,18 @@ public class RootView
         root.addEventFilter( KeyEvent.KEY_PRESSED, new RootEventHandler() );
 
         toggleNavBar();
+
+        views.put( NavBarView.ExampleView, load( "/fxml/ExampleView.fxml" ) );
+        views.put( NavBarView.UserView, load( "/fxml/UserView.fxml" ) );
+        views.put( NavBarView.SettingsView, load( "/fxml/SettingsView.fxml" ) );
+
+        switchView( NavBarView.ExampleView );
     }
 
-    public void setup()
-        throws IOException
+    @Override
+    public Parent getParent()
     {
-        loadMainView( NavBarView.ExampleView, "/fxml/ExampleView.fxml" );
-        loadMainView( NavBarView.UserView, "/fxml/UserView.fxml" );
-        loadMainView( NavBarView.SettingsView, "/fxml/SettingsView.fxml" );
-        switchView( NavBarView.ExampleView );
+        return root;
     }
 
     public void exit()
@@ -111,20 +115,19 @@ public class RootView
 
     public void popup( Control control )
     {
-        control.visibleProperty().addListener(
-            ( observable, oldValue, newValue ) -> {
-                if ( !newValue && oldValue )
-                {
-                    root.getChildren().remove( control );
-                    locked = false;
-                }
-            } );
+        control.visibleProperty().addListener( ( observable, oldValue, newValue ) -> {
+            if ( !newValue && oldValue )
+            {
+                root.getChildren().remove( control );
+                locked = false;
+            }
+        } );
 
         root.getChildren().add( control );
         locked = true;
     }
 
-    public void switchView( NavBarView name )
+    private void switchView( NavBarView name )
     {
         MainView view = views.get( name );
         switchView( view );
@@ -137,23 +140,14 @@ public class RootView
             return;
 
         if ( current != null )
-            switchNode( center, current.getNode(), view.getNode() );
+            switchNode( center, current.getParent(), view.getParent() );
         else
-            switchNode( center, null, view.getNode() );
+            switchNode( center, null, view.getParent() );
 
         current = view;
 
         rebindProperty( header.textProperty(), current.titleProperty() );
         rebindProperty( header.svgProperty(), current.svgProperty() );
-    }
-
-    private void loadMainView( NavBarView name, String fxml )
-        throws IOException
-    {
-        MainView mainView = (MainView) load( fxml );
-        mainView.setRootView( this );
-        mainView.setContext( context );
-        views.put( name, mainView );
     }
 
     private void rebindProperty( BooleanProperty source, BooleanProperty target )
@@ -172,11 +166,6 @@ public class RootView
     {
         source.unbind();
         source.bind( target );
-    }
-
-    public void setContext( ApplicationContext context )
-    {
-        this.context = context;
     }
 
     private final StringProperty title = new SimpleStringProperty();

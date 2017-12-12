@@ -9,7 +9,8 @@
 <?import javafx.scene.layout.VBox?>
 <BorderPane xmlns="http://javafx.com/javafx"
             xmlns:fx="http://javafx.com/fxml"
-            fx:controller="com.example.template4fx.component.UserView">
+            fx:controller="com.example.template4fx.component.UserView"
+            fx:id="root">
     <top>
         <HBox>
             <padding>

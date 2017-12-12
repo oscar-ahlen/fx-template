@@ -8,6 +8,7 @@
 <VBox xmlns="http://javafx.com/javafx"
       xmlns:fx="http://javafx.com/fxml"
       fx:controller="com.example.template4fx.component.SettingsView"
+      fx:id="root"
       spacing="8">
     <padding>
         <Insets top="12" bottom="12"/>

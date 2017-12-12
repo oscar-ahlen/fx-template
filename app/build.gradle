@@ -72,7 +72,7 @@ task packageZip(type: Zip, dependsOn: copyProperties) {
     from 'build/jfx/native/Template4FX'
 
     /* UTV build directory */
-    destinationDir file('build/jfx/native/Template4FX')
+    destinationDir file('build/jfx/native')
 }
 
 

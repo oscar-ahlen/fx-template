@@ -4,7 +4,6 @@ import com.example.template4fx.error.HttpException;
 import com.example.template4fx.model.Post;
 import com.example.template4fx.service.HttpService;
 import com.example.template4fx.service.PostService;
-import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import com.google.inject.Inject;
 import org.apache.http.client.methods.HttpGet;
@@ -31,8 +30,6 @@ public class PostServiceImpl
     private final HttpService service;
 
     private final String host = "jsonplaceholder.typicode.com";
-
-    private final Gson gson = new Gson();
 
     @Inject
     public PostServiceImpl( HttpService service )

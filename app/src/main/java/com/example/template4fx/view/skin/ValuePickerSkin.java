@@ -17,8 +17,7 @@ public class ValuePickerSkin<T>
 
     private ListView<T> listView;
 
-    private final ChangeListener<Boolean> focusListener = ( observable, oldValue, newValue ) ->
-    {
+    private final ChangeListener<Boolean> focusListener = ( observable, oldValue, newValue ) -> {
         if ( !newValue && lostFocus() )
             close();
     };

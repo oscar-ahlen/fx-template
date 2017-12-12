@@ -5,19 +5,28 @@ import com.example.template4fx.facade.UserFacade;
 import com.example.template4fx.model.User;
 import com.example.template4fx.service.UserService;
 import com.example.template4fx.view.SVGTableCell;
+import com.google.inject.Inject;
+import com.google.inject.Singleton;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.concurrent.Task;
 import javafx.fxml.FXML;
+import javafx.scene.Parent;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.input.KeyEvent;
 
 import java.util.Collection;
 
+@Singleton
 public class UserView
     extends MainView
 {
+    private final UserService userService;
+
+    @FXML
+    private Parent root;
+
     @FXML
     private TableView<UserFacade> userView;
 
@@ -26,6 +35,12 @@ public class UserView
 
     private final ObservableList<UserFacade> users = FXCollections.observableArrayList();
 
+    @Inject
+    public UserView( UserService userService )
+    {
+        this.userService = userService;
+    }
+
     public void initialize()
     {
         setTitle( message( "title.user" ) );
@@ -33,6 +48,12 @@ public class UserView
 
         userView.setItems( users );
         userNameColumn.setCellFactory( callback -> new SVGTableCell<>() );
+    }
+
+    @Override
+    public Parent getParent()
+    {
+        return root;
     }
 
     @Override
@@ -53,7 +74,7 @@ public class UserView
         protected Collection<User> call()
             throws Exception
         {
-            return service( UserService.class ).getUsers();
+            return userService.getUsers();
         }
 
         @Override
