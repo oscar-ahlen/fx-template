@@ -41,13 +41,21 @@
     -nav-bar-color: -blue-grey-700;
     -nav-bar-text-color: -fx-light-text-color;
 
+    -button-hover: -blue-grey-200;
+
     -default-border: -blue-grey-200;
 
     -default-icon-color: -blue-grey-600;
 
     -dark-icon-color: -blue-grey-900;
 
+    -selection-color: -light-blue-A700;
+
+    -selection-color-non-focused: -blue-grey-50;
+
     -highlight-color: -light-blue-A700;
+
+    -scroll-bar-color: -blue-grey-200;
 
     /*******************************************************************************
      *                                                                             *
@@ -93,9 +101,9 @@
 
     -fx-mark-highlight-color: transparent;
 
-    -fx-selection-bar: -light-blue-A700;
+    -fx-selection-bar: -selection-color;
 
-    -fx-selection-bar-non-focused: -blue-grey-50;
+    -fx-selection-bar-non-focused: -selection-color-non-focused;
 
     -fx-cell-hover-color: transparent;
 
@@ -254,6 +262,21 @@
     -fx-background-radius: 0 3 3 0, 0 2 2 0;
 }
 
+.combo-box-popup .list-view .list-cell:hover
+{
+    -fx-background-color: -selection-color-non-focused;
+}
+
+.combo-box-popup .list-view .list-cell:selected
+{
+    -fx-background-color: -selection-color;
+}
+
+.combo-box-popup .list-view .list-cell:selected
+{
+    -fx-text-fill: white;
+}
+
 /*******************************************************************************
  *                                                                             *
  * Date picker                                                                 *
@@ -353,7 +376,7 @@
  ******************************************************************************/
 .scroll-bar
 {
-    -scroll-bar-background: -blue-grey-200;
+    -scroll-bar-background: -scroll-bar-color;
 }
 
 .scroll-bar > .track
@@ -754,7 +777,7 @@
 .header .button:focused,
 .nav-bar .button:hover
 {
-    -fx-background-color: -blue-grey-200;
+    -fx-background-color: -button-hover;
     -fx-text-fill: -fx-dark-text-color;
 
     -fx-font-weight: bold;

@@ -35,8 +35,8 @@ public class App
     public void start( Stage primaryStage )
         throws Exception
     {
-        ResourceBundle resources = ResourceBundle.getBundle( "Template4FX", Locale.ENGLISH );
-        RootView rootView = Component.load( "/fxml/RootView.fxml", resources );
+        RootView rootView = Component.load( "/fxml/RootView.fxml",
+                                            ResourceBundle.getBundle( "Template4FX", Locale.ENGLISH ) );
 
         primaryStage.titleProperty().bindBidirectional( rootView.titleProperty() );
         primaryStage.setScene( new Scene( rootView.getParent() ) );
