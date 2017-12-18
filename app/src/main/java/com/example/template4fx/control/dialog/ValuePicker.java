@@ -1,7 +1,8 @@
 package com.example.template4fx.control.dialog;
 
 import com.example.template4fx.control.FXControl;
-import com.example.template4fx.view.skin.ValuePickerSkin;
+import com.example.template4fx.skin.ValuePickerSkin;
+import javafx.application.Platform;
 import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.beans.property.SimpleStringProperty;
@@ -31,13 +32,32 @@ public class ValuePicker<T>
 
     private void initialize()
     {
-        filter.addListener( ( observable, oldValue, newValue ) -> items
-            .setPredicate( item -> newValue == null || newValue.isEmpty() || matches( item, newValue ) ) );
+        filter.addListener(
+            ( observable, oldValue, newValue ) ->
+                items.setPredicate( item -> newValue == null || newValue.isEmpty() || matches( item, newValue ) ) );
     }
 
     private boolean matches( T item, String filter )
     {
         return item.toString().toLowerCase().startsWith( filter.toLowerCase() );
+    }
+
+    public void success()
+    {
+        fireEvent( DialogEvent.successEvent() );
+        close();
+    }
+
+    public void cancel()
+    {
+        fireEvent( DialogEvent.cancelEvent() );
+        close();
+    }
+
+    private void close()
+    {
+        setVisible( false );
+        Platform.runLater( source::requestFocus );
     }
 
     @Override
@@ -86,7 +106,7 @@ public class ValuePicker<T>
         this.promptText.set( promptText );
     }
 
-    public Object getSelected()
+    public T getSelected()
     {
         return selected.get();
     }
@@ -104,10 +124,5 @@ public class ValuePicker<T>
     public ObservableList<T> getItems()
     {
         return items;
-    }
-
-    public Node getSource()
-    {
-        return source;
     }
 }

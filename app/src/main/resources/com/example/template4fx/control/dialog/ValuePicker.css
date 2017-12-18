@@ -2,7 +2,7 @@
 {
 }
 
-.value-picker .masker-glass
+.value-picker > .masker-glass
 {
     -fx-background-color: rgba(0, 0, 0, .3);
 }

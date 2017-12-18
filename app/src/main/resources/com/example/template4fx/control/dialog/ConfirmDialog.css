@@ -2,7 +2,7 @@
 {
 }
 
-.confirm-dialog .masker-glass
+.confirm-dialog > .masker-glass
 {
     -fx-background-color: rgba(0, 0, 0, .3);
 }

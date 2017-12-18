@@ -2,7 +2,7 @@
 {
 }
 
-.progress-dialog .masker-glass
+.progress-dialog > .masker-glass
 {
     -fx-background-color: rgba(0, 0, 0, .3);
 }

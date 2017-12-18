@@ -1,4 +1,4 @@
-package com.example.template4fx.view.skin;
+package com.example.template4fx.skin;
 
 import com.example.template4fx.Keys;
 import com.example.template4fx.control.dialog.ValuePicker;
@@ -19,7 +19,7 @@ public class ValuePickerSkin<T>
 
     private final ChangeListener<Boolean> focusListener = ( observable, oldValue, newValue ) -> {
         if ( !newValue && lostFocus() )
-            close();
+            getSkinnable().cancel();
     };
 
     public ValuePickerSkin( ValuePicker<T> control )
@@ -57,17 +57,18 @@ public class ValuePickerSkin<T>
         filter.setOnKeyPressed( this::OnKeyPressed );
         listView.setOnKeyPressed( this::OnKeyPressed );
 
-        listView.getSelectionModel().selectedItemProperty()
+        listView.getSelectionModel()
+                .selectedItemProperty()
                 .addListener( ( observable, oldValue, newValue ) -> getSkinnable().setSelected( newValue ) );
 
         listView.setOnMouseClicked( event -> {
             if ( listView.getSelectionModel().getSelectedItem() != null )
-                close();
+                getSkinnable().success();
         } );
 
         background.addEventFilter( KeyEvent.KEY_PRESSED, event -> {
             if ( Keys.ESCAPE.match( event ) )
-                close();
+                getSkinnable().cancel();
         } );
 
         return background;
@@ -81,12 +82,6 @@ public class ValuePickerSkin<T>
     private void OnKeyPressed( KeyEvent event )
     {
         if ( Keys.ENTER.match( event ) && listView.getSelectionModel().getSelectedItem() != null )
-            close();
-    }
-
-    private void close()
-    {
-        getSkinnable().setVisible( false );
-        Platform.runLater( () -> getSkinnable().getSource().requestFocus() );
+            getSkinnable().success();
     }
 }
