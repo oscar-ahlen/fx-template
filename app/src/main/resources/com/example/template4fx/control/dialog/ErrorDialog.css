@@ -1,13 +1,9 @@
-.error-dialog
-{
-}
-
-.error-dialog .masker-glass
+.dialog > .masker-glass
 {
     -fx-background-color: rgba(0, 0, 0, .3);
 }
 
-.error-dialog-background
+.dialog-background
 {
     -fx-background-color: -fx-background;
     -fx-background-radius: 3, 2;
@@ -16,21 +12,21 @@
     -fx-pref-height: 400;
 }
 
-.error-dialog-header
+.dialog-header
 {
     -fx-background-color: -error;
     -fx-background-radius: 3 3 0 0;
     -fx-padding: 8 12 8 12;
 }
 
-.error-dialog-header .label
+.dialog-header .label
 {
     -fx-text-fill: -header-text-color;
     -fx-font-size: 16;
     -fx-font-weight: bold;
 }
 
-.error-dialog-content
+.dialog-content
 {
     -fx-padding: 12;
     -fx-spacing: 8;

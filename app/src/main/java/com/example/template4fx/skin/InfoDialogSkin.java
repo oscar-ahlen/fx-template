@@ -25,7 +25,7 @@ public class InfoDialogSkin
     private Node createDialogSkin()
     {
         VBox background = new VBox();
-        background.getStyleClass().add( "info-dialog-background" );
+        background.getStyleClass().add( "dialog-background" );
 
         background.getChildren().addAll( createHeader(), createContent() );
         return background;
@@ -34,7 +34,7 @@ public class InfoDialogSkin
     private Node createHeader()
     {
         HBox header = new HBox();
-        header.getStyleClass().add( "info-dialog-header" );
+        header.getStyleClass().add( "dialog-header" );
         header.setAlignment( Pos.CENTER );
 
         Label headerText = new Label();
@@ -54,7 +54,7 @@ public class InfoDialogSkin
     private Node createContent()
     {
         VBox content = new VBox();
-        content.getStyleClass().add( "info-dialog-content" );
+        content.getStyleClass().add( "dialog-content" );
 
         Label text = new Label();
         text.textProperty().bind( getSkinnable().contentProperty() );
@@ -67,6 +67,9 @@ public class InfoDialogSkin
         ok.setDefaultButton( true );
         ok.setOnAction( event -> getSkinnable().ok() );
         ButtonBar.setButtonData( ok, ButtonBar.ButtonData.OK_DONE );
+
+        getSkinnable().setFirst( ok );
+        getSkinnable().setLast( ok );
         buttonBar.getButtons().add( ok );
 
         content.getChildren().addAll( text, buttonBar );

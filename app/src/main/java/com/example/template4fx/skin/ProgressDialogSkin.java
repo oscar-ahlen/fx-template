@@ -2,6 +2,7 @@ package com.example.template4fx.skin;
 
 import com.example.template4fx.control.SVGLabel;
 import com.example.template4fx.control.dialog.ProgressDialog;
+import javafx.application.Platform;
 import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
@@ -25,7 +26,7 @@ public class ProgressDialogSkin
     private Node createDialogSkin()
     {
         VBox background = new VBox();
-        background.getStyleClass().add( "progress-dialog-background" );
+        background.getStyleClass().add( "dialog-background" );
 
         background.getChildren().addAll( createHeader(), createContent() );
         return background;
@@ -34,7 +35,7 @@ public class ProgressDialogSkin
     private Node createHeader()
     {
         HBox header = new HBox();
-        header.getStyleClass().add( "progress-dialog-header" );
+        header.getStyleClass().add( "dialog-header" );
         header.setAlignment( Pos.CENTER );
 
         Label headerText = new Label();
@@ -55,7 +56,7 @@ public class ProgressDialogSkin
     {
         VBox content = new VBox();
         content.setAlignment( Pos.CENTER );
-        content.getStyleClass().add( "progress-dialog-content" );
+        content.getStyleClass().add( "dialog-content" );
 
         ProgressBar progressBar = new ProgressBar();
         progressBar.progressProperty().bind( getSkinnable().getTask().progressProperty() );
@@ -73,10 +74,21 @@ public class ProgressDialogSkin
 
         ok.disableProperty().bind( getSkinnable().getTask().runningProperty() );
 
+        ok.disableProperty().addListener( ( observable, oldValue, newValue ) -> {
+            if ( !newValue )
+                Platform.runLater( ok::requestFocus );
+        } );
+
         ButtonBar.setButtonData( ok, ButtonBar.ButtonData.OK_DONE );
+
+        getSkinnable().setFirst( ok );
+        getSkinnable().setLast( ok );
         buttonBar.getButtons().add( ok );
 
         content.getChildren().addAll( progressBar, status, buttonBar );
+
+        Platform.runLater( ok::requestFocus );
+
         return content;
     }
 }

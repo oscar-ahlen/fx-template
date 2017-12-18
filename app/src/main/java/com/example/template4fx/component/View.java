@@ -1,11 +1,11 @@
 package com.example.template4fx.component;
 
+import com.example.template4fx.control.dialog.AbstractDialog;
 import com.example.template4fx.service.SettingsService;
 import com.google.inject.Inject;
 import javafx.beans.property.BooleanProperty;
 import javafx.beans.property.SimpleBooleanProperty;
 import javafx.concurrent.Task;
-import javafx.scene.control.Control;
 
 import java.util.concurrent.ExecutorService;
 
@@ -18,9 +18,9 @@ public abstract class View
 
     private ExecutorService executorService;
 
-    protected void popup( Control control )
+    protected void popup( AbstractDialog dialog )
     {
-        rootView.popup( control );
+        rootView.popup( dialog );
     }
 
     protected String setting( String key )

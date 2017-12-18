@@ -1,7 +1,8 @@
 package com.example.template4fx.control.dialog;
 
-import com.example.template4fx.control.FXControl;
+import com.example.template4fx.Keys;
 import com.example.template4fx.skin.ValuePickerSkin;
+import javafx.application.Platform;
 import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.beans.property.SimpleStringProperty;
@@ -10,9 +11,10 @@ import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import javafx.scene.Node;
 import javafx.scene.control.Skin;
+import javafx.scene.input.KeyEvent;
 
 public class ValuePicker<T>
-    extends FXControl
+    extends AbstractDialog
 {
     private final ObjectProperty<T> selected = new SimpleObjectProperty<>();
 
@@ -22,6 +24,7 @@ public class ValuePicker<T>
 
     public ValuePicker( Node source, ObservableList<T> items )
     {
+        super( "" );
         getStyleClass().add( "value-picker" );
 
         this.source = source;
@@ -29,15 +32,51 @@ public class ValuePicker<T>
         initialize();
     }
 
+    @Override
+    public void handleKeyEvent( KeyEvent event )
+    {
+        super.handleKeyEvent( event );
+
+        if ( Keys.ESCAPE.match( event ) )
+        {
+            event.consume();
+            cancel();
+        }
+        else if ( Keys.ENTER.match( event ) && selected.get() != null )
+        {
+            event.consume();
+            success();
+        }
+    }
+
     private void initialize()
     {
-        filter.addListener( ( observable, oldValue, newValue ) -> items
-            .setPredicate( item -> newValue == null || newValue.isEmpty() || matches( item, newValue ) ) );
+        filter.addListener(
+            ( observable, oldValue, newValue ) ->
+                items.setPredicate( item -> newValue == null || newValue.isEmpty() || matches( item, newValue ) ) );
     }
 
     private boolean matches( T item, String filter )
     {
         return item.toString().toLowerCase().startsWith( filter.toLowerCase() );
+    }
+
+    public void success()
+    {
+        fireEvent( DialogEvent.successEvent() );
+        close();
+    }
+
+    public void cancel()
+    {
+        fireEvent( DialogEvent.cancelEvent() );
+        close();
+    }
+
+    private void close()
+    {
+        setVisible( false );
+        Platform.runLater( source::requestFocus );
     }
 
     @Override
@@ -86,7 +125,7 @@ public class ValuePicker<T>
         this.promptText.set( promptText );
     }
 
-    public Object getSelected()
+    public T getSelected()
     {
         return selected.get();
     }
@@ -104,10 +143,5 @@ public class ValuePicker<T>
     public ObservableList<T> getItems()
     {
         return items;
-    }
-
-    public Node getSource()
-    {
-        return source;
     }
 }

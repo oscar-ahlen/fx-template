@@ -1,13 +1,9 @@
-.progress-dialog
-{
-}
-
-.progress-dialog .masker-glass
+.dialog > .masker-glass
 {
     -fx-background-color: rgba(0, 0, 0, .3);
 }
 
-.progress-dialog-background
+.dialog-background
 {
     -fx-background-color: -fx-background;
     -fx-background-radius: 3, 2;
@@ -15,7 +11,7 @@
     -fx-pref-width: 400;
 }
 
-.progress-dialog-header
+.dialog-header
 {
     -fx-background-color: -header-color, white;
     -fx-background-insets: 0 0 0 0, 0 0 4 0;
@@ -23,20 +19,20 @@
     -fx-padding: 8 12 12 12;
 }
 
-.progress-dialog-header .label
+.dialog-header .label
 {
     -fx-text-fill: -header-color;
     -fx-font-size: 16;
     -fx-font-weight: bold;
 }
 
-.progress-dialog-content
+.dialog-content
 {
     -fx-padding: 12;
     -fx-spacing: 8;
 }
 
-.progress-dialog-content .progress-bar
+.dialog-content .progress-bar
 {
     -fx-pref-height: 25;
 }

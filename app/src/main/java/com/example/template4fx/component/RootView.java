@@ -2,6 +2,7 @@ package com.example.template4fx.component;
 
 import com.example.template4fx.Keys;
 import com.example.template4fx.control.SVGLabel;
+import com.example.template4fx.control.dialog.AbstractDialog;
 import com.example.template4fx.util.HistoryList;
 import com.google.inject.Singleton;
 import javafx.application.Platform;
@@ -13,7 +14,6 @@ import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.Parent;
 import javafx.scene.control.Button;
-import javafx.scene.control.Control;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.Pane;
 
@@ -42,7 +42,7 @@ public class RootView
     @FXML
     private Button backward, forward;
 
-    private boolean locked = false;
+    private AbstractDialog dialog;
 
     public void initialize()
         throws IOException
@@ -113,18 +113,18 @@ public class RootView
         switchView( NavBarView.SettingsView );
     }
 
-    public void popup( Control control )
+    public void popup( AbstractDialog dialog )
     {
-        control.visibleProperty().addListener( ( observable, oldValue, newValue ) -> {
+        dialog.visibleProperty().addListener( ( observable, oldValue, newValue ) -> {
             if ( !newValue && oldValue )
             {
-                root.getChildren().remove( control );
-                locked = false;
+                root.getChildren().remove( dialog );
+                this.dialog = null;
             }
         } );
 
-        root.getChildren().add( control );
-        locked = true;
+        root.getChildren().add( dialog );
+        this.dialog = dialog;
     }
 
     private void switchView( NavBarView name )
@@ -191,10 +191,11 @@ public class RootView
         @Override
         public void handle( KeyEvent event )
         {
-            if ( locked )
-                return;
-
-            if ( Keys.ALT_LEFT.match( event ) )
+            if ( dialog != null )
+            {
+                dialog.handleKeyEvent( event );
+            }
+            else if ( Keys.ALT_LEFT.match( event ) )
             {
                 backward();
                 event.consume();

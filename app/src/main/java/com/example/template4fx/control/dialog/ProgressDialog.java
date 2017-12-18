@@ -5,6 +5,7 @@ import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.concurrent.Task;
 import javafx.scene.control.Skin;
+import javafx.scene.input.KeyEvent;
 
 public class ProgressDialog
     extends AbstractDialog
@@ -14,6 +15,15 @@ public class ProgressDialog
         super( header );
         getStyleClass().add( "progress-dialog" );
         setTask( task );
+    }
+
+    @Override
+    public void handleKeyEvent( KeyEvent event )
+    {
+        if ( task.get().isRunning() )
+            event.consume();
+        else
+            super.handleKeyEvent( event );
     }
 
     public void close()

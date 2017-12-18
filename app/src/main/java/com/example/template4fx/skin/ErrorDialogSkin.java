@@ -29,7 +29,7 @@ public class ErrorDialogSkin
     private Node createDialogSkin()
     {
         VBox background = new VBox();
-        background.getStyleClass().add( "error-dialog-background" );
+        background.getStyleClass().add( "dialog-background" );
 
         background.getChildren().addAll( createHeader(), createContent() );
 
@@ -39,7 +39,7 @@ public class ErrorDialogSkin
     private Node createHeader()
     {
         HBox header = new HBox();
-        header.getStyleClass().add( "error-dialog-header" );
+        header.getStyleClass().add( "dialog-header" );
         header.setAlignment( Pos.CENTER );
 
         Label headerText = new Label();
@@ -59,7 +59,7 @@ public class ErrorDialogSkin
     private Node createContent()
     {
         VBox content = new VBox();
-        content.getStyleClass().add( "error-dialog-content" );
+        content.getStyleClass().add( "dialog-content" );
         VBox.setVgrow( content, Priority.ALWAYS );
 
         Label errorHeader = new Label( getSkinnable().getError().getLocalizedMessage() );
@@ -84,6 +84,9 @@ public class ErrorDialogSkin
         ok.setDefaultButton( true );
         ok.setOnAction( event -> getSkinnable().ok() );
         ButtonBar.setButtonData( ok, ButtonBar.ButtonData.OK_DONE );
+
+        getSkinnable().setFirst( ok );
+        getSkinnable().setLast( ok );
         buttonBar.getButtons().add( ok );
 
         content.getChildren().addAll( errorHeader, errorText, buttonBar );

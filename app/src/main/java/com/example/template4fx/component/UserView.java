@@ -18,6 +18,8 @@ import javafx.scene.input.KeyEvent;
 
 import java.util.Collection;
 
+import static java.util.stream.Collectors.toList;
+
 @Singleton
 public class UserView
     extends MainView
@@ -80,8 +82,7 @@ public class UserView
         @Override
         protected void succeeded()
         {
-            users.clear();
-            getValue().forEach( user -> users.add( new UserFacade( user ) ) );
+            users.setAll( getValue().stream().map( UserFacade::new ).collect( toList() ) );
         }
 
         @Override

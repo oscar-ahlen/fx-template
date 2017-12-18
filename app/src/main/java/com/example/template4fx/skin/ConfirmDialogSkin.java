@@ -25,7 +25,7 @@ public class ConfirmDialogSkin
     private Node createDialogSkin()
     {
         VBox background = new VBox();
-        background.getStyleClass().add( "confirm-dialog-background" );
+        background.getStyleClass().add( "dialog-background" );
 
         background.getChildren().addAll( createHeader(), createContent() );
         return background;
@@ -34,7 +34,7 @@ public class ConfirmDialogSkin
     private Node createHeader()
     {
         HBox header = new HBox();
-        header.getStyleClass().add( "confirm-dialog-header" );
+        header.getStyleClass().add( "dialog-header" );
         header.setAlignment( Pos.CENTER );
 
         Label headerText = new Label();
@@ -54,7 +54,7 @@ public class ConfirmDialogSkin
     private Node createContent()
     {
         VBox content = new VBox();
-        content.getStyleClass().add( "confirm-dialog-content" );
+        content.getStyleClass().add( "dialog-content" );
 
         Label text = new Label();
         text.textProperty().bind( getSkinnable().contentProperty() );
@@ -67,10 +67,12 @@ public class ConfirmDialogSkin
         ok.setDefaultButton( true );
         ok.setOnAction( event -> getSkinnable().ok() );
         ButtonBar.setButtonData( ok, ButtonBar.ButtonData.OK_DONE );
+        getSkinnable().setFirst( ok );
 
         Button cancel = new Button( "Cancel" );
         cancel.setOnAction( event -> getSkinnable().cancel() );
         ButtonBar.setButtonData( cancel, ButtonBar.ButtonData.OK_DONE );
+        getSkinnable().setLast( cancel );
 
         buttonBar.getButtons().addAll( ok, cancel );
 
