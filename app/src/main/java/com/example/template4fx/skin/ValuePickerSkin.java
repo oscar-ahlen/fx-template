@@ -1,4 +1,4 @@
-package com.example.template4fx.view.skin;
+package com.example.template4fx.skin;
 
 import com.example.template4fx.Keys;
 import com.example.template4fx.control.dialog.ValuePicker;

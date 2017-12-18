@@ -1,4 +1,4 @@
-package com.example.template4fx.view.skin;
+package com.example.template4fx.skin;
 
 import com.example.template4fx.control.SVGLabel;
 import com.example.template4fx.control.dialog.ProgressDialog;

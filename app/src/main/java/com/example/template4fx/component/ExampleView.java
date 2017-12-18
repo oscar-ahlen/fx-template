@@ -2,6 +2,7 @@ package com.example.template4fx.component;
 
 import com.example.template4fx.Keys;
 import com.example.template4fx.control.dialog.ConfirmDialog;
+import com.example.template4fx.control.dialog.DialogEvent;
 import com.example.template4fx.control.dialog.ErrorDialog;
 import com.example.template4fx.control.dialog.InfoDialog;
 import com.example.template4fx.control.dialog.ProgressDialog;
@@ -21,6 +22,8 @@ import javafx.scene.control.SelectionMode;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.input.KeyEvent;
+
+import java.util.Arrays;
 
 @Singleton
 public class ExampleView
@@ -91,8 +94,10 @@ public class ExampleView
     public void showConfirmDialog()
     {
         ConfirmDialog dialog = new ConfirmDialog( "Confirm Dialog", "Are you sure this is okay?" );
-        dialog.setOnOK( () -> System.out.println( "Ok pressed" ) );
-        dialog.setOnCancel( () -> System.out.println( "Cancel pressed" ) );
+
+        dialog.addEventHandler( DialogEvent.SUCCESS, event -> System.out.println( "Ok pressed" ) );
+        dialog.addEventHandler( DialogEvent.CANCEL, event -> System.out.println( "Cancel pressed" ) );
+
         popup( dialog );
     }
 
@@ -105,7 +110,13 @@ public class ExampleView
 
     public void testValuePicker()
     {
-        ValuePicker<String> valuePicker = new ValuePicker<>( valuePickerButton, FXCollections.observableArrayList() );
+        ValuePicker<String> valuePicker =
+            new ValuePicker<>( valuePickerButton, FXCollections.observableArrayList( Arrays.asList( "Test 1",
+                                                                                                    "Test 2",
+                                                                                                    "Test 3",
+                                                                                                    "Test 4",
+                                                                                                    "Test 5" ) ) );
+
         popup( valuePicker );
     }
 }

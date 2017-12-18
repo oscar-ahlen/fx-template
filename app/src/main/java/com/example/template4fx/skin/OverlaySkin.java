@@ -1,4 +1,4 @@
-package com.example.template4fx.view.skin;
+package com.example.template4fx.skin;
 
 import javafx.geometry.Pos;
 import javafx.scene.Node;

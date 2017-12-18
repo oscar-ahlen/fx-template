@@ -1,7 +1,6 @@
 package com.example.template4fx.control.dialog;
 
-import com.example.template4fx.view.skin.ConfirmDialogSkin;
-import javafx.application.Platform;
+import com.example.template4fx.skin.ConfirmDialogSkin;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 import javafx.scene.control.Skin;
@@ -9,8 +8,6 @@ import javafx.scene.control.Skin;
 public class ConfirmDialog
     extends AbstractDialog
 {
-    private Runnable ok, cancel;
-
     public ConfirmDialog( String header, String content )
     {
         super( header );
@@ -18,32 +15,16 @@ public class ConfirmDialog
         setContent( content );
     }
 
-    public void setOnOK( Runnable ok )
-    {
-        this.ok = ok;
-    }
-
-    public void setOnCancel( Runnable cancel )
-    {
-        this.cancel = cancel;
-    }
-
     public void ok()
     {
-        run( ok );
+        setVisible( false );
+        fireEvent( DialogEvent.successEvent() );
     }
 
     public void cancel()
     {
-        run( cancel );
-    }
-
-    private void run( Runnable runnable )
-    {
         setVisible( false );
-
-        if ( runnable != null )
-            Platform.runLater( runnable );
+        fireEvent( DialogEvent.cancelEvent() );
     }
 
     @Override

@@ -1,6 +1,6 @@
 /*******************************************************************************
  *                                                                             *
- * Material design theme                                                       *
+ * Template4FX theme                                                       *
  *                                                                             *
  ******************************************************************************/
 .root
@@ -42,6 +42,7 @@
     -nav-bar-text-color: -fx-light-text-color;
 
     -button-hover: -blue-grey-200;
+    -button-hover-light: -blue-grey-100;
 
     -default-border: -blue-grey-200;
 
@@ -339,6 +340,12 @@
 .date-picker-popup > * > .next-month
 {
     -fx-background-color: -background-color;
+}
+
+.date-picker-popup > * > .previous-month:hover,
+.date-picker-popup > * > .next-month:hover
+{
+    -fx-background-color: -button-hover-light;
 }
 
 /*******************************************************************************

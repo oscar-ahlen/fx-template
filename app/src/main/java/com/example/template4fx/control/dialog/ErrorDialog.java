@@ -1,6 +1,6 @@
 package com.example.template4fx.control.dialog;
 
-import com.example.template4fx.view.skin.ErrorDialogSkin;
+import com.example.template4fx.skin.ErrorDialogSkin;
 import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.scene.control.Skin;
