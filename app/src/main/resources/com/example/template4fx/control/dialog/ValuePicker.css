@@ -1,13 +1,9 @@
-.value-picker
-{
-}
-
-.value-picker > .masker-glass
+.dialog > .masker-glass
 {
     -fx-background-color: rgba(0, 0, 0, .3);
 }
 
-.value-picker-background
+.dialog-background
 {
     -fx-background-color: -fx-background;
     -fx-background-radius: 3, 2;
@@ -17,21 +13,21 @@
     -fx-spacing: 8;
 }
 
-.value-picker-header
+.dialog-header
 {
     -fx-background-color: -header-color;
     -fx-background-radius: 3 3 0 0, 2 2 0 0;
     -fx-padding: 8 12 8 12;
 }
 
-.value-picker-header .label
+.dialog-header .label
 {
     -fx-text-fill: -header-text-color;
     -fx-font-size: 16;
     -fx-font-weight: bold;
 }
 
-.value-picker-content
+.dialog-content
 {
     -fx-padding: 12;
     -fx-spacing: 8;

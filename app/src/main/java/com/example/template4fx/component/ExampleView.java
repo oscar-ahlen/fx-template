@@ -76,8 +76,8 @@ public class ExampleView
     {
         if ( Keys.F5.match( event ) )
         {
-            System.out.println( "Refreshing..." );
             event.consume();
+            System.out.println( "Refreshing..." );
         }
     }
 

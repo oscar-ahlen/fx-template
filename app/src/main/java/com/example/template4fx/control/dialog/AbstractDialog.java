@@ -25,13 +25,14 @@ public abstract class AbstractDialog
     {
         if ( Keys.TAB.match( event ) && getLast().isFocused() )
         {
-            Platform.runLater( () -> getFirst().requestFocus() );
             event.consume();
+            Platform.runLater( () -> getFirst().requestFocus() );
+
         }
         else if ( Keys.SHIFT_TAB.match( event ) && getFirst().isFocused() )
         {
-            Platform.runLater( () -> getLast().requestFocus() );
             event.consume();
+            Platform.runLater( () -> getLast().requestFocus() );
         }
     }
 

@@ -39,13 +39,13 @@ public class ValuePicker<T>
 
         if ( Keys.ESCAPE.match( event ) )
         {
-            event.consume();
             cancel();
+            event.consume();
         }
         else if ( Keys.ENTER.match( event ) && selected.get() != null )
         {
-            event.consume();
             success();
+            event.consume();
         }
     }
 

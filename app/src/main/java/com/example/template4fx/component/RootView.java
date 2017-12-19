@@ -197,13 +197,13 @@ public class RootView
             }
             else if ( Keys.ALT_LEFT.match( event ) )
             {
-                backward();
                 event.consume();
+                backward();
             }
             else if ( Keys.ALT_RIGHT.match( event ) )
             {
-                forward();
                 event.consume();
+                forward();
             }
             else if ( Keys.CTRL_E.match( event ) )
             {

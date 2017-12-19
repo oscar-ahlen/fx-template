@@ -1,6 +1,6 @@
 /*******************************************************************************
  *                                                                             *
- * Template4FX theme                                                       *
+ * Theme for Template4FX                                                       *
  *                                                                             *
  ******************************************************************************/
 .root
@@ -57,6 +57,8 @@
     -highlight-color: -light-blue-A700;
 
     -scroll-bar-color: -blue-grey-200;
+
+    -inner-background-alt: #F8F8F8;
 
     /*******************************************************************************
      *                                                                             *
@@ -491,7 +493,7 @@
 }
 
 /* Controls where icon color should be synced with text color. */
-.dialog * .svg,
+.dialog-header * .svg,
 .header * .svg,
 .header .button .svg
 {
@@ -707,6 +709,16 @@
 {
     -fx-alignment: CENTER-LEFT;
     -fx-graphic-text-gap: 6;
+}
+
+.list-cell
+{
+    -fx-control-inner-background-alt: -inner-background-alt;
+}
+
+.list-cell:empty
+{
+    -fx-control-inner-background-alt: white;
 }
 
 /*******************************************************************************

@@ -19,7 +19,7 @@ public class ValuePickerSkin<T>
     private Node createDialogSkin()
     {
         VBox background = new VBox();
-        background.getStyleClass().add( "value-picker-background" );
+        background.getStyleClass().add( "dialog-background" );
 
         TextField filter = new TextField();
         filter.textProperty().bindBidirectional( getSkinnable().filterProperty() );
