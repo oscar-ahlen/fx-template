@@ -71,12 +71,13 @@ public class ErrorDialogSkin
         getSkinnable().getError().printStackTrace( pw );
 
         TextArea errorText = new TextArea( sw.toString() );
-        errorText.setFocusTraversable( false );
         errorText.setEditable( false );
 
         errorText.setMaxWidth( Double.MAX_VALUE );
         errorText.setMaxHeight( Double.MAX_VALUE );
         VBox.setVgrow( errorText, Priority.ALWAYS );
+
+        getSkinnable().setFirst( errorText );
 
         ButtonBar buttonBar = new ButtonBar();
 
@@ -85,7 +86,6 @@ public class ErrorDialogSkin
         ok.setOnAction( event -> getSkinnable().ok() );
         ButtonBar.setButtonData( ok, ButtonBar.ButtonData.OK_DONE );
 
-        getSkinnable().setFirst( ok );
         getSkinnable().setLast( ok );
         buttonBar.getButtons().add( ok );
 

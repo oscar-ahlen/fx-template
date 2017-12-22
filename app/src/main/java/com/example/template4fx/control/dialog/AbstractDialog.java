@@ -23,13 +23,13 @@ public abstract class AbstractDialog
 
     public void handleKeyEvent( KeyEvent event )
     {
-        if ( Keys.TAB.match( event ) && getLast().isFocused() )
+        if ( ( Keys.TAB.match( event ) || Keys.RIGHT.match( event ) ) && getLast().isFocused() )
         {
             event.consume();
             Platform.runLater( () -> getFirst().requestFocus() );
 
         }
-        else if ( Keys.SHIFT_TAB.match( event ) && getFirst().isFocused() )
+        else if ( ( Keys.SHIFT_TAB.match( event ) || Keys.LEFT.match( event ) ) && getFirst().isFocused() )
         {
             event.consume();
             Platform.runLater( () -> getLast().requestFocus() );

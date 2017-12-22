@@ -10,7 +10,6 @@ import com.example.template4fx.control.dialog.ValuePicker;
 import com.example.template4fx.facade.FileFacade;
 import com.example.template4fx.model.File;
 import com.example.template4fx.task.ProgressTask;
-import com.example.template4fx.view.SVGTableCell;
 import com.google.inject.Singleton;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -61,8 +60,6 @@ public class ExampleView
         files.add( new FileFacade( new File( "Excel Document 2", "xlsx", 6000 ) ) );
         files.add( new FileFacade( new File( "Powerpoint Document 1", "pptx", 7000 ) ) );
         files.add( new FileFacade( new File( "Powerpoint Document 2", "pptx", 8000 ) ) );
-
-        fileNameColumn.setCellFactory( callback -> new SVGTableCell<>() );
     }
 
     @Override

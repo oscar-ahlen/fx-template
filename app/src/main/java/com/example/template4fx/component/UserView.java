@@ -4,7 +4,6 @@ import com.example.template4fx.control.dialog.ErrorDialog;
 import com.example.template4fx.facade.UserFacade;
 import com.example.template4fx.model.User;
 import com.example.template4fx.service.UserService;
-import com.example.template4fx.view.SVGTableCell;
 import com.google.inject.Inject;
 import com.google.inject.Singleton;
 import javafx.collections.FXCollections;
@@ -49,7 +48,6 @@ public class UserView
         setSvg( "person" );
 
         userView.setItems( users );
-        userNameColumn.setCellFactory( callback -> new SVGTableCell<>() );
     }
 
     @Override
