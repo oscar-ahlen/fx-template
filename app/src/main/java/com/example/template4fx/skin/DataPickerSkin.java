@@ -1,26 +1,20 @@
 package com.example.template4fx.skin;
 
 import com.example.template4fx.control.SVGButton;
-import com.example.template4fx.control.SVGLabel;
 import com.example.template4fx.control.dialog.DataPicker;
 import com.example.template4fx.view.Displayable;
 import com.example.template4fx.view.SVGListCell;
-import javafx.geometry.Pos;
 import javafx.scene.Node;
-import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.SelectionMode;
 import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.HBox;
-import javafx.scene.layout.Pane;
-import javafx.scene.layout.Priority;
 import javafx.scene.layout.VBox;
 
 import java.util.ArrayList;
 import java.util.Collection;
 
 public class DataPickerSkin<T extends Displayable>
-    extends OverlaySkin<DataPicker<T>>
+    extends DialogSkin<DataPicker<T>>
 {
     private ListView<T> available;
 
@@ -39,30 +33,6 @@ public class DataPickerSkin<T extends Displayable>
 
         background.getChildren().addAll( createHeader(), createContent() );
         return background;
-    }
-
-    private Node createHeader()
-    {
-        HBox header = new HBox();
-        header.getStyleClass().setAll( "dialog-header" );
-        header.setAlignment( Pos.CENTER );
-
-        SVGLabel icon = new SVGLabel();
-        icon.svgProperty().bind( getSkinnable().svgProperty() );
-        icon.setScale( 2.0 );
-
-        Label headerText = new Label();
-        headerText.textProperty().bind( getSkinnable().headerProperty() );
-
-        Pane expander = new Pane();
-        HBox.setHgrow( expander, Priority.ALWAYS );
-
-        SVGButton close = new SVGButton();
-        close.setOnAction( event -> getSkinnable().close() );
-        close.setSvg( "clear" );
-
-        header.getChildren().addAll( icon, headerText, expander, close );
-        return header;
     }
 
     private Node createContent()

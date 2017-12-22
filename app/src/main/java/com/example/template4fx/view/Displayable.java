@@ -4,5 +4,7 @@ public interface Displayable
 {
     String getTitle();
 
+    String getDescription();
+
     String getContent();
 }

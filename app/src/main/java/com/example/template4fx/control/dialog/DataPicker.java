@@ -20,10 +20,8 @@ public class DataPicker<T extends Displayable>
 
     public DataPicker( String header, String svg, Collection<T> available, Collection<T> selected )
     {
-        super( header );
+        super( header, svg );
         getStyleClass().add( "data-picker" );
-
-        this.svg.set( svg );
 
         this.available = FXCollections.observableArrayList( available );
         this.selected = FXCollections.observableArrayList( selected );

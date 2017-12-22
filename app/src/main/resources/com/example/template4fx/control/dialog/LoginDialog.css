@@ -1,0 +1,33 @@
+.dialog > .masker-glass
+{
+    -fx-background-color: rgba(0, 0, 0, .3);
+}
+
+.dialog-background
+{
+    -fx-background-color: -fx-background;
+    -fx-background-radius: 3, 2;
+
+    -fx-pref-width: 400;
+}
+
+.dialog-header
+{
+    -fx-background-color: -header-color, white;
+    -fx-background-insets: 0 0 0 0, 0 0 4 0;
+    -fx-background-radius: 3 3 0 0;
+    -fx-padding: 8 12 12 12;
+}
+
+.dialog-header .label
+{
+    -fx-text-fill: -header-color;
+    -fx-font-size: 16;
+    -fx-font-weight: bold;
+}
+
+.dialog-content
+{
+    -fx-padding: 12;
+    -fx-spacing: 8;
+}

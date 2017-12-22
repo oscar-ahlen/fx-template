@@ -24,7 +24,7 @@ public class ValuePicker<T>
 
     public ValuePicker( Node source, ObservableList<T> items )
     {
-        super( "" );
+        super( "", null );
         getStyleClass().add( "value-picker" );
 
         this.source = source;
@@ -39,13 +39,13 @@ public class ValuePicker<T>
 
         if ( Keys.ESCAPE.match( event ) )
         {
-            cancel();
             event.consume();
+            cancel();
         }
         else if ( Keys.ENTER.match( event ) && selected.get() != null )
         {
-            success();
             event.consume();
+            success();
         }
     }
 
