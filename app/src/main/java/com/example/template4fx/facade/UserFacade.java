@@ -128,6 +128,12 @@ public class UserFacade
     }
 
     @Override
+    public String getDescription()
+    {
+        return null;
+    }
+
+    @Override
     public String getContent()
     {
         return SVG.INSTANCE.get( "person" );

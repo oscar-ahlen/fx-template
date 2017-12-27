@@ -7,8 +7,6 @@ description 'Template desktop application for JavaFX to be used and built upon i
 dependencies {
     compile project(':Template4FX-Core')
 
-    compile 'com.google.code.gson:gson:2.8.0'
-
     compile 'log4j:log4j:1.2.17'
 
     testCompile 'junit:junit:4+'

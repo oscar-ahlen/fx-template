@@ -23,6 +23,12 @@ public class SVGIcon
         svg.setFill( Paint.valueOf( "#000000" ) );
     }
 
+    public SVGIcon( String content )
+    {
+        this();
+        svg.setContent( content );
+    }
+
     public void scale( double scale )
     {
         frame.setScaleX( scale );

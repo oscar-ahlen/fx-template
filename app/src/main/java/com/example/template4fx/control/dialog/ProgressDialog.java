@@ -12,7 +12,7 @@ public class ProgressDialog
 {
     public ProgressDialog( String header, Task task )
     {
-        super( header );
+        super( header, "timelapse" );
         getStyleClass().add( "progress-dialog" );
         setTask( task );
     }

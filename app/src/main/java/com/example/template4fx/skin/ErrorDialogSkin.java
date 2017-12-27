@@ -1,15 +1,11 @@
 package com.example.template4fx.skin;
 
-import com.example.template4fx.control.SVGLabel;
 import com.example.template4fx.control.dialog.ErrorDialog;
-import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonBar;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
-import javafx.scene.layout.HBox;
-import javafx.scene.layout.Pane;
 import javafx.scene.layout.Priority;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.TextAlignment;
@@ -18,7 +14,7 @@ import java.io.PrintWriter;
 import java.io.StringWriter;
 
 public class ErrorDialogSkin
-    extends OverlaySkin<ErrorDialog>
+    extends DialogSkin<ErrorDialog>
 {
     public ErrorDialogSkin( ErrorDialog dialog )
     {
@@ -32,28 +28,7 @@ public class ErrorDialogSkin
         background.getStyleClass().add( "dialog-background" );
 
         background.getChildren().addAll( createHeader(), createContent() );
-
         return background;
-    }
-
-    private Node createHeader()
-    {
-        HBox header = new HBox();
-        header.getStyleClass().add( "dialog-header" );
-        header.setAlignment( Pos.CENTER );
-
-        Label headerText = new Label();
-        headerText.textProperty().bind( getSkinnable().headerProperty() );
-
-        Pane expander = new Pane();
-        HBox.setHgrow( expander, Priority.ALWAYS );
-
-        SVGLabel icon = new SVGLabel();
-        icon.setSvg( "warning" );
-        icon.setScale( 2.0 );
-
-        header.getChildren().addAll( headerText, expander, icon );
-        return header;
     }
 
     private Node createContent()

@@ -10,7 +10,7 @@ public class ErrorDialog
 {
     public ErrorDialog( String header, Throwable error )
     {
-        super( header );
+        super( header, "warning" );
         getStyleClass().add( "error-dialog" );
         setError( error );
     }

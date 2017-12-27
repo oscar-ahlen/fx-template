@@ -13,11 +13,12 @@ import javafx.scene.input.KeyEvent;
 public abstract class AbstractDialog
     extends FXControl
 {
-    public AbstractDialog( String header )
+    public AbstractDialog( String header, String svg )
     {
-        getStyleClass().add( "dialog" );
-
         setHeader( header );
+        setSvg( svg );
+
+        getStyleClass().add( "dialog" );
         visibleProperty().bindBidirectional( managedProperty() );
     }
 
@@ -27,7 +28,6 @@ public abstract class AbstractDialog
         {
             event.consume();
             Platform.runLater( () -> getFirst().requestFocus() );
-
         }
         else if ( ( Keys.SHIFT_TAB.match( event ) || Keys.LEFT.match( event ) ) && getFirst().isFocused() )
         {
@@ -51,6 +51,23 @@ public abstract class AbstractDialog
     public void setHeader( String header )
     {
         this.header.set( header );
+    }
+
+    protected final StringProperty svg = new SimpleStringProperty();
+
+    public String getSvg()
+    {
+        return svg.get();
+    }
+
+    public StringProperty svgProperty()
+    {
+        return svg;
+    }
+
+    public void setSvg( String svg )
+    {
+        this.svg.set( svg );
     }
 
     private final ObjectProperty<Node> first = new SimpleObjectProperty<>();

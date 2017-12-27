@@ -10,7 +10,7 @@ public class InfoDialog
 {
     public InfoDialog( String header, String content )
     {
-        super( header );
+        super( header, "info_outline" );
         getStyleClass().add( "info-dialog" );
         setContent( content );
     }

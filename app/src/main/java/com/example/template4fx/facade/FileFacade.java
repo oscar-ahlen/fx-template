@@ -127,6 +127,12 @@ public class FileFacade
     }
 
     @Override
+    public String getDescription()
+    {
+        return null;
+    }
+
+    @Override
     public String getContent()
     {
         return SVG.INSTANCE.get( ICONS.get( format.get() ) );

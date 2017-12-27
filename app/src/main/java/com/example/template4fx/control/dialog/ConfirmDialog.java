@@ -10,7 +10,7 @@ public class ConfirmDialog
 {
     public ConfirmDialog( String header, String content )
     {
-        super( header );
+        super( header, "help_outline" );
         getStyleClass().add( "confirm-dialog" );
         setContent( content );
     }
