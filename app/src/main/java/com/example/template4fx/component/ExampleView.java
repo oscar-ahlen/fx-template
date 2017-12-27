@@ -18,7 +18,6 @@ import javafx.fxml.FXML;
 import javafx.scene.Parent;
 import javafx.scene.control.Button;
 import javafx.scene.control.SelectionMode;
-import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.input.KeyEvent;
 
@@ -33,9 +32,6 @@ public class ExampleView
 
     @FXML
     private TableView<FileFacade> fileView;
-
-    @FXML
-    private TableColumn<FileFacade, String> fileNameColumn;
 
     private final ObservableList<FileFacade> files = FXCollections.observableArrayList();
 

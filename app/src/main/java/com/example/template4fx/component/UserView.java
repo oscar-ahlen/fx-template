@@ -11,7 +11,6 @@ import javafx.collections.ObservableList;
 import javafx.concurrent.Task;
 import javafx.fxml.FXML;
 import javafx.scene.Parent;
-import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.input.KeyEvent;
 
@@ -30,9 +29,6 @@ public class UserView
 
     @FXML
     private TableView<UserFacade> userView;
-
-    @FXML
-    private TableColumn<UserFacade, String> userNameColumn;
 
     private final ObservableList<UserFacade> users = FXCollections.observableArrayList();
 
