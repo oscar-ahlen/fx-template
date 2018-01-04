@@ -4,7 +4,6 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
-import javafx.scene.layout.Pane;
 import javafx.util.Callback;
 
 import java.io.IOException;
@@ -64,11 +63,5 @@ public abstract class Component
     {
         node.setVisible( true );
         node.setManaged( true );
-    }
-
-    protected void switchNode( Pane parent, Node oldNode, Node newNode )
-    {
-        parent.getChildren().add( newNode );
-        parent.getChildren().remove( oldNode );
     }
 }

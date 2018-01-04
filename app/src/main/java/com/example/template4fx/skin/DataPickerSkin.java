@@ -3,7 +3,7 @@ package com.example.template4fx.skin;
 import com.example.template4fx.control.SVGButton;
 import com.example.template4fx.control.dialog.DataPicker;
 import com.example.template4fx.view.Displayable;
-import com.example.template4fx.view.SVGListCell;
+import com.example.template4fx.view.SVGListCellFactory;
 import javafx.scene.Node;
 import javafx.scene.control.ListView;
 import javafx.scene.control.SelectionMode;
@@ -52,7 +52,7 @@ public class DataPickerSkin<T extends Displayable>
         VBox container = new VBox();
 
         available = new ListView<>( getSkinnable().getAvailable() );
-        available.setCellFactory( callback -> new SVGListCell<>() );
+        available.setCellFactory( new SVGListCellFactory<>() );
         available.getSelectionModel().setSelectionMode( SelectionMode.MULTIPLE );
         available.setPrefWidth( 400 );
 
@@ -66,7 +66,7 @@ public class DataPickerSkin<T extends Displayable>
         container.getStyleClass().add( "list-container" );
 
         selected = new ListView<>( getSkinnable().getSelected() );
-        selected.setCellFactory( callback -> new SVGListCell<>() );
+        selected.setCellFactory( new SVGListCellFactory<>() );
         selected.getSelectionModel().setSelectionMode( SelectionMode.MULTIPLE );
         selected.setPrefWidth( 400 );
 

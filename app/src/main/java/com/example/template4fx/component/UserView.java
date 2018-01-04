@@ -4,7 +4,6 @@ import com.example.template4fx.control.dialog.ErrorDialog;
 import com.example.template4fx.facade.UserFacade;
 import com.example.template4fx.model.User;
 import com.example.template4fx.service.UserService;
-import com.example.template4fx.view.SVGTableCell;
 import com.google.inject.Inject;
 import com.google.inject.Singleton;
 import javafx.collections.FXCollections;
@@ -12,7 +11,6 @@ import javafx.collections.ObservableList;
 import javafx.concurrent.Task;
 import javafx.fxml.FXML;
 import javafx.scene.Parent;
-import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.input.KeyEvent;
 
@@ -32,9 +30,6 @@ public class UserView
     @FXML
     private TableView<UserFacade> userView;
 
-    @FXML
-    private TableColumn<UserFacade, String> userNameColumn;
-
     private final ObservableList<UserFacade> users = FXCollections.observableArrayList();
 
     @Inject
@@ -49,7 +44,6 @@ public class UserView
         setSvg( "person" );
 
         userView.setItems( users );
-        userNameColumn.setCellFactory( callback -> new SVGTableCell<>() );
     }
 
     @Override

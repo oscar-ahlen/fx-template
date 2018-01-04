@@ -15,6 +15,7 @@ import javafx.fxml.FXML;
 import javafx.scene.Parent;
 import javafx.scene.control.Button;
 import javafx.scene.input.KeyEvent;
+import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
 
 import java.io.IOException;
@@ -34,7 +35,10 @@ public class RootView
     private MainView current;
 
     @FXML
-    private Pane root, center, expandedNavBar, collapsedNavBar;
+    private Pane root, expandedNavBar, collapsedNavBar;
+
+    @FXML
+    private BorderPane borderPane;
 
     @FXML
     private SVGLabel header;
@@ -57,6 +61,7 @@ public class RootView
         toggleNavBar();
 
         views.put( NavBarView.ExampleView, load( "/fxml/ExampleView.fxml" ) );
+        views.put( NavBarView.DialogView, load( "/fxml/DialogView.fxml" ) );
         views.put( NavBarView.UserView, load( "/fxml/UserView.fxml" ) );
         views.put( NavBarView.SettingsView, load( "/fxml/SettingsView.fxml" ) );
 
@@ -103,6 +108,11 @@ public class RootView
         switchView( NavBarView.ExampleView );
     }
 
+    public void showDialogView()
+    {
+        switchView( NavBarView.DialogView );
+    }
+
     public void showUserView()
     {
         switchView( NavBarView.UserView );
@@ -139,12 +149,8 @@ public class RootView
         if ( current == view )
             return;
 
-        if ( current != null )
-            switchNode( center, current.getParent(), view.getParent() );
-        else
-            switchNode( center, null, view.getParent() );
-
         current = view;
+        borderPane.setCenter( current.getParent() );
 
         rebindProperty( header.textProperty(), current.titleProperty() );
         rebindProperty( header.svgProperty(), current.svgProperty() );
@@ -219,6 +225,7 @@ public class RootView
     private enum NavBarView
     {
         ExampleView,
+        DialogView,
         UserView,
         SettingsView,
     }

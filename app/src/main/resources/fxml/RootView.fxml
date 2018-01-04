@@ -14,7 +14,7 @@
            fx:controller="com.example.template4fx.component.RootView"
            stylesheets="@../css/theme.css"
            fx:id="root">
-    <BorderPane>
+    <BorderPane fx:id="borderPane">
         <top>
             <HBox styleClass="header" alignment="CENTER_LEFT">
                 <SVGLabel fx:id="header" HBox.hgrow="ALWAYS" maxWidth="Infinity"/>
@@ -34,15 +34,17 @@
 
                     <SVGButton svg="home" onAction="#showExampleView"/>
 
+                    <Separator styleClass="spacer"/>
+
+                    <SVGButton svg="application" onAction="#showDialogView"/>
+
                     <SVGButton svg="person" onAction="#showUserView"/>
 
-                    <Separator styleClass="spacer"/>
+                    <Pane VBox.vgrow="ALWAYS"/>
 
                     <SVGButton svg="settings" onAction="#showSettingsView"/>
 
                     <SVGButton svg="help_outline"/>
-
-                    <Pane VBox.vgrow="ALWAYS"/>
 
                     <SVGButton svg="exit_to_app" onAction="#exit"/>
                 </VBox>
@@ -52,23 +54,21 @@
 
                     <SVGTextButton svg="home" text="%menu.home" onAction="#showExampleView"/>
 
+                    <Separator/>
+
+                    <SVGTextButton svg="application" text="%menu.dialog" onAction="#showDialogView"/>
+
                     <SVGTextButton svg="person" text="%menu.user" onAction="#showUserView"/>
 
-                    <Separator/>
+                    <Pane VBox.vgrow="ALWAYS"/>
 
                     <SVGTextButton svg="settings" text="%menu.settings" onAction="#showSettingsView"/>
 
                     <SVGTextButton svg="help_outline" text="%menu.help"/>
 
-                    <Pane VBox.vgrow="ALWAYS"/>
-
                     <SVGTextButton svg="exit_to_app" text="%menu.exit" onAction="#exit"/>
                 </VBox>
             </StackPane>
         </left>
-
-        <center>
-            <StackPane fx:id="center"/>
-        </center>
     </BorderPane>
 </StackPane>

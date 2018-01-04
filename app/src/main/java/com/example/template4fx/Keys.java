@@ -22,6 +22,10 @@ public class Keys
 
     public static final KeyCombination DOWN = new KeyCodeCombination( KeyCode.DOWN );
 
+    public static final KeyCombination LEFT = new KeyCodeCombination( KeyCode.LEFT );
+
+    public static final KeyCombination RIGHT = new KeyCodeCombination( KeyCode.RIGHT );
+
     public static final KeyCombination TAB = new KeyCodeCombination( KeyCode.TAB );
 
     public static final KeyCombination SHIFT_TAB = new KeyCodeCombination( KeyCode.TAB, KeyCombination.SHIFT_DOWN );

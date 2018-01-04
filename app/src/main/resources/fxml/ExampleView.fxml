@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import com.example.template4fx.view.SVGTableCellFactory?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.cell.PropertyValueFactory?>
@@ -30,6 +31,10 @@
     <TableView fx:id="fileView" VBox.vgrow="ALWAYS">
         <columns>
             <TableColumn fx:id="fileNameColumn" text="%file.name" prefWidth="200">
+                <cellFactory>
+                    <SVGTableCellFactory/>
+                </cellFactory>
+
                 <cellValueFactory>
                     <PropertyValueFactory property="name"/>
                 </cellValueFactory>
