@@ -54,6 +54,8 @@ public class ValuePicker<T>
         filter.addListener(
             ( observable, oldValue, newValue ) ->
                 items.setPredicate( item -> newValue == null || newValue.isEmpty() || matches( item, newValue ) ) );
+
+        selected.set( items.stream().findFirst().orElse( null ) );
     }
 
     private boolean matches( T item, String filter )
