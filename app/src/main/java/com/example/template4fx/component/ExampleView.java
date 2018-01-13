@@ -1,7 +1,6 @@
 package com.example.template4fx.component;
 
 import com.example.template4fx.Keys;
-import com.example.template4fx.fx.DialogEvent;
 import com.example.template4fx.control.dialog.ConfirmDialog;
 import com.example.template4fx.control.dialog.DataPicker;
 import com.example.template4fx.control.dialog.ErrorDialog;
@@ -9,6 +8,7 @@ import com.example.template4fx.control.dialog.InfoDialog;
 import com.example.template4fx.control.dialog.ValuePicker;
 import com.example.template4fx.control.notification.Notifications;
 import com.example.template4fx.facade.FileFacade;
+import com.example.template4fx.fx.DialogEvent;
 import com.example.template4fx.model.File;
 import com.google.inject.Singleton;
 import javafx.collections.FXCollections;

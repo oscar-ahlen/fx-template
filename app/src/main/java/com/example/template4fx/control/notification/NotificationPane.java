@@ -1,10 +1,12 @@
 package com.example.template4fx.control.notification;
 
+import com.example.template4fx.Keys;
 import com.example.template4fx.fx.DialogEvent;
 import javafx.animation.KeyFrame;
 import javafx.animation.KeyValue;
 import javafx.animation.Timeline;
 import javafx.scene.Node;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.shape.Rectangle;
 import javafx.util.Duration;
@@ -14,23 +16,31 @@ public class NotificationPane
 {
     private static final double HEIGHT = 40;
 
-    public void setMainNode( Node node )
-    {
-        AnchorPane.setTopAnchor( node, 0d );
-        AnchorPane.setRightAnchor( node, 0d );
-        AnchorPane.setBottomAnchor( node, 0d );
-        AnchorPane.setLeftAnchor( node, 0d );
+    private Notification current;
 
-        if ( getChildren().isEmpty() )
-            getChildren().add( node );
-        else
-            getChildren().set( 0, node );
+    public boolean hasNotification()
+    {
+        return getChildren().size() > 1;
+    }
+
+    public void handleEvent( KeyEvent event )
+    {
+        if ( Keys.ENTER.match( event ) )
+        {
+            event.consume();
+            current.success();
+        }
+        else if ( Keys.ESCAPE.match( event ) )
+        {
+            event.consume();
+            current.cancel();
+        }
     }
 
     public void notification( Notification notification )
     {
-        if ( getChildren().size() > 1 )
-            getChildren().remove( 1 );
+        remove( current );
+        current = notification;
 
         Node node = notification.getNode();
 
@@ -50,6 +60,12 @@ public class NotificationPane
         node.translateYProperty().set( -HEIGHT );
 
         animation( node, clip ).play();
+    }
+
+    private void remove( Notification notification )
+    {
+        if ( notification != null )
+            getChildren().remove( notification.getNode() );
     }
 
     private Timeline animation( Node node, Rectangle clip )

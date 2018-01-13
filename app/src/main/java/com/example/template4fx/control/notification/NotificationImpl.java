@@ -1,7 +1,7 @@
 package com.example.template4fx.control.notification;
 
-import com.example.template4fx.fx.DialogEvent;
 import com.example.template4fx.control.SVGIcon;
+import com.example.template4fx.fx.DialogEvent;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -13,7 +13,7 @@ public class NotificationImpl
     extends HBox
     implements Notification
 {
-    public NotificationImpl( NotificationType type, String header )
+    NotificationImpl( NotificationType type, String header )
     {
         getStyleClass().addAll( "notification", type.getStyleClass() );
 

@@ -21,7 +21,7 @@ public abstract class View
 
     protected void notification( Notification notification )
     {
-        rootView.notification( notification );
+        rootView.getNotificationPane().notification( notification );
     }
 
     protected void popup( AbstractDialog dialog )

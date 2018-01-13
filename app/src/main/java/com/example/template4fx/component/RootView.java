@@ -3,7 +3,6 @@ package com.example.template4fx.component;
 import com.example.template4fx.Keys;
 import com.example.template4fx.control.SVGLabel;
 import com.example.template4fx.control.dialog.AbstractDialog;
-import com.example.template4fx.control.notification.Notification;
 import com.example.template4fx.control.notification.NotificationPane;
 import com.example.template4fx.util.HistoryList;
 import com.google.inject.Singleton;
@@ -43,7 +42,7 @@ public class RootView
     private NotificationPane notificationPane;
 
     @FXML
-    private BorderPane borderPane;
+    private BorderPane viewPane;
 
     @FXML
     private SVGLabel header;
@@ -128,11 +127,6 @@ public class RootView
         switchView( NavBarView.SettingsView );
     }
 
-    public void notification( Notification notification )
-    {
-        notificationPane.notification( notification );
-    }
-
     public void popup( AbstractDialog dialog )
     {
         dialog.visibleProperty().addListener( ( observable, oldValue, newValue ) -> {
@@ -161,7 +155,7 @@ public class RootView
 
         current = view;
 
-        notificationPane.setMainNode( current.getParent() );
+        viewPane.setCenter( current.getParent() );
 
         rebindProperty( header.textProperty(), current.titleProperty() );
         rebindProperty( header.svgProperty(), current.svgProperty() );
@@ -183,6 +177,11 @@ public class RootView
     {
         source.unbind();
         source.bind( target );
+    }
+
+    public NotificationPane getNotificationPane()
+    {
+        return notificationPane;
     }
 
     private final StringProperty title = new SimpleStringProperty();
@@ -211,6 +210,10 @@ public class RootView
             if ( dialog != null )
             {
                 dialog.handleKeyEvent( event );
+            }
+            else if ( notificationPane.hasNotification() )
+            {
+                notificationPane.handleEvent( event );
             }
             else if ( Keys.ALT_LEFT.match( event ) )
             {

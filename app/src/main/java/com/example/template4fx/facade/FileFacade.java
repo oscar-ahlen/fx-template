@@ -1,8 +1,8 @@
 package com.example.template4fx.facade;
 
 import com.example.template4fx.SVG;
-import com.example.template4fx.model.File;
 import com.example.template4fx.fx.Displayable;
+import com.example.template4fx.model.File;
 import javafx.beans.property.LongProperty;
 import javafx.beans.property.SimpleLongProperty;
 import javafx.beans.property.SimpleStringProperty;
