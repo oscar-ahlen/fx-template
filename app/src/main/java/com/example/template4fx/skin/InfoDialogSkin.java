@@ -43,8 +43,6 @@ public class InfoDialogSkin
         ok.setOnAction( event -> getSkinnable().ok() );
         ButtonBar.setButtonData( ok, ButtonBar.ButtonData.OK_DONE );
 
-        getSkinnable().setFirst( ok );
-        getSkinnable().setLast( ok );
         buttonBar.getButtons().add( ok );
 
         content.getChildren().addAll( text, buttonBar );

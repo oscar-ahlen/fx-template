@@ -9,6 +9,7 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
+<?import com.example.template4fx.control.notification.NotificationPane?>
 <StackPane xmlns="http://javafx.com/javafx"
            xmlns:fx="http://javafx.com/fxml"
            fx:controller="com.example.template4fx.component.RootView"
@@ -70,5 +71,9 @@
                 </VBox>
             </StackPane>
         </left>
+
+        <center>
+            <NotificationPane fx:id="notificationPane"/>
+        </center>
     </BorderPane>
 </StackPane>

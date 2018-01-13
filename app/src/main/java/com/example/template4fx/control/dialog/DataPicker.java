@@ -1,9 +1,8 @@
 package com.example.template4fx.control.dialog;
 
+import com.example.template4fx.control.DialogEvent;
 import com.example.template4fx.skin.DataPickerSkin;
 import com.example.template4fx.view.Displayable;
-import javafx.beans.property.SimpleStringProperty;
-import javafx.beans.property.StringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.scene.control.Skin;
@@ -27,6 +26,12 @@ public class DataPicker<T extends Displayable>
         this.selected = FXCollections.observableArrayList( selected );
 
         this.available.removeAll( selected );
+    }
+
+    public void ok()
+    {
+        setVisible( false );
+        fireEvent( DialogEvent.successEvent() );
     }
 
     @Override
@@ -81,22 +86,5 @@ public class DataPicker<T extends Displayable>
     {
         setVisible( false );
         fireEvent( DialogEvent.successEvent() );
-    }
-
-    protected final StringProperty svg = new SimpleStringProperty();
-
-    public String getSvg()
-    {
-        return svg.get();
-    }
-
-    public StringProperty svgProperty()
-    {
-        return svg;
-    }
-
-    public void setSvg( String svg )
-    {
-        this.svg.set( svg );
     }
 }

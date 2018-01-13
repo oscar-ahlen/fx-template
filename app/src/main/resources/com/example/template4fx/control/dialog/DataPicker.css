@@ -1,3 +1,9 @@
+.dialog
+{
+    -dialog-header-color: black;
+    -dialog-text-color: black;
+}
+
 .data-picker > .masker-glass
 {
     -fx-background-color: rgba(0, 0, 0, .3);
@@ -11,7 +17,7 @@
 
 .dialog-header
 {
-    -fx-background-color: -header-color, white;
+    -fx-background-color: -dialog-header-color, white;
     -fx-background-insets: 0 0 0 0, 0 0 4 0;
     -fx-background-radius: 3 3 0 0;
 
@@ -21,7 +27,7 @@
 
 .dialog-header > .label
 {
-    -fx-text-fill: -header-color;
+    -fx-text-fill: -dialog-text-color;
     -fx-font-size: 16;
     -fx-font-weight: bold;
 }
@@ -31,7 +37,12 @@
     -fx-padding: 12;
 }
 
-.button-bar
+.vertical-bar
 {
     -fx-padding: 0 8 0 8;
+}
+
+.bottom-bar
+{
+    -fx-padding: 12 0 0 0;
 }

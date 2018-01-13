@@ -24,15 +24,23 @@
     -light-blue-400: #00B0FF;
     -light-blue-A700: #0091EA;
 
-    -ok: #28A745;
-    -warning: #FFC107;
-    -error: #DC3545;
+    -bootstrap-blue: #1176D5;
+    -bootstrap-green: #5FB860;
+    -bootstrap-teal: #5FC1DD;
+    -bootstrap-yellow: #EFAC55;
+    -bootstrap-red: #D75051;
 
     /*******************************************************************************
      *                                                                             *
      * Custom values                                                               *
      *                                                                             *
      ******************************************************************************/
+    -primary-color: -bootstrap-blue;
+    -success-color: -bootstrap-green;
+    -info-color: -bootstrap-teal;
+    -warning-color: -bootstrap-yellow;
+    -error-color: -bootstrap-red;
+
     -background-color: -blue-grey-50;
 
     -header-color: -blue-grey-500;
@@ -744,13 +752,13 @@
     -fx-background-color: -header-color;
 }
 
-.header .button,
-.header .label
+.header > .button,
+.header > .label
 {
     -fx-text-fill: -header-text-color;
 }
 
-.header .label
+.header > .label
 {
     -fx-padding: 0 0 0 8;
     -fx-graphic-text-gap: 8;
@@ -764,8 +772,8 @@
     -fx-background-color: -nav-bar-color;
 }
 
-.header .button,
-.nav-bar .button
+.header > .button,
+.nav-bar > .button
 {
     -fx-background-insets: 0;
     -fx-background-radius: 0;
@@ -776,12 +784,12 @@
     -fx-focus-traversable: false;
 }
 
-.nav-bar .button .svg
+.nav-bar > .button .svg
 {
     -fx-fill: -fx-text-fill;
 }
 
-.nav-bar .svg-text-button
+.nav-bar > .svg-text-button
 {
     -fx-background-color: transparent;
 
@@ -792,9 +800,9 @@
     -fx-max-width: infinity;
 }
 
-.header .button:hover,
-.header .button:focused,
-.nav-bar .button:hover
+.header > .button:hover,
+.header > .button:focused,
+.nav-bar > .button:hover
 {
     -fx-background-color: -button-hover;
     -fx-text-fill: -fx-dark-text-color;
@@ -802,30 +810,144 @@
     -fx-font-weight: bold;
 }
 
-.header .button:pressed,
-.nav-bar .button:pressed
+.header > .button:pressed,
+.nav-bar > .button:pressed
 {
     -fx-background-color: -fx-selection-bar-non-focused;
     -fx-text-fill: -fx-dark-text-color;
 }
 
-.nav-bar .separator:horizontal
+.nav-bar > .separator:horizontal
 {
     -fx-padding: 0 12 0 12;
 }
 
-.nav-bar .separator:horizontal .line
+.nav-bar > .separator:horizontal .line
 {
     -fx-border-color: white;
     -fx-border-style: solid;
     -fx-border-width: 0 0 1 0;
 }
 
-.nav-bar .spacer:horizontal .line
+.nav-bar > .spacer:horizontal .line
 {
     -fx-border-color: transparent;
     -fx-border-style: solid;
     -fx-border-width: 0 0 1 0;
+}
+
+/*******************************************************************************
+ *                                                                             *
+ * Dialogs                                                                     *
+ *                                                                             *
+ ******************************************************************************/
+.dialog.info-dialog
+{
+    -dialog-header-color: -header-color;
+    -dialog-text-color: -header-color;
+}
+
+.dialog.confirm-dialog
+{
+    -dialog-header-color: -header-color;
+    -dialog-text-color: -header-color;
+}
+
+.dialog.error-dialog
+{
+    -dialog-header-color: -error-color;
+    -dialog-text-color: white;
+}
+
+.dialog.data-picker
+{
+    -dialog-header-color: -header-color;
+    -dialog-text-color: -header-color;
+}
+
+/*******************************************************************************
+ *                                                                             *
+ * Notifications                                                               *
+ *                                                                             *
+ ******************************************************************************/
+.notification
+{
+    -notification-color: -primary-color;
+
+    -fx-background-color: -notification-color, -nav-bar-color;
+    -fx-background-insets: 0, 2 0 0 0;
+
+    -fx-padding: 0 12 0 0;
+
+    -fx-alignment: CENTER_LEFT;
+}
+
+.notification.info
+{
+    -notification-color: -info-color;
+}
+
+.notification.success
+{
+    -notification-color: -success-color;
+}
+
+.notification.warning
+{
+    -notification-color: -warning-color;
+}
+
+.notification.error
+{
+    -notification-color: -error-color;
+}
+
+.notification > .icon-frame
+{
+    -fx-background-color: -notification-color;
+
+    -fx-padding: 8;
+}
+
+.icon-frame > .svg-icon > .svg
+{
+    -fx-fill: white;
+
+    -fx-alignment: CENTER;
+}
+
+.notification-header
+{
+    -fx-font-weight: bold;
+    -fx-text-fill: white;
+
+    -fx-padding: 0 16 0 16;
+}
+
+.notification > .button
+{
+    -fx-base: -notification-color;
+
+    -fx-background-color: derive(-notification-color, -15%);
+    -fx-background-insets: 0;
+    -fx-background-radius: 0;
+
+    -fx-padding: 5 16 5 16;
+
+    -fx-font-weight: bold;
+    -fx-text-fill: white;
+
+    -fx-focus-traversable: false;
+}
+
+.notification > .button:hover
+{
+    -fx-background-color: -notification-color;
+}
+
+.notification > .button:pressed
+{
+    -fx-background-color: derive(-notification-color, 15%);
 }
 
 /*******************************************************************************

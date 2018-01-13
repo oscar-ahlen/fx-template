@@ -1,3 +1,9 @@
+.dialog
+{
+    -dialog-header-color: black;
+    -dialog-text-color: white;
+}
+
 .dialog > .masker-glass
 {
     -fx-background-color: rgba(0, 0, 0, .3);
@@ -14,14 +20,14 @@
 
 .dialog-header
 {
-    -fx-background-color: -error;
+    -fx-background-color: -dialog-header-color;
     -fx-background-radius: 3 3 0 0;
     -fx-padding: 8 12 8 12;
 }
 
 .dialog-header .label
 {
-    -fx-text-fill: -header-text-color;
+    -fx-text-fill: -dialog-text-color;
     -fx-font-size: 16;
     -fx-font-weight: bold;
 }

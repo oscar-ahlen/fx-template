@@ -32,7 +32,7 @@
 
             <TableView fx:id="userView" VBox.vgrow="ALWAYS">
                 <columns>
-                    <TableColumn fx:id="userNameColumn" text="%user.name" prefWidth="200">
+                    <TableColumn text="%user.name" prefWidth="200">
                         <cellFactory>
                             <SVGTableCellFactory/>
                         </cellFactory>

@@ -3,6 +3,8 @@ package com.example.template4fx.component;
 import com.example.template4fx.Keys;
 import com.example.template4fx.control.SVGLabel;
 import com.example.template4fx.control.dialog.AbstractDialog;
+import com.example.template4fx.control.notification.Notification;
+import com.example.template4fx.control.notification.NotificationPane;
 import com.example.template4fx.util.HistoryList;
 import com.google.inject.Singleton;
 import javafx.application.Platform;
@@ -36,6 +38,9 @@ public class RootView
 
     @FXML
     private Pane root, expandedNavBar, collapsedNavBar;
+
+    @FXML
+    private NotificationPane notificationPane;
 
     @FXML
     private BorderPane borderPane;
@@ -123,6 +128,11 @@ public class RootView
         switchView( NavBarView.SettingsView );
     }
 
+    public void notification( Notification notification )
+    {
+        notificationPane.notification( notification );
+    }
+
     public void popup( AbstractDialog dialog )
     {
         dialog.visibleProperty().addListener( ( observable, oldValue, newValue ) -> {
@@ -150,7 +160,8 @@ public class RootView
             return;
 
         current = view;
-        borderPane.setCenter( current.getParent() );
+
+        notificationPane.setMainNode( current.getParent() );
 
         rebindProperty( header.textProperty(), current.titleProperty() );
         rebindProperty( header.svgProperty(), current.svgProperty() );

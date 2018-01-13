@@ -1,4 +1,4 @@
-package com.example.template4fx.control.dialog;
+package com.example.template4fx.control;
 
 import javafx.event.Event;
 import javafx.event.EventType;

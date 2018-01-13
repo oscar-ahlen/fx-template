@@ -1,19 +1,18 @@
 package com.example.template4fx.component;
 
 import com.example.template4fx.Keys;
+import com.example.template4fx.control.DialogEvent;
 import com.example.template4fx.control.dialog.ConfirmDialog;
-import com.example.template4fx.control.dialog.DialogEvent;
+import com.example.template4fx.control.dialog.DataPicker;
 import com.example.template4fx.control.dialog.ErrorDialog;
 import com.example.template4fx.control.dialog.InfoDialog;
-import com.example.template4fx.control.dialog.ProgressDialog;
 import com.example.template4fx.control.dialog.ValuePicker;
+import com.example.template4fx.control.notification.Notifications;
 import com.example.template4fx.facade.FileFacade;
 import com.example.template4fx.model.File;
-import com.example.template4fx.task.ProgressTask;
 import com.google.inject.Singleton;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.concurrent.Task;
 import javafx.fxml.FXML;
 import javafx.scene.Parent;
 import javafx.scene.control.Button;
@@ -22,6 +21,7 @@ import javafx.scene.control.TableView;
 import javafx.scene.input.KeyEvent;
 
 import java.util.Arrays;
+import java.util.Collections;
 
 @Singleton
 public class ExampleView
@@ -74,6 +74,12 @@ public class ExampleView
         }
     }
 
+    public void infoNotification()
+    {
+        notification( Notifications.info( "This is an information notification, do you want to continue?",
+                                          "Yes", "No" ) );
+    }
+
     public void showInfoDialog()
     {
         popup( new InfoDialog( "Information Dialog", "Testing the new Info Dialog" ) );
@@ -94,11 +100,12 @@ public class ExampleView
         popup( dialog );
     }
 
-    public void showProgressDialog()
+    public void showDataPicker()
     {
-        Task task = new ProgressTask( 10 );
-        popup( new ProgressDialog( "Task in progress", task ) );
-        run( task );
+        DataPicker<FileFacade> picker = new DataPicker<>( "Data picker", "file_word",
+                                                          Collections.emptyList(), Collections.emptyList() );
+
+        popup( picker );
     }
 
     public void testValuePicker()

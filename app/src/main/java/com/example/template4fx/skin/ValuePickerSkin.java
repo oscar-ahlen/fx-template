@@ -23,15 +23,12 @@ public class ValuePickerSkin<T>
 
         TextField filter = new TextField();
         filter.textProperty().bindBidirectional( getSkinnable().filterProperty() );
-
-        getSkinnable().setFirst( filter );
         background.getChildren().add( filter );
 
         ListView<T> listView = new ListView<>();
         listView.setItems( getSkinnable().getItems() );
         listView.getSelectionModel().selectFirst();
 
-        getSkinnable().setLast( listView );
         background.getChildren().add( listView );
 
         filter.textProperty().addListener( ( ( observable, oldValue, newValue ) -> {

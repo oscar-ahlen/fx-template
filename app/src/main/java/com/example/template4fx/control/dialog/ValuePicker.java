@@ -1,6 +1,7 @@
 package com.example.template4fx.control.dialog;
 
 import com.example.template4fx.Keys;
+import com.example.template4fx.control.DialogEvent;
 import com.example.template4fx.skin.ValuePickerSkin;
 import javafx.application.Platform;
 import javafx.beans.property.ObjectProperty;

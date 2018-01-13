@@ -19,18 +19,19 @@
     </padding>
 
     <HBox spacing="8">
+        <Button text="Notification" onAction="#infoNotification"/>
+
         <Button text="Information Dialog" onAction="#showInfoDialog"/>
         <Button text="Error Dialog" onAction="#showErrorDialog"/>
         <Button text="Confirm Dialog" onAction="#showConfirmDialog"/>
-        <Button text="Progress Dialog" onAction="#showProgressDialog"/>
-
+        <Button text="Data Picker" onAction="#showDataPicker"/>
         <Button fx:id="valuePickerButton" text="Test ValuePicker" onAction="#testValuePicker"/>
         <DatePicker/>
     </HBox>
 
     <TableView fx:id="fileView" VBox.vgrow="ALWAYS">
         <columns>
-            <TableColumn fx:id="fileNameColumn" text="%file.name" prefWidth="200">
+            <TableColumn text="%file.name" prefWidth="200">
                 <cellFactory>
                     <SVGTableCellFactory/>
                 </cellFactory>

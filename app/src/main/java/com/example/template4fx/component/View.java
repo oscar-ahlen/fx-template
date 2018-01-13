@@ -1,6 +1,7 @@
 package com.example.template4fx.component;
 
 import com.example.template4fx.control.dialog.AbstractDialog;
+import com.example.template4fx.control.notification.Notification;
 import com.example.template4fx.service.SettingsService;
 import com.google.inject.Inject;
 import javafx.beans.property.BooleanProperty;
@@ -17,6 +18,11 @@ public abstract class View
     private SettingsService settingsService;
 
     private ExecutorService executorService;
+
+    protected void notification( Notification notification )
+    {
+        rootView.notification( notification );
+    }
 
     protected void popup( AbstractDialog dialog )
     {

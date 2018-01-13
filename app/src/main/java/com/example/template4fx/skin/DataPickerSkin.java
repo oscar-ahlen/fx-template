@@ -5,6 +5,8 @@ import com.example.template4fx.control.dialog.DataPicker;
 import com.example.template4fx.view.Displayable;
 import com.example.template4fx.view.SVGListCellFactory;
 import javafx.scene.Node;
+import javafx.scene.control.Button;
+import javafx.scene.control.ButtonBar;
 import javafx.scene.control.ListView;
 import javafx.scene.control.SelectionMode;
 import javafx.scene.layout.BorderPane;
@@ -43,48 +45,52 @@ public class DataPickerSkin<T extends Displayable>
         content.setLeft( createAvailableList() );
         content.setRight( createSelectedList() );
         content.setCenter( createButtonBar() );
+        content.setBottom( createBottomBar() );
 
         return content;
     }
 
     private Node createAvailableList()
     {
+        available = createListView();
+
         VBox container = new VBox();
-
-        available = new ListView<>( getSkinnable().getAvailable() );
-        available.setCellFactory( new SVGListCellFactory<>() );
-        available.getSelectionModel().setSelectionMode( SelectionMode.MULTIPLE );
-        available.setPrefWidth( 400 );
-
         container.getChildren().add( available );
         return container;
     }
 
     private Node createSelectedList()
     {
+        selected = createListView();
+
         VBox container = new VBox();
-        container.getStyleClass().add( "list-container" );
-
-        selected = new ListView<>( getSkinnable().getSelected() );
-        selected.setCellFactory( new SVGListCellFactory<>() );
-        selected.getSelectionModel().setSelectionMode( SelectionMode.MULTIPLE );
-        selected.setPrefWidth( 400 );
-
         container.getChildren().add( selected );
         return container;
+    }
+
+    private ListView<T> createListView()
+    {
+        ListView<T> listView = new ListView<>( getSkinnable().getSelected() );
+
+        listView.setCellFactory( new SVGListCellFactory<>() );
+        listView.getSelectionModel().setSelectionMode( SelectionMode.MULTIPLE );
+        listView.setPrefWidth( 300 );
+        listView.setPrefHeight( 300 );
+
+        return listView;
     }
 
     private Node createButtonBar()
     {
         VBox buttonBar = new VBox();
-        buttonBar.getStyleClass().add( "button-bar" );
+        buttonBar.getStyleClass().add( "vertical-bar" );
 
         SVGButton add = new SVGButton();
         add.setSvg( "chevron_right" );
         add.setOnAction( event -> getSkinnable().add( convert( available ) ) );
 
         SVGButton addAll = new SVGButton();
-        addAll.setSvg( "chevron_right_double" );
+        addAll.setSvg( "chevron_double_right" );
         addAll.setOnAction( event -> getSkinnable().addAll() );
 
         SVGButton remove = new SVGButton();
@@ -92,10 +98,25 @@ public class DataPickerSkin<T extends Displayable>
         remove.setOnAction( event -> getSkinnable().remove( convert( selected ) ) );
 
         SVGButton removeAll = new SVGButton();
-        removeAll.setSvg( "chevron_left_double" );
+        removeAll.setSvg( "chevron_double_left" );
         removeAll.setOnAction( event -> getSkinnable().removeAll() );
 
         buttonBar.getChildren().addAll( add, addAll, remove, removeAll );
+        return buttonBar;
+    }
+
+    private Node createBottomBar()
+    {
+        ButtonBar buttonBar = new ButtonBar();
+        buttonBar.getStyleClass().add( "bottom-bar" );
+
+        Button ok = new Button( "OK" );
+        ok.setDefaultButton( true );
+        ok.setOnAction( event -> getSkinnable().ok() );
+        ButtonBar.setButtonData( ok, ButtonBar.ButtonData.OK_DONE );
+
+        buttonBar.getButtons().add( ok );
+
         return buttonBar;
     }
 
