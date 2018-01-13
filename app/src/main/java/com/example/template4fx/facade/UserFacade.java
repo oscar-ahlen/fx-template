@@ -6,6 +6,8 @@ import com.example.template4fx.fx.Displayable;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 
+import java.util.Objects;
+
 public class UserFacade
     implements FXFacade<User>, Displayable
 {
@@ -137,5 +139,23 @@ public class UserFacade
     public String getContent()
     {
         return SVG.INSTANCE.get( "person" );
+    }
+
+    @Override
+    public boolean equals( Object o )
+    {
+        if ( this == o )
+            return true;
+        if ( o == null || getClass() != o.getClass() )
+            return false;
+
+        UserFacade that = (UserFacade) o;
+        return Objects.equals( user, that.user );
+    }
+
+    @Override
+    public int hashCode()
+    {
+        return Objects.hash( user );
     }
 }

@@ -10,6 +10,7 @@ import javafx.beans.property.StringProperty;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Objects;
 
 public class FileFacade
     implements FXFacade<File>, Displayable
@@ -102,25 +103,6 @@ public class FileFacade
     }
 
     @Override
-    public boolean equals( Object o )
-    {
-        if ( this == o )
-            return true;
-        if ( o == null || getClass() != o.getClass() )
-            return false;
-
-        FileFacade that = (FileFacade) o;
-
-        return file != null ? file.equals( that.file ) : that.file == null;
-    }
-
-    @Override
-    public int hashCode()
-    {
-        return file != null ? file.hashCode() : 0;
-    }
-
-    @Override
     public String getTitle()
     {
         return name.get();
@@ -136,5 +118,23 @@ public class FileFacade
     public String getContent()
     {
         return SVG.INSTANCE.get( ICONS.get( format.get() ) );
+    }
+
+    @Override
+    public boolean equals( Object o )
+    {
+        if ( this == o )
+            return true;
+        if ( o == null || getClass() != o.getClass() )
+            return false;
+
+        FileFacade that = (FileFacade) o;
+        return Objects.equals( file, that.file );
+    }
+
+    @Override
+    public int hashCode()
+    {
+        return Objects.hash( file );
     }
 }

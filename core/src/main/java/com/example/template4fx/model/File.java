@@ -48,14 +48,4 @@ public class File
     {
         this.size = size;
     }
-
-    @Override
-    public String toString()
-    {
-        return "File{" +
-            "name='" + name + '\'' +
-            ", format='" + format + '\'' +
-            ", size=" + size +
-            '}';
-    }
 }
