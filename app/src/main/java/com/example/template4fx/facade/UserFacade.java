@@ -2,7 +2,7 @@ package com.example.template4fx.facade;
 
 import com.example.template4fx.SVG;
 import com.example.template4fx.model.User;
-import com.example.template4fx.view.Displayable;
+import com.example.template4fx.fx.Displayable;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 

@@ -1,7 +1,7 @@
 package com.example.template4fx.component;
 
 import com.example.template4fx.Keys;
-import com.example.template4fx.control.DialogEvent;
+import com.example.template4fx.fx.DialogEvent;
 import com.example.template4fx.control.dialog.ConfirmDialog;
 import com.example.template4fx.control.dialog.DataPicker;
 import com.example.template4fx.control.dialog.ErrorDialog;

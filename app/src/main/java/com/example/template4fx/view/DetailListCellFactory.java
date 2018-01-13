@@ -1,6 +1,7 @@
 package com.example.template4fx.view;
 
 import com.example.template4fx.control.SVGIcon;
+import com.example.template4fx.fx.Displayable;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 import javafx.scene.control.Label;

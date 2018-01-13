@@ -1,6 +1,6 @@
 package com.example.template4fx.control.notification;
 
-import com.example.template4fx.control.DialogEvent;
+import com.example.template4fx.fx.DialogEvent;
 import com.example.template4fx.control.SVGIcon;
 import javafx.scene.Node;
 import javafx.scene.control.Button;

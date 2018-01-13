@@ -1,8 +1,8 @@
 package com.example.template4fx.control.dialog;
 
-import com.example.template4fx.control.DialogEvent;
+import com.example.template4fx.fx.DialogEvent;
 import com.example.template4fx.skin.DataPickerSkin;
-import com.example.template4fx.view.Displayable;
+import com.example.template4fx.fx.Displayable;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.scene.control.Skin;

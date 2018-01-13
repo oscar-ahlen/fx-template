@@ -1,4 +1,4 @@
-package com.example.template4fx.view;
+package com.example.template4fx.fx;
 
 public interface Displayable
 {

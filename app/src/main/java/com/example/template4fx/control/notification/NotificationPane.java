@@ -1,6 +1,6 @@
 package com.example.template4fx.control.notification;
 
-import com.example.template4fx.control.DialogEvent;
+import com.example.template4fx.fx.DialogEvent;
 import javafx.animation.KeyFrame;
 import javafx.animation.KeyValue;
 import javafx.animation.Timeline;

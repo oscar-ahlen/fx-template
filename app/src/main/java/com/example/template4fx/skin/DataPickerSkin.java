@@ -2,7 +2,7 @@ package com.example.template4fx.skin;
 
 import com.example.template4fx.control.SVGButton;
 import com.example.template4fx.control.dialog.DataPicker;
-import com.example.template4fx.view.Displayable;
+import com.example.template4fx.fx.Displayable;
 import com.example.template4fx.view.SVGListCellFactory;
 import javafx.scene.Node;
 import javafx.scene.control.Button;

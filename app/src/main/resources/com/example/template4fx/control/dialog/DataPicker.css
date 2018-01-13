@@ -4,11 +4,6 @@
     -dialog-text-color: black;
 }
 
-.data-picker > .masker-glass
-{
-    -fx-background-color: rgba(0, 0, 0, .3);
-}
-
 .dialog-background
 {
     -fx-background-color: -fx-background;
