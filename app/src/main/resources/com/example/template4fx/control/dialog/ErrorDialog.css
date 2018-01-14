@@ -18,6 +18,8 @@
     -fx-background-color: -dialog-header-color;
     -fx-background-radius: 3 3 0 0;
     -fx-padding: 8 12 8 12;
+
+    -fx-alignment: CENTER;
 }
 
 .dialog-header .label

@@ -22,7 +22,6 @@ public abstract class DialogSkin<T extends AbstractDialog>
     {
         HBox header = new HBox();
         header.getStyleClass().add( "dialog-header" );
-        header.setAlignment( Pos.CENTER );
 
         Label headerText = new Label();
         headerText.textProperty().bind( getSkinnable().headerProperty() );

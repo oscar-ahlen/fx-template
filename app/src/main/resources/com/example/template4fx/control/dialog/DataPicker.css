@@ -18,6 +18,8 @@
 
     -fx-padding: 8 12 12 12;
     -fx-spacing: 8;
+
+    -fx-alignment: CENTER;
 }
 
 .dialog-header > .label
