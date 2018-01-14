@@ -39,7 +39,11 @@ public class App
                                             ResourceBundle.getBundle( "Template4FX", Locale.ENGLISH ) );
 
         primaryStage.titleProperty().bindBidirectional( rootView.titleProperty() );
-        primaryStage.setScene( new Scene( rootView.getParent() ) );
+
+        Scene scene = new Scene( rootView.getParent() );
+        scene.getStylesheets().add( "/css/theme.css" );
+
+        primaryStage.setScene( scene );
         primaryStage.setMaximized( true );
         primaryStage.show();
     }

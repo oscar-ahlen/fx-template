@@ -19,8 +19,6 @@
     </padding>
 
     <HBox spacing="8">
-        <Button text="Notification" onAction="#infoNotification"/>
-
         <Button text="Information Dialog" onAction="#showInfoDialog"/>
         <Button text="Error Dialog" onAction="#showErrorDialog"/>
         <Button text="Confirm Dialog" onAction="#showConfirmDialog"/>

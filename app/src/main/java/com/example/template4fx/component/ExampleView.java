@@ -6,7 +6,6 @@ import com.example.template4fx.control.dialog.DataPicker;
 import com.example.template4fx.control.dialog.ErrorDialog;
 import com.example.template4fx.control.dialog.InfoDialog;
 import com.example.template4fx.control.dialog.ValuePicker;
-import com.example.template4fx.control.notification.Notifications;
 import com.example.template4fx.facade.FileFacade;
 import com.example.template4fx.fx.DialogEvent;
 import com.example.template4fx.model.File;
@@ -21,6 +20,7 @@ import javafx.scene.control.TableView;
 import javafx.scene.input.KeyEvent;
 
 import java.util.Arrays;
+import java.util.Collection;
 import java.util.Collections;
 
 @Singleton
@@ -74,12 +74,6 @@ public class ExampleView
         }
     }
 
-    public void infoNotification()
-    {
-        notification( Notifications.info( "This is an information notification, do you want to continue?",
-                                          "Yes", "No" ) );
-    }
-
     public void showInfoDialog()
     {
         popup( new InfoDialog( "Information Dialog", "Testing the new Info Dialog" ) );
@@ -110,12 +104,10 @@ public class ExampleView
 
     public void testValuePicker()
     {
-        ValuePicker<String> valuePicker =
-            new ValuePicker<>( valuePickerButton, FXCollections.observableArrayList( Arrays.asList( "Test 1",
-                                                                                                    "Test 2",
-                                                                                                    "Test 3",
-                                                                                                    "Test 4",
-                                                                                                    "Test 5" ) ) );
+        Collection<String> values = Arrays.asList( "Test 1", "Test 2", "Test 3", "Test 4", "Test 5" );
+
+        ValuePicker<String> valuePicker = new ValuePicker<>( valuePickerButton,
+                                                             FXCollections.observableArrayList( values ) );
 
         popup( valuePicker );
     }

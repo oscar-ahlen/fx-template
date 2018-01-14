@@ -3,7 +3,6 @@ package com.example.template4fx.component;
 import com.example.template4fx.Keys;
 import com.example.template4fx.control.SVGLabel;
 import com.example.template4fx.control.dialog.AbstractDialog;
-import com.example.template4fx.control.notification.NotificationPane;
 import com.example.template4fx.util.HistoryList;
 import com.google.inject.Singleton;
 import javafx.application.Platform;
@@ -37,9 +36,6 @@ public class RootView
 
     @FXML
     private Pane root, expandedNavBar, collapsedNavBar;
-
-    @FXML
-    private NotificationPane notificationPane;
 
     @FXML
     private BorderPane viewPane;
@@ -179,11 +175,6 @@ public class RootView
         source.bind( target );
     }
 
-    public NotificationPane getNotificationPane()
-    {
-        return notificationPane;
-    }
-
     private final StringProperty title = new SimpleStringProperty();
 
     public String getTitle()
@@ -210,10 +201,6 @@ public class RootView
             if ( dialog != null )
             {
                 dialog.handleKeyEvent( event );
-            }
-            else if ( notificationPane.hasNotification() )
-            {
-                notificationPane.handleEvent( event );
             }
             else if ( Keys.ALT_LEFT.match( event ) )
             {

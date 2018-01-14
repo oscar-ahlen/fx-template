@@ -42,10 +42,12 @@ public class ConfirmDialogSkin
         ok.setDefaultButton( true );
         ok.setOnAction( event -> getSkinnable().ok() );
         ButtonBar.setButtonData( ok, ButtonBar.ButtonData.OK_DONE );
+        getSkinnable().setFirst( ok );
 
         Button cancel = new Button( "Cancel" );
         cancel.setOnAction( event -> getSkinnable().cancel() );
         ButtonBar.setButtonData( cancel, ButtonBar.ButtonData.CANCEL_CLOSE );
+        getSkinnable().setLast( cancel );
 
         buttonBar.getButtons().addAll( ok, cancel );
 

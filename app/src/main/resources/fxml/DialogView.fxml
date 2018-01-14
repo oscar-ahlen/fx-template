@@ -3,5 +3,4 @@
       xmlns:fx="http://javafx.com/fxml"
       fx:controller="com.example.template4fx.component.DialogView"
       fx:id="root">
-
 </VBox>

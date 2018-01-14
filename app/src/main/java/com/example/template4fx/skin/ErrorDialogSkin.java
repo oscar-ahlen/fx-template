@@ -52,12 +52,15 @@ public class ErrorDialogSkin
         errorText.setMaxHeight( Double.MAX_VALUE );
         VBox.setVgrow( errorText, Priority.ALWAYS );
 
+        getSkinnable().setFirst( errorText );
+
         ButtonBar buttonBar = new ButtonBar();
 
         Button ok = new Button( "OK" );
         ok.setDefaultButton( true );
         ok.setOnAction( event -> getSkinnable().ok() );
         ButtonBar.setButtonData( ok, ButtonBar.ButtonData.OK_DONE );
+        getSkinnable().setLast( ok );
 
         buttonBar.getButtons().add( ok );
 
