@@ -17,7 +17,7 @@ public class InfoDialog
 
     public void ok()
     {
-        setVisible( false );
+        setClosed( true );
     }
 
     @Override

@@ -19,7 +19,7 @@ public class ErrorDialogSkin
     public ErrorDialogSkin( ErrorDialog dialog )
     {
         super( dialog );
-        createOverlay( createDialogSkin() );
+        getChildren().add( new Expander( createDialogSkin() ) );
     }
 
     private Node createDialogSkin()

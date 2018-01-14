@@ -2,8 +2,11 @@ package com.example.template4fx.control.dialog;
 
 import com.example.template4fx.Keys;
 import com.example.template4fx.control.FXControl;
+import com.example.template4fx.fx.Popup;
 import javafx.application.Platform;
+import javafx.beans.property.BooleanProperty;
 import javafx.beans.property.ObjectProperty;
+import javafx.beans.property.SimpleBooleanProperty;
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
@@ -12,16 +15,23 @@ import javafx.scene.input.KeyEvent;
 
 public abstract class AbstractDialog
     extends FXControl
+    implements Popup
 {
-    public AbstractDialog( String header, String svg )
+    protected AbstractDialog( String header, String svg )
     {
         setHeader( header );
         setSvg( svg );
 
         getStyleClass().add( "dialog" );
-        visibleProperty().bindBidirectional( managedProperty() );
     }
 
+    @Override
+    public Node getNode()
+    {
+        return this;
+    }
+
+    @Override
     public void handleKeyEvent( KeyEvent event )
     {
         if ( ( Keys.TAB.match( event ) || Keys.RIGHT.match( event ) ) && getLast().isFocused() )
@@ -34,6 +44,24 @@ public abstract class AbstractDialog
             event.consume();
             Platform.runLater( () -> getLast().requestFocus() );
         }
+    }
+
+    private final BooleanProperty closed = new SimpleBooleanProperty();
+
+    public boolean isClosed()
+    {
+        return closed.get();
+    }
+
+    @Override
+    public BooleanProperty closedProperty()
+    {
+        return closed;
+    }
+
+    public void setClosed( boolean closed )
+    {
+        this.closed.set( closed );
     }
 
     protected final StringProperty header = new SimpleStringProperty();

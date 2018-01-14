@@ -78,7 +78,7 @@ public class ValuePicker<T>
 
     private void close()
     {
-        setVisible( false );
+        setClosed( true );
         Platform.runLater( source::requestFocus );
     }
 

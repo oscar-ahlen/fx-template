@@ -14,7 +14,7 @@ public class ConfirmDialogSkin
     public ConfirmDialogSkin( ConfirmDialog dialog )
     {
         super( dialog );
-        createOverlay( createDialogSkin() );
+        getChildren().add( new Expander( createDialogSkin() ) );
     }
 
     private Node createDialogSkin()

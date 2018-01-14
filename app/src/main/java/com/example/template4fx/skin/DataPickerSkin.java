@@ -25,7 +25,7 @@ public class DataPickerSkin<T extends Displayable>
     public DataPickerSkin( DataPicker<T> control )
     {
         super( control );
-        createOverlay( createDialogSkin() );
+        getChildren().add( new Expander( createDialogSkin() ) );
     }
 
     private Node createDialogSkin()
@@ -113,7 +113,7 @@ public class DataPickerSkin<T extends Displayable>
 
         Button ok = new Button( "OK" );
         ok.setDefaultButton( true );
-        ok.setOnAction( event -> getSkinnable().ok() );
+        ok.setOnAction( event -> getSkinnable().close() );
         ButtonBar.setButtonData( ok, ButtonBar.ButtonData.OK_DONE );
         getSkinnable().setLast( ok );
 

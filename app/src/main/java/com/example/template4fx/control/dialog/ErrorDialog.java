@@ -17,7 +17,7 @@ public class ErrorDialog
 
     public void ok()
     {
-        setVisible( false );
+        setClosed( true );
     }
 
     @Override

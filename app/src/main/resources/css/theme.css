@@ -865,7 +865,7 @@
     -dialog-text-color: -header-color;
 }
 
-.dialog > .masker-glass
+.masker-glass
 {
     -fx-background-color: rgba(0, 0, 0, .3);
 }

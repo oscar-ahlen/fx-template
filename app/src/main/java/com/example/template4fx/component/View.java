@@ -1,6 +1,6 @@
 package com.example.template4fx.component;
 
-import com.example.template4fx.control.dialog.AbstractDialog;
+import com.example.template4fx.fx.Popup;
 import com.example.template4fx.service.SettingsService;
 import com.google.inject.Inject;
 import javafx.beans.property.BooleanProperty;
@@ -14,13 +14,13 @@ public abstract class View
 {
     private RootView rootView;
 
-    private SettingsService settingsService;
-
     private ExecutorService executorService;
 
-    protected void popup( AbstractDialog dialog )
+    private SettingsService settingsService;
+
+    protected void popup( Popup popup )
     {
-        rootView.popup( dialog );
+        rootView.popup( popup );
     }
 
     protected String setting( String key )
@@ -32,11 +32,12 @@ public abstract class View
     {
         if ( isIdle() )
         {
+            start();
+
             task.setOnSucceeded( event -> stop() );
             task.setOnFailed( event -> stop() );
             task.setOnCancelled( event -> stop() );
 
-            start();
             executorService.submit( task );
         }
     }
@@ -75,14 +76,14 @@ public abstract class View
     }
 
     @Inject
-    public void setSettingsService( SettingsService settingsService )
-    {
-        this.settingsService = settingsService;
-    }
-
-    @Inject
     public void setExecutorService( ExecutorService executorService )
     {
         this.executorService = executorService;
+    }
+
+    @Inject
+    public void setSettingsService( SettingsService settingsService )
+    {
+        this.settingsService = settingsService;
     }
 }

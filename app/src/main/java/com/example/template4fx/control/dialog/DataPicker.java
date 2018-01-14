@@ -28,9 +28,9 @@ public class DataPicker<T extends Displayable>
         this.available.removeAll( selected );
     }
 
-    public void ok()
+    public void close()
     {
-        setVisible( false );
+        setClosed( true );
         fireEvent( DialogEvent.successEvent() );
     }
 
@@ -80,11 +80,5 @@ public class DataPicker<T extends Displayable>
     public ObservableList<T> getSelected()
     {
         return selected;
-    }
-
-    public void close()
-    {
-        setVisible( false );
-        fireEvent( DialogEvent.successEvent() );
     }
 }

@@ -4,16 +4,17 @@ import com.example.template4fx.control.dialog.ValuePicker;
 import javafx.application.Platform;
 import javafx.scene.Node;
 import javafx.scene.control.ListView;
+import javafx.scene.control.SkinBase;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.VBox;
 
 public class ValuePickerSkin<T>
-    extends OverlaySkin<ValuePicker<T>>
+    extends SkinBase<ValuePicker<T>>
 {
     public ValuePickerSkin( ValuePicker<T> control )
     {
         super( control );
-        createOverlay( createDialogSkin() );
+        getChildren().add( new Expander( createDialogSkin() ) );
     }
 
     private Node createDialogSkin()

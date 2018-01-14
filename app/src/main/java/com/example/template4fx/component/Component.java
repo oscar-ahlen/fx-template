@@ -1,9 +1,13 @@
 package com.example.template4fx.component;
 
+import javafx.beans.property.Property;
+import javafx.beans.value.ObservableValue;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
+import javafx.scene.layout.Pane;
+import javafx.stage.Window;
 import javafx.util.Callback;
 
 import java.io.IOException;
@@ -43,6 +47,11 @@ public abstract class Component
 
     public abstract Parent getParent();
 
+    public Window getWindow()
+    {
+        return getParent().getScene().getWindow();
+    }
+
     protected String message( String key )
     {
         return resources.getString( key );
@@ -63,5 +72,17 @@ public abstract class Component
     {
         node.setVisible( true );
         node.setManaged( true );
+    }
+
+    protected void switchNode( Pane parent, Node oldNode, Node newNode )
+    {
+        parent.getChildren().add( newNode );
+        parent.getChildren().remove( oldNode );
+    }
+
+    protected <T> void rebindProperty( Property<T> source, ObservableValue<T> target )
+    {
+        source.unbind();
+        source.bind( target );
     }
 }

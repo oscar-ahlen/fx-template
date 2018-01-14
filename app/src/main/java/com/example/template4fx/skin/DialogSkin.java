@@ -5,12 +5,13 @@ import com.example.template4fx.control.dialog.AbstractDialog;
 import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.control.Label;
+import javafx.scene.control.SkinBase;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.Priority;
 
 public abstract class DialogSkin<T extends AbstractDialog>
-    extends OverlaySkin<T>
+    extends SkinBase<T>
 {
     protected DialogSkin( T dialog )
     {

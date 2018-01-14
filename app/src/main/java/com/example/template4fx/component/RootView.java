@@ -2,12 +2,10 @@ package com.example.template4fx.component;
 
 import com.example.template4fx.Keys;
 import com.example.template4fx.control.SVGLabel;
-import com.example.template4fx.control.dialog.AbstractDialog;
+import com.example.template4fx.fx.Popup;
 import com.example.template4fx.util.HistoryList;
 import com.google.inject.Singleton;
 import javafx.application.Platform;
-import javafx.beans.binding.BooleanBinding;
-import javafx.beans.property.BooleanProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 import javafx.event.EventHandler;
@@ -46,7 +44,7 @@ public class RootView
     @FXML
     private Button backward, forward;
 
-    private AbstractDialog dialog;
+    private Popup popup;
 
     public void initialize()
         throws IOException
@@ -123,18 +121,18 @@ public class RootView
         switchView( NavBarView.SettingsView );
     }
 
-    public void popup( AbstractDialog dialog )
+    public void popup( Popup popup )
     {
-        dialog.visibleProperty().addListener( ( observable, oldValue, newValue ) -> {
-            if ( !newValue && oldValue )
+        popup.closedProperty().addListener( ( observable, oldValue, newValue ) -> {
+            if ( newValue && !oldValue )
             {
-                root.getChildren().remove( dialog );
-                this.dialog = null;
+                root.getChildren().remove( popup.getNode() );
+                this.popup = null;
             }
         } );
 
-        root.getChildren().add( dialog );
-        this.dialog = dialog;
+        root.getChildren().add( popup.getNode() );
+        this.popup = popup;
     }
 
     private void switchView( NavBarView name )
@@ -155,24 +153,6 @@ public class RootView
 
         rebindProperty( header.textProperty(), current.titleProperty() );
         rebindProperty( header.svgProperty(), current.svgProperty() );
-    }
-
-    private void rebindProperty( BooleanProperty source, BooleanProperty target )
-    {
-        source.unbind();
-        source.bind( target );
-    }
-
-    private void rebindProperty( BooleanProperty source, BooleanBinding target )
-    {
-        source.unbind();
-        source.bind( target );
-    }
-
-    private void rebindProperty( StringProperty source, StringProperty target )
-    {
-        source.unbind();
-        source.bind( target );
     }
 
     private final StringProperty title = new SimpleStringProperty();
@@ -198,9 +178,9 @@ public class RootView
         @Override
         public void handle( KeyEvent event )
         {
-            if ( dialog != null )
+            if ( popup != null )
             {
-                dialog.handleKeyEvent( event );
+                popup.handleKeyEvent( event );
             }
             else if ( Keys.ALT_LEFT.match( event ) )
             {

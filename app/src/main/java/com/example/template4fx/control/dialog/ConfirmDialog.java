@@ -18,13 +18,13 @@ public class ConfirmDialog
 
     public void ok()
     {
-        setVisible( false );
+        setClosed( true );
         fireEvent( DialogEvent.successEvent() );
     }
 
     public void cancel()
     {
-        setVisible( false );
+        setClosed( true );
         fireEvent( DialogEvent.cancelEvent() );
     }
 

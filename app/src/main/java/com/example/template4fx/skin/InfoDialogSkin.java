@@ -14,7 +14,7 @@ public class InfoDialogSkin
     public InfoDialogSkin( InfoDialog dialog )
     {
         super( dialog );
-        createOverlay( createDialogSkin() );
+        getChildren().add( new Expander( createDialogSkin() ) );
     }
 
     private Node createDialogSkin()
