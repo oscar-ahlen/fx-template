@@ -36,8 +36,6 @@ public class ValuePicker<T>
     @Override
     public void handleKeyEvent( KeyEvent event )
     {
-        super.handleKeyEvent( event );
-
         if ( Keys.ESCAPE.match( event ) )
         {
             event.consume();

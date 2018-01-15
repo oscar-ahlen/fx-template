@@ -53,7 +53,6 @@ public class DataPickerSkin<T extends Displayable>
     private Node createAvailableList()
     {
         available = createListView();
-        getSkinnable().setFirst( available );
 
         VBox container = new VBox();
         container.getChildren().add( available );
@@ -115,7 +114,6 @@ public class DataPickerSkin<T extends Displayable>
         ok.setDefaultButton( true );
         ok.setOnAction( event -> getSkinnable().close() );
         ButtonBar.setButtonData( ok, ButtonBar.ButtonData.OK_DONE );
-        getSkinnable().setLast( ok );
 
         buttonBar.getButtons().add( ok );
 
